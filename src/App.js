@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import './App.css'
 // eslint-disable-next-line
 import ReactLoading from 'react-loading'
+import $ from 'minified'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
 // eslint-disable-next-line
@@ -22,10 +23,9 @@ export default class App extends Component {
         {value: 'infNl', label: 'Infinitif Nl'},
         {value: 'OVT', label: 'OVT'},
         {value: 'PP', label: 'Participe Passé'},
-        {value: 'infFr', label: 'Infinitif FR'},
-        {value: 'vide', label: 'Rien'},
-        {value: 'question', label: 'Question'}
+        {value: 'infFr', label: 'Infinitif FR'}
       ], // ordre des colonnes
+      question: [false, false, false, false],
       affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: inline | non: none
       aleatoire: true, // ordre aleatoire ou non
       limite: 20 // limite d'affichage des tps
@@ -33,6 +33,8 @@ export default class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleQuestion = this.handleQuestion.bind(this)
+    this.handleReponse = this.handleReponse.bind(this)
     this.shuffleTp = this.shuffleTp.bind(this)
   }
   // mélange des tps pour l'aléatoire
@@ -103,6 +105,24 @@ export default class App extends Component {
   handleClick () {
     this.shuffleTp(this.state.tp)
   }
+  handleQuestion (e) {
+    // function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
+    function setValue (colonne, value, previousColonne) {
+      previousColonne[colonne] = value
+      return previousColonne
+    }
+    const question = this.state.question
+    const target = e.target
+    const colonne = target.id
+    const value = setValue(colonne, target.checked, question)
+    const name = 'question'
+    this.setState({
+      [name]: value
+    })
+  }
+  handleReponse (e) {
+    console.log(e.target.value)
+  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -114,7 +134,7 @@ export default class App extends Component {
     return (
       <div>
         <div>
-          <button onClick={this.handleClick} > Test </button>
+          <button onClick={this.handleClick} > Recharger </button>
           <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
           <div>
@@ -132,13 +152,13 @@ export default class App extends Component {
                   {value: 'OVT', label: 'OVT', colonne: '0'},
                   {value: 'PP', label: 'Participe Passé', colonne: '0'},
                   {value: 'infFr', label: 'Infinitif FR', colonne: '0'},
-                  {value: 'vide', label: 'Rien', colonne: '0'},
-                  {value: 'question', label: 'Question', colonne: '0'}
+                  {value: 'vide', label: 'Rien', colonne: '0'}
                 ]}
                 autosize = {true}
                 searchable={false}
                 placeholder = 'Selectionner la colonne 1'
               />
+              <label htmlFor='0'>Question: </label> <input id='0' tag='0question' name='0question' type='checkbox' checked={this.state.question[0]} onChange={ this.handleQuestion } ></input>
             </div>
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
               <label htmlFor='col1'>Colonne 2: </label>
@@ -152,10 +172,10 @@ export default class App extends Component {
                   {value: 'OVT', label: 'OVT', colonne: '1'},
                   {value: 'PP', label: 'Participe Passé', colonne: '1'},
                   {value: 'infFr', label: 'Infinitif FR', colonne: '1'},
-                  {value: 'vide', label: 'Rien', colonne: '1'},
-                  {value: 'question', label: 'Question', colonne: '1'}
+                  {value: 'vide', label: 'Rien', colonne: '1'}
                 ]}
               />
+              <label htmlFor='1'>Question: </label> <input id='1' tag='1question' name='1question' type='checkbox' checked={this.state.question[1]} onChange={ this.handleQuestion } ></input>
             </div>
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
               <label htmlFor='col2'>Colonne 3: </label>
@@ -169,10 +189,10 @@ export default class App extends Component {
                   {value: 'OVT', label: 'OVT', colonne: '2'},
                   {value: 'PP', label: 'Participe Passé', colonne: '2'},
                   {value: 'infFr', label: 'Infinitif FR', colonne: '2'},
-                  {value: 'vide', label: 'Rien', colonne: '2'},
-                  {value: 'question', label: 'Question', colonne: '2'}
+                  {value: 'vide', label: 'Rien', colonne: '2'}
                 ]}
               />
+              <label htmlFor='2'>Question: </label> <input id='2' tag='2question' name='2question' type='checkbox' checked={this.state.question[2]} onChange={ this.handleQuestion } ></input>
             </div>
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
               <label htmlFor='col3'>Colonne 4: </label>
@@ -186,10 +206,10 @@ export default class App extends Component {
                   {value: 'OVT', label: 'OVT', colonne: '3'},
                   {value: 'PP', label: 'Participe Passé', colonne: '3'},
                   {value: 'infFr', label: 'Infinitif FR', colonne: '3'},
-                  {value: 'vide', label: 'Rien', colonne: '3'},
-                  {value: 'question', label: 'Question', colonne: '3'}
+                  {value: 'vide', label: 'Rien', colonne: '3'}
                 ]}
               />
+              <label htmlFor='3'>Question: </label> <input id='3' tag='3question' name='3question' type='checkbox' checked={this.state.question[3]} onChange={ this.handleQuestion } ></input>
             </div>
           </div>
         </div>
@@ -202,6 +222,8 @@ export default class App extends Component {
             aleatoire = {this.state.aleatoire}
             limite = {this.state.limite}
             affColonne = {this.state.affichacheColonne}
+            question = {this.state.question}
+            handleReponse = {this.handleReponse}
           />
         </div>
       </div>
@@ -222,6 +244,8 @@ var Tableau = function (props) {
           colonne = {props.colonne}
           limite = {props.limite}
           affColonne = {props.affColonne}
+          question = {props.question}
+          handleReponse = {props.handleReponse}
         />
       </div>
     )
@@ -235,6 +259,8 @@ var Tableau = function (props) {
           colonne = {props.colonne}
           limite = {props.limite}
           affColonne = {props.affColonne}
+          question = {props.question}
+          handleReponse = {props.handleReponse}
         />
       </div>
     )
@@ -278,6 +304,8 @@ var RenduAleatoire = function (props) {
                     listValue = {listValue}
                     affColonne = {affColonne}
                     colonne = {props.colonne}
+                    question = {props.question}
+                    handleReponse = {props.handleReponse}
                   />
 
                 )
@@ -333,27 +361,31 @@ var Row = function (props) {
   return (
     <tr>
       <th scope="row">{index + 1}</th>
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col0.value]} colValue = {col0.value} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col1.value]} colValue = {col1.value} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col2.value]} colValue = {col2.value} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col3.value]} colValue = {col3.value} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue[col0.value]} numero = {0} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue[col1.value]} numero = {1} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue[col2.value]} numero = {2} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue[col3.value]} numero = {3} question = {props.question} handleReponse = {props.handleReponse} />
     </tr>
 
   )
 }
 // eslint-disable-next-line
 var Cell = function (props) {
+  var verification = function (bonjour) {
+  }
   var index = props.index
   var value = props.value
-  var colValue = props.colValue
+  var question = props.question
   var affColonne = props.affColonne
-  if (colValue === 'question') {
+  var numero = props.numero
+  var handleReponse = props.handleReponse
+  if (question[numero] === true) {
     return (
-      <td key = {index} style = {{'display': affColonne[0]}}> <input id='test' tag='test' className="search-input" type="textarea" placeholder="test" /> </td>
+      <td key = {index} style = {{'display': affColonne[numero]}}> <input id='question' tag='question' className="search-input" type="textarea" placeholder={value} onBlur = {verification()} /> </td>
     )
   } else {
     return (
-      <td key = {index} style = {{'display': affColonne[0]}}> {value} </td>
+      <td key = {index} style = {{'display': affColonne[numero]}}> {value} </td>
     )
   }
 }

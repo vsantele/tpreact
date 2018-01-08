@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^4.5.1",
     "jquery": "^3.2.1",
+    "minified": "^1.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-loading": "^0.1.4",
