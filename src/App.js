@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import './App.css'
 // eslint-disable-next-line
 import ReactLoading from 'react-loading'
-import $ from 'minified'
+// import MINI from 'minified'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
 // eslint-disable-next-line
@@ -372,6 +372,7 @@ var Row = function (props) {
 // eslint-disable-next-line
 var Cell = function (props) {
   var verification = function (bonjour) {
+    console.log(document.getElementById('question').value)
   }
   var index = props.index
   var value = props.value
@@ -381,7 +382,7 @@ var Cell = function (props) {
   var handleReponse = props.handleReponse
   if (question[numero] === true) {
     return (
-      <td key = {index} style = {{'display': affColonne[numero]}}> <input id='question' tag='question' className="search-input" type="textarea" placeholder={value} onBlur = {verification()} /> </td>
+      <td key = {index + 'cell'} style = {{'display': affColonne[numero]}}> <input key={index} id='question' tag='question' className="search-input" type="textarea" placeholder={value} onBlur = {verification()} /> </td>
     )
   } else {
     return (
