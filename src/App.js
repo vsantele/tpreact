@@ -25,7 +25,7 @@ export default class App extends Component {
         {value: 'PP', label: 'Participe Passé'},
         {value: 'infFr', label: 'Infinitif FR'}
       ], // ordre des colonnes
-      question: [false, false, false, false],
+      question: [true, false, false, false],
       affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: inline | non: none
       aleatoire: true, // ordre aleatoire ou non
       limite: 20 // limite d'affichage des tps
@@ -120,8 +120,20 @@ export default class App extends Component {
       [name]: value
     })
   }
-  handleReponse (e) {
-    console.log(e.target.value)
+  handleReponse (correct, index) {
+    var previousState
+    var tpList
+    if (this.state.aleatoire) {
+      previousState = this.state.tpRandom
+      tpList = 'tpRandom'
+    } else {
+      previousState = this.state.tp
+      tpList = 'tp'
+    }
+    previousState[index].correct = correct
+    this.setState({
+      [tpList]: previousState
+    })
   }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
@@ -359,30 +371,36 @@ var Row = function (props) {
   var col2 = props.colonne[2]
   var col3 = props.colonne[3]
   return (
-    <tr>
+    <tr style = {listValue['correct'] === true ? {backgroundColor: '#5cb85c'} : listValue['correct'] === false ? {backgroundColor: '#d9534f'} : {}}>
       <th scope="row">{index + 1}</th>
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col0.value]} numero = {0} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col1.value]} numero = {1} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col2.value]} numero = {2} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue[col3.value]} numero = {3} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col0} numero = {0} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col1} numero = {1} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col2} numero = {2} question = {props.question} handleReponse = {props.handleReponse} />
+      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col3} numero = {3} question = {props.question} handleReponse = {props.handleReponse} />
     </tr>
-
   )
 }
 // eslint-disable-next-line
 var Cell = function (props) {
-  var verification = function (bonjour) {
-    console.log(document.getElementById('question').value)
+  function verification (e) {
+    var reponse = e.target.value
+    var index = e.target.id
+    console.log(reponse)
+    var correct = reponse !== '' ? reponse === value : 'neutre'
+    handleReponse(correct, index)
+    console.log(isCorrect)
   }
   var index = props.index
-  var value = props.value
+  var colonne = props.colonne
+  var value = props.value[colonne.value]
   var question = props.question
   var affColonne = props.affColonne
   var numero = props.numero
   var handleReponse = props.handleReponse
+  var isCorrect = props.value.correct
   if (question[numero] === true) {
     return (
-      <td key = {index + 'cell'} style = {{'display': affColonne[numero]}}> <input key={index} id='question' tag='question' className="search-input" type="textarea" placeholder={value} onBlur = {verification()} /> </td>
+      <td key = {index + 'cell'} style = {{'display': affColonne[numero]}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onKeyUp = {(e) => verification(e)} /> </td>
     )
   } else {
     return (

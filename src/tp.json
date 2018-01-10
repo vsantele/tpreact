@@ -5,7 +5,7 @@
     "PP": "gebakken",
     "infFr": "cuire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bedriegen",
@@ -13,7 +13,7 @@
     "PP": "bedrogen",
     "infFr": "tromper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "beginnen",
@@ -21,7 +21,7 @@
     "PP": "begonnen",
     "infFr": "commencer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "besluiten",
@@ -29,7 +29,7 @@
     "PP": "besloten",
     "infFr": "décider",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bevelen",
@@ -37,7 +37,7 @@
     "PP": "bevolen",
     "infFr": "ordonner",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bezoeken",
@@ -45,7 +45,7 @@
     "PP": "bezocht",
     "infFr": "visiter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bidden",
@@ -53,7 +53,7 @@
     "PP": "gebeden",
     "infFr": "prier",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bieden",
@@ -61,7 +61,7 @@
     "PP": "geboden",
     "infFr": "offrir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "bijten",
@@ -69,7 +69,7 @@
     "PP": "gebeten",
     "infFr": "mordre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "binden",
@@ -77,7 +77,7 @@
     "PP": "gebonden",
     "infFr": "lier",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "blazen",
@@ -85,7 +85,7 @@
     "PP": "geblazen",
     "infFr": "souffler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "blijken",
@@ -93,7 +93,7 @@
     "PP": "gebleken",
     "infFr": "apparaître",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "blijven",
@@ -101,7 +101,7 @@
     "PP": "gebleven",
     "infFr": "rester",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "blinken",
@@ -109,7 +109,7 @@
     "PP": "geblonken",
     "infFr": "briller",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "braden",
@@ -117,7 +117,7 @@
     "PP": "gebraden",
     "infFr": "rôtir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "breken",
@@ -125,7 +125,7 @@
     "PP": "gebroken",
     "infFr": "casser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "brengen",
@@ -133,7 +133,7 @@
     "PP": "gebracht",
     "infFr": "apporter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "denken",
@@ -141,7 +141,7 @@
     "PP": "gedacht",
     "infFr": "penser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "doen",
@@ -149,7 +149,7 @@
     "PP": "gedaan",
     "infFr": "faire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "dragen",
@@ -157,7 +157,7 @@
     "PP": "gedragen",
     "infFr": "porter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "dringen",
@@ -165,7 +165,7 @@
     "PP": "gedrongen",
     "infFr": "presser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "drinken",
@@ -173,7 +173,7 @@
     "PP": "gedronken",
     "infFr": "boire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "duiken",
@@ -181,7 +181,7 @@
     "PP": "gedoken",
     "infFr": "plonger",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "dwingen",
@@ -189,7 +189,7 @@
     "PP": "gedwongen",
     "infFr": "forcer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "eten",
@@ -197,7 +197,7 @@
     "PP": "gegeten",
     "infFr": "manger",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "fluiten",
@@ -205,7 +205,7 @@
     "PP": "gefloten",
     "infFr": "siffler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "gaan",
@@ -213,7 +213,7 @@
     "PP": "gegaan",
     "infFr": "aller",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "gelden",
@@ -221,7 +221,7 @@
     "PP": "gegolden",
     "infFr": "valoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "genezen",
@@ -229,7 +229,7 @@
     "PP": "genezen",
     "infFr": "guérir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "genieten",
@@ -237,7 +237,7 @@
     "PP": "genoten",
     "infFr": "profiter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "geven",
@@ -245,7 +245,7 @@
     "PP": "gegeven",
     "infFr": "donner",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "glijden",
@@ -253,7 +253,7 @@
     "PP": "gegleden",
     "infFr": "glisser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "hangen",
@@ -261,7 +261,7 @@
     "PP": "gehangen",
     "infFr": "pendre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "hebben",
@@ -269,7 +269,7 @@
     "PP": "gehad",
     "infFr": "avoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "helpen",
@@ -277,7 +277,7 @@
     "PP": "geholpen",
     "infFr": "aider",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "heten",
@@ -285,7 +285,7 @@
     "PP": "geheten",
     "infFr": "s'appeler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "houden",
@@ -293,7 +293,7 @@
     "PP": "gehouden",
     "infFr": "tenir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "jagen",
@@ -301,7 +301,7 @@
     "PP": "gejaagd",
     "infFr": "chasser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "kiezen",
@@ -309,7 +309,7 @@
     "PP": "gekozen",
     "infFr": "choisir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "kijken",
@@ -317,7 +317,7 @@
     "PP": "gekeken",
     "infFr": "regarder",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "klimmen",
@@ -325,7 +325,7 @@
     "PP": "geklommen",
     "infFr": "grimper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "klinken",
@@ -333,7 +333,7 @@
     "PP": "geklonken",
     "infFr": "résonner",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "komen",
@@ -341,7 +341,7 @@
     "PP": "gekomen",
     "infFr": "venir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "kopen",
@@ -349,7 +349,7 @@
     "PP": "gekocht",
     "infFr": "acheter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "krijgen",
@@ -357,7 +357,7 @@
     "PP": "gekregen",
     "infFr": "recevoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "kruipen",
@@ -365,7 +365,7 @@
     "PP": "gekropen",
     "infFr": "ramper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "kunnen",
@@ -373,7 +373,7 @@
     "PP": "gekund",
     "infFr": "pouvoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "lachen",
@@ -381,7 +381,7 @@
     "PP": "gelachen",
     "infFr": "rire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "laden",
@@ -389,7 +389,7 @@
     "PP": "geladen",
     "infFr": "charger",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "laten",
@@ -397,7 +397,7 @@
     "PP": "gelaten",
     "infFr": "laisser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "lezen",
@@ -405,7 +405,7 @@
     "PP": "gelezen",
     "infFr": "lire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "liegen",
@@ -413,7 +413,7 @@
     "PP": "gelogen",
     "infFr": "mentir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "liggen",
@@ -421,7 +421,7 @@
     "PP": "gelegen",
     "infFr": "être couché",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "lijden",
@@ -429,7 +429,7 @@
     "PP": "geleden",
     "infFr": "souffrir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "lijken",
@@ -437,7 +437,7 @@
     "PP": "geleken",
     "infFr": "paraître",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "lopen",
@@ -445,7 +445,7 @@
     "PP": "gelopen",
     "infFr": "marcher",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "melken",
@@ -453,7 +453,7 @@
     "PP": "gemolken",
     "infFr": "traire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "meten",
@@ -461,7 +461,7 @@
     "PP": "gemeten",
     "infFr": "mesurer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "mijden",
@@ -469,7 +469,7 @@
     "PP": "gemeden",
     "infFr": "éviter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "moeten",
@@ -477,7 +477,7 @@
     "PP": "gemoeten",
     "infFr": "devoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "mogen",
@@ -485,7 +485,7 @@
     "PP": "gemoogd",
     "infFr": "pouvoir (permission)",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "nemen",
@@ -493,7 +493,7 @@
     "PP": "genomen",
     "infFr": "prendre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "ontmoeten",
@@ -501,7 +501,7 @@
     "PP": "ontmoet",
     "infFr": "rencontrer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "prijzen",
@@ -509,7 +509,7 @@
     "PP": "geprezen",
     "infFr": "louer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "raden",
@@ -517,7 +517,7 @@
     "PP": "geraden",
     "infFr": "deviner",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "rijden",
@@ -525,7 +525,7 @@
     "PP": "gereden",
     "infFr": "rouler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "rijzen",
@@ -533,7 +533,7 @@
     "PP": "gerezen",
     "infFr": "s'élever",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "roepen",
@@ -541,7 +541,7 @@
     "PP": "geroepen",
     "infFr": "appeler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "ruiken",
@@ -549,7 +549,7 @@
     "PP": "geroken",
     "infFr": "sentir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "scheiden",
@@ -557,7 +557,7 @@
     "PP": "gescheiden",
     "infFr": "séparer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "schenken",
@@ -565,7 +565,7 @@
     "PP": "geschonken",
     "infFr": "offrir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "scheppen",
@@ -573,7 +573,7 @@
     "PP": "geschapen",
     "infFr": "créer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "scheren",
@@ -581,7 +581,7 @@
     "PP": "geschoren",
     "infFr": "raser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "schieten",
@@ -589,7 +589,7 @@
     "PP": "geschoten",
     "infFr": "tirer (arme)",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "schijnen",
@@ -597,7 +597,7 @@
     "PP": "geschenen",
     "infFr": "sembler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "schrijven",
@@ -605,7 +605,7 @@
     "PP": "geschreven",
     "infFr": "écrire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "schrikken",
@@ -613,7 +613,7 @@
     "PP": "geschrokken",
     "infFr": "prendre peur",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "slaan",
@@ -621,7 +621,7 @@
     "PP": "geslagen",
     "infFr": "frapper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "slapen",
@@ -629,7 +629,7 @@
     "PP": "geslapen",
     "infFr": "dormir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "sluiten",
@@ -644,7 +644,7 @@
     "PP": "gesmolten",
     "infFr": "fondre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "snijden",
@@ -652,7 +652,7 @@
     "PP": "gesneden",
     "infFr": "couper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "spannen",
@@ -660,7 +660,7 @@
     "PP": "gespannen",
     "infFr": "tendre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "spijten",
@@ -668,7 +668,7 @@
     "PP": "gespeten",
     "infFr": "causer du regret",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "spreken",
@@ -676,7 +676,7 @@
     "PP": "gesproken",
     "infFr": "parler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "springen",
@@ -684,7 +684,7 @@
     "PP": "gesprongen",
     "infFr": "sauter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "staan",
@@ -692,7 +692,7 @@
     "PP": "gestaan",
     "infFr": "être debout",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "stelen",
@@ -700,7 +700,7 @@
     "PP": "gestolen",
     "infFr": "voler (=dérober)",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "sterven",
@@ -708,7 +708,7 @@
     "PP": "gestorven",
     "infFr": "mourir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "stijgen",
@@ -716,7 +716,7 @@
     "PP": "gestegen",
     "infFr": "augmenter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "stinken",
@@ -724,7 +724,7 @@
     "PP": "gestonken",
     "infFr": "puer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "strijden",
@@ -732,7 +732,7 @@
     "PP": "gestreden",
     "infFr": "combattre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "strijken",
@@ -740,7 +740,7 @@
     "PP": "gestreken",
     "infFr": "repasser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "treffen",
@@ -748,7 +748,7 @@
     "PP": "getroffen",
     "infFr": "toucher",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "trekken",
@@ -756,7 +756,7 @@
     "PP": "getrokken",
     "infFr": "tirer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vallen",
@@ -764,7 +764,7 @@
     "PP": "gevallen",
     "infFr": "tomber",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vangen",
@@ -772,7 +772,7 @@
     "PP": "gevangen",
     "infFr": "attraper",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "varen",
@@ -780,7 +780,7 @@
     "PP": "gevaren",
     "infFr": "naviguer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vechten",
@@ -788,7 +788,7 @@
     "PP": "gevochten",
     "infFr": "se battre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verbieden",
@@ -796,7 +796,7 @@
     "PP": "verboden",
     "infFr": "interdire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verdrieten",
@@ -804,7 +804,7 @@
     "PP": "verdroten",
     "infFr": "attrister",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verdwijnen",
@@ -812,7 +812,7 @@
     "PP": "verdwenen",
     "infFr": "disparaître",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vergelijken",
@@ -820,7 +820,7 @@
     "PP": "vergeleken",
     "infFr": "comparer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vergeten",
@@ -828,7 +828,7 @@
     "PP": "vergeten",
     "infFr": "oublier",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verkopen",
@@ -836,7 +836,7 @@
     "PP": "verkocht",
     "infFr": "vendre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verlaten",
@@ -844,7 +844,7 @@
     "PP": "verlaten",
     "infFr": "quitter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verliezen",
@@ -852,7 +852,7 @@
     "PP": "verloren",
     "infFr": "perdre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verstaan",
@@ -860,7 +860,7 @@
     "PP": "verstaan",
     "infFr": "comprendre",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vertrekken",
@@ -868,7 +868,7 @@
     "PP": "vertrokken",
     "infFr": "partir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verzinnen",
@@ -876,7 +876,7 @@
     "PP": "verzonnen",
     "infFr": "imaginer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "verzwinden",
@@ -884,7 +884,7 @@
     "PP": "verzwonden",
     "infFr": "disparaître",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vinden",
@@ -892,7 +892,7 @@
     "PP": "gevonden",
     "infFr": "trouver",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vlechten",
@@ -900,7 +900,7 @@
     "PP": "gevlochten",
     "infFr": "tresser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vliegen",
@@ -908,7 +908,7 @@
     "PP": "gevlogen",
     "infFr": "voler (dans l'air)",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vragen",
@@ -916,7 +916,7 @@
     "PP": "gevraagd",
     "infFr": "demander",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "vriezen",
@@ -924,7 +924,7 @@
     "PP": "gevroren",
     "infFr": "geler",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "wassen",
@@ -932,7 +932,7 @@
     "PP": "gewassen",
     "infFr": "laver",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "wegen",
@@ -940,7 +940,7 @@
     "PP": "gewogen",
     "infFr": "peser",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "werpen",
@@ -948,7 +948,7 @@
     "PP": "geworpen",
     "infFr": "jeter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "weten",
@@ -956,7 +956,7 @@
     "PP": "geweten",
     "infFr": "savoir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "wijzen",
@@ -964,7 +964,7 @@
     "PP": "gewezen",
     "infFr": "montrer du doigt",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "willen",
@@ -972,7 +972,7 @@
     "PP": "gewild",
     "infFr": "vouloir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "winnen",
@@ -980,7 +980,7 @@
     "PP": "gewonnen",
     "infFr": "gagner",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "worden",
@@ -988,7 +988,7 @@
     "PP": "geworden",
     "infFr": "devenir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zeggen",
@@ -996,7 +996,7 @@
     "PP": "gezegd",
     "infFr": "dire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zenden",
@@ -1004,7 +1004,7 @@
     "PP": "gezonden",
     "infFr": "envoyer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zien",
@@ -1012,7 +1012,7 @@
     "PP": "gezien",
     "infFr": "voir",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zijn",
@@ -1020,7 +1020,7 @@
     "PP": "geweest",
     "infFr": "être",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zingen",
@@ -1028,7 +1028,7 @@
     "PP": "gezongen",
     "infFr": "chanter",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zitten",
@@ -1036,7 +1036,7 @@
     "PP": "gezeten",
     "infFr": "être assis",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zoeken",
@@ -1044,7 +1044,7 @@
     "PP": "gezocht",
     "infFr": "chercher",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zwemmen",
@@ -1052,7 +1052,7 @@
     "PP": "gezwommen",
     "infFr": "nager",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zweren",
@@ -1060,7 +1060,7 @@
     "PP": "gezworen",
     "infFr": "jurer",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   },
   {
     "infNl": "zwijgen",
@@ -1068,6 +1068,6 @@
     "PP": "gezwegen",
     "infFr": "se taire",
     "vide": "",
-    "question": ""
+    "correct": "neutre"
   }
 ]

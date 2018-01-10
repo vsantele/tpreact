@@ -17,3 +17,10 @@
   font-size: large;
 }
 
+.success {
+  background-color: chartreuse
+}
+
+.danger {
+  background-color: crimson
+}
