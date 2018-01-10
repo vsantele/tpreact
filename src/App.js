@@ -1,5 +1,6 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
 import './App.css'
 // eslint-disable-next-line
 import ReactLoading from 'react-loading'
@@ -10,7 +11,7 @@ import Shuffle from 'shuffle-array'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 // eslint-disable-next-line
-import {Table} from 'reactstrap'
+import {Table, Button} from 'reactstrap'
 
 export default class App extends Component {
   constructor (props) {
@@ -28,7 +29,8 @@ export default class App extends Component {
       question: [true, false, false, false],
       affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: inline | non: none
       aleatoire: true, // ordre aleatoire ou non
-      limite: 20 // limite d'affichage des tps
+      limite: 20, // limite d'affichage des tps
+      nbErreur: 0
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -120,9 +122,10 @@ export default class App extends Component {
       [name]: value
     })
   }
-  handleReponse (correct, index) {
+  handleReponse (correct, index, category) {
     var previousState
     var tpList
+    var correctCategory = 'correct' + category
     if (this.state.aleatoire) {
       previousState = this.state.tpRandom
       tpList = 'tpRandom'
@@ -130,7 +133,7 @@ export default class App extends Component {
       previousState = this.state.tp
       tpList = 'tp'
     }
-    previousState[index].correct = correct
+    previousState[index][correctCategory] = correct
     this.setState({
       [tpList]: previousState
     })
@@ -146,7 +149,7 @@ export default class App extends Component {
     return (
       <div>
         <div>
-          <button onClick={this.handleClick} > Recharger </button>
+          <Button onClick={this.handleClick} color = 'primary' > Recharger </Button>
           <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
           <div>
@@ -223,6 +226,7 @@ export default class App extends Component {
               />
               <label htmlFor='3'>Question: </label> <input id='3' tag='3question' name='3question' type='checkbox' checked={this.state.question[3]} onChange={ this.handleQuestion } ></input>
             </div>
+            <Button color = 'primary'>Compter</Button>
           </div>
         </div>
         <div style={{clear: 'left'}}>
@@ -371,7 +375,7 @@ var Row = function (props) {
   var col2 = props.colonne[2]
   var col3 = props.colonne[3]
   return (
-    <tr style = {listValue['correct'] === true ? {backgroundColor: '#5cb85c'} : listValue['correct'] === false ? {backgroundColor: '#d9534f'} : {}}>
+    <tr>
       <th scope="row">{index + 1}</th>
       <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col0} numero = {0} question = {props.question} handleReponse = {props.handleReponse} />
       <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col1} numero = {1} question = {props.question} handleReponse = {props.handleReponse} />
@@ -387,7 +391,7 @@ var Cell = function (props) {
     var index = e.target.id
     console.log(reponse)
     var correct = reponse !== '' ? reponse === value : 'neutre'
-    handleReponse(correct, index)
+    handleReponse(correct, index, colonne.value)
     console.log(isCorrect)
   }
   var index = props.index
@@ -397,10 +401,11 @@ var Cell = function (props) {
   var affColonne = props.affColonne
   var numero = props.numero
   var handleReponse = props.handleReponse
-  var isCorrect = props.value.correct
+  var nomCorrect = 'correct' + colonne.value
+  var isCorrect = props.value[nomCorrect]
   if (question[numero] === true) {
     return (
-      <td key = {index + 'cell'} style = {{'display': affColonne[numero]}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onKeyUp = {(e) => verification(e)} /> </td>
+      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': affColonne[numero]}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onBlur = {(e) => verification(e)} /> </td>
     )
   } else {
     return (
