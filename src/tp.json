@@ -872,7 +872,11 @@
     "OVT": "sloot",
     "PP": "gesloten",
     "infFr": "fermer",
-    "vide": ""
+    "vide": "",
+    "correctinfNl": "neutre",
+    "correctOVT": "neutre",
+    "correctPP": "neutre",
+    "correctinfFr": "neutre"
   },
   {
     "infNl": "smelten",

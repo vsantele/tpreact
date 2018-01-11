@@ -1,6 +1,5 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
 import './App.css'
 // eslint-disable-next-line
 import ReactLoading from 'react-loading'
@@ -21,16 +20,16 @@ export default class App extends Component {
       tp: Tp, // liste des tps dans l'ordre
       numTpExclu: [], // numero des tps à exclure de l'affichage
       colonne: [
-        {value: 'infNl', label: 'Infinitif Nl'},
-        {value: 'OVT', label: 'OVT'},
-        {value: 'PP', label: 'Participe Passé'},
-        {value: 'infFr', label: 'Infinitif FR'}
+        {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
+        {value: 'OVT', label: 'OVT', question: false, afficher: true},
+        {value: 'PP', label: 'Participe Passé', question: false, afficher: true},
+        {value: 'infFr', label: 'Infinitif FR', question: false, afficher: true}
       ], // ordre des colonnes
       question: [true, false, false, false],
-      affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: inline | non: none
+      affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: table-cell | non: none
       aleatoire: true, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
-      nbErreur: 0
+      correction: {erreur: 0, vide: 0, correct: 0, total: 0}
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -50,7 +49,7 @@ export default class App extends Component {
   handleInputChange (e) {
     // si la limite est vide, on retourne 20, sinon le nombre
     function setLimite (e) {
-      return isNaN(parseInt(e)) ? 20 : parseInt(e)
+      return (isNaN(parseInt(e, 10)) ? 20 : parseInt(e, 10))
     }
     // target de l'input
     const target = e.target
@@ -68,52 +67,68 @@ export default class App extends Component {
   handleSelect (e) {
     // state de l'ordre des colonnes avant
     const previousColonne = this.state.colonne
-    // state d'affichage des colonnes avant
-    const previousAffCol = this.state.affichacheColonne
     // numéro de la colonne
-    const colonne = e.colonne
-    // function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
-    function setValue (colonne, value, previousColonne) {
-      previousColonne[colonne] = value
-      return previousColonne
-    }
-    // function qui attribue l'objet retourné par le Select 
-    function setCol (colonne, e, previousColonne) {
-      previousColonne[colonne] = e
+    const numero = e.colonne
+    const valueSelect = e.value
+    const labelSelect = e.label
+    var colonne
+    // function qui set value, label, affichage pour le state colonne en fct du select
+    function setColonne (nb, value, label, affichage, previousColonne) {
+      if (value) previousColonne[nb].value = value
+      if (label) previousColonne[nb].label = label
+      previousColonne[nb].afficher = affichage
       return previousColonne
     }
     // si la valeur est égal à vide on set juste la visibilité à none
     if (e.value === 'vide') {
-      const value = setValue(colonne, 'none', previousAffCol)
-      this.setState({
-        affichacheColonne: value
-      })
-      const value1 = setCol(colonne, e, previousColonne)
-      this.setState({
-        colonne: value1
-      })
+      colonne = setColonne(numero, false, false, false, previousColonne)
     } else { // sinon on set la visibilité à inline et on change la value de la colonne
-      const valueAff = setValue(colonne, 'table-cell', previousAffCol)
+      colonne = setColonne(numero, valueSelect, labelSelect, true, previousColonne)
+    }
+    this.setState({
+      colonne: colonne
+    })
+  }
+  // si on clic sur random, ça random
+  handleClick (e) {
+    if (e.target.id === 'shuffle') {
+      this.shuffleTp(this.state.tp)
+    } else if (e.target.id === 'correction') {
+      var tp = this.state.aleatoire ? 'tpRandom' : 'tp'
+      var reponseMauvais = 0
+      var reponseVide = 0
+      var reponseBon = 0
+      var reponseTotal = 0
+      var colonne = this.state.colonne
+      var correct = (i) => { return 'correct' + colonne[i].value }
+      for (var i = 0; i < this.state.limite; i++) {
+        for (var j = 0; j < 4; j++) {
+          if (colonne[j].question) {
+            if (this.state.tp[i][correct(j)] === false) {
+              reponseMauvais++
+            } else if (this.state[tp][i][correct(j)] === 'neutre') {
+              reponseVide++
+            } else if (this.state[tp][i][correct(j)] === true) {
+              reponseBon++
+            }
+            reponseTotal++
+          }
+          // console.log(correct(j))
+        }
+      }
+      var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal}
       this.setState({
-        affichacheColonne: valueAff
-      })
-      const value = setCol(colonne, e, previousColonne)
-      this.setState({
-        colonne: value
+        correction: correction
       })
     }
-  // si on clic sur random, ça random
-  }
-  handleClick () {
-    this.shuffleTp(this.state.tp)
   }
   handleQuestion (e) {
     // function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
     function setValue (colonne, value, previousColonne) {
-      previousColonne[colonne] = value
+      previousColonne[colonne].question = value
       return previousColonne
     }
-    const question = this.state.question
+    const question = this.state.colonne
     const target = e.target
     const colonne = target.id
     const value = setValue(colonne, target.checked, question)
@@ -138,6 +153,7 @@ export default class App extends Component {
       [tpList]: previousState
     })
   }
+
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -149,84 +165,40 @@ export default class App extends Component {
     return (
       <div>
         <div>
-          <Button onClick={this.handleClick} color = 'primary' > Recharger </Button>
+          <Button onClick={this.handleClick} id='shuffle' color = 'primary' > Recharger </Button>
           <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
+          <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span>
           <div>
-            <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <label htmlFor='col0'>Colonne 1: </label>
-              <Select
-                id='col0'
-                ref='col0'
-                name='col0'
-                clearable = {false}
-                value={this.state.colonne[0]}
-                onChange = {this.handleSelect}
-                options={[
-                  {value: 'infNl', label: 'Infinitif NL', colonne: '0'},
-                  {value: 'OVT', label: 'OVT', colonne: '0'},
-                  {value: 'PP', label: 'Participe Passé', colonne: '0'},
-                  {value: 'infFr', label: 'Infinitif FR', colonne: '0'},
-                  {value: 'vide', label: 'Rien', colonne: '0'}
-                ]}
-                autosize = {true}
-                searchable={false}
-                placeholder = 'Selectionner la colonne 1'
-              />
-              <label htmlFor='0'>Question: </label> <input id='0' tag='0question' name='0question' type='checkbox' checked={this.state.question[0]} onChange={ this.handleQuestion } ></input>
-            </div>
-            <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <label htmlFor='col1'>Colonne 2: </label>
-              <Select
-                name='col1'
-                clearable = {false}
-                value={this.state.colonne[1]}
-                onChange = {this.handleSelect}
-                options={[
-                  {value: 'infNl', label: 'Infinitif NL', colonne: '1'},
-                  {value: 'OVT', label: 'OVT', colonne: '1'},
-                  {value: 'PP', label: 'Participe Passé', colonne: '1'},
-                  {value: 'infFr', label: 'Infinitif FR', colonne: '1'},
-                  {value: 'vide', label: 'Rien', colonne: '1'}
-                ]}
-              />
-              <label htmlFor='1'>Question: </label> <input id='1' tag='1question' name='1question' type='checkbox' checked={this.state.question[1]} onChange={ this.handleQuestion } ></input>
-            </div>
-            <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <label htmlFor='col2'>Colonne 3: </label>
-              <Select
-                name='col2'
-                clearable = {false}
-                value={this.state.colonne[2]}
-                onChange = {this.handleSelect}
-                options={[
-                  {value: 'infNl', label: 'Infinitif Nl', colonne: '2'},
-                  {value: 'OVT', label: 'OVT', colonne: '2'},
-                  {value: 'PP', label: 'Participe Passé', colonne: '2'},
-                  {value: 'infFr', label: 'Infinitif FR', colonne: '2'},
-                  {value: 'vide', label: 'Rien', colonne: '2'}
-                ]}
-              />
-              <label htmlFor='2'>Question: </label> <input id='2' tag='2question' name='2question' type='checkbox' checked={this.state.question[2]} onChange={ this.handleQuestion } ></input>
-            </div>
-            <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <label htmlFor='col3'>Colonne 4: </label>
-              <Select
-                name='col3'
-                clearable = {false}
-                value={this.state.colonne[3]}
-                onChange = {this.handleSelect}
-                options={[
-                  {value: 'infNl', label: 'Infinitif Nl', colonne: '3'},
-                  {value: 'OVT', label: 'OVT', colonne: '3'},
-                  {value: 'PP', label: 'Participe Passé', colonne: '3'},
-                  {value: 'infFr', label: 'Infinitif FR', colonne: '3'},
-                  {value: 'vide', label: 'Rien', colonne: '3'}
-                ]}
-              />
-              <label htmlFor='3'>Question: </label> <input id='3' tag='3question' name='3question' type='checkbox' checked={this.state.question[3]} onChange={ this.handleQuestion } ></input>
-            </div>
-            <Button color = 'primary'>Compter</Button>
+            {
+              [0, 1, 2, 3].map((nb, i) => {
+                return (
+                  <div style={{width: '11em', float: 'left', margin: '1em'}}>
+                    <label htmlFor={'col' + nb}>Colonne {nb}: </label>
+                    <Select
+                      id={'col' + nb}
+                      ref={'col' + nb}
+                      name={'col' + nb}
+                      clearable = {false}
+                      value={this.state.colonne[nb].value}
+                      onChange = {this.handleSelect}
+                      options={[
+                        {value: 'infNl', label: 'Infinitif NL', colonne: nb},
+                        {value: 'OVT', label: 'OVT', colonne: nb},
+                        {value: 'PP', label: 'Participe Passé', colonne: nb},
+                        {value: 'infFr', label: 'Infinitif FR', colonne: nb},
+                        {value: 'vide', label: 'Rien', colonne: nb}
+                      ]}
+                      autosize = {true}
+                      searchable={false}
+                      placeholder = {'Selectionner la colonne ' + nb}
+                    />
+                    <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={this.state.colonne[nb].question} onChange={ this.handleQuestion } ></input>
+                  </div>
+                )
+              })
+            }
+            <Button id='correction' color = 'primary' onClick={this.handleClick}>Correction</Button>
           </div>
         </div>
         <div style={{clear: 'left'}}>
@@ -237,8 +209,6 @@ export default class App extends Component {
             colonne= {this.state.colonne}
             aleatoire = {this.state.aleatoire}
             limite = {this.state.limite}
-            affColonne = {this.state.affichacheColonne}
-            question = {this.state.question}
             handleReponse = {this.handleReponse}
           />
         </div>
@@ -251,81 +221,60 @@ export default class App extends Component {
 // tableau qui renvoie les tps dans l'ordre ou pas en fonction de la valeur de l'aléatoire
 // eslint-disable-next-line
 var Tableau = function (props) {
+  var tp
   if (!props.aleatoire) {
-    return (
-      <div>
-        <RenduOrdre
-          tp = {props.tp}
-          numTpExclu = {props.numTpExclu}
-          colonne = {props.colonne}
-          limite = {props.limite}
-          affColonne = {props.affColonne}
-          question = {props.question}
-          handleReponse = {props.handleReponse}
-        />
-      </div>
-    )
+    tp = props.tp
+  } else {
+    tp = props.tpRandom
   }
-  if (props.aleatoire) {
-    return (
-      <div>
-        <RenduAleatoire
-          tpRandom = {props.tpRandom}
-          numTpExclu = {props.numTpExclu}
-          colonne = {props.colonne}
-          limite = {props.limite}
-          affColonne = {props.affColonne}
-          question = {props.question}
-          handleReponse = {props.handleReponse}
-        />
-      </div>
-    )
-  }
-  return 'ERROR'
+  return (
+    <div>
+      <Rendu
+        tp = {tp}
+        numTpExclu = {props.numTpExclu}
+        colonne = {props.colonne}
+        limite = {props.limite}
+        handleReponse = {props.handleReponse}
+      />
+    </div>
+  )
 }
 
 // affiche les tps dans un ordre aléatoire et dans l'ordre des colonnes choisi et avec la limite
 // eslint-disable-next-line
-var RenduAleatoire = function (props) {
-  var col0 = props.colonne[0]
-  var col1 = props.colonne[1]
-  var col2 = props.colonne[2]
-  var col3 = props.colonne[3]
-  var tpRandom = props.tpRandom
+var Rendu = function (props) {
+  var tp = props.tp
   var limite = props.limite
-  var affColonne = props.affColonne
+  var colonne = props.colonne
+  var nombre = [0, 1, 2, 3]
   return (
     <div>
       <Table striped hover responsive>
         <thead>
           <tr>
             <th>#</th>
-            <th style={{'display': affColonne[0]}}>{col0.label}</th>
-            <th style={{display: affColonne[1]}}>{col1.label}</th>
-            <th style={{display: affColonne[2]}}>{col2.label}</th>
-            <th style={{display: affColonne[3]}}>{col3.label}</th>
+            {
+              nombre.map((nb, i) =>
+                <th key= {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</th>
+              )
+            }
           </tr>
         </thead>
         <tbody>
           {
 
-            tpRandom.map(function (listValue, index) {
-              if (index >= limite) {
-                return
-              }
-              if (props.numTpExclu.indexOf(index) === -1) {
+            tp.map(function (listValue, index) {
+              if (props.numTpExclu.indexOf(index) === -1 && index < limite) {
                 return (
                   <Row
                     index = {index}
                     listValue = {listValue}
-                    affColonne = {affColonne}
                     colonne = {props.colonne}
-                    question = {props.question}
                     handleReponse = {props.handleReponse}
                   />
-
                 )
               }
+              return ('')
             })
           }
         </tbody>
@@ -335,52 +284,20 @@ var RenduAleatoire = function (props) {
   )
 }
 
-// affiche les tps dans l'ordre des colonnes demandé et avec la limite
-// eslint-disable-next-line
-var RenduOrdre = function (props) {
-  var col0 = props.colonne[0]
-  var col1 = props.colonne[1]
-  var col2 = props.colonne[2]
-  var col3 = props.colonne[3]
-  var limite = props.limite
-  return (
-    <div>
-      <ul>
-        {
-          props.tp.map(function (listValue, index) {
-            if (index >= limite) {
-              return
-            }
-            if (props.numTpExclu.indexOf(index) === -1) {
-              return (
-                <div>
-                  <li key = {index} >{ listValue[col0] + `.......` + listValue[col1] + `.......` + listValue[col2] + `.......` + listValue[col3] + `.....` + index}</li>
-                </div>
-              )
-            }
-          })}
-
-      </ul>
-    </div>
-  )
-}
-
 // eslint-disable-next-line
 var Row = function (props) {
   var index = props.index
-  var affColonne = props.affColonne
+  var colonne = props.colonne
   var listValue = props.listValue
-  var col0 = props.colonne[0]
-  var col1 = props.colonne[1]
-  var col2 = props.colonne[2]
-  var col3 = props.colonne[3]
+  const nombre = [0, 1, 2, 3]
   return (
     <tr>
       <th scope="row">{index + 1}</th>
-      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col0} numero = {0} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col1} numero = {1} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col2} numero = {2} question = {props.question} handleReponse = {props.handleReponse} />
-      <Cell affColonne = {affColonne} index = {index} value = {listValue} colonne = {col3} numero = {3} question = {props.question} handleReponse = {props.handleReponse} />
+      {
+        nombre.map((nb, i) =>
+          <Cell key={'cell' + colonne[nb].value + i} index = {index} value = {listValue} colonne = {colonne[nb]} question = {props.question} handleReponse = {props.handleReponse} />
+        )
+      }
     </tr>
   )
 }
@@ -397,19 +314,16 @@ var Cell = function (props) {
   var index = props.index
   var colonne = props.colonne
   var value = props.value[colonne.value]
-  var question = props.question
-  var affColonne = props.affColonne
-  var numero = props.numero
   var handleReponse = props.handleReponse
   var nomCorrect = 'correct' + colonne.value
   var isCorrect = props.value[nomCorrect]
-  if (question[numero] === true) {
+  if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': affColonne[numero]}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onBlur = {(e) => verification(e)} /> </td>
+      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onBlur = {(e) => verification(e)} /> </td>
     )
   } else {
     return (
-      <td key = {index} style = {{'display': affColonne[numero]}}> {value} </td>
+      <td key = {index} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> {value} </td>
     )
   }
 }
