@@ -11,6 +11,9 @@ import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 // eslint-disable-next-line
 import {Table, Button} from 'reactstrap'
+import 'react-s-alert/dist/s-alert-default.css'
+import 'react-s-alert/dist/s-alert-css-effects/slide.css'
+import Alert from 'react-s-alert'
 
 export default class App extends Component {
   constructor (props) {
@@ -81,7 +84,7 @@ export default class App extends Component {
     }
     // si la valeur est égal à vide on set juste la visibilité à none
     if (e.value === 'vide') {
-      colonne = setColonne(numero, false, false, false, previousColonne)
+      colonne = setColonne(numero, valueSelect, labelSelect, false, previousColonne)
     } else { // sinon on set la visibilité à inline et on change la value de la colonne
       colonne = setColonne(numero, valueSelect, labelSelect, true, previousColonne)
     }
@@ -116,10 +119,13 @@ export default class App extends Component {
           // console.log(correct(j))
         }
       }
-      var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal}
+      var ratio = reponseBon / reponseTotal
+      var type = ratio >= 0.75 ? 'success' : ratio >= 0.5 ? 'warning' : 'error'
+      var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio}
       this.setState({
         correction: correction
       })
+      this.showAlert(type, ratio, reponseTotal, reponseVide, reponseBon, reponseMauvais)
     }
   }
   handleQuestion (e) {
@@ -154,6 +160,18 @@ export default class App extends Component {
     })
   }
 
+  showAlert (type, ratio, total, vide, bon, mauvais) {
+    function precisionRound (number, precision) {
+      var factor = Math.pow(10, precision)
+      return Math.round(number * factor) / factor
+    }
+    Alert[type](`Tu as eu ${precisionRound(ratio * 100, 2)}% <ul><li>Total: ${total}</li> <li>Bon: ${bon}</li> <li>Mauvais: ${mauvais}</li> <li>Vide: ${vide}</li></ul>`, {
+      position: 'top-right',
+      effect: 'slide',
+      timeout: 7500,
+      html: true
+    })
+  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -173,7 +191,7 @@ export default class App extends Component {
             {
               [0, 1, 2, 3].map((nb, i) => {
                 return (
-                  <div style={{width: '11em', float: 'left', margin: '1em'}}>
+                  <div key={'select' + i} style={{width: '11em', float: 'left', margin: '1em'}}>
                     <label htmlFor={'col' + nb}>Colonne {nb}: </label>
                     <Select
                       id={'col' + nb}
@@ -193,7 +211,7 @@ export default class App extends Component {
                       searchable={false}
                       placeholder = {'Selectionner la colonne ' + nb}
                     />
-                    <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={this.state.colonne[nb].question} onChange={ this.handleQuestion } ></input>
+                    <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={this.state.colonne[nb].question} onChange={ this.handleQuestion } disabled = {this.state.colonne[nb].value === 'vide'}></input>
                   </div>
                 )
               })
@@ -212,6 +230,7 @@ export default class App extends Component {
             handleReponse = {this.handleReponse}
           />
         </div>
+        <Alert stack={{limit: 3}} />
       </div>
 
     )
@@ -262,11 +281,10 @@ var Rendu = function (props) {
         </thead>
         <tbody>
           {
-
             tp.map(function (listValue, index) {
               if (props.numTpExclu.indexOf(index) === -1 && index < limite) {
                 return (
-                  <Row
+                  <Row key = {'row' + index}
                     index = {index}
                     listValue = {listValue}
                     colonne = {props.colonne}
@@ -274,7 +292,6 @@ var Rendu = function (props) {
                   />
                 )
               }
-              return ('')
             })
           }
         </tbody>

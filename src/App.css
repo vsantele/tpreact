@@ -18,9 +18,9 @@
 }
 
 .success {
-  background-color: chartreuse
+  background-color: #5cb85c
 }
 
 .danger {
-  background-color: crimson
+  background-color: #d9534f
 }
