@@ -336,7 +336,7 @@ var Cell = function (props) {
   var isCorrect = props.value[nomCorrect]
   if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={value} onBlur = {(e) => verification(e)} /> </td>
+      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> </td>
     )
   } else {
     return (
