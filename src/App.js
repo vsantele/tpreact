@@ -28,11 +28,10 @@ export default class App extends Component {
         {value: 'PP', label: 'Participe Passé', question: false, afficher: true},
         {value: 'infFr', label: 'Infinitif FR', question: false, afficher: true}
       ], // ordre des colonnes
-      question: [true, false, false, false],
-      affichacheColonne: ['table-cell', 'table-cell', 'table-cell', 'table-cell'], // affichage des colonnes oui: table-cell | non: none
       aleatoire: true, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
-      correction: {erreur: 0, vide: 0, correct: 0, total: 0}
+      correction: {erreur: 0, vide: 0, correct: 0, total: 0},
+      afficherReponse : false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -40,6 +39,7 @@ export default class App extends Component {
     this.handleQuestion = this.handleQuestion.bind(this)
     this.handleReponse = this.handleReponse.bind(this)
     this.shuffleTp = this.shuffleTp.bind(this)
+    this.handleAffReponse = this.handleAffReponse.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp (tp) {
@@ -172,6 +172,12 @@ export default class App extends Component {
       html: true
     })
   }
+  handleAffReponse (e) {
+    var value = e.target.checked
+    this.setState({
+      afficherReponse: value
+    })
+  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -183,10 +189,10 @@ export default class App extends Component {
     return (
       <div>
         <div>
-          <Button onClick={this.handleClick} id='shuffle' color = 'primary' > Recharger </Button>
-          <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
-          <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span>
+          <Button onClick={this.handleClick} id='shuffle' color = 'primary' disabled = {!this.state.aleatoire} > Recharger </Button>
+          <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
+          {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
           <div>
             {
               [0, 1, 2, 3].map((nb, i) => {
@@ -216,7 +222,10 @@ export default class App extends Component {
                 )
               })
             }
-            <Button id='correction' color = 'primary' onClick={this.handleClick}>Correction</Button>
+            <div style={{width: '11em', float: 'left', margin: '1em'}}>
+              <Button id='correction' color = 'primary' onClick={this.handleClick}>Correction</Button>
+              <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={this.state.afficherReponse} onChange={ this.handleAffReponse}></input>
+            </div>
           </div>
         </div>
         <div style={{clear: 'left'}}>
@@ -228,6 +237,7 @@ export default class App extends Component {
             aleatoire = {this.state.aleatoire}
             limite = {this.state.limite}
             handleReponse = {this.handleReponse}
+            affReponse = {this.state.afficherReponse}
           />
         </div>
         <Alert stack={{limit: 3}} />
@@ -254,6 +264,7 @@ var Tableau = function (props) {
         colonne = {props.colonne}
         limite = {props.limite}
         handleReponse = {props.handleReponse}
+        affReponse = {props.affReponse}
       />
     </div>
   )
@@ -289,6 +300,7 @@ var Rendu = function (props) {
                     listValue = {listValue}
                     colonne = {props.colonne}
                     handleReponse = {props.handleReponse}
+                    affReponse = {props.affReponse}
                   />
                 )
               }
@@ -312,7 +324,14 @@ var Row = function (props) {
       <th scope="row">{index + 1}</th>
       {
         nombre.map((nb, i) =>
-          <Cell key={'cell' + colonne[nb].value + i} index = {index} value = {listValue} colonne = {colonne[nb]} question = {props.question} handleReponse = {props.handleReponse} />
+          <Cell
+            key={'cell' + colonne[nb].value + i} 
+            index = {index} value = {listValue} 
+            colonne = {colonne[nb]} 
+            question = {props.question} 
+            handleReponse = {props.handleReponse} 
+            affReponse = {props.affReponse}
+          />
         )
       }
     </tr>
@@ -334,9 +353,10 @@ var Cell = function (props) {
   var handleReponse = props.handleReponse
   var nomCorrect = 'correct' + colonne.value
   var isCorrect = props.value[nomCorrect]
+  var affReponse = props.affReponse
   if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> </td>
+      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse? 'inline' : 'none'}}>{value}</span> </td>
     )
   } else {
     return (
