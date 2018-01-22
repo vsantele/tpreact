@@ -14,6 +14,8 @@ import {Table, Button} from 'reactstrap'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
+// eslint-disable-next-line
+import Reboot from 'material-ui/Reboot'
 
 export default class App extends Component {
   constructor (props) {
@@ -21,7 +23,7 @@ export default class App extends Component {
     this.state = {
       loading: true, // chargment en cours
       tp: Tp, // liste des tps dans l'ordre
-      numTpExclu: [], // numero des tps à exclure de l'affichage
+      numTpExclu: [0, 2], // numero des tps à exclure de l'affichage
       colonne: [
         {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
         {value: 'OVT', label: 'OVT', question: false, afficher: true},
@@ -31,7 +33,7 @@ export default class App extends Component {
       aleatoire: true, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
-      afficherReponse : false
+      afficherReponse: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -103,7 +105,7 @@ export default class App extends Component {
       var reponseBon = 0
       var reponseTotal = 0
       var colonne = this.state.colonne
-      var correct = (i) => { return 'correct' + colonne[i].value }
+      var correct = (i) => `correct[colonne[${i}].value]`
       for (var i = 0; i < this.state.limite; i++) {
         for (var j = 0; j < 4; j++) {
           if (colonne[j].question) {
@@ -116,7 +118,6 @@ export default class App extends Component {
             }
             reponseTotal++
           }
-          // console.log(correct(j))
         }
       }
       var ratio = reponseBon / reponseTotal
@@ -188,6 +189,7 @@ export default class App extends Component {
   render () {
     return (
       <div>
+        <Reboot />
         <div>
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
           <Button onClick={this.handleClick} id='shuffle' color = 'primary' disabled = {!this.state.aleatoire} > Recharger </Button>
@@ -325,11 +327,11 @@ var Row = function (props) {
       {
         nombre.map((nb, i) =>
           <Cell
-            key={'cell' + colonne[nb].value + i} 
-            index = {index} value = {listValue} 
-            colonne = {colonne[nb]} 
-            question = {props.question} 
-            handleReponse = {props.handleReponse} 
+            key={'cell' + colonne[nb].value + i}
+            index = {index} value = {listValue}
+            colonne = {colonne[nb]}
+            question = {props.question}
+            handleReponse = {props.handleReponse}
             affReponse = {props.affReponse}
           />
         )
@@ -356,7 +358,7 @@ var Cell = function (props) {
   var affReponse = props.affReponse
   if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse? 'inline' : 'none'}}>{value}</span> </td>
+      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </td>
     )
   } else {
     return (
