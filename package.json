@@ -5,6 +5,9 @@
   "dependencies": {
     "firebase": "^4.5.1",
     "jquery": "^3.2.1",
+    "material-design-icons": "^3.0.1",
+    "material-ui": "^1.0.0-beta.30",
+    "material-ui-icons": "^1.0.0-beta.17",
     "minified": "^1.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -15,7 +18,8 @@
     "react-scripts": "1.0.14",
     "react-select": "^1.1.0",
     "reactstrap": "^5.0.0-alpha.3",
-    "shuffle-array": "^1.0.1"
+    "shuffle-array": "^1.0.1",
+    "typeface-roboto": "^0.0.50"
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
