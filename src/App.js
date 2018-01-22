@@ -23,7 +23,7 @@ export default class App extends Component {
     this.state = {
       loading: true, // chargment en cours
       tp: Tp, // liste des tps dans l'ordre
-      numTpExclu: [0, 2], // numero des tps à exclure de l'affichage
+      tpExclu: ['bakken', 'bedriegen'], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       colonne: [
         {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
         {value: 'OVT', label: 'OVT', question: false, afficher: true},
@@ -145,9 +145,8 @@ export default class App extends Component {
     })
   }
   handleReponse (correct, index, category) {
-    var previousState
-    var tpList
-    var correctCategory = 'correct' + category
+    let previousState
+    let tpList
     if (this.state.aleatoire) {
       previousState = this.state.tpRandom
       tpList = 'tpRandom'
@@ -155,7 +154,7 @@ export default class App extends Component {
       previousState = this.state.tp
       tpList = 'tp'
     }
-    previousState[index][correctCategory] = correct
+    previousState[index]['correct'][category] = correct
     this.setState({
       [tpList]: previousState
     })
@@ -234,7 +233,7 @@ export default class App extends Component {
           <Tableau
             tp = {this.state.tp}
             tpRandom={this.state.tpRandom}
-            numTpExclu = {this.state.numTpExclu}
+            tpExclu = {this.state.tpExclu}
             colonne= {this.state.colonne}
             aleatoire = {this.state.aleatoire}
             limite = {this.state.limite}
@@ -262,7 +261,7 @@ var Tableau = function (props) {
     <div>
       <Rendu
         tp = {tp}
-        numTpExclu = {props.numTpExclu}
+        tpExclu = {props.tpExclu}
         colonne = {props.colonne}
         limite = {props.limite}
         handleReponse = {props.handleReponse}
@@ -295,7 +294,7 @@ var Rendu = function (props) {
         <tbody>
           {
             tp.map(function (listValue, index) {
-              if (props.numTpExclu.indexOf(index) === -1 && index < limite) {
+              if (props.tpExclu.indexOf(listValue.infNl) === -1 && index < limite) {
                 return (
                   <Row key = {'row' + index}
                     index = {index}
@@ -344,21 +343,18 @@ var Cell = function (props) {
   function verification (e) {
     var reponse = e.target.value
     var index = e.target.id
-    console.log(reponse)
     var correct = reponse !== '' ? reponse === value : 'neutre'
     handleReponse(correct, index, colonne.value)
-    console.log(isCorrect)
   }
   var index = props.index
   var colonne = props.colonne
   var value = props.value[colonne.value]
   var handleReponse = props.handleReponse
-  var nomCorrect = 'correct' + colonne.value
-  var isCorrect = props.value[nomCorrect]
+  var correct = props.value['correct'][colonne.value]
   var affReponse = props.affReponse
   if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {props.value[nomCorrect] === true ? 'success' : props.value[nomCorrect] === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </td>
+      <td key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </td>
     )
   } else {
     return (
