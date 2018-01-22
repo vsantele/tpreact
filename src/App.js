@@ -23,7 +23,7 @@ export default class App extends Component {
     this.state = {
       loading: true, // chargment en cours
       tp: Tp, // liste des tps dans l'ordre
-      tpExclu: ['bakken', 'bedriegen'], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
+      tpExclu: [], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       colonne: [
         {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
         {value: 'OVT', label: 'OVT', question: false, afficher: true},
