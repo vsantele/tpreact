@@ -1,0 +1,18 @@
+URGENT:
+
+HAUT:
+    - Passage à material-ui (dépendances déjà présentes) voir bookmark tpreact
+    - Ajout interface choix tp
+        |- Dialogs
+            |- Table select multi
+MOYEN:
+    - Modifier interface
+        |- Options
+        |- Tableau
+    - Ajout questionnaire
+        |- Tp input choisi random
+    - Passage Gatsby Js
+BAS:
+    - Opti code
+FAIBLE:
+    - Suppression lignes inutiles
