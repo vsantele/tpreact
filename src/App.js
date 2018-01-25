@@ -10,7 +10,7 @@ import Shuffle from 'shuffle-array'
 // import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 // eslint-disable-next-line
-import {Button} from 'reactstrap'
+// import {Button} from 'reactstrap'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
@@ -33,6 +33,8 @@ import Input, {InputLabel} from 'material-ui/Input'
 import { FormControl, FormHelperText } from 'material-ui/Form'
 // eslint-disable-next-line
 import Select from 'material-ui/Select'
+// eslint-disable-next-line
+import Button from 'material-ui/Button'
 
 const styles = theme => ({
   root: {
@@ -53,6 +55,9 @@ const styles = theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2
+  },
+  button: {
+    margin: theme.spacing.unit
   }
 })
 
@@ -262,7 +267,7 @@ export default class App extends Component {
         <Reboot />
         <div>
           <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
-          <Button onClick={this.handleClick} id='shuffle' color = 'primary' disabled = {!this.state.aleatoire} > Recharger </Button>
+          <Button raised color="primary" className={styles.button} onClick={this.handleClick} id='shuffle' disabled = {!this.state.aleatoire} > Recharger </Button>
           <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
           <div>
@@ -348,7 +353,7 @@ export default class App extends Component {
               }) */
             }
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <Button id='correction' color = 'primary' onClick={this.handleClick}>Correction</Button>
+              <Button raised color="primary" className={styles.button} id='correction' onClick={this.handleClick}>Correction</Button>
               <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={this.state.afficherReponse} onChange={ this.handleAffReponse}></input>
             </div>
           </div>
