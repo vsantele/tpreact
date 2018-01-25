@@ -7,15 +7,62 @@ import ReactLoading from 'react-loading'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
 // eslint-disable-next-line
-import Select from 'react-select'
+// import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 // eslint-disable-next-line
-import {Table, Button} from 'reactstrap'
+import {Button} from 'reactstrap'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
+// Material-UI
 // eslint-disable-next-line
 import Reboot from 'material-ui/Reboot'
+// eslint-disable-next-line
+import { withStyles } from 'material-ui/styles'
+// eslint-disable-next-line
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
+// eslint-disable-next-line
+import Paper from 'material-ui/Paper'
+// eslint-disable-next-line
+/* import List, { ListItem, ListItemText } from 'material-ui/List'
+// eslint-disable-next-line
+import Menu, { MenuItem } from 'material-ui/Menu' */
+// eslint-disable-next-line
+import Input, {InputLabel} from 'material-ui/Input'
+// eslint-disable-next-line
+import { FormControl, FormHelperText } from 'material-ui/Form'
+// eslint-disable-next-line
+import Select from 'material-ui/Select'
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto'
+  },
+  table: {
+    minWidth: 700
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2
+  }
+})
+
+const options = [
+  {value: 'infNl', label: 'Infinitif NL', nb: 0},
+  {value: 'OVT', label: 'OVT', nb: 1},
+  {value: 'PP', label: 'Participe Passé', nb: 2},
+  {value: 'infFr', label: 'Infinitif FR', nb: 3},
+  {value: 'vide', label: 'Rien', nb: 4}
+]
 
 export default class App extends Component {
   constructor (props) {
@@ -33,7 +80,10 @@ export default class App extends Component {
       aleatoire: true, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
-      afficherReponse: false
+      afficherReponse: false,
+      // test select
+      anchorEl: null,
+      selectedIndex: [0, 1, 2, 3, 4]
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -42,6 +92,10 @@ export default class App extends Component {
     this.handleReponse = this.handleReponse.bind(this)
     this.shuffleTp = this.shuffleTp.bind(this)
     this.handleAffReponse = this.handleAffReponse.bind(this)
+    this.handleClickListItem = this.handleClickListItem.bind(this)
+    this.handleMenuItemsClick = this.handleMenuItemsClick.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.handleTest = this.handleTest.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp (tp) {
@@ -73,9 +127,10 @@ export default class App extends Component {
     // state de l'ordre des colonnes avant
     const previousColonne = this.state.colonne
     // numéro de la colonne
-    const numero = e.colonne
-    const valueSelect = e.value
-    const labelSelect = e.label
+    const numero = e.target.id
+    const nbValueCol = e.target.value
+    const valueSelect = options[nbValueCol].value
+    const labelSelect = options[nbValueCol].label
     var colonne
     // function qui set value, label, affichage pour le state colonne en fct du select
     function setColonne (nb, value, label, affichage, previousColonne) {
@@ -85,7 +140,7 @@ export default class App extends Component {
       return previousColonne
     }
     // si la valeur est égal à vide on set juste la visibilité à none
-    if (e.value === 'vide') {
+    if (valueSelect === 'vide') {
       colonne = setColonne(numero, valueSelect, labelSelect, false, previousColonne)
     } else { // sinon on set la visibilité à inline et on change la value de la colonne
       colonne = setColonne(numero, valueSelect, labelSelect, true, previousColonne)
@@ -178,6 +233,22 @@ export default class App extends Component {
       afficherReponse: value
     })
   }
+  handleClickListItem (event) {
+    this.setState({ anchorEl: event.currentTarget })
+  }
+  handleMenuItemsClick (event, index) {
+    console.log(event.target.id)
+    const selectedIndex = this.state.selectedIndex
+    selectedIndex[event.target.id] = index
+    this.setState({ selectedIndex: selectedIndex, anchorEl: null })
+  }
+  handleClose () {
+    this.setState({ anchorEl: null })
+  }
+  handleTest (event) {
+    console.log(this.state.colonne[event.target.value].label)
+    this.setState({test: event.target.value})
+  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -195,14 +266,67 @@ export default class App extends Component {
           <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
           {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
           <div>
+
             {
+              [0, 1, 2, 3].map((nb) => (
+                <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
+                  <FormControl className={styles.formControl}>
+                    {/* <List>
+                    <ListItem
+                      button
+                      aria-haspopup="true"
+                      aria-controls="lock-menu"
+                      aria-label= {'Colonne ' + nb}
+                      onClick={this.handleClickListItem}
+                    >
+                      <ListItemText
+                        primary={'Colonne ' + nb}
+                        secondary={options[this.state.selectedIndex[nb]].label}
+                      />
+                    </ListItem>
+                  </List>
+                  <Menu
+                    id='lock-menu'
+                    anchorEl={this.state.anchorEl}
+                    open={Boolean(this.state.anchorEl)}
+                    onClose={this.handleClose}
+                  >
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option.value}
+                        selected= {index === this.state.selectedIndex}
+                        id= {nb}
+                        onClick={(event) => this.handleMenuItemsClick(event, index)}
+                      >
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Menu> */}
+
+                    <InputLabel htmlFor={'select' + nb}>Colonne {nb}</InputLabel>
+                    <Select
+                      native
+                      onChange={(event) => this.handleSelect(event)}
+                      inputProps={{
+                        id: nb
+                      }}
+                    >
+                      {[0, 1, 2, 3].map(nbCol => (
+                        <option value={nbCol}>{options[nbCol].label}</option>
+                      ))
+                      }
+                    </Select>
+                  </FormControl>
+                </Paper>
+              ))}
+
+            { /* 
               [0, 1, 2, 3].map((nb, i) => {
                 return (
                   <div key={'select' + i} style={{width: '11em', float: 'left', margin: '1em'}}>
                     <label htmlFor={'col' + nb}>Colonne {nb}: </label>
                     <Select
                       id={'col' + nb}
-                      ref={'col' + nb}
                       name={'col' + nb}
                       clearable = {false}
                       value={this.state.colonne[nb].value}
@@ -221,7 +345,7 @@ export default class App extends Component {
                     <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={this.state.colonne[nb].question} onChange={ this.handleQuestion } disabled = {this.state.colonne[nb].value === 'vide'}></input>
                   </div>
                 )
-              })
+              }) */
             }
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
               <Button id='correction' color = 'primary' onClick={this.handleClick}>Correction</Button>
@@ -231,6 +355,8 @@ export default class App extends Component {
         </div>
         <div style={{clear: 'left'}}>
           <Tableau
+            handleSelect = {this.handleSelect}
+            handleQuestion = {this.handleQuestion}
             tp = {this.state.tp}
             tpRandom={this.state.tpRandom}
             tpExclu = {this.state.tpExclu}
@@ -260,6 +386,8 @@ var Tableau = function (props) {
   return (
     <div>
       <Rendu
+        handleSelect = {props.handleSelect}
+        handleQuestion = {props.handleQuestion}
         tp = {tp}
         tpExclu = {props.tpExclu}
         colonne = {props.colonne}
@@ -280,35 +408,40 @@ var Rendu = function (props) {
   var nombre = [0, 1, 2, 3]
   return (
     <div>
-      <Table striped hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            {
-              nombre.map((nb, i) =>
-                <th key= {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</th>
-              )
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
-            tp.map(function (listValue, index) {
-              if (props.tpExclu.indexOf(listValue.infNl) === -1 && index < limite) {
-                return (
-                  <Row key = {'row' + index}
-                    index = {index}
-                    listValue = {listValue}
-                    colonne = {props.colonne}
-                    handleReponse = {props.handleReponse}
-                    affReponse = {props.affReponse}
-                  />
+      <Paper className={styles.root}>
+        <Table className={styles.table} >
+          <TableHead>
+            <TableRow>
+              <TableCell>#</TableCell>
+              {
+                nombre.map((nb, i) =>
+                  <TableCell key= {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</TableCell>
                 )
+                /* nombre.map((nb, i) =>
+                  <th key = {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}> <Thead i = {i} nb = {nb} handleSelect = {props.handleSelect} handleQuestion = {props.handleQuestion} colonne = {props.colonne} /> </th>
+                ) */
               }
-            })
-          }
-        </tbody>
-      </Table>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              tp.map(function (listValue, index) {
+                if (props.tpExclu.indexOf(listValue.infNl) === -1 && index < limite) {
+                  return (
+                    <Row key = {'row' + index}
+                      index = {index}
+                      listValue = {listValue}
+                      colonne = {props.colonne}
+                      handleReponse = {props.handleReponse}
+                      affReponse = {props.affReponse}
+                    />
+                  )
+                }
+              })
+            }
+          </TableBody>
+        </Table>
+      </Paper>
 
     </div>
   )
@@ -321,8 +454,8 @@ var Row = function (props) {
   var listValue = props.listValue
   const nombre = [0, 1, 2, 3]
   return (
-    <tr>
-      <th scope="row">{index + 1}</th>
+    <TableRow>
+      <TableCell scope="row">{index + 1}</TableCell>
       {
         nombre.map((nb, i) =>
           <Cell
@@ -335,7 +468,7 @@ var Row = function (props) {
           />
         )
       }
-    </tr>
+    </TableRow>
   )
 }
 // eslint-disable-next-line
@@ -354,11 +487,41 @@ var Cell = function (props) {
   var affReponse = props.affReponse
   if (colonne.question === true) {
     return (
-      <td key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </td>
+      <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
     )
   } else {
     return (
-      <td key = {index} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> {value} </td>
+      <TableCell key = {index} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> {value} </TableCell>
     )
   }
 }
+
+/* var Thead = function (props) {
+  const i = props.i
+  const nb = props.nb
+  const handleSelect = props.handleSelect
+  const colonne = props.colonne
+  const handleQuestion = props.handleQuestion
+  return (
+    <div key={'select' + i} style={{width: '11em', float: 'left', margin: '1em'}}>
+      <Select
+        id={'col' + nb}
+        name={'col' + nb}
+        clearable = {false}
+        value={colonne[nb].value}
+        onChange = {handleSelect}
+        options={[
+          {value: 'infNl', label: 'Infinitif NL', colonne: nb},
+          {value: 'OVT', label: 'OVT', colonne: nb},
+          {value: 'PP', label: 'Participe Passé', colonne: nb},
+          {value: 'infFr', label: 'Infinitif FR', colonne: nb},
+          {value: 'vide', label: 'Rien', colonne: nb}
+        ]}
+        autosize = {true}
+        searchable={false}
+        placeholder = {'Selectionner la colonne ' + nb}
+      />
+      <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={colonne[nb].question} onChange={ handleQuestion } disabled = {colonne[nb].value === 'vide'}></input>
+    </div>
+  )
+} */
