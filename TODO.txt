@@ -1,18 +1,19 @@
 URGENT:
-
+    - Regler problème SelectionTp qui fait planter le navigateur
 HAUT:
-    - Passage à material-ui (dépendances déjà présentes) voir bookmark tpreact
+    - Passage à material-ui (dépendances déjà présentes) voir bookmark tpreact OK 40%
     - Ajout interface choix tp
         |- Dialogs
             |- Table select multi
 MOYEN:
     - Modifier interface
-        |- Options
-        |- Tableau
+        |- Options ok 35%
+        |- Tableau OK 75%
     - Ajout questionnaire
         |- Tp input choisi random
     - Passage Gatsby Js
 BAS:
     - Opti code
+    - Ajout appBar
 FAIBLE:
     - Suppression lignes inutiles
