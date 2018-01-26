@@ -154,26 +154,26 @@ export default class App extends Component {
       colonne: colonne
     })
   }
-  // si on clic sur random, ça random
   handleClick (e) {
+    // si on clic sur random, ça random
     if (e.target.id === 'shuffle') {
       this.shuffleTp(this.state.tp)
     } else if (e.target.id === 'correction') {
-      var tp = this.state.aleatoire ? 'tpRandom' : 'tp'
+      var tp = this.state.aleatoire ? this.state.tpRandom : this.state.tp
       var reponseMauvais = 0
       var reponseVide = 0
       var reponseBon = 0
       var reponseTotal = 0
       var colonne = this.state.colonne
-      var correct = (i) => `correct[colonne[${i}].value]`
+      var correct = (i) => colonne[i].value
       for (var i = 0; i < this.state.limite; i++) {
         for (var j = 0; j < 4; j++) {
           if (colonne[j].question) {
-            if (this.state.tp[i][correct(j)] === false) {
+            if (tp[i]['correct'][correct(j)] === false) {
               reponseMauvais++
-            } else if (this.state[tp][i][correct(j)] === 'neutre') {
+            } else if (tp[i]['correct'][correct(j)] === 'neutre') {
               reponseVide++
-            } else if (this.state[tp][i][correct(j)] === true) {
+            } else if (tp[i]['correct'][correct(j)] === true) {
               reponseBon++
             }
             reponseTotal++
