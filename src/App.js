@@ -276,7 +276,7 @@ export default class App extends Component {
               [0, 1, 2, 3].map((nb) => (
                 <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
                   <FormControl className={styles.formControl}>
-                    <InputLabel htmlFor={'select' + nb}>Colonne {nb}</InputLabel>
+                    <InputLabel htmlFor={'select' + nb}>Colonne {nb + 1}</InputLabel>
                     <Select
                       native
                       onChange={(event) => this.handleSelect(event)}
@@ -441,32 +441,3 @@ var Cell = function (props) {
   }
 }
 
-/* var Thead = function (props) {
-  const i = props.i
-  const nb = props.nb
-  const handleSelect = props.handleSelect
-  const colonne = props.colonne
-  const handleQuestion = props.handleQuestion
-  return (
-    <div key={'select' + i} style={{width: '11em', float: 'left', margin: '1em'}}>
-      <Select
-        id={'col' + nb}
-        name={'col' + nb}
-        clearable = {false}
-        value={colonne[nb].value}
-        onChange = {handleSelect}
-        options={[
-          {value: 'infNl', label: 'Infinitif NL', colonne: nb},
-          {value: 'OVT', label: 'OVT', colonne: nb},
-          {value: 'PP', label: 'Participe Passé', colonne: nb},
-          {value: 'infFr', label: 'Infinitif FR', colonne: nb},
-          {value: 'vide', label: 'Rien', colonne: nb}
-        ]}
-        autosize = {true}
-        searchable={false}
-        placeholder = {'Selectionner la colonne ' + nb}
-      />
-      <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={colonne[nb].question} onChange={ handleQuestion } disabled = {colonne[nb].value === 'vide'}></input>
-    </div>
-  )
-} */
