@@ -276,38 +276,6 @@ export default class App extends Component {
               [0, 1, 2, 3].map((nb) => (
                 <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
                   <FormControl className={styles.formControl}>
-                    {/* <List>
-                    <ListItem
-                      button
-                      aria-haspopup="true"
-                      aria-controls="lock-menu"
-                      aria-label= {'Colonne ' + nb}
-                      onClick={this.handleClickListItem}
-                    >
-                      <ListItemText
-                        primary={'Colonne ' + nb}
-                        secondary={options[this.state.selectedIndex[nb]].label}
-                      />
-                    </ListItem>
-                  </List>
-                  <Menu
-                    id='lock-menu'
-                    anchorEl={this.state.anchorEl}
-                    open={Boolean(this.state.anchorEl)}
-                    onClose={this.handleClose}
-                  >
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option.value}
-                        selected= {index === this.state.selectedIndex}
-                        id= {nb}
-                        onClick={(event) => this.handleMenuItemsClick(event, index)}
-                      >
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </Menu> */}
-
                     <InputLabel htmlFor={'select' + nb}>Colonne {nb}</InputLabel>
                     <Select
                       native
@@ -324,34 +292,6 @@ export default class App extends Component {
                   </FormControl>
                 </Paper>
               ))}
-
-            { /* 
-              [0, 1, 2, 3].map((nb, i) => {
-                return (
-                  <div key={'select' + i} style={{width: '11em', float: 'left', margin: '1em'}}>
-                    <label htmlFor={'col' + nb}>Colonne {nb}: </label>
-                    <Select
-                      id={'col' + nb}
-                      name={'col' + nb}
-                      clearable = {false}
-                      value={this.state.colonne[nb].value}
-                      onChange = {this.handleSelect}
-                      options={[
-                        {value: 'infNl', label: 'Infinitif NL', colonne: nb},
-                        {value: 'OVT', label: 'OVT', colonne: nb},
-                        {value: 'PP', label: 'Participe Passé', colonne: nb},
-                        {value: 'infFr', label: 'Infinitif FR', colonne: nb},
-                        {value: 'vide', label: 'Rien', colonne: nb}
-                      ]}
-                      autosize = {true}
-                      searchable={false}
-                      placeholder = {'Selectionner la colonne ' + nb}
-                    />
-                    <label htmlFor={nb}>Question: </label> <input id={nb} tag={'question' + nb} name={'question' + nb} type='checkbox' checked={this.state.colonne[nb].question} onChange={ this.handleQuestion } disabled = {this.state.colonne[nb].value === 'vide'}></input>
-                  </div>
-                )
-              }) */
-            }
             <div style={{width: '11em', float: 'left', margin: '1em'}}>
               <Button raised color="primary" className={styles.button} id='correction' onClick={this.handleClick}>Correction</Button>
               <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={this.state.afficherReponse} onChange={ this.handleAffReponse}></input>
