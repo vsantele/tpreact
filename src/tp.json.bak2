@@ -1,4 +1,4 @@
-[
+﻿[
 	{
 		"infNl": "bakken",
 		"OVT": "bakte",
@@ -10,8 +10,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 0
+		}
 	},
 	{
 		"infNl": "bedriegen",
@@ -24,8 +23,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 1
+		}
 	},
 	{
 		"infNl": "beginnen",
@@ -38,8 +36,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 2
+		}
 	},
 	{
 		"infNl": "besluiten",
@@ -52,8 +49,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 3
+		}
 	},
 	{
 		"infNl": "bevelen",
@@ -66,8 +62,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 4
+		}
 	},
 	{
 		"infNl": "bezoeken",
@@ -80,8 +75,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 5
+		}
 	},
 	{
 		"infNl": "bidden",
@@ -94,8 +88,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 6
+		}
 	},
 	{
 		"infNl": "bieden",
@@ -108,8 +101,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 7
+		}
 	},
 	{
 		"infNl": "bijten",
@@ -122,8 +114,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 8
+		}
 	},
 	{
 		"infNl": "binden",
@@ -136,8 +127,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 9
+		}
 	},
 	{
 		"infNl": "blazen",
@@ -150,8 +140,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 10
+		}
 	},
 	{
 		"infNl": "blijken",
@@ -164,8 +153,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 11
+		}
 	},
 	{
 		"infNl": "blijven",
@@ -178,8 +166,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 12
+		}
 	},
 	{
 		"infNl": "blinken",
@@ -192,8 +179,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 13
+		}
 	},
 	{
 		"infNl": "braden",
@@ -206,8 +192,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 14
+		}
 	},
 	{
 		"infNl": "breken",
@@ -220,8 +205,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 15
+		}
 	},
 	{
 		"infNl": "brengen",
@@ -234,8 +218,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 16
+		}
 	},
 	{
 		"infNl": "denken",
@@ -248,8 +231,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 17
+		}
 	},
 	{
 		"infNl": "doen",
@@ -262,8 +244,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 18
+		}
 	},
 	{
 		"infNl": "dragen",
@@ -276,8 +257,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 19
+		}
 	},
 	{
 		"infNl": "dringen",
@@ -290,8 +270,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 20
+		}
 	},
 	{
 		"infNl": "drinken",
@@ -304,8 +283,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 21
+		}
 	},
 	{
 		"infNl": "duiken",
@@ -318,8 +296,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 22
+		}
 	},
 	{
 		"infNl": "dwingen",
@@ -332,8 +309,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 23
+		}
 	},
 	{
 		"infNl": "eten",
@@ -346,8 +322,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 24
+		}
 	},
 	{
 		"infNl": "fluiten",
@@ -360,8 +335,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 25
+		}
 	},
 	{
 		"infNl": "gaan",
@@ -374,8 +348,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 26
+		}
 	},
 	{
 		"infNl": "gelden",
@@ -388,8 +361,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 27
+		}
 	},
 	{
 		"infNl": "genezen",
@@ -402,8 +374,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 28
+		}
 	},
 	{
 		"infNl": "genieten",
@@ -416,8 +387,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 29
+		}
 	},
 	{
 		"infNl": "geven",
@@ -430,8 +400,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 30
+		}
 	},
 	{
 		"infNl": "glijden",
@@ -444,8 +413,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 31
+		}
 	},
 	{
 		"infNl": "hangen",
@@ -458,8 +426,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 32
+		}
 	},
 	{
 		"infNl": "hebben",
@@ -472,8 +439,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 33
+		}
 	},
 	{
 		"infNl": "helpen",
@@ -486,22 +452,20 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 34
+		}
 	},
 	{
 		"infNl": "heten",
 		"OVT": "heette",
 		"PP": "geheten",
-		"infFr": "s\"appeler",
+		"infFr": "s'appeler",
 		"afficher": true,
 		"correct": {
 			"infNl": "neutre",
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 35
+		}
 	},
 	{
 		"infNl": "houden",
@@ -514,8 +478,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 36
+		}
 	},
 	{
 		"infNl": "jagen",
@@ -528,8 +491,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 37
+		}
 	},
 	{
 		"infNl": "kiezen",
@@ -542,8 +504,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 38
+		}
 	},
 	{
 		"infNl": "kijken",
@@ -556,8 +517,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 39
+		}
 	},
 	{
 		"infNl": "klimmen",
@@ -570,8 +530,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 40
+		}
 	},
 	{
 		"infNl": "klinken",
@@ -584,8 +543,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 41
+		}
 	},
 	{
 		"infNl": "komen",
@@ -598,8 +556,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 42
+		}
 	},
 	{
 		"infNl": "kopen",
@@ -612,8 +569,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 43
+		}
 	},
 	{
 		"infNl": "krijgen",
@@ -626,8 +582,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 44
+		}
 	},
 	{
 		"infNl": "kruipen",
@@ -640,8 +595,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 45
+		}
 	},
 	{
 		"infNl": "kunnen",
@@ -654,8 +608,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 46
+		}
 	},
 	{
 		"infNl": "lachen",
@@ -668,8 +621,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 47
+		}
 	},
 	{
 		"infNl": "laden",
@@ -682,8 +634,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 48
+		}
 	},
 	{
 		"infNl": "laten",
@@ -696,8 +647,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 49
+		}
 	},
 	{
 		"infNl": "lezen",
@@ -710,8 +660,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 50
+		}
 	},
 	{
 		"infNl": "liegen",
@@ -724,8 +673,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 51
+		}
 	},
 	{
 		"infNl": "liggen",
@@ -738,8 +686,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 52
+		}
 	},
 	{
 		"infNl": "lijden",
@@ -752,8 +699,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 53
+		}
 	},
 	{
 		"infNl": "lijken",
@@ -766,8 +712,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 54
+		}
 	},
 	{
 		"infNl": "lopen",
@@ -780,8 +725,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 55
+		}
 	},
 	{
 		"infNl": "melken",
@@ -794,8 +738,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 56
+		}
 	},
 	{
 		"infNl": "meten",
@@ -808,8 +751,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 57
+		}
 	},
 	{
 		"infNl": "mijden",
@@ -822,8 +764,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 58
+		}
 	},
 	{
 		"infNl": "moeten",
@@ -836,8 +777,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 59
+		}
 	},
 	{
 		"infNl": "mogen",
@@ -850,8 +790,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 60
+		}
 	},
 	{
 		"infNl": "nemen",
@@ -864,8 +803,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 61
+		}
 	},
 	{
 		"infNl": "ontmoeten",
@@ -878,8 +816,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 62
+		}
 	},
 	{
 		"infNl": "prijzen",
@@ -892,8 +829,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 63
+		}
 	},
 	{
 		"infNl": "raden",
@@ -906,8 +842,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 64
+		}
 	},
 	{
 		"infNl": "rijden",
@@ -920,22 +855,20 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 65
+		}
 	},
 	{
 		"infNl": "rijzen",
 		"OVT": "rees",
 		"PP": "gerezen",
-		"infFr": "s\"élever",
+		"infFr": "s'élever",
 		"afficher": true,
 		"correct": {
 			"infNl": "neutre",
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 66
+		}
 	},
 	{
 		"infNl": "roepen",
@@ -948,8 +881,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 67
+		}
 	},
 	{
 		"infNl": "ruiken",
@@ -962,8 +894,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 68
+		}
 	},
 	{
 		"infNl": "scheiden",
@@ -976,8 +907,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 69
+		}
 	},
 	{
 		"infNl": "schenken",
@@ -990,8 +920,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 70
+		}
 	},
 	{
 		"infNl": "scheppen",
@@ -1004,8 +933,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 71
+		}
 	},
 	{
 		"infNl": "scheren",
@@ -1018,8 +946,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 72
+		}
 	},
 	{
 		"infNl": "schieten",
@@ -1032,8 +959,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 73
+		}
 	},
 	{
 		"infNl": "schijnen",
@@ -1046,8 +972,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 74
+		}
 	},
 	{
 		"infNl": "schrijven",
@@ -1060,8 +985,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 75
+		}
 	},
 	{
 		"infNl": "schrikken",
@@ -1074,8 +998,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 76
+		}
 	},
 	{
 		"infNl": "slaan",
@@ -1088,8 +1011,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 77
+		}
 	},
 	{
 		"infNl": "slapen",
@@ -1102,8 +1024,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 78
+		}
 	},
 	{
 		"infNl": "sluiten",
@@ -1116,8 +1037,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 79
+		}
 	},
 	{
 		"infNl": "smelten",
@@ -1130,8 +1050,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 80
+		}
 	},
 	{
 		"infNl": "snijden",
@@ -1144,8 +1063,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 81
+		}
 	},
 	{
 		"infNl": "spannen",
@@ -1158,8 +1076,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 82
+		}
 	},
 	{
 		"infNl": "spijten",
@@ -1172,8 +1089,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 83
+		}
 	},
 	{
 		"infNl": "spreken",
@@ -1186,8 +1102,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 84
+		}
 	},
 	{
 		"infNl": "springen",
@@ -1200,8 +1115,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 85
+		}
 	},
 	{
 		"infNl": "staan",
@@ -1214,8 +1128,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 86
+		}
 	},
 	{
 		"infNl": "stelen",
@@ -1228,8 +1141,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 87
+		}
 	},
 	{
 		"infNl": "sterven",
@@ -1242,8 +1154,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 88
+		}
 	},
 	{
 		"infNl": "stijgen",
@@ -1256,8 +1167,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 89
+		}
 	},
 	{
 		"infNl": "stinken",
@@ -1270,8 +1180,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 90
+		}
 	},
 	{
 		"infNl": "strijden",
@@ -1284,8 +1193,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 91
+		}
 	},
 	{
 		"infNl": "strijken",
@@ -1298,8 +1206,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 92
+		}
 	},
 	{
 		"infNl": "treffen",
@@ -1312,8 +1219,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 93
+		}
 	},
 	{
 		"infNl": "trekken",
@@ -1326,8 +1232,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 94
+		}
 	},
 	{
 		"infNl": "vallen",
@@ -1340,8 +1245,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 95
+		}
 	},
 	{
 		"infNl": "vangen",
@@ -1354,8 +1258,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 96
+		}
 	},
 	{
 		"infNl": "varen",
@@ -1368,8 +1271,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 97
+		}
 	},
 	{
 		"infNl": "vechten",
@@ -1382,8 +1284,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 98
+		}
 	},
 	{
 		"infNl": "verbieden",
@@ -1396,8 +1297,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 99
+		}
 	},
 	{
 		"infNl": "verdrieten",
@@ -1410,8 +1310,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 100
+		}
 	},
 	{
 		"infNl": "verdwijnen",
@@ -1424,8 +1323,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 101
+		}
 	},
 	{
 		"infNl": "vergelijken",
@@ -1438,8 +1336,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 102
+		}
 	},
 	{
 		"infNl": "vergeten",
@@ -1452,8 +1349,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 103
+		}
 	},
 	{
 		"infNl": "verkopen",
@@ -1466,8 +1362,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 104
+		}
 	},
 	{
 		"infNl": "verlaten",
@@ -1480,8 +1375,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 105
+		}
 	},
 	{
 		"infNl": "verliezen",
@@ -1494,8 +1388,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 106
+		}
 	},
 	{
 		"infNl": "verstaan",
@@ -1508,8 +1401,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 107
+		}
 	},
 	{
 		"infNl": "vertrekken",
@@ -1522,8 +1414,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 108
+		}
 	},
 	{
 		"infNl": "verzinnen",
@@ -1536,8 +1427,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 109
+		}
 	},
 	{
 		"infNl": "verzwinden",
@@ -1550,8 +1440,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 110
+		}
 	},
 	{
 		"infNl": "vinden",
@@ -1564,8 +1453,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 111
+		}
 	},
 	{
 		"infNl": "vlechten",
@@ -1578,22 +1466,20 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 112
+		}
 	},
 	{
 		"infNl": "vliegen",
 		"OVT": "vloog",
 		"PP": "gevlogen",
-		"infFr": "voler (dans l\"air)",
+		"infFr": "voler (dans l'air)",
 		"afficher": true,
 		"correct": {
 			"infNl": "neutre",
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 113
+		}
 	},
 	{
 		"infNl": "vragen",
@@ -1606,8 +1492,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 114
+		}
 	},
 	{
 		"infNl": "vriezen",
@@ -1620,8 +1505,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 115
+		}
 	},
 	{
 		"infNl": "wassen",
@@ -1634,8 +1518,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 116
+		}
 	},
 	{
 		"infNl": "wegen",
@@ -1648,8 +1531,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 117
+		}
 	},
 	{
 		"infNl": "werpen",
@@ -1662,8 +1544,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 118
+		}
 	},
 	{
 		"infNl": "weten",
@@ -1676,8 +1557,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 119
+		}
 	},
 	{
 		"infNl": "wijzen",
@@ -1690,8 +1570,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 120
+		}
 	},
 	{
 		"infNl": "willen",
@@ -1704,8 +1583,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 121
+		}
 	},
 	{
 		"infNl": "winnen",
@@ -1718,8 +1596,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 122
+		}
 	},
 	{
 		"infNl": "worden",
@@ -1732,8 +1609,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 123
+		}
 	},
 	{
 		"infNl": "zeggen",
@@ -1746,8 +1622,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 124
+		}
 	},
 	{
 		"infNl": "zenden",
@@ -1760,8 +1635,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 125
+		}
 	},
 	{
 		"infNl": "zien",
@@ -1774,8 +1648,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 126
+		}
 	},
 	{
 		"infNl": "zijn",
@@ -1788,8 +1661,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 127
+		}
 	},
 	{
 		"infNl": "zingen",
@@ -1802,8 +1674,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 128
+		}
 	},
 	{
 		"infNl": "zitten",
@@ -1816,8 +1687,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 129
+		}
 	},
 	{
 		"infNl": "zoeken",
@@ -1830,8 +1700,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 130
+		}
 	},
 	{
 		"infNl": "zwemmen",
@@ -1844,8 +1713,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 131
+		}
 	},
 	{
 		"infNl": "zweren",
@@ -1858,8 +1726,7 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 132
+		}
 	},
 	{
 		"infNl": "zwijgen",
@@ -1872,7 +1739,6 @@
 			"OVT": "neutre",
 			"PP": "neutre",
 			"infFr": "neutre"
-		},
-		"id": 133
+		}
 	}
 ]
