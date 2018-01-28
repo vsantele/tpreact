@@ -24,10 +24,6 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 // eslint-disable-next-line
 import Paper from 'material-ui/Paper'
 // eslint-disable-next-line
-/* import List, { ListItem, ListItemText } from 'material-ui/List'
-// eslint-disable-next-line
-import Menu, { MenuItem } from 'material-ui/Menu' */
-// eslint-disable-next-line
 import Input, {InputLabel} from 'material-ui/Input'
 // eslint-disable-next-line
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -35,6 +31,15 @@ import { FormControl, FormHelperText } from 'material-ui/Form'
 import Select from 'material-ui/Select'
 // eslint-disable-next-line
 import Button from 'material-ui/Button'
+// eslint-disable-next-line
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
+// eslint-disable-next-line
+import Checkbox from 'material-ui/Checkbox'
+// eslint-disable-next-line
+import Switch from 'material-ui/Switch'
+// eslint-disable-next-line
+import Modal from 'material-ui/Modal'
+import green from 'material-ui/colors/green';
 
 const styles = theme => ({
   root: {
@@ -58,6 +63,13 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
+  },
+  bar: {},
+  checked: {
+    color: green[500],
+    '& + $bar': {
+      backgroundColor: green[500]
+    }
   }
 })
 
@@ -75,7 +87,8 @@ export default class App extends Component {
     this.state = {
       loading: true, // chargment en cours
       tp: Tp, // liste des tps dans l'ordre
-      tpExclu: [], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
+      // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
+      tpExclu: [],
       colonne: [
         {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
         {value: 'OVT', label: 'OVT', question: false, afficher: true},
@@ -88,7 +101,9 @@ export default class App extends Component {
       afficherReponse: false,
       // test select
       anchorEl: null,
-      selectedIndex: [0, 1, 2, 3, 4]
+      selectedIndex: [0, 1, 2, 3, 4],
+      selectionPage: false,
+      selectAllChbx: true
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -97,14 +112,14 @@ export default class App extends Component {
     this.handleReponse = this.handleReponse.bind(this)
     this.shuffleTp = this.shuffleTp.bind(this)
     this.handleAffReponse = this.handleAffReponse.bind(this)
-    this.handleClickListItem = this.handleClickListItem.bind(this)
-    this.handleMenuItemsClick = this.handleMenuItemsClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleTest = this.handleTest.bind(this)
+    this.handleCheck = this.handleCheck.bind(this)
+    this.handleSelectionTpOpen = this.handleSelectionTpOpen.bind(this)
+    this.handleSelectionTpClose = this.handleSelectionTpClose.bind(this)
+    this.selectAll = this.selectAll.bind(this)
   }
   // mélange des tps pour l'aléatoire
-  shuffleTp (tp) {
-    const tpRandomized = Shuffle(tp, {copy: true})
+  shuffleTp () {
+    const tpRandomized = Shuffle(this.state.tp, {copy: true})
     this.setState({
       tpRandom: tpRandomized // liste des tps dans un ordre aléatoire
     })
@@ -157,7 +172,7 @@ export default class App extends Component {
   handleClick (e) {
     // si on clic sur random, ça random
     if (e.target.id === 'shuffle') {
-      this.shuffleTp(this.state.tp)
+      this.shuffleTp()
     } else if (e.target.id === 'correction') {
       var tp = this.state.aleatoire ? this.state.tpRandom : this.state.tp
       var reponseMauvais = 0
@@ -238,25 +253,45 @@ export default class App extends Component {
       afficherReponse: value
     })
   }
-  handleClickListItem (event) {
-    this.setState({ anchorEl: event.currentTarget })
+  handleCheck (value) {
+    var tp = this.state.tp
+    tp[value].afficher = !tp[value].afficher
+    this.setState({tp: tp})
   }
-  handleMenuItemsClick (event, index) {
-    console.log(event.target.id)
-    const selectedIndex = this.state.selectedIndex
-    selectedIndex[event.target.id] = index
-    this.setState({ selectedIndex: selectedIndex, anchorEl: null })
+
+  selectAll () {
+    var tp = this.state.tp
+    var selectAllChbx = this.state.selectAllChbx
+    if (selectAllChbx) {
+      for (let i = 0; i < 134; i++) {
+        tp[i].afficher = false
+      }
+    } else {
+      for (let i = 0; i < 134; i++) {
+        tp[i].afficher = true
+      }
+    }
+    console.log('avant: ' + selectAllChbx)
+    selectAllChbx = !selectAllChbx
+    console.log('après: ' + selectAllChbx)
+    this.setState({
+      tp: tp,
+      selectAllChbx: selectAllChbx
+    })
   }
-  handleClose () {
-    this.setState({ anchorEl: null })
-  }
-  handleTest (event) {
-    console.log(this.state.colonne[event.target.value].label)
-    this.setState({test: event.target.value})
-  }
+
+  handleSelectionTpOpen () {
+    this.setState({ selectionPage: true })
+  };
+
+  handleSelectionTpClose () {
+    this.shuffleTp()
+    this.setState({ selectionPage: false })
+  };
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
+    console.log('Render Fini')
     this.setState({
       loading: false
     })
@@ -266,37 +301,25 @@ export default class App extends Component {
       <div>
         <Reboot />
         <div>
-          <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={this.state.aleatoire} onChange={this.handleInputChange} ></input>
-          <Button raised color="primary" className={styles.button} onClick={this.handleClick} id='shuffle' disabled = {!this.state.aleatoire} > Recharger </Button>
-          <input id='limite' tag='limite' className="search-input" type="number" onChange={this.handleInputChange} name="limite" placeholder="Limite" value={this.state.limite} max= {this.state.tp.length} min ={0} />
+          <Options
+            aleatoire= {this.state.aleatoire}
+            handleInputChange = {this.handleInputChange}
+            handleClick = {this.handleClick}
+            handleSelect = {this.handleSelect}
+            handleClick = {this.handleClick}
+            handleAffReponse = {this.handleAffReponse}
+            limite = {this.state.limite}
+            tpLength = {this.state.tp.length}
+            handleSelectionTpOpen = {this.handleSelectionTpOpen}
+            handleSelectionTpClose = {this.handleSelectionTpClose}
+            selectAll = {this.selectAll}
+            selectAllChbx = {this.state.selectAllChbx}
+            selectionPage = {this.state.selectionPage}
+            afficherReponse = {this.state.afficherReponse}
+            handleQuestion = {this.handleQuestion}
+            colonne = {this.state.colonne}
+          />
           {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
-          <div>
-
-            {
-              [0, 1, 2, 3].map((nb) => (
-                <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
-                  <FormControl className={styles.formControl}>
-                    <InputLabel htmlFor={'select' + nb}>Colonne {nb + 1}</InputLabel>
-                    <Select
-                      native
-                      onChange={(event) => this.handleSelect(event)}
-                      inputProps={{
-                        id: nb
-                      }}
-                    >
-                      {[0, 1, 2, 3].map(nbCol => (
-                        <option value={nbCol}>{options[nbCol].label}</option>
-                      ))
-                      }
-                    </Select>
-                  </FormControl>
-                </Paper>
-              ))}
-            <div style={{width: '11em', float: 'left', margin: '1em'}}>
-              <Button raised color="primary" className={styles.button} id='correction' onClick={this.handleClick}>Correction</Button>
-              <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={this.state.afficherReponse} onChange={ this.handleAffReponse}></input>
-            </div>
-          </div>
         </div>
         <div style={{clear: 'left'}}>
           <Tableau
@@ -310,6 +333,8 @@ export default class App extends Component {
             limite = {this.state.limite}
             handleReponse = {this.handleReponse}
             affReponse = {this.state.afficherReponse}
+            selectionPage = {this.state.selectionPage}
+            handleCheck = {this.handleCheck}
           />
         </div>
         <Alert stack={{limit: 3}} />
@@ -323,25 +348,40 @@ export default class App extends Component {
 // eslint-disable-next-line
 var Tableau = function (props) {
   var tp
-  if (!props.aleatoire) {
-    tp = props.tp
+  if (props.selectionPage) {
+    return (
+      <div>
+        <SelectionTp
+          tp = {props.tp}
+          colonne = {props.colonne}
+          tpExclu = {props.tpExclu}
+          handleCheck = {props.handleCheck}
+        />
+      </div>
+    )
   } else {
-    tp = props.tpRandom
+    if (!props.aleatoire) {
+      tp = props.tp
+    } else {
+      tp = props.tpRandom
+    }
+    return (
+      <div>
+        <Rendu
+          handleSelect = {props.handleSelect}
+          handleQuestion = {props.handleQuestion}
+          tp = {tp}
+          tpExclu = {props.tpExclu}
+          colonne = {props.colonne}
+          limite = {props.limite}
+          handleReponse = {props.handleReponse}
+          affReponse = {props.affReponse}
+          selectionPage = {props.selectionPage}
+          handleCheck = {props.handleCheck}
+        />
+      </div>
+    )
   }
-  return (
-    <div>
-      <Rendu
-        handleSelect = {props.handleSelect}
-        handleQuestion = {props.handleQuestion}
-        tp = {tp}
-        tpExclu = {props.tpExclu}
-        colonne = {props.colonne}
-        limite = {props.limite}
-        handleReponse = {props.handleReponse}
-        affReponse = {props.affReponse}
-      />
-    </div>
-  )
 }
 
 // affiche les tps dans un ordre aléatoire et dans l'ordre des colonnes choisi et avec la limite
@@ -359,8 +399,8 @@ var Rendu = function (props) {
             <TableRow>
               <TableCell>#</TableCell>
               {
-                nombre.map((nb, i) =>
-                  <TableCell key= {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</TableCell>
+                nombre.map((nb) =>
+                  <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</TableCell>
                 )
                 /* nombre.map((nb, i) =>
                   <th key = {'th' + i} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}> <Thead i = {i} nb = {nb} handleSelect = {props.handleSelect} handleQuestion = {props.handleQuestion} colonne = {props.colonne} /> </th>
@@ -371,7 +411,7 @@ var Rendu = function (props) {
           <TableBody>
             {
               tp.map(function (listValue, index) {
-                if (props.tpExclu.indexOf(listValue.infNl) === -1 && index < limite) {
+                if (listValue.afficher && index < limite) {
                   return (
                     <Row key = {'row' + index}
                       index = {index}
@@ -379,6 +419,9 @@ var Rendu = function (props) {
                       colonne = {props.colonne}
                       handleReponse = {props.handleReponse}
                       affReponse = {props.affReponse}
+                      selectionPage = {props.selectionPage}
+                      tpAfficher = {props.tpAfficher}
+                      handleCheck = {props.handleCheck}
                     />
                   )
                 }
@@ -402,10 +445,11 @@ var Row = function (props) {
     <TableRow>
       <TableCell scope="row">{index + 1}</TableCell>
       {
-        nombre.map((nb, i) =>
+        nombre.map((nb) =>
           <Cell
-            key={'cell' + colonne[nb].value + i}
-            index = {index} value = {listValue}
+            key={'cell' + colonne[nb].value + nb}
+            index = {index}
+            value = {listValue}
             colonne = {colonne[nb]}
             question = {props.question}
             handleReponse = {props.handleReponse}
@@ -432,12 +476,164 @@ var Cell = function (props) {
   var affReponse = props.affReponse
   if (colonne.question === true) {
     return (
-      <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+      <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
     )
   } else {
     return (
-      <TableCell key = {index} style = {{'display': colonne.afficher ? 'cell-table' : 'none'}}> {value} </TableCell>
+      <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
     )
   }
 }
 
+// eslint-disable-next-line
+/* var SelectionTp = function (props) {
+  const tpList = props.tp
+  const handleCheck = props.handleCheck
+  const style = theme => ({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    modal: {
+      position: 'absolute',
+      width: 8 * 50,
+      top: `50%`,
+      left: `50%`,
+      transform: `translate(-50%, -50%)`,
+      border: '1px solid #e5e5e5',
+      backgroundColor: '#fff',
+      boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
+      padding: 8 * 4
+    }
+  })
+  return (
+    <div className={style.modal}>
+      <div className={style.root}>
+        <List>
+          {tpList.map((value, index) => (
+            <ListItem
+              key={'list-' + value.id}
+              dense
+              button
+              onClick={event => handleCheck(value.id)}
+              htmlFor={'check' + index}
+            >
+              <Checkbox
+                checked={props.tpAfficher.indexOf(value) !== -1}
+                id={'check' + index}
+                tabIndex={-1}
+                disableRipple
+              />
+              <ListItemText> {`${tpList.infNl} | ${tpList.infFr} `}</ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    </div>
+  )
+} */
+// <ListItemText primary={`${value.infNl} | ${value.OVT} | ${value.PP} | ${value.infFr}`} />
+// eslint-disable-next-line
+var Options = function (props) {
+
+  if (props.selectionPage) {
+    return (
+      <div>
+        <label htmlFor='selectAll'>Tout Selectionner</label>
+        <Checkbox onClick={props.selectAll} id='selectAll' checked = {props.selectAllChbx}></Checkbox>
+        <Button raised color="secondary" className={styles.button} onClick={props.handleSelectionTpClose} id="selectionTpClose"> Valider! </Button>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={props.aleatoire} onChange={props.handleInputChange} ></input>
+        <Button raised color="primary" className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
+        <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
+        <Button onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
+        <div>
+
+          {
+            [0, 1, 2, 3].map((nb) => (
+              <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
+                <FormControl className={styles.formControl}>
+                  <InputLabel htmlFor={'select' + nb}>Colonne {nb + 1}</InputLabel>
+                  <Select
+                    native
+                    onChange={(event) => props.handleSelect(event)}
+                    inputProps={{
+                      id: nb
+                    }}
+                  >
+                    {[0, 1, 2, 3].map(nbCol => (
+                      <option value={nbCol}>{options[nbCol].label}</option>
+                    ))
+                    }
+                  </Select>
+                  <div>
+                    <label htmlFor={nb}>Question: </label>
+                    <Switch
+                      checked={props.colonne[nb].question}
+                      onChange={event => props.handleQuestion(event)}
+                      aria-label="question colonne"
+                      inputProps= { {id: nb} }
+                    />
+                  </div>
+                  
+                </FormControl>
+                
+              </Paper>
+            ))}
+          <div style={{width: '11em', float: 'left', margin: '1em'}}>
+            <Button raised color="primary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
+            <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={props.afficherReponse} onChange={ props.handleAffReponse}></input>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+// eslint-disable-next-line
+var SelectionTp = function (props) {
+  const tp = props.tp
+  const colonne = props.colonne
+  var handleCheck = props.handleCheck
+
+  return (
+    <Paper className={styles.root}>
+      <Table className={styles.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>#</TableCell>
+            <TableCell> </TableCell>
+            {[0, 1, 2, 3].map(nb => <TableCell key={'STH' + nb}>{colonne[nb].label}</TableCell>)}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {
+            tp.map((tp, index) => {
+              return (
+                <TableRow onClick={event => handleCheck(index)} key={'rowSeTp' + index}>
+                  <TableCell scope = 'row'> {index + 1 }</TableCell>
+                  <TableCell key = {'chbk' + index}>
+                    <Checkbox
+                      checked={tp.afficher}
+                      id={'check' + index}
+                      tabIndex={-1}
+                      disableRipple
+                    />
+                  </TableCell>
+                  <TableCell key= {'0C' + index}>{tp.infNl} </TableCell>
+                  <TableCell key= {'1C' + index}>{tp.OVT} </TableCell>
+                  <TableCell key= {'2C' + index}>{tp.PP} </TableCell>
+                  <TableCell key= {'3C' + index}>{tp.infFr} </TableCell>
+                </TableRow>)
+            })
+          }
+        </TableBody>
+      </Table>
+    </Paper>
+  )
+}
