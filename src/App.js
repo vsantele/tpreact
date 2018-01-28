@@ -18,7 +18,7 @@ import Alert from 'react-s-alert'
 // eslint-disable-next-line
 import Reboot from 'material-ui/Reboot'
 // eslint-disable-next-line
-import { withStyles } from 'material-ui/styles'
+import {MuiThemeProvider, withStyles, createMuiTheme } from 'material-ui/styles'
 // eslint-disable-next-line
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
 // eslint-disable-next-line
@@ -39,7 +39,43 @@ import Checkbox from 'material-ui/Checkbox'
 import Switch from 'material-ui/Switch'
 // eslint-disable-next-line
 import Modal from 'material-ui/Modal'
-import green from 'material-ui/colors/green';
+import green from 'material-ui/colors/green'
+// eslint-disable-next-line
+import AppBar from 'material-ui/AppBar'
+// eslint-disable-next-line
+import Toolbar from 'material-ui/Toolbar'
+// eslint-disable-next-line
+import Typography from 'material-ui/Typography'
+// eslint-disable-next-line
+import IconButton from 'material-ui/IconButton'
+// eslint-disable-next-line
+import MenuIcon from 'material-ui-icons/Menu'
+// eslint-disable-next-line
+import Drawer from 'material-ui/Drawer'
+// eslint-disable-next-line
+import Hidden from 'material-ui/Hidden'
+// eslint-disable-next-line
+import Divider from 'material-ui/Divider'
+// eslint-disable-next-line
+import ResponsiveDrawer from './Components/ResponsiveDrawer'
+
+// eslint-disable-next-line
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#BBDEFB',
+      main: '#2196F3',
+      dark: '#0D47A1',
+      contrastText: '#fff'
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#fff'
+    }
+  }
+})
 
 const styles = theme => ({
   root: {
@@ -70,6 +106,13 @@ const styles = theme => ({
     '& + $bar': {
       backgroundColor: green[500]
     }
+  },
+  flex: {
+    flex: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
   }
 })
 
@@ -291,7 +334,6 @@ export default class App extends Component {
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
-    console.log('Render Fini')
     this.setState({
       loading: false
     })
@@ -300,25 +342,30 @@ export default class App extends Component {
     return (
       <div>
         <Reboot />
+        <MuiThemeProvider theme={theme}>
         <div>
-          <Options
-            aleatoire= {this.state.aleatoire}
-            handleInputChange = {this.handleInputChange}
-            handleClick = {this.handleClick}
-            handleSelect = {this.handleSelect}
-            handleClick = {this.handleClick}
-            handleAffReponse = {this.handleAffReponse}
-            limite = {this.state.limite}
-            tpLength = {this.state.tp.length}
-            handleSelectionTpOpen = {this.handleSelectionTpOpen}
-            handleSelectionTpClose = {this.handleSelectionTpClose}
-            selectAll = {this.selectAll}
-            selectAllChbx = {this.state.selectAllChbx}
-            selectionPage = {this.state.selectionPage}
-            afficherReponse = {this.state.afficherReponse}
-            handleQuestion = {this.handleQuestion}
-            colonne = {this.state.colonne}
-          />
+         { /* <ResponsiveDrawer/> */ }
+          <ButtonAppBar classes = {styles} />
+          <div style={{marginTop: '7px'}}>
+            <Options
+              aleatoire= {this.state.aleatoire}
+              handleInputChange = {this.handleInputChange}
+              handleClick = {this.handleClick}
+              handleSelect = {this.handleSelect}
+              handleClick = {this.handleClick}
+              handleAffReponse = {this.handleAffReponse}
+              limite = {this.state.limite}
+              tpLength = {this.state.tp.length}
+              handleSelectionTpOpen = {this.handleSelectionTpOpen}
+              handleSelectionTpClose = {this.handleSelectionTpClose}
+              selectAll = {this.selectAll}
+              selectAllChbx = {this.state.selectAllChbx}
+              selectionPage = {this.state.selectionPage}
+              afficherReponse = {this.state.afficherReponse}
+              handleQuestion = {this.handleQuestion}
+              colonne = {this.state.colonne}
+            />
+          </div>
           {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
         </div>
         <div style={{clear: 'left'}}>
@@ -338,6 +385,7 @@ export default class App extends Component {
           />
         </div>
         <Alert stack={{limit: 3}} />
+        </MuiThemeProvider>
       </div>
 
     )
@@ -548,10 +596,10 @@ var Options = function (props) {
   } else {
     return (
       <div>
-        <label htmlFor='aleatoire'>Aleatoire: </label> <input id='aleatoire' tag='aleatoire' name='aleatoire' type='checkbox' checked={props.aleatoire} onChange={props.handleInputChange} ></input>
-        <Button raised color="primary" className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
+        <label htmlFor='aleatoire'>Aleatoire: </label> <Checkbox inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} color='secondary' checked={props.aleatoire} onChange={props.handleInputChange} />
+        <Button raised color='secondary' className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
         <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
-        <Button onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
+        <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
         <div>
 
           {
@@ -565,6 +613,7 @@ var Options = function (props) {
                     inputProps={{
                       id: nb
                     }}
+                    value={props.colonne[nb].label}
                   >
                     {[0, 1, 2, 3].map(nbCol => (
                       <option value={nbCol}>{options[nbCol].label}</option>
@@ -580,14 +629,12 @@ var Options = function (props) {
                       inputProps= { {id: nb} }
                     />
                   </div>
-                  
                 </FormControl>
-                
               </Paper>
             ))}
-          <div style={{width: '11em', float: 'left', margin: '1em'}}>
-            <Button raised color="primary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
-            <label htmlFor='affReponse'>Afficher Réponse : </label> <input id='affReponse' name ='affReponse' type='checkbox' checked={props.afficherReponse} onChange={ props.handleAffReponse}></input>
+          <div style={{width: '12em', float: 'left', margin: '1em'}}>
+            <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
+            <label htmlFor='affReponse'>Afficher Réponse : </label> <Checkbox inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} checked={props.afficherReponse} onChange={ props.handleAffReponse} />
           </div>
         </div>
       </div>
@@ -635,5 +682,24 @@ var SelectionTp = function (props) {
         </TableBody>
       </Table>
     </Paper>
+  )
+}
+// eslint-disable-next-line
+var ButtonAppBar = function (props) {
+  const { classes } = props
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography type="title" color="inherit" className={classes.flex}>
+            Tp Neerlandais
+          </Typography>
+          <Button color="inherit"></Button>
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
