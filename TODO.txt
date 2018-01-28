@@ -11,9 +11,9 @@ MOYEN:
         |- Tableau OK 75%
     - Ajout questionnaire
         |- Tp input choisi random
-    - Passage Gatsby Js
 BAS:
     - Opti code
     - Ajout appBar
+    - Passage Gatsby Js
 FAIBLE:
     - Suppression lignes inutiles
