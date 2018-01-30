@@ -343,48 +343,48 @@ export default class App extends Component {
       <div>
         <Reboot />
         <MuiThemeProvider theme={theme}>
-        <div>
-         { /* <ResponsiveDrawer/> */ }
-          <ButtonAppBar classes = {styles} />
-          <div style={{marginTop: '7px'}}>
-            <Options
-              aleatoire= {this.state.aleatoire}
-              handleInputChange = {this.handleInputChange}
-              handleClick = {this.handleClick}
+          <div>
+            { /* <ResponsiveDrawer/> */ }
+            <ButtonAppBar classes = {styles} />
+            <div style={{marginTop: '7px'}}>
+              <Options
+                aleatoire= {this.state.aleatoire}
+                handleInputChange = {this.handleInputChange}
+                handleClick = {this.handleClick}
+                handleSelect = {this.handleSelect}
+                handleClick = {this.handleClick}
+                handleAffReponse = {this.handleAffReponse}
+                limite = {this.state.limite}
+                tpLength = {this.state.tp.length}
+                handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                handleSelectionTpClose = {this.handleSelectionTpClose}
+                selectAll = {this.selectAll}
+                selectAllChbx = {this.state.selectAllChbx}
+                selectionPage = {this.state.selectionPage}
+                afficherReponse = {this.state.afficherReponse}
+                handleQuestion = {this.handleQuestion}
+                colonne = {this.state.colonne}
+              />
+            </div>
+            {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
+          </div>
+          <div style={{clear: 'left'}}>
+            <Tableau
               handleSelect = {this.handleSelect}
-              handleClick = {this.handleClick}
-              handleAffReponse = {this.handleAffReponse}
-              limite = {this.state.limite}
-              tpLength = {this.state.tp.length}
-              handleSelectionTpOpen = {this.handleSelectionTpOpen}
-              handleSelectionTpClose = {this.handleSelectionTpClose}
-              selectAll = {this.selectAll}
-              selectAllChbx = {this.state.selectAllChbx}
-              selectionPage = {this.state.selectionPage}
-              afficherReponse = {this.state.afficherReponse}
               handleQuestion = {this.handleQuestion}
-              colonne = {this.state.colonne}
+              tp = {this.state.tp}
+              tpRandom={this.state.tpRandom}
+              tpExclu = {this.state.tpExclu}
+              colonne= {this.state.colonne}
+              aleatoire = {this.state.aleatoire}
+              limite = {this.state.limite}
+              handleReponse = {this.handleReponse}
+              affReponse = {this.state.afficherReponse}
+              selectionPage = {this.state.selectionPage}
+              handleCheck = {this.handleCheck}
             />
           </div>
-          {/* <span> Total: {this.state.correction.total} | Vide: {this.state.correction.vide} | Bon: {this.state.correction.correct} | Mauvais: {this.state.correction.erreur}</span> */}
-        </div>
-        <div style={{clear: 'left'}}>
-          <Tableau
-            handleSelect = {this.handleSelect}
-            handleQuestion = {this.handleQuestion}
-            tp = {this.state.tp}
-            tpRandom={this.state.tpRandom}
-            tpExclu = {this.state.tpExclu}
-            colonne= {this.state.colonne}
-            aleatoire = {this.state.aleatoire}
-            limite = {this.state.limite}
-            handleReponse = {this.handleReponse}
-            affReponse = {this.state.afficherReponse}
-            selectionPage = {this.state.selectionPage}
-            handleCheck = {this.handleCheck}
-          />
-        </div>
-        <Alert stack={{limit: 3}} />
+          <Alert stack={{limit: 3}} />
         </MuiThemeProvider>
       </div>
 
@@ -601,7 +601,6 @@ var Options = function (props) {
         <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
         <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
         <div>
-
           {
             [0, 1, 2, 3].map((nb) => (
               <Paper style={{width: '11em', float: 'left', margin: '1em'}}>
@@ -613,7 +612,7 @@ var Options = function (props) {
                     inputProps={{
                       id: nb
                     }}
-                    value={props.colonne[nb].label}
+                    defaultValue={nb}
                   >
                     {[0, 1, 2, 3].map(nbCol => (
                       <option value={nbCol}>{options[nbCol].label}</option>
@@ -632,6 +631,7 @@ var Options = function (props) {
                 </FormControl>
               </Paper>
             ))}
+
           <div style={{width: '12em', float: 'left', margin: '1em'}}>
             <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
             <label htmlFor='affReponse'>Afficher Réponse : </label> <Checkbox inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} checked={props.afficherReponse} onChange={ props.handleAffReponse} />
