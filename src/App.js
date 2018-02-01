@@ -56,9 +56,10 @@ import Drawer from 'material-ui/Drawer'
 import Hidden from 'material-ui/Hidden'
 // eslint-disable-next-line
 import Divider from 'material-ui/Divider'
-
 // eslint-disable-next-line
 import Grid from 'material-ui/Grid'
+// eslint-disable-next-line
+import Tooltip from 'material-ui/Tooltip'
 
 // eslint-disable-next-line
 const theme = createMuiTheme({
@@ -155,6 +156,13 @@ const styles = theme => ({
       position: 'relative',
       height: '100%'
     }
+  },
+  gridRoot: {
+    flexGrow: 1
+  },
+  grid: {
+    padding: 16,
+    textAlign: 'center'
   }
 })
 
@@ -295,7 +303,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     }
     const question = this.state.colonne
     const target = e.target
-    const colonne = target.id
+    const colonne = target.id.substring(3, 4)
     const value = setValue(colonne, target.checked, question)
     const name = 'question'
     this.setState({
@@ -611,16 +619,23 @@ var Rendu = function (props) {
                 ) */
                 nombre.map((nb) =>
                   <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
-                    <FormControl className={styles.formControl}>
-                      <InputLabel htmlFor={nb}>Colonne {nb + 1}</InputLabel>
-                      <Select
-                        native
-                        onChange={(event) => props.handleSelect(event)}
-                        inputProps={{ id: nb }} defaultValue={nb}
-                      >
-                        {[0, 1, 2, 3].map(nbCol => (<option value={nbCol}>{options[nbCol].label}</option>))}
-                      </Select>
-                    </FormControl>
+                    <div>
+                      <FormControl className={styles.formControl}>
+
+                        <InputLabel htmlFor={nb}>Colonne {nb + 1}</InputLabel>
+                        <Select
+                          native
+                          onChange={(event) => props.handleSelect(event)}
+                          inputProps={{ id: nb }} defaultValue={nb}
+                        >
+                          {[0, 1, 2, 3].map(nbCol => (<option value={nbCol}>{options[nbCol].label}</option>))}
+                        </Select>
+                      </FormControl>
+                      <FormControl>
+                        <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
+                        <Switch inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                      </FormControl>
+                    </div>
                   </TableCell>
                 )
 
@@ -760,8 +775,6 @@ var Cell = function (props) {
 // eslint-disable-next-line
 var Options = function (props) {
   const classes = props.classes
-  var handleDrawerToggle = props.handleDrawerToggle
-  const mobileOpen = props.mobileOpen
   if (props.selectionPage) {
     return (
       <div>
@@ -772,13 +785,39 @@ var Options = function (props) {
     )
   } else {
     return (
-      <div>
-        <label htmlFor='aleatoire'>Aleatoire: </label> <Switch inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(props.aleatoire)} onChange={props.handleInputChange} />
-        <Button raised color='secondary' className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
-        <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
-        <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
-        <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
-        <label htmlFor='affReponse'>Afficher Réponse : </label> <Switch inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} classes={{checked: classes.checked, bar: classes.bar}}checked={props.afficherReponse} onChange={ props.handleAffReponse} />
+      <div className={classes.gridRoot}>
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <label htmlFor='aleatoire' >Aleatoire: </label> <Switch inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(props.aleatoire)} onChange={props.handleInputChange} />
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <Button raised color='secondary' className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.grid}>
+              <label htmlFor='affReponse'>Afficher Réponse : </label> <Switch inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} classes={{checked: classes.checked, bar: classes.bar}}checked={props.afficherReponse} onChange={ props.handleAffReponse} />
+            </div>
+          </Grid>
+        </Grid>
       </div>
 
     )
