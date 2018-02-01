@@ -56,8 +56,7 @@ import Drawer from 'material-ui/Drawer'
 import Hidden from 'material-ui/Hidden'
 // eslint-disable-next-line
 import Divider from 'material-ui/Divider'
-// eslint-disable-next-line
-import ResponsiveDrawer from './Components/ResponsiveDrawer'
+
 // eslint-disable-next-line
 import Grid from 'material-ui/Grid'
 
