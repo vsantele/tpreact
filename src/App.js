@@ -699,7 +699,6 @@ var Row = function (props) {
 }
 // eslint-disable-next-line
 var Cell = function (props) {
-  const classes = props.classes
   function verification (e) {
     var reponse = e.target.value
     var index = e.target.id
