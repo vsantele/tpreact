@@ -36,9 +36,10 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 // eslint-disable-next-line
 import Checkbox from 'material-ui/Checkbox'
 // eslint-disable-next-line
-import SwitchButton from 'material-ui/Switch'
+import Switch from 'material-ui/Switch'
 // eslint-disable-next-line
 import Modal from 'material-ui/Modal'
+import green from 'material-ui/colors/green'
 // eslint-disable-next-line
 import AppBar from 'material-ui/AppBar'
 // eslint-disable-next-line
@@ -50,7 +51,7 @@ import IconButton from 'material-ui/IconButton'
 // eslint-disable-next-line
 import MenuIcon from 'material-ui-icons/Menu'
 // eslint-disable-next-line
-// import Drawer from 'material-ui/Drawer'
+import Drawer from 'material-ui/Drawer'
 // eslint-disable-next-line
 import Hidden from 'material-ui/Hidden'
 // eslint-disable-next-line
@@ -59,21 +60,8 @@ import Divider from 'material-ui/Divider'
 import Grid from 'material-ui/Grid'
 // eslint-disable-next-line
 import Tooltip from 'material-ui/Tooltip'
-// import SelectionTp from './selection-Tp'
-// import Drawer from '../components/Drawer'
-// import Link from 'gatsby-link'
-// eslint-disable-next-line
-import TextField from 'material-ui/TextField'
-// eslint-disable-next-line
-import Helmet from 'react-helmet'
-// eslint-disable-next-line
-import Drawer from 'material-ui/Drawer'
-// eslint-disable-next-line
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-// import Questionnaire from './questionnaire'
-import Mobile from './mobile'
-import 'typeface-roboto'
 
+// eslint-disable-next-line
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -99,7 +87,7 @@ const styles = theme => ({
     overflow: 'hidden'
   },
   table: {
-    minWidth: 150
+    minWidth: 700
   },
   container: {
     display: 'flex',
@@ -134,7 +122,7 @@ const styles = theme => ({
   },
   content: {
     backgroundColor: theme.palette.background.default,
-    width: `100%`,
+    width: '100%',
     padding: theme.spacing.unit * 3,
     height: 'calc(100% - 56px)',
     marginTop: 56,
@@ -175,18 +163,13 @@ const styles = theme => ({
   grid: {
     padding: 16,
     textAlign: 'center'
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 50
   }
 })
 
 const options = [
   {value: 'infNl', label: 'Infinitif NL', nb: 0},
   {value: 'OVT', label: 'OVT', nb: 1},
-  {value: 'PP', label: 'Part. Passé', nb: 2},
+  {value: 'PP', label: 'Participe Passé', nb: 2},
   {value: 'infFr', label: 'Infinitif FR', nb: 3},
   {value: 'vide', label: 'Rien', nb: 4}
 ]
@@ -214,8 +197,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       selectedIndex: [0, 1, 2, 3, 4],
       selectionPage: false,
       selectAllChbx: true,
-      mobileOpen: false,
-      aleatoireQuestion: false
+      mobileOpen: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -229,29 +211,12 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleSelectionTpClose = this.handleSelectionTpClose.bind(this)
     this.selectAll = this.selectAll.bind(this)
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
-    this.handleClickQuestionnaire = this.handleClickQuestionnaire.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
     const tpRandomized = Shuffle(this.state.tp, {copy: true})
     this.setState({
       tpRandom: tpRandomized // liste des tps dans un ordre aléatoire
-    })
-  }
-  shuffleQuestion () {
-    function shuffle (alea) {
-      let nbAleaQuest = []
-      if (alea) {
-        for (let i = 0; i < 134; i++) {
-          nbAleaQuest[i] = Math.floor((Math.random() * 4))
-          console.log(nbAleaQuest[i])
-        }
-      }
-    }
-    const aleatoireQuestion = this.state.aleatoireQuestion
-    let nbAleatoireQuestion = shuffle(aleatoireQuestion)
-    this.setState({
-      nbAleatoireQuestion: nbAleatoireQuestion
     })
   }
   // effectue action quand changement effectuer dans les options aléatoire et limite
@@ -367,7 +332,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       return Math.round(number * factor) / factor
     }
     Alert[type](`Tu as eu ${precisionRound(ratio * 100, 2)}% <ul><li>Total: ${total}</li> <li>Bon: ${bon}</li> <li>Mauvais: ${mauvais}</li> <li>Vide: ${vide}</li></ul>`, {
-      position: 'bottom-right',
+      position: 'top-right',
       effect: 'slide',
       timeout: 7500,
       html: true
@@ -415,13 +380,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleDrawerToggle () {
     this.setState({ mobileOpen: !this.state.mobileOpen })
   }
-  handleClickQuestionnaire () {
-    this.setState({ aleatoireQuestion: true })
-  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
-    this.shuffleQuestion()
     this.setState({
       loading: false
     })
@@ -451,53 +412,141 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
               </AppBar>
             </div> */ }
           <div className={classes.root}>
-            <Helmet
-              title="Questionnaire Tp Ndls"
-              meta={[
-                { name: 'description', content: 'Questionnaire Tp Neerlandais' },
-                { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
-              ]}
-            />
-            <ButtonAppBar classes = {classes} />
-            <div>
-              <Switch>
-                <Route
-                  exact
-                  path='/'
-                  render={
-                    () =>
-                      <Home
-                        classes = {classes}
-                        handleInputChange = {this.handleInputChange}
-                        handleClick = {this.handleClick}
-                        handleSelect = {this.handleSelect}
-                        handleAffReponse = {this.handleAffReponse}
-                        handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                        handleSelectionTpClose = {this.handleSelectionTpClose}
-                        handleQuestion = {this.handleQuestion}
-                        handleDrawerToggle = {this.handleDrawerToggle}
-                        handleReponse = {this.handleReponse}
-                        handleCheck = {this.handleCheck}
-                        selectAll = {this.selectAll}
-                        selectAllChbx = {this.state.selectAllChbx}
-                        selectionPage = {this.state.selectionPage}
-                        aleatoire = {this.state.aleatoire}
-                        afficherReponse = {this.state.afficherReponse}
-                        affReponse = {this.state.afficherReponse}
-                        limite = {this.state.limite}
-                        tpLength = {this.state.tp.length}
-                        colonne = {this.state.colonne}
-                        mobileOpen = {this.state.mobileOpen}µ
-                        tp = {this.state.tp}
-                        tpRandom={this.state.tpRandom}
-                        tpExclu = {this.state.tpExclu}
-                        aleatoireQuestion={this.state.aleatoireQuestion}
-                        handleClickQuestionnaire={this.handleClickQuestionnaire}
-                      />
-                  }/>
-                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                <Route exact path='/Mobile' component={Mobile} />
-              </Switch>
+            <div className={classes.appFrame}>
+              <AppBar position="static" className={classes.appBar}>
+                <Toolbar>
+                  { /* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                  <MenuIcon />
+                </IconButton> */}
+                  <Typography type="title" color="inherit" className={classes.flex}>
+                  Tp Neerlandais
+                  </Typography>
+                  <Button color="inherit"></Button>
+                  <Options
+                    aleatoire= {this.state.aleatoire}
+                    handleInputChange = {this.handleInputChange}
+                    handleClick = {this.handleClick}
+                    handleSelect = {this.handleSelect}
+                    handleAffReponse = {this.handleAffReponse}
+                    limite = {this.state.limite}
+                    tpLength = {this.state.tp.length}
+                    handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                    handleSelectionTpClose = {this.handleSelectionTpClose}
+                    selectAll = {this.selectAll}
+                    selectAllChbx = {this.state.selectAllChbx}
+                    selectionPage = {this.state.selectionPage}
+                    afficherReponse = {this.state.afficherReponse}
+                    handleQuestion = {this.handleQuestion}
+                    colonne = {this.state.colonne}
+                    mobileOpen = {this.state.mobileOpen}µ
+                    handleDrawerToggle = {this.handleDrawerToggle}
+                    classes ={classes}
+                  />
+                </Toolbar>
+              </AppBar>
+
+              { /* <Hidden mdUp>
+              <Drawer
+                type="temporary"
+                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                open={this.state.mobileOpen}
+                classes={{
+                  paper: classes.drawerPaper
+                }}
+                onClose={this.handleDrawerToggle}
+                ModalProps={{
+                  keepMounted: true
+                }}
+              >
+                <Options
+                  aleatoire= {this.state.aleatoire}
+                  handleInputChange = {this.handleInputChange}
+                  handleClick = {this.handleClick}
+                  handleSelect = {this.handleSelect}
+                  handleAffReponse = {this.handleAffReponse}
+                  limite = {this.state.limite}
+                  tpLength = {this.state.tp.length}
+                  handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                  handleSelectionTpClose = {this.handleSelectionTpClose}
+                  selectAll = {this.selectAll}
+                  selectAllChbx = {this.state.selectAllChbx}
+                  selectionPage = {this.state.selectionPage}
+                  afficherReponse = {this.state.afficherReponse}
+                  handleQuestion = {this.handleQuestion}
+                  colonne = {this.state.colonne}
+                  mobileOpen = {this.state.mobileOpen}µ
+                  handleDrawerToggle = {this.handleDrawerToggle}
+                />
+              </Drawer>
+            </Hidden>
+            <Hidden smDown implementation="css">
+              <Drawer
+                type="permanent"
+                open
+                classes={{
+                  paper: classes.drawerPaper
+                }}
+              >
+                <Options
+                  aleatoire= {this.state.aleatoire}
+                  handleInputChange = {this.handleInputChange}
+                  handleClick = {this.handleClick}
+                  handleSelect = {this.handleSelect}
+                  handleAffReponse = {this.handleAffReponse}
+                  limite = {this.state.limite}
+                  tpLength = {this.state.tp.length}
+                  handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                  handleSelectionTpClose = {this.handleSelectionTpClose}
+                  selectAll = {this.selectAll}
+                  selectAllChbx = {this.state.selectAllChbx}
+                  selectionPage = {this.state.selectionPage}
+                  afficherReponse = {this.state.afficherReponse}
+                  handleQuestion = {this.handleQuestion}
+                  colonne = {this.state.colonne}
+                  mobileOpen = {this.state.mobileOpen}µ
+                  handleDrawerToggle = {this.handleDrawerToggle}
+                />
+              </Drawer>
+            </Hidden> */ }
+
+              {/* <Options
+              aleatoire= {this.state.aleatoire}
+              handleInputChange = {this.handleInputChange}
+              handleClick = {this.handleClick}
+              handleSelect = {this.handleSelect}
+              handleAffReponse = {this.handleAffReponse}
+              limite = {this.state.limite}
+              tpLength = {this.state.tp.length}
+              handleSelectionTpOpen = {this.handleSelectionTpOpen}
+              handleSelectionTpClose = {this.handleSelectionTpClose}
+              selectAll = {this.selectAll}
+              selectAllChbx = {this.state.selectAllChbx}
+              selectionPage = {this.state.selectionPage}
+              afficherReponse = {this.state.afficherReponse}
+              handleQuestion = {this.handleQuestion}
+              colonne = {this.state.colonne}
+              mobileOpen = {this.state.mobileOpen}µ
+              handleDrawerToggle = {this.handleDrawerToggle}
+            /> */ }
+
+              <main className={classes.content}>
+                <Tableau
+                  handleSelect = {this.handleSelect}
+                  handleQuestion = {this.handleQuestion}
+                  tp = {this.state.tp}
+                  tpRandom={this.state.tpRandom}
+                  tpExclu = {this.state.tpExclu}
+                  colonne= {this.state.colonne}
+                  aleatoire = {this.state.aleatoire}
+                  limite = {this.state.limite}
+                  handleReponse = {this.handleReponse}
+                  affReponse = {this.state.afficherReponse}
+                  selectionPage = {this.state.selectionPage}
+                  handleCheck = {this.handleCheck}
+                  classes = {classes}
+                />
+              </main>
+              <Alert stack={{limit: 3}} />
             </div>
           </div>
         </MuiThemeProvider>
@@ -507,69 +556,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
 })
 
-// eslint-disable-next-line
-var Home = function (props) {
-  var classes = props.classes
-  return (
-
-    <div className={classes.appFrame}>
-      <main className={classes.content}>
-        <Grid container>
-          <Grid item xs={12}>
-            <div>
-              <Options
-                aleatoire= {props.aleatoire}
-                handleInputChange = {props.handleInputChange}
-                handleClick = {props.handleClick}
-                handleSelect = {props.handleSelect}
-                handleAffReponse = {props.handleAffReponse}
-                limite = {props.limite}
-                tpLength = {props.tp.length}
-                handleSelectionTpOpen = {props.handleSelectionTpOpen}
-                handleSelectionTpClose = {props.handleSelectionTpClose}
-                selectAll = {props.selectAll}
-                selectAllChbx = {props.selectAllChbx}
-                selectionPage = {props.selectionPage}
-                afficherReponse = {props.afficherReponse}
-                handleQuestion = {props.handleQuestion}
-                colonne = {props.colonne}
-                mobileOpen = {props.mobileOpen}µ
-                handleDrawerToggle = {props.handleDrawerToggle}
-                handleClickQuestionnaire={props.handleClickQuestionnaire}
-                aleatoireQuestion={props.aleatoireQuestion}
-                classes ={classes}
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <Tableau
-              handleSelect = {props.handleSelect}
-              handleQuestion = {props.handleQuestion}
-              tp = {props.tp}
-              tpRandom={props.tpRandom}
-              tpExclu = {props.tpExclu}
-              colonne= {props.colonne}
-              aleatoire = {props.aleatoire}
-              limite = {props.limite}
-              handleReponse = {props.handleReponse}
-              affReponse = {props.afficherReponse}
-              selectionPage = {props.selectionPage}
-              handleCheck = {props.handleCheck}
-              selectAllChbx = {props.selectAllChbx}
-              handleSelectionTpClose = {props.handleSelectionTpClose}
-              selectAll = {props.selectAll}
-              aleatoireQuestion={props.aleatoireQuestion}
-              classes = {classes}
-            />
-          </Grid>
-          <br />
-
-        </Grid>
-      </main>
-      <Alert stack={{limit: 3}} position='bottom-right' />
-    </div>
-  )
-}
 // tableau qui renvoie les tps dans l'ordre ou pas en fonction de la valeur de l'aléatoire
 // eslint-disable-next-line
 var Tableau = function (props) {
@@ -583,10 +569,6 @@ var Tableau = function (props) {
           colonne = {props.colonne}
           tpExclu = {props.tpExclu}
           handleCheck = {props.handleCheck}
-          classes = {classes}
-          selectAllChbx = {props.selectAllChbx}
-          handleSelectionTpClose = {props.handleSelectionTpClose}
-          selectAll = {props.selectAll}
         />
       </div>
     )
@@ -609,7 +591,6 @@ var Tableau = function (props) {
           affReponse = {props.affReponse}
           selectionPage = {props.selectionPage}
           handleCheck = {props.handleCheck}
-          aleatoireQuestion= {props.aleatoireQuestion}
           classes = {classes}
         />
       </div>
@@ -652,7 +633,7 @@ var Rendu = function (props) {
                       </FormControl>
                       <FormControl>
                         <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                        <SwitchButton inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                        <Switch inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
                       </FormControl>
                     </div>
                   </TableCell>
@@ -663,7 +644,6 @@ var Rendu = function (props) {
           </TableHead>
           <TableBody>
             {
-
               tp.map(function (listValue, index) {
                 if (listValue.afficher && index < limite) {
                   return (
@@ -797,93 +777,61 @@ var Options = function (props) {
   if (props.selectionPage) {
     return (
       <div>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor='selectAll' shrink>Tout les TP</InputLabel>
-          <SwitchButton onClick={props.selectAll} id='selectAll' checked = {props.selectAllChbx}></SwitchButton>
-        </FormControl>
+        <label htmlFor='selectAll'>Tout Selectionner</label>
+        <Switch onClick={props.selectAll} id='selectAll' checked = {props.selectAllChbx}></Switch>
         <Button raised color="secondary" className={styles.button} onClick={props.handleSelectionTpClose} id="selectionTpClose"> Valider! </Button>
       </div>
     )
   } else {
     return (
       <div className={classes.gridRoot}>
-        <Grid container spacing={4}>
-          <Grid item >
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
             <div className={classes.grid}>
-              <FormControl className={styles.formControl}>
-                <InputLabel htmlFor='aleatoire' shrink>Aleatoire</InputLabel>
-                <SwitchButton inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(props.aleatoire)} onChange={props.handleInputChange} />
-              </FormControl>
+              <label htmlFor='aleatoire' >Aleatoire: </label> <Switch inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(props.aleatoire)} onChange={props.handleInputChange} />
             </div>
           </Grid>
-          <Grid item >
+          <Grid item xs={2}>
             <div className={classes.grid}>
               <Button raised color='secondary' className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
             </div>
           </Grid>
-          <Grid item >
+          <Grid item xs={2}>
             <div className={classes.grid}>
-              <FormControl>
-                <TextField
-                  error = {props.limite < 0}
-                  id="limite"
-                  label="limite"
-                  name="limite"
-                  value={props.limite}
-                  onChange={props.handleInputChange}
-                  type="number"
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  margin="dense"
-                />
-              </FormControl>
+              <input id='limite' tag='limite' className="search-input" type="number" onChange={props.handleInputChange} name="limite" placeholder="Limite" value={props.limite} max= {props.tpLength} min ={0} />
             </div>
           </Grid>
-          <Grid item >
+          <Grid item xs={2}>
             <div className={classes.grid}>
               <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
             </div>
           </Grid>
-          <Grid item >
-            <div className={classes.grid}>
-              <Button raised color="secondary" className={styles.button} id='questionnaire' onClick={props.handleClickQuestionnaire} disabled>Questionnaire</Button>
-            </div>
-          </Grid>
-          <Grid item >
+          <Grid item xs={2}>
             <div className={classes.grid}>
               <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
             </div>
           </Grid>
-          <Grid item>
+          <Grid item xs={2}>
             <div className={classes.grid}>
-              <FormControl>
-                <InputLabel htmlFor='affReponse' shrink>Réponse</InputLabel>
-                <SwitchButton inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} classes={{checked: classes.checked, bar: classes.bar}}checked={props.afficherReponse} onChange={ props.handleAffReponse} />
-              </FormControl>
-            </div>
-          </Grid>
-          <Grid item >
-            <div className={classes.grid}>
-              <Link to='/Mobile'>Vers Mobile</Link>
+              <label htmlFor='affReponse'>Afficher Réponse : </label> <Switch inputProps={{ id: 'affReponse', name: 'affReponse', type: 'checkbox' }} classes={{checked: classes.checked, bar: classes.bar}}checked={props.afficherReponse} onChange={ props.handleAffReponse} />
             </div>
           </Grid>
         </Grid>
       </div>
+
     )
   }
 }
 
 // eslint-disable-next-line
-const SelectionTp = function (props) {
+var SelectionTp = function (props) {
   const tp = props.tp
   const colonne = props.colonne
   var handleCheck = props.handleCheck
-  const classes = props.classes
+
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
+    <Paper className={styles.root}>
+      <Table className={styles.table}>
         <TableHead>
           <TableRow>
             <TableCell>#</TableCell>
@@ -922,19 +870,14 @@ var ButtonAppBar = function (props) {
   const { classes } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="static">
         <Toolbar>
-          <Link
-            to='/'
-            style={{
-              color: 'white',
-              textDecoration: 'none'
-            }}
-          >
-            <Typography type="title" color="inherit" className={classes.flex}>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography type="title" color="inherit" className={classes.flex}>
             Tp Neerlandais
-            </Typography>
-          </Link>
+          </Typography>
           <Button color="inherit"></Button>
         </Toolbar>
       </AppBar>
