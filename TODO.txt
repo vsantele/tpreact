@@ -11,9 +11,13 @@ MOYEN:
     - Ajout questionnaire
         |- Tp input choisi random
     - Ajout Hidden Pour petit ecran et moyen ecran pour Option: ajout 3 points
+    - Switch "Tout les TP" ne se décoche pas quand on déselectionne un  
+    - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
+    https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
 BAS:
     - Opti code
     - Ajout appBar OK
     - Passage Gatsby Js
 FAIBLE:
     - Suppression lignes inutiles
+    - AfficherReponse = AffReponse
