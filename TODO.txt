@@ -18,6 +18,7 @@ BAS:
     - Opti code
     - Ajout appBar OK
     - Passage Gatsby Js
+    - Bug correction faux, pas compter | comptage correct bon
 FAIBLE:
     - Suppression lignes inutiles
     - AfficherReponse = AffReponse
