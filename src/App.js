@@ -61,7 +61,6 @@ import Grid from 'material-ui/Grid'
 import Tooltip from 'material-ui/Tooltip'
 // import SelectionTp from './selection-Tp'
 // import Drawer from '../components/Drawer'
-// import Link from 'gatsby-link'
 // eslint-disable-next-line
 import TextField from 'material-ui/TextField'
 // eslint-disable-next-line
@@ -73,6 +72,8 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 // import Questionnaire from './questionnaire'
 import Mobile from './mobile'
 import 'typeface-roboto'
+// eslint-disable-next-line
+import MatomoTracker from 'matomo-tracker'
 
 const theme = createMuiTheme({
   palette: {
@@ -117,9 +118,9 @@ const styles = theme => ({
   },
   bar: {},
   checked: {
-    color: theme.palette.secondary.main,
+    color: '#f44336',
     '& + $bar': {
-      backgroundColor: theme.palette.secondary.main
+      backgroundColor: '#f44336'
     }
   },
   flex: {
@@ -150,7 +151,7 @@ const styles = theme => ({
     height: '100%'
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     [theme.breakpoints.up('md')]: {
       width: `100%`
     }
@@ -180,6 +181,9 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 50
+  },
+  link: {
+    color: theme.palette.secondary.main
   }
 })
 
@@ -190,6 +194,8 @@ const options = [
   {value: 'infFr', label: 'Infinitif FR', nb: 3},
   {value: 'vide', label: 'Rien', nb: 4}
 ]
+
+var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 export default withStyles(styles, { withTheme: true })(class App extends Component {
   constructor (props) {
@@ -230,6 +236,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.selectAll = this.selectAll.bind(this)
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
     this.handleClickQuestionnaire = this.handleClickQuestionnaire.bind(this)
+    this.shuffleQuestion = this.shuffleQuestion.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -239,17 +246,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
   shuffleQuestion () {
-    function shuffle (alea) {
+    function shuffle () {
       let nbAleaQuest = []
-      if (alea) {
-        for (let i = 0; i < 134; i++) {
-          nbAleaQuest[i] = Math.floor((Math.random() * 4))
-          console.log(nbAleaQuest[i])
-        }
+      for (let i = 0; i < 134; i++) {
+        nbAleaQuest[i] = Math.floor((Math.random() * 4))
       }
+      return nbAleaQuest
     }
-    const aleatoireQuestion = this.state.aleatoireQuestion
-    let nbAleatoireQuestion = shuffle(aleatoireQuestion)
+    let nbAleatoireQuestion = shuffle()
     this.setState({
       nbAleatoireQuestion: nbAleatoireQuestion
     })
@@ -380,9 +384,26 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
   handleCheck (value) {
-    var tp = this.state.tp
+    let tp = this.state.tp
     tp[value].afficher = !tp[value].afficher
-    this.setState({tp: tp})
+    // décocher selectAll
+    function isSelectAll () {
+      var reponse
+      for (let i = 0; i < 134; i++) {
+        if (!tp[i].afficher) {
+          reponse = false
+          break
+        } else {
+          reponse = true
+        }
+      }
+      return reponse
+    }
+    let selectAll = isSelectAll()
+    this.setState({
+      tp: tp,
+      selectAllChbx: selectAll
+    })
   }
 
   selectAll () {
@@ -415,8 +436,12 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleDrawerToggle () {
     this.setState({ mobileOpen: !this.state.mobileOpen })
   }
-  handleClickQuestionnaire () {
-    this.setState({ aleatoireQuestion: true })
+  handleClickQuestionnaire (e) {
+    if (e.target.id === 'questionnaireOpen') {
+      this.setState({ aleatoireQuestion: true })
+    } else {
+      this.setState({ aleatoireQuestion: false })
+    }
   }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
@@ -428,6 +453,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   render () {
     const { classes } = this.props
+    matomo.on('error', function (err) {
+      console.log('error tracking request: ', err)
+    })
+    matomo.track('https://flamboyant-chandrasekhar-71d621.netlify.com/')
     return (
       <div>
         <Reboot />
@@ -492,6 +521,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                         tpRandom={this.state.tpRandom}
                         tpExclu = {this.state.tpExclu}
                         aleatoireQuestion={this.state.aleatoireQuestion}
+                        nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
                         handleClickQuestionnaire={this.handleClickQuestionnaire}
                       />
                   }/>
@@ -559,6 +589,7 @@ var Home = function (props) {
               handleSelectionTpClose = {props.handleSelectionTpClose}
               selectAll = {props.selectAll}
               aleatoireQuestion={props.aleatoireQuestion}
+              nbAleatoireQuestion = {props.nbAleatoireQuestion}
               classes = {classes}
             />
           </Grid>
@@ -610,6 +641,7 @@ var Tableau = function (props) {
           selectionPage = {props.selectionPage}
           handleCheck = {props.handleCheck}
           aleatoireQuestion= {props.aleatoireQuestion}
+          nbAleatoireQuestion = {props.nbAleatoireQuestion}
           classes = {classes}
         />
       </div>
@@ -647,7 +679,7 @@ var Rendu = function (props) {
                           onChange={(event) => props.handleSelect(event)}
                           inputProps={{ id: nb }} defaultValue={nb}
                         >
-                          {[0, 1, 2, 3].map(nbCol => (<option value={nbCol}>{options[nbCol].label}</option>))}
+                          {[0, 1, 2, 3].map(nbCol => (<option key={'TH' + nbCol} value={nbCol}>{options[nbCol].label}</option>))}
                         </Select>
                       </FormControl>
                       <FormControl>
@@ -676,6 +708,8 @@ var Rendu = function (props) {
                       selectionPage = {props.selectionPage}
                       tpAfficher = {props.tpAfficher}
                       handleCheck = {props.handleCheck}
+                      aleatoireQuestion = {props.aleatoireQuestion}
+                      nbAleatoireQuestion = {props.nbAleatoireQuestion}
                       classes = {props.classes}
                     />
                   )
@@ -704,12 +738,16 @@ var Row = function (props) {
         nombre.map((nb) =>
           <Cell
             key={'cell' + colonne[nb].value + nb}
+            nb = {nb}
             index = {index}
             value = {listValue}
             colonne = {colonne[nb]}
+            nbColonne = {nb}
             question = {props.question}
             handleReponse = {props.handleReponse}
             affReponse = {props.affReponse}
+            aleatoireQuestion = {props.aleatoireQuestion}
+            nbAleatoireQuestion = {props.nbAleatoireQuestion}
             classes = {classes}
           />
         )
@@ -731,14 +769,26 @@ var Cell = function (props) {
   var handleReponse = props.handleReponse
   var correct = props.value['correct'][colonne.value]
   var affReponse = props.affReponse
-  if (colonne.question === true) {
-    return (
-      <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
-    )
+  if (props.aleatoireQuestion) {
+    if (props.nb === props.nbAleatoireQuestion[index]) {
+      return (
+        <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+      )
+    } else {
+      return (
+        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
+      )
+    }
   } else {
-    return (
-      <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
-    )
+    if (colonne.question === true) {
+      return (
+        <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+      )
+    } else {
+      return (
+        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
+      )
+    }
   }
 }
 
@@ -799,7 +849,7 @@ var Options = function (props) {
       <div>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor='selectAll' shrink>Tout les TP</InputLabel>
-          <SwitchButton onClick={props.selectAll} id='selectAll' checked = {props.selectAllChbx}></SwitchButton>
+          <SwitchButton onClick={props.selectAll} id='selectAll' classes= {{checked: classes.checked, bar: classes.bar}} checked = {Boolean(props.selectAllChbx)}></SwitchButton>
         </FormControl>
         <Button raised color="secondary" className={styles.button} onClick={props.handleSelectionTpClose} id="selectionTpClose"> Valider! </Button>
       </div>
@@ -807,7 +857,7 @@ var Options = function (props) {
   } else {
     return (
       <div className={classes.gridRoot}>
-        <Grid container spacing={4}>
+        <Grid container spacing={8}>
           <Grid item >
             <div className={classes.grid}>
               <FormControl className={styles.formControl}>
@@ -818,7 +868,7 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color='secondary' className={styles.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
+              <Button raised color='secondary' className={classes.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
             </div>
           </Grid>
           <Grid item >
@@ -843,17 +893,18 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color='secondary' onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
+              <Button raised color='secondary' className={classes.button} onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
             </div>
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color="secondary" className={styles.button} id='questionnaire' onClick={props.handleClickQuestionnaire} disabled>Questionnaire</Button>
+              <Button raised color="secondary" className={classes.button} style={{ display: !props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireOpen' onClick={props.handleClickQuestionnaire}>Questionnaire</Button>
+              <Button raised color="secondary" className={classes.button} style={{ display: props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireClose' onClick={props.handleClickQuestionnaire}>Tableau</Button>
             </div>
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color="secondary" className={styles.button} id='correction' onClick={props.handleClick}>Correction</Button>
+              <Button raised color="secondary" className={classes.button} id='correction' onClick={props.handleClick}>Correction</Button>
             </div>
           </Grid>
           <Grid item>
@@ -866,7 +917,7 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Link to='/Mobile'>Vers Mobile</Link>
+              <Link to='/Mobile' className={classes.link}>Vers Mobile</Link>
             </div>
           </Grid>
         </Grid>
@@ -903,6 +954,7 @@ const SelectionTp = function (props) {
                       id={'check' + index}
                       tabIndex={-1}
                       disableRipple
+                      classes= {{checked: classes.checked, bar: classes.bar}}
                     />
                   </TableCell>
                   <TableCell key= {'0C' + index}>{tp.infNl} </TableCell>
@@ -917,12 +969,13 @@ const SelectionTp = function (props) {
     </Paper>
   )
 }
+
 // eslint-disable-next-line
 var ButtonAppBar = function (props) {
   const { classes } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar className={classes.appBar}>
         <Toolbar>
           <Link
             to='/'
@@ -935,7 +988,6 @@ var ButtonAppBar = function (props) {
             Tp Neerlandais
             </Typography>
           </Link>
-          <Button color="inherit"></Button>
         </Toolbar>
       </AppBar>
     </div>
