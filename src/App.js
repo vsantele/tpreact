@@ -456,29 +456,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     matomo.on('error', function (err) {
       console.log('error tracking request: ', err)
     })
-    matomo.track('https://flamboyant-chandrasekhar-71d621.netlify.com/')
+    matomo.track({
+      url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
+      action_name: 'Main Page'
+    })
     return (
       <div>
         <Reboot />
         <MuiThemeProvider theme={theme}>
-          {/* <div className={styles.root}>
-            <div className={styles.appFrame}>
-              <AppBar className={styles.appBar}>
-                <Toolbar>
-                  <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={this.handleDrawerToggle}
-                    className={styles.navIconHide}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Typography type="title" color="inherit" noWrap>
-                    Tp Neerlandais
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-            </div> */ }
           <div className={classes.root}>
             <Helmet
               title="Questionnaire Tp Ndls"
@@ -932,6 +917,10 @@ const SelectionTp = function (props) {
   const colonne = props.colonne
   var handleCheck = props.handleCheck
   const classes = props.classes
+  matomo.track({
+    url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
+    action_name: 'Selection Tp'
+  })
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -979,6 +968,7 @@ var ButtonAppBar = function (props) {
         <Toolbar>
           <Link
             to='/'
+            onClick={() => window.scrollTo(0, 0)}
             style={{
               color: 'white',
               textDecoration: 'none'

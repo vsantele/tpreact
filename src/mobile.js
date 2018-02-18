@@ -28,6 +28,10 @@ import InputLabel from 'material-ui/Input/InputLabel'
 import TextField from 'material-ui/TextField'
 // eslint-disable-next-line
 import SwitchButton from 'material-ui/Switch'
+// eslint-disable-next-line
+import MatomoTracker from 'matomo-tracker'
+
+var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 const theme = createMuiTheme({
   palette: {
@@ -149,6 +153,10 @@ export default withStyles(styles, {withTheme: true})(class Mobile extends Compon
 
   render () {
     const { classes } = this.props
+    matomo.track({
+      url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
+      action_name: 'Mobile Page'
+    })
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
