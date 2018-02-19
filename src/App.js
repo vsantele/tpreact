@@ -303,6 +303,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     // si on clic sur random, ça random
     if (e.target.id === 'shuffle') {
       this.shuffleTp()
+      this.shuffleQuestion()
     } else if (e.target.id === 'correction') {
       var tp = this.state.aleatoire ? this.state.tpRandom : this.state.tp
       var reponseMauvais = 0
@@ -853,7 +854,7 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color='secondary' className={classes.button} onClick={props.handleClick} id='shuffle' disabled = {!props.aleatoire} > Recharger </Button>
+              <Button raised color='secondary' className={classes.button} onClick={props.handleClick} id='shuffle' disabled = {(!props.aleatoire && !props.aleatoireQuestion)} > Recharger </Button>
             </div>
           </Grid>
           <Grid item >
