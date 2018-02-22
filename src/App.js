@@ -1,6 +1,6 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
-import './App.css'
+// import './App.css'
 // eslint-disable-next-line
 import ReactLoading from 'react-loading'
 // import MINI from 'minified'
@@ -74,6 +74,10 @@ import Mobile from './mobile'
 import 'typeface-roboto'
 // eslint-disable-next-line
 import MatomoTracker from 'matomo-tracker'
+// eslint-disable-next-line
+import Green from 'material-ui/colors/green'
+// eslint-disable-next-line
+import Red from 'material-ui/colors/red'
 
 const theme = createMuiTheme({
   palette: {
@@ -184,6 +188,12 @@ const styles = theme => ({
   },
   link: {
     color: theme.palette.secondary.main
+  },
+  success: {
+    backgroundColor: Green[500]
+  },
+  danger: {
+    backgroundColor: Red[500]
   }
 })
 
@@ -749,6 +759,7 @@ var Cell = function (props) {
     var correct = reponse !== '' ? reponse === value : 'neutre'
     handleReponse(correct, index, colonne.value)
   }
+  const classes = props.classes
   var index = props.index
   var colonne = props.colonne
   var value = props.value[colonne.value]
@@ -758,7 +769,7 @@ var Cell = function (props) {
   if (props.aleatoireQuestion) {
     if (props.nb === props.nbAleatoireQuestion[index]) {
       return (
-        <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
       )
     } else {
       return (
@@ -768,7 +779,7 @@ var Cell = function (props) {
   } else {
     if (colonne.question === true) {
       return (
-        <TableCell key = {index + 'cell'} className= {correct === true ? 'success' : correct === false ? 'danger' : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
       )
     } else {
       return (
@@ -779,55 +790,6 @@ var Cell = function (props) {
 }
 
 // eslint-disable-next-line
-/* var SelectionTp = function (props) {
-  const tpList = props.tp
-  const handleCheck = props.handleCheck
-  const style = theme => ({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper
-    },
-    modal: {
-      position: 'absolute',
-      width: 8 * 50,
-      top: `50%`,
-      left: `50%`,
-      transform: `translate(-50%, -50%)`,
-      border: '1px solid #e5e5e5',
-      backgroundColor: '#fff',
-      boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
-      padding: 8 * 4
-    }
-  })
-  return (
-    <div className={style.modal}>
-      <div className={style.root}>
-        <List>
-          {tpList.map((value, index) => (
-            <ListItem
-              key={'list-' + value.id}
-              dense
-              button
-              onClick={event => handleCheck(value.id)}
-              htmlFor={'check' + index}
-            >
-              <Checkbox
-                checked={props.tpAfficher.indexOf(value) !== -1}
-                id={'check' + index}
-                tabIndex={-1}
-                disableRipple
-              />
-              <ListItemText> {`${tpList.infNl} | ${tpList.infFr} `}</ListItemText>
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    </div>
-  )
-} */
-// <ListItemText primary={`${value.infNl} | ${value.OVT} | ${value.PP} | ${value.infFr}`} />
-// eslint-disable-next-line
 var Options = function (props) {
   const classes = props.classes
   if (props.selectionPage) {
@@ -837,7 +799,7 @@ var Options = function (props) {
           <InputLabel htmlFor='selectAll' shrink>Tout les TP</InputLabel>
           <SwitchButton onClick={props.selectAll} id='selectAll' classes= {{checked: classes.checked, bar: classes.bar}} checked = {Boolean(props.selectAllChbx)}></SwitchButton>
         </FormControl>
-        <Button raised color="secondary" className={styles.button} onClick={props.handleSelectionTpClose} id="selectionTpClose"> Valider! </Button>
+        <Button variant="raised" color="secondary" className={styles.button} onClick={props.handleSelectionTpClose} id="selectionTpClose"> Valider! </Button>
       </div>
     )
   } else {
@@ -854,7 +816,7 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color='secondary' className={classes.button} onClick={props.handleClick} id='shuffle' disabled = {(!props.aleatoire && !props.aleatoireQuestion)} > Recharger </Button>
+              <Button variant="raised" color='secondary' className={classes.button} onClick={props.handleClick} id='shuffle' disabled = {(!props.aleatoire && !props.aleatoireQuestion)} > Recharger </Button>
             </div>
           </Grid>
           <Grid item >
@@ -879,18 +841,18 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color='secondary' className={classes.button} onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
+              <Button variant="raised" color='secondary' className={classes.button} onClick={props.handleSelectionTpOpen}>Selection Tp</Button>
             </div>
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color="secondary" className={classes.button} style={{ display: !props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireOpen' onClick={props.handleClickQuestionnaire}>Questionnaire</Button>
-              <Button raised color="secondary" className={classes.button} style={{ display: props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireClose' onClick={props.handleClickQuestionnaire}>Tableau</Button>
+              <Button variant="raised" color="secondary" className={classes.button} style={{ display: !props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireOpen' onClick={props.handleClickQuestionnaire}>Questionnaire</Button>
+              <Button variant="raised" color="secondary" className={classes.button} style={{ display: props.aleatoireQuestion ? 'inline' : 'none' }} id='questionnaireClose' onClick={props.handleClickQuestionnaire}>Tableau</Button>
             </div>
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <Button raised color="secondary" className={classes.button} id='correction' onClick={props.handleClick}>Correction</Button>
+              <Button variant="raised" color="secondary" className={classes.button} id='correction' onClick={props.handleClick}>Correction</Button>
             </div>
           </Grid>
           <Grid item>
@@ -975,8 +937,8 @@ var ButtonAppBar = function (props) {
               textDecoration: 'none'
             }}
           >
-            <Typography type="title" color="inherit" className={classes.flex}>
-            Tp Neerlandais
+            <Typography variant="title" color="inherit" className={classes.flex}>
+            Temps Primitifs en Neerlandais
             </Typography>
           </Link>
         </Toolbar>
