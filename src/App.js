@@ -1,8 +1,6 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
-// import './App.css'
-// eslint-disable-next-line
-import ReactLoading from 'react-loading'
+import './App.css'
 // import MINI from 'minified'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
@@ -181,6 +179,10 @@ const styles = theme => ({
     padding: 16,
     textAlign: 'center'
   },
+  gridHeader: {
+    spacing: 0,
+    textAlign: 'center'
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -198,10 +200,10 @@ const styles = theme => ({
 })
 
 const options = [
-  {value: 'infNl', label: 'Infinitif NL', nb: 0},
-  {value: 'OVT', label: 'OVT', nb: 1},
-  {value: 'PP', label: 'Part. Passé', nb: 2},
-  {value: 'infFr', label: 'Infinitif FR', nb: 3},
+  {value: 'infNl', label: 'Infinitif Neerlandais', nb: 0},
+  {value: 'OVT', label: 'imparfait', nb: 1},
+  {value: 'PP', label: 'Participe Passé', nb: 2},
+  {value: 'infFr', label: 'Infinitif Français', nb: 3},
   {value: 'vide', label: 'Rien', nb: 4}
 ]
 
@@ -659,6 +661,79 @@ var Rendu = function (props) {
             <TableRow>
               <TableCell>#</TableCell>
               {
+                nombre.map((nb) =>
+                  <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
+                    <div>
+                      <div className={classes.gridRoot}>
+                      <Grid container>
+                        <Grid item >
+                          <div className={classes.gridHeader}>
+                            <Typography variant="title"> {options[nb].label} </Typography>
+                          </div>
+                        </Grid>
+                        <Grid item>
+                          <div className={classes.gridHeader}>
+                            <FormControl>
+                              <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
+                              <SwitchButton inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                            </FormControl>
+                          </div>
+                        </Grid>
+                      </Grid>
+                      </div>
+                    </div>
+                  </TableCell>
+                )
+              }
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+
+              tp.filter(tpAfficher => tpAfficher.afficher)
+                .map(function (listValue, index) {
+                  if (index < limite) {
+                    return (
+                      <Row key = {'row' + index}
+                        index = {index}
+                        listValue = {listValue}
+                        colonne = {props.colonne}
+                        handleReponse = {props.handleReponse}
+                        affReponse = {props.affReponse}
+                        selectionPage = {props.selectionPage}
+                        tpAfficher = {props.tpAfficher}
+                        handleCheck = {props.handleCheck}
+                        aleatoireQuestion = {props.aleatoireQuestion}
+                        nbAleatoireQuestion = {props.nbAleatoireQuestion}
+                        classes = {props.classes}
+                      />
+                    )
+                  }
+                })
+            }
+          </TableBody>
+        </Table>
+      </Paper>
+
+    </div>
+  )
+}
+
+// eslint-disable-next-line
+var RenduAdvanced = function (props) {
+  const classes = props.classes
+  var tp = props.tp
+  var limite = props.limite
+  var colonne = props.colonne
+  var nombre = [0, 1, 2, 3]
+  return (
+    <div>
+      <Paper className={styles.root}>
+        <Table className={styles.table} >
+          <TableHead>
+            <TableRow>
+              <TableCell>#</TableCell>
+              {
                 /* nombre.map((nb) =>
                   <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</TableCell>
                 ) */
@@ -718,7 +793,6 @@ var Rendu = function (props) {
     </div>
   )
 }
-
 // eslint-disable-next-line
 var Row = function (props) {
   const classes = props.classes
@@ -930,7 +1004,7 @@ var ButtonAppBar = function (props) {
         <Toolbar>
           <Link
             to='/'
-            onClick={() => window.scrollTo(0, 0)}
+            onClick={() => {document.location.href === "https://flamboyant-chandrasekhar-71d621.netlify.com/" ? window.scrollTo(0, 0) : window.scrollTo(0, 0)}}
             style={{
               color: 'white',
               textDecoration: 'none'
