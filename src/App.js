@@ -472,64 +472,62 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       action_name: 'Main Page'
     })
     return (
-      <BrowserRouter>
-        <div>
-          <Reboot />
-          <MuiThemeProvider theme={theme}>
-            <div className={classes.root}>
-              <Helmet
-                title="Questionnaire Tp Ndls"
-                meta={[
-                  { name: 'description', content: 'Questionnaire Tp Neerlandais' },
-                  { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
-                ]}
-              />
-              <ButtonAppBar classes = {classes} />
-              <div>
-                <Switch>
-                  <Route
-                    exact
-                    path='/'
-                    render={
-                      () =>
-                        <Home
-                          classes = {classes}
-                          handleInputChange = {this.handleInputChange}
-                          handleClick = {this.handleClick}
-                          handleSelect = {this.handleSelect}
-                          handleAffReponse = {this.handleAffReponse}
-                          handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                          handleSelectionTpClose = {this.handleSelectionTpClose}
-                          handleQuestion = {this.handleQuestion}
-                          handleDrawerToggle = {this.handleDrawerToggle}
-                          handleReponse = {this.handleReponse}
-                          handleCheck = {this.handleCheck}
-                          selectAll = {this.selectAll}
-                          selectAllChbx = {this.state.selectAllChbx}
-                          selectionPage = {this.state.selectionPage}
-                          aleatoire = {this.state.aleatoire}
-                          afficherReponse = {this.state.afficherReponse}
-                          affReponse = {this.state.afficherReponse}
-                          limite = {this.state.limite}
-                          tpLength = {this.state.tp.length}
-                          colonne = {this.state.colonne}
-                          mobileOpen = {this.state.mobileOpen}µ
-                          tp = {this.state.tp}
-                          tpRandom={this.state.tpRandom}
-                          tpExclu = {this.state.tpExclu}
-                          aleatoireQuestion={this.state.aleatoireQuestion}
-                          nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
-                          handleClickQuestionnaire={this.handleClickQuestionnaire}
-                        />
-                    }/>
-                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                  <Route exact path='/Mobile' component={Mobile} />
-                </Switch>
-              </div>
+      <div>
+        <Reboot />
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <Helmet
+              title="Questionnaire Tp Ndls"
+              meta={[
+                { name: 'description', content: 'Questionnaire Tp Neerlandais' },
+                { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
+              ]}
+            />
+            <ButtonAppBar classes = {classes} />
+            <div>
+              <Switch>
+                <Route
+                  exact
+                  path='/'
+                  render={
+                    () =>
+                      <Home
+                        classes = {classes}
+                        handleInputChange = {this.handleInputChange}
+                        handleClick = {this.handleClick}
+                        handleSelect = {this.handleSelect}
+                        handleAffReponse = {this.handleAffReponse}
+                        handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                        handleSelectionTpClose = {this.handleSelectionTpClose}
+                        handleQuestion = {this.handleQuestion}
+                        handleDrawerToggle = {this.handleDrawerToggle}
+                        handleReponse = {this.handleReponse}
+                        handleCheck = {this.handleCheck}
+                        selectAll = {this.selectAll}
+                        selectAllChbx = {this.state.selectAllChbx}
+                        selectionPage = {this.state.selectionPage}
+                        aleatoire = {this.state.aleatoire}
+                        afficherReponse = {this.state.afficherReponse}
+                        affReponse = {this.state.afficherReponse}
+                        limite = {this.state.limite}
+                        tpLength = {this.state.tp.length}
+                        colonne = {this.state.colonne}
+                        mobileOpen = {this.state.mobileOpen}µ
+                        tp = {this.state.tp}
+                        tpRandom={this.state.tpRandom}
+                        tpExclu = {this.state.tpExclu}
+                        aleatoireQuestion={this.state.aleatoireQuestion}
+                        nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
+                        handleClickQuestionnaire={this.handleClickQuestionnaire}
+                      />
+                  }/>
+                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
+                <Route exact path='/Mobile' component={Mobile} />
+              </Switch>
             </div>
-          </MuiThemeProvider>
-        </div>
-      </BrowserRouter>
+          </div>
+        </MuiThemeProvider>
+      </div>
     )
   }
 })
@@ -538,7 +536,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
 var Home = function (props) {
   var classes = props.classes
   return (
-
     <div className={classes.appFrame}>
       <main className={classes.content}>
         <Grid container>
@@ -693,25 +690,26 @@ var Rendu = function (props) {
           <TableBody>
             {
 
-              tp.map(function (listValue, index) {
-                if (listValue.afficher && index < limite) {
-                  return (
-                    <Row key = {'row' + index}
-                      index = {index}
-                      listValue = {listValue}
-                      colonne = {props.colonne}
-                      handleReponse = {props.handleReponse}
-                      affReponse = {props.affReponse}
-                      selectionPage = {props.selectionPage}
-                      tpAfficher = {props.tpAfficher}
-                      handleCheck = {props.handleCheck}
-                      aleatoireQuestion = {props.aleatoireQuestion}
-                      nbAleatoireQuestion = {props.nbAleatoireQuestion}
-                      classes = {props.classes}
-                    />
-                  )
-                }
-              })
+              tp.filter(tpAfficher => tpAfficher.afficher)
+                .map(function (listValue, index) {
+                  if (index < limite) {
+                    return (
+                      <Row key = {'row' + index}
+                        index = {index}
+                        listValue = {listValue}
+                        colonne = {props.colonne}
+                        handleReponse = {props.handleReponse}
+                        affReponse = {props.affReponse}
+                        selectionPage = {props.selectionPage}
+                        tpAfficher = {props.tpAfficher}
+                        handleCheck = {props.handleCheck}
+                        aleatoireQuestion = {props.aleatoireQuestion}
+                        nbAleatoireQuestion = {props.nbAleatoireQuestion}
+                        classes = {props.classes}
+                      />
+                    )
+                  }
+                })
             }
           </TableBody>
         </Table>
