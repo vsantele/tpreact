@@ -472,63 +472,64 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       action_name: 'Main Page'
     })
     return (
-      <div>
-        <Reboot />
-        <MuiThemeProvider theme={theme}>
-          <div className={classes.root}>
-            <Helmet
-              title="Questionnaire Tp Ndls"
-              meta={[
-                { name: 'description', content: 'Questionnaire Tp Neerlandais' },
-                { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
-              ]}
-            />
-            <ButtonAppBar classes = {classes} />
-            <div>
-              <Switch>
-                <Route
-                  exact
-                  path='/'
-                  render={
-                    () =>
-                      <Home
-                        classes = {classes}
-                        handleInputChange = {this.handleInputChange}
-                        handleClick = {this.handleClick}
-                        handleSelect = {this.handleSelect}
-                        handleAffReponse = {this.handleAffReponse}
-                        handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                        handleSelectionTpClose = {this.handleSelectionTpClose}
-                        handleQuestion = {this.handleQuestion}
-                        handleDrawerToggle = {this.handleDrawerToggle}
-                        handleReponse = {this.handleReponse}
-                        handleCheck = {this.handleCheck}
-                        selectAll = {this.selectAll}
-                        selectAllChbx = {this.state.selectAllChbx}
-                        selectionPage = {this.state.selectionPage}
-                        aleatoire = {this.state.aleatoire}
-                        afficherReponse = {this.state.afficherReponse}
-                        affReponse = {this.state.afficherReponse}
-                        limite = {this.state.limite}
-                        tpLength = {this.state.tp.length}
-                        colonne = {this.state.colonne}
-                        mobileOpen = {this.state.mobileOpen}µ
-                        tp = {this.state.tp}
-                        tpRandom={this.state.tpRandom}
-                        tpExclu = {this.state.tpExclu}
-                        aleatoireQuestion={this.state.aleatoireQuestion}
-                        nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
-                        handleClickQuestionnaire={this.handleClickQuestionnaire}
-                      />
-                  }/>
-                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                <Route exact path='/Mobile' component={Mobile} />
-              </Switch>
+      <BrowserRouter>
+        <div>
+          <Reboot />
+          <MuiThemeProvider theme={theme}>
+            <div className={classes.root}>
+              <Helmet
+                title="Questionnaire Tp Ndls"
+                meta={[
+                  { name: 'description', content: 'Questionnaire Tp Neerlandais' },
+                  { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
+                ]}
+              />
+              <ButtonAppBar classes = {classes} />
+              <div>
+                <Switch>
+                  <Route
+                    exact
+                    path='/'
+                    render={
+                      () =>
+                        <Home
+                          classes = {classes}
+                          handleInputChange = {this.handleInputChange}
+                          handleClick = {this.handleClick}
+                          handleSelect = {this.handleSelect}
+                          handleAffReponse = {this.handleAffReponse}
+                          handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                          handleSelectionTpClose = {this.handleSelectionTpClose}
+                          handleQuestion = {this.handleQuestion}
+                          handleDrawerToggle = {this.handleDrawerToggle}
+                          handleReponse = {this.handleReponse}
+                          handleCheck = {this.handleCheck}
+                          selectAll = {this.selectAll}
+                          selectAllChbx = {this.state.selectAllChbx}
+                          selectionPage = {this.state.selectionPage}
+                          aleatoire = {this.state.aleatoire}
+                          afficherReponse = {this.state.afficherReponse}
+                          affReponse = {this.state.afficherReponse}
+                          limite = {this.state.limite}
+                          tpLength = {this.state.tp.length}
+                          colonne = {this.state.colonne}
+                          mobileOpen = {this.state.mobileOpen}µ
+                          tp = {this.state.tp}
+                          tpRandom={this.state.tpRandom}
+                          tpExclu = {this.state.tpExclu}
+                          aleatoireQuestion={this.state.aleatoireQuestion}
+                          nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
+                          handleClickQuestionnaire={this.handleClickQuestionnaire}
+                        />
+                    }/>
+                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
+                  <Route exact path='/Mobile' component={Mobile} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </MuiThemeProvider>
-      </div>
-
+          </MuiThemeProvider>
+        </div>
+      </BrowserRouter>
     )
   }
 })
