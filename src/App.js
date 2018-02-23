@@ -76,6 +76,7 @@ import MatomoTracker from 'matomo-tracker'
 import Green from 'material-ui/colors/green'
 // eslint-disable-next-line
 import Red from 'material-ui/colors/red'
+import ReactGA from 'react-ga'
 
 const theme = createMuiTheme({
   palette: {
@@ -201,13 +202,13 @@ const styles = theme => ({
 
 const options = [
   {value: 'infNl', label: 'Infinitif Neerlandais', nb: 0},
-  {value: 'OVT', label: 'imparfait', nb: 1},
+  {value: 'OVT', label: 'Imparfait', nb: 1},
   {value: 'PP', label: 'Participe Passé', nb: 2},
   {value: 'infFr', label: 'Infinitif Français', nb: 3},
   {value: 'vide', label: 'Rien', nb: 4}
 ]
 
-var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
+// var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 export default withStyles(styles, { withTheme: true })(class App extends Component {
   constructor (props) {
@@ -233,7 +234,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       selectionPage: false,
       selectAllChbx: true,
       mobileOpen: false,
-      aleatoireQuestion: false
+      aleatoireQuestion: false,
+      nbTrou: 1
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -249,6 +251,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
     this.handleClickQuestionnaire = this.handleClickQuestionnaire.bind(this)
     this.shuffleQuestion = this.shuffleQuestion.bind(this)
+    this.handleSelectionTpOpen = this.handleSelectionTpOpen.bind(this)
+    this.handleChangeNbTrou = this.handleChangeNbTrou.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -258,10 +262,24 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
   shuffleQuestion () {
+    const nbTrou = this.state.nbTrou
+    function shuffleRow () {
+      var trouRow = []
+      var list = [0, 1, 2, 3]
+      for (var i = 0; i < 4; i++) {
+        var tire = Math.floor((Math.random() * (4 - i)))
+        trouRow[i] = list.splice(tire, 1)[0]
+      }
+      for (var j = nbTrou; j < 4; j++) {
+        trouRow[j] = -1
+      }
+      return trouRow
+    }
     function shuffle () {
       let nbAleaQuest = []
-      for (let i = 0; i < 134; i++) {
-        nbAleaQuest[i] = Math.floor((Math.random() * 4))
+      for (var i = 0; i < 134; i++) {
+        var trouRow = shuffleRow()
+        nbAleaQuest[i] = trouRow
       }
       return nbAleaQuest
     }
@@ -456,6 +474,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       this.setState({ aleatoireQuestion: false })
     }
   }
+  handleChangeNbTrou (e) {
+    var value = e.target.value ? parseInt(e.target.value, 10) : 1
+    if (value <= 0) {
+      value = 1
+    } else if (value >= 4) {
+      value = 3
+    }
+    this.setState({ nbTrou: value }, () => this.shuffleQuestion())
+  }
   // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     this.shuffleTp(this.state.tp)
@@ -466,13 +493,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   render () {
     const { classes } = this.props
-    matomo.on('error', function (err) {
+    /* matomo.on('error', function (err) {
       console.log('error tracking request: ', err)
-    })
-    matomo.track({
+    }) */
+    /* matomo.track({
       url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
       action_name: 'Main Page'
-    })
+    }) */
+    ReactGA.initialize('UA-114713482-1')
+    ReactGA.pageview(window.location.pathname + window.location.search)
     return (
       <div>
         <Reboot />
@@ -521,6 +550,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                         aleatoireQuestion={this.state.aleatoireQuestion}
                         nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
                         handleClickQuestionnaire={this.handleClickQuestionnaire}
+                        nbTrou = {this.state.nbTrou}
+                        handleChangeNbTrou = {this.handleChangeNbTrou}
                       />
                   }/>
                 { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
@@ -563,6 +594,8 @@ var Home = function (props) {
                 handleDrawerToggle = {props.handleDrawerToggle}
                 handleClickQuestionnaire={props.handleClickQuestionnaire}
                 aleatoireQuestion={props.aleatoireQuestion}
+                nbTrou = {props.nbTrou}
+                handleChangeNbTrou = {props.handleChangeNbTrou}
                 classes ={classes}
               />
             </div>
@@ -665,21 +698,21 @@ var Rendu = function (props) {
                   <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
                     <div>
                       <div className={classes.gridRoot}>
-                      <Grid container>
-                        <Grid item >
-                          <div className={classes.gridHeader}>
-                            <Typography variant="title"> {options[nb].label} </Typography>
-                          </div>
+                        <Grid container>
+                          <Grid item >
+                            <div className={classes.gridHeader}>
+                              <Typography variant="title"> {options[nb].label} </Typography>
+                            </div>
+                          </Grid>
+                          <Grid item>
+                            <div className={classes.gridHeader}>
+                              <FormControl>
+                                <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
+                                <SwitchButton inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                              </FormControl>
+                            </div>
+                          </Grid>
                         </Grid>
-                        <Grid item>
-                          <div className={classes.gridHeader}>
-                            <FormControl>
-                              <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                              <SwitchButton inputProps={{ id: 'col' + nb }} onChange={props.handleQuestion} checked={props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
-                            </FormControl>
-                          </div>
-                        </Grid>
-                      </Grid>
                       </div>
                     </div>
                   </TableCell>
@@ -840,7 +873,7 @@ var Cell = function (props) {
   var correct = props.value['correct'][colonne.value]
   var affReponse = props.affReponse
   if (props.aleatoireQuestion) {
-    if (props.nb === props.nbAleatoireQuestion[index]) {
+    if (props.nbAleatoireQuestion[index].indexOf(props.nb) !== -1) {
       return (
         <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
       )
@@ -924,6 +957,26 @@ var Options = function (props) {
             </div>
           </Grid>
           <Grid item >
+            <div className={classes.grid} style={{display: props.aleatoireQuestion ? 'inline' : 'none'}}>
+              <FormControl>
+                <TextField
+                  error = {props.nbTrou < 1 || props.nbTrou > 3}
+                  id="nbTrou"
+                  label="Niveau"
+                  name="nbTrou"
+                  value={props.nbTrou}
+                  onChange={props.handleChangeNbTrou}
+                  type="number"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  margin="dense"
+                />
+              </FormControl>
+            </div>
+          </Grid>
+          <Grid item >
             <div className={classes.grid}>
               <Button variant="raised" color="secondary" className={classes.button} id='correction' onClick={props.handleClick}>Correction</Button>
             </div>
@@ -953,10 +1006,10 @@ const SelectionTp = function (props) {
   const colonne = props.colonne
   var handleCheck = props.handleCheck
   const classes = props.classes
-  matomo.track({
+  /* matomo.track({
     url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
     action_name: 'Selection Tp'
-  })
+  }) */
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -1004,7 +1057,7 @@ var ButtonAppBar = function (props) {
         <Toolbar>
           <Link
             to='/'
-            onClick={() => {document.location.href === "https://flamboyant-chandrasekhar-71d621.netlify.com/" ? window.scrollTo(0, 0) : window.scrollTo(0, 0)}}
+            onClick={() => { document.location.href === 'https://flamboyant-chandrasekhar-71d621.netlify.com/' ? window.scrollTo(0, 0) : window.scrollTo(0, 0) }}
             style={{
               color: 'white',
               textDecoration: 'none'
