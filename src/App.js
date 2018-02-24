@@ -1,18 +1,11 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
-import './App.css'
-// import MINI from 'minified'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
-// eslint-disable-next-line
-// import Select from 'react-select'
 import 'react-select/dist/react-select.css'
-// eslint-disable-next-line
-// import {Button} from 'reactstrap'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
-// Material-UI
 // eslint-disable-next-line
 import Reboot from 'material-ui/Reboot'
 // eslint-disable-next-line
@@ -48,8 +41,6 @@ import IconButton from 'material-ui/IconButton'
 // eslint-disable-next-line
 import MenuIcon from 'material-ui-icons/Menu'
 // eslint-disable-next-line
-// import Drawer from 'material-ui/Drawer'
-// eslint-disable-next-line
 import Hidden from 'material-ui/Hidden'
 // eslint-disable-next-line
 import Divider from 'material-ui/Divider'
@@ -57,8 +48,6 @@ import Divider from 'material-ui/Divider'
 import Grid from 'material-ui/Grid'
 // eslint-disable-next-line
 import Tooltip from 'material-ui/Tooltip'
-// import SelectionTp from './selection-Tp'
-// import Drawer from '../components/Drawer'
 // eslint-disable-next-line
 import TextField from 'material-ui/TextField'
 // eslint-disable-next-line
@@ -227,7 +216,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
       afficherReponse: false,
-      // test select
       anchorEl: null,
       selectedIndex: [0, 1, 2, 3, 4],
       selectionPage: false,
@@ -785,9 +773,6 @@ var RenduAdvanced = function (props) {
             <TableRow>
               <TableCell>#</TableCell>
               {
-                /* nombre.map((nb) =>
-                  <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>{colonne[nb].label}</TableCell>
-                ) */
                 nombre.map((nb) =>
                   <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
                     <div>
@@ -809,7 +794,6 @@ var RenduAdvanced = function (props) {
                     </div>
                   </TableCell>
                 )
-
               }
             </TableRow>
           </TableHead>
@@ -1006,7 +990,6 @@ var Options = function (props) {
                   <option key={'trou1'} value={1}>{1}</option>
                   <option key={'trou2'} value={2}>{2}</option>
                   <option key={'trou3'} value={3}>{3}</option>
-
                 </Select>
               </FormControl>
             </div>
