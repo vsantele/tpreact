@@ -110,8 +110,7 @@ const styles = theme => ({
     flexWrap: 'wrap'
   },
   formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120
+    minWidth: 100
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2
@@ -235,7 +234,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       selectAllChbx: true,
       mobileOpen: false,
       aleatoireQuestion: false,
-      nbTrou: 1
+      nbTrou: 1,
+      afficherNbTp: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -253,6 +253,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.shuffleQuestion = this.shuffleQuestion.bind(this)
     this.handleSelectionTpOpen = this.handleSelectionTpOpen.bind(this)
     this.handleChangeNbTrou = this.handleChangeNbTrou.bind(this)
+    this.handleSelectNombre = this.handleSelectNombre.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -327,6 +328,23 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     }
     this.setState({
       colonne: colonne
+    })
+  }
+  handleSelectNombre (e) {
+    var value = e.target.value
+    var limite = this.state.limite
+    var afficherNbTp
+    if (value === 'tout') {
+      limite = 134
+      afficherNbTp = false
+    } else if (value === 'libre') {
+      afficherNbTp = true
+    } else {
+      limite = parseInt(value, 10)
+    }
+    this.setState({
+      limite: limite,
+      afficherNbTp: afficherNbTp
     })
   }
   handleClick (e) {
@@ -475,12 +493,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     }
   }
   handleChangeNbTrou (e) {
-    var value = e.target.value ? parseInt(e.target.value, 10) : 1
-    if (value <= 0) {
-      value = 1
-    } else if (value >= 4) {
-      value = 3
-    }
+    var value = e.target.value
+    console.log(value)
     this.setState({ nbTrou: value }, () => this.shuffleQuestion())
   }
   // effectue un premiet random (et set la fin du chargement)
@@ -552,6 +566,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                         handleClickQuestionnaire={this.handleClickQuestionnaire}
                         nbTrou = {this.state.nbTrou}
                         handleChangeNbTrou = {this.handleChangeNbTrou}
+                        handleSelectNombre = {this.handleSelectNombre}
+                        afficherNbTp = {this.state.afficherNbTp}
                       />
                   }/>
                 { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
@@ -596,6 +612,8 @@ var Home = function (props) {
                 aleatoireQuestion={props.aleatoireQuestion}
                 nbTrou = {props.nbTrou}
                 handleChangeNbTrou = {props.handleChangeNbTrou}
+                handleSelectNombre = {props.handleSelectNombre}
+                afficherNbTp = {props.afficherNbTp}
                 classes ={classes}
               />
             </div>
@@ -927,7 +945,26 @@ var Options = function (props) {
           </Grid>
           <Grid item >
             <div className={classes.grid}>
-              <FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor='selectNombre' shrink>Nombres</InputLabel>
+                <Select
+                  native
+                  onChange={props.handleSelectNombre}
+                  inputProps={{ id: 'selectNombre' }} defaultValue={20}
+                  style = {{width: 75}}
+                >
+                  <option key={'nb20'} value={20}>{20}</option>
+                  <option key={'nb40'} value={40}>{40}</option>
+                  <option key={'n60'} value={60}>{60}</option>
+                  <option key={'nbTout'} value={'tout'}>{'Tout'}</option>
+                  <option key={'nbAutre'} value={'libre'}>{'Libre'}</option>
+                </Select>
+              </FormControl>
+            </div>
+          </Grid>
+          <Grid item>
+            <div className={classes.grid} style={{display: props.afficherNbTp ? 'flex' : 'none'}}>
+              <FormControl className={classes.formControl}>
                 <TextField
                   error = {props.limite < 0}
                   id="limite"
@@ -957,22 +994,20 @@ var Options = function (props) {
             </div>
           </Grid>
           <Grid item >
-            <div className={classes.grid} style={{display: props.aleatoireQuestion ? 'inline' : 'none'}}>
-              <FormControl>
-                <TextField
-                  error = {props.nbTrou < 1 || props.nbTrou > 3}
-                  id="nbTrou"
-                  label="Niveau"
-                  name="nbTrou"
-                  value={props.nbTrou}
+            <div className={classes.grid} style={{display: props.aleatoireQuestion ? 'flex' : 'none'}}>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor='selectTrou' shrink>Niveau</InputLabel>
+                <Select
+                  native
                   onChange={props.handleChangeNbTrou}
-                  type="number"
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  margin="dense"
-                />
+                  inputProps={{ id: 'selectTrou' }} defaultValue={1}
+                  style = {{width: 55}}
+                >
+                  <option key={'trou1'} value={1}>{1}</option>
+                  <option key={'trou2'} value={2}>{2}</option>
+                  <option key={'trou3'} value={3}>{3}</option>
+
+                </Select>
               </FormControl>
             </div>
           </Grid>
