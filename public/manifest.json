@@ -1,6 +1,8 @@
 {
-  "short_name": "TP Neerlandais",
-  "name": "Questionnaire des Tps en Neerlandais",
+  "short_name": "TP Ndls",
+  "name": "Questionnaire Tps Neerlandais",
+  "lang": "fr",
+  "scope": "/Mobile/",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,9 +10,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "./Mobile?utm_source=web_app_manifest",
   "display": "standalone",
-  "orientation": "landscape",
-  "theme_color": "#000000",
-  "background_color": "#000000"
+  "orientation": "any",
+  "theme_color": "#2196F3",
+  "background_color": "#FFF"
 }
