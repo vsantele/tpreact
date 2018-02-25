@@ -1,5 +1,6 @@
 ﻿// eslint-disable-next-line
 import React, {Component} from 'react'
+import 'raf/polyfill'
 import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
 import 'react-select/dist/react-select.css'
@@ -150,15 +151,6 @@ const styles = theme => ({
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none'
-    }
-  },
-  drawerHeader: theme.mixins.toolbar,
-  drawerPaper: {
-    width: 250,
-    [theme.breakpoints.up('md')]: {
-      width: 240,
-      position: 'relative',
-      height: '100%'
     }
   },
   gridRoot: {
@@ -502,69 +494,75 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
       action_name: 'Main Page'
     }) */
-    ReactGA.initialize('UA-114713482-1')
+    if (process.env.NODE_ENV === 'test') {
+      ReactGA.initialize(process.env.ga, { testMode: true })
+    } else {
+      ReactGA.initialize(process.env.ga)
+    }
     ReactGA.pageview(window.location.pathname + window.location.search)
     return (
-      <div>
-        <Reboot />
-        <MuiThemeProvider theme={theme}>
-          <div className={classes.root}>
-            <Helmet
-              title="Questionnaire Tp Ndls"
-              meta={[
-                { name: 'description', content: 'Questionnaire Tp Neerlandais' },
-                { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
-              ]}
-            />
-            <ButtonAppBar classes = {classes} />
-            <div>
-              <Switch>
-                <Route
-                  exact
-                  path='/'
-                  render={
-                    () =>
-                      <Home
-                        classes = {classes}
-                        handleInputChange = {this.handleInputChange}
-                        handleClick = {this.handleClick}
-                        handleSelect = {this.handleSelect}
-                        handleAffReponse = {this.handleAffReponse}
-                        handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                        handleSelectionTpClose = {this.handleSelectionTpClose}
-                        handleQuestion = {this.handleQuestion}
-                        handleDrawerToggle = {this.handleDrawerToggle}
-                        handleReponse = {this.handleReponse}
-                        handleCheck = {this.handleCheck}
-                        selectAll = {this.selectAll}
-                        selectAllChbx = {this.state.selectAllChbx}
-                        selectionPage = {this.state.selectionPage}
-                        aleatoire = {this.state.aleatoire}
-                        afficherReponse = {this.state.afficherReponse}
-                        affReponse = {this.state.afficherReponse}
-                        limite = {this.state.limite}
-                        tpLength = {this.state.tp.length}
-                        colonne = {this.state.colonne}
-                        mobileOpen = {this.state.mobileOpen}µ
-                        tp = {this.state.tp}
-                        tpRandom={this.state.tpRandom}
-                        tpExclu = {this.state.tpExclu}
-                        aleatoireQuestion={this.state.aleatoireQuestion}
-                        nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
-                        handleClickQuestionnaire={this.handleClickQuestionnaire}
-                        nbTrou = {this.state.nbTrou}
-                        handleChangeNbTrou = {this.handleChangeNbTrou}
-                        handleSelectNombre = {this.handleSelectNombre}
-                        afficherNbTp = {this.state.afficherNbTp}
-                      />
-                  }/>
-                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                <Route exact path='/Mobile' component={Mobile} />
-              </Switch>
+      <BrowserRouter>
+        <div>
+          <Reboot />
+          <MuiThemeProvider theme={theme}>
+            <div className={classes.root}>
+              <Helmet
+                title="Questionnaire Tp Ndls"
+                meta={[
+                  { name: 'description', content: 'Questionnaire Tp Neerlandais' },
+                  { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
+                ]}
+              />
+              <ButtonAppBar classes = {classes} />
+              <div>
+                <Switch>
+                  <Route
+                    exact
+                    path='/'
+                    render={
+                      () =>
+                        <Home
+                          classes = {classes}
+                          handleInputChange = {this.handleInputChange}
+                          handleClick = {this.handleClick}
+                          handleSelect = {this.handleSelect}
+                          handleAffReponse = {this.handleAffReponse}
+                          handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                          handleSelectionTpClose = {this.handleSelectionTpClose}
+                          handleQuestion = {this.handleQuestion}
+                          handleDrawerToggle = {this.handleDrawerToggle}
+                          handleReponse = {this.handleReponse}
+                          handleCheck = {this.handleCheck}
+                          selectAll = {this.selectAll}
+                          selectAllChbx = {this.state.selectAllChbx}
+                          selectionPage = {this.state.selectionPage}
+                          aleatoire = {this.state.aleatoire}
+                          afficherReponse = {this.state.afficherReponse}
+                          affReponse = {this.state.afficherReponse}
+                          limite = {this.state.limite}
+                          tpLength = {this.state.tp.length}
+                          colonne = {this.state.colonne}
+                          mobileOpen = {this.state.mobileOpen}µ
+                          tp = {this.state.tp}
+                          tpRandom={this.state.tpRandom}
+                          tpExclu = {this.state.tpExclu}
+                          aleatoireQuestion={this.state.aleatoireQuestion}
+                          nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
+                          handleClickQuestionnaire={this.handleClickQuestionnaire}
+                          nbTrou = {this.state.nbTrou}
+                          handleChangeNbTrou = {this.handleChangeNbTrou}
+                          handleSelectNombre = {this.handleSelectNombre}
+                          afficherNbTp = {this.state.afficherNbTp}
+                        />
+                    }/>
+                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
+                  <Route exact path='/Mobile' component={Mobile} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </MuiThemeProvider>
-      </div>
+          </MuiThemeProvider>
+        </div>
+      </BrowserRouter>
     )
   }
 })
@@ -728,7 +726,6 @@ var Rendu = function (props) {
           </TableHead>
           <TableBody>
             {
-
               tp.filter(tpAfficher => tpAfficher.afficher)
                 .map(function (listValue, index) {
                   if (index < limite) {
@@ -777,7 +774,6 @@ var RenduAdvanced = function (props) {
                   <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
                     <div>
                       <FormControl className={styles.formControl}>
-
                         <InputLabel htmlFor={nb}>Colonne {nb + 1}</InputLabel>
                         <Select
                           native
@@ -824,7 +820,6 @@ var RenduAdvanced = function (props) {
           </TableBody>
         </Table>
       </Paper>
-
     </div>
   )
 }
