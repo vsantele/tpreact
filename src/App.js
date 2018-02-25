@@ -495,9 +495,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       action_name: 'Main Page'
     }) */
     if (process.env.NODE_ENV === 'test') {
-      ReactGA.initialize(process.env.ga, { testMode: true })
+      ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
     } else {
-      ReactGA.initialize(process.env.ga)
+      ReactGA.initialize(process.env.REACT_APP_GA)
     }
     ReactGA.pageview(window.location.pathname + window.location.search)
     return (
