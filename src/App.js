@@ -82,6 +82,9 @@ const theme = createMuiTheme({
       dark: '#ba000d',
       contrastText: '#fff'
     }
+  },
+  typography: {
+    fontSize: 16
   }
 })
 
@@ -474,7 +477,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   handleChangeNbTrou (e) {
     var value = e.target.value
-    console.log(value)
     this.setState({ nbTrou: value }, () => this.shuffleQuestion())
   }
   // effectue un premiet random (et set la fin du chargement)
@@ -507,10 +509,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           <MuiThemeProvider theme={theme}>
             <div className={classes.root}>
               <Helmet
-                title="Questionnaire Tp Ndls"
+                title="Questionnaire Tp Néérlandais"
                 meta={[
-                  { name: 'description', content: 'Questionnaire Tp Neerlandais' },
-                  { name: 'keywords', content: 'tp, temps primitifs, neerlandais, grammaire, conjugaison' }
+                  { name: 'description', content: 'Questionnaire Tp Néérlandais' },
+                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison' }
                 ]}
               />
               <ButtonAppBar classes = {classes} />
@@ -872,21 +874,21 @@ var Cell = function (props) {
   if (props.aleatoireQuestion) {
     if (props.nbAleatoireQuestion[index].indexOf(props.nb) !== -1) {
       return (
-        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
       )
     } else {
       return (
-        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
+        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
       )
     }
   } else {
     if (colonne.question === true) {
       return (
-        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none'}}>{value}</span> </TableCell>
+        <TableCell key = {index + 'cell'} className= {correct === true ? classes.success : correct === false ? classes.danger : ''} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> <input key={index} id={index} tag='question' className="search-input" type="text" placeholder={'Réponse'} onBlur = {(e) => verification(e)} /> <span style={{display: affReponse ? 'inline' : 'none', fontSize: '16px'}}>{value}</span> </TableCell>
       )
     } else {
       return (
-        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none'}}> {value} </TableCell>
+        <TableCell key = {index} style = {{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
       )
     }
   }
@@ -1045,7 +1047,7 @@ const SelectionTp = function (props) {
                       id={'check' + index}
                       tabIndex={-1}
                       disableRipple
-                      classes= {{checked: classes.checked, bar: classes.bar}}
+                      classes= {{checked: classes.checked}}
                     />
                   </TableCell>
                   <TableCell key= {'0C' + index}>{tp.infNl} </TableCell>
@@ -1077,7 +1079,7 @@ var ButtonAppBar = function (props) {
             }}
           >
             <Typography variant="title" color="inherit" className={classes.flex}>
-            Temps Primitifs en Neerlandais
+            Temps Primitifs en Néérlandais
             </Typography>
           </Link>
         </Toolbar>
