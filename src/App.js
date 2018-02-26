@@ -59,7 +59,6 @@ import Drawer from 'material-ui/Drawer'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 // import Questionnaire from './questionnaire'
 import Mobile from './mobile'
-import 'typeface-roboto'
 // eslint-disable-next-line
 import MatomoTracker from 'matomo-tracker'
 // eslint-disable-next-line
