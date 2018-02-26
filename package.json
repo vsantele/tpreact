@@ -24,8 +24,7 @@
     "react-s-alert": "^1.4.0",
     "react-scripts": "1.0.14",
     "react-select": "^1.1.0",
-    "shuffle-array": "^1.0.1",
-    "typeface-roboto": "^0.0.50"
+    "shuffle-array": "^1.0.1"
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
