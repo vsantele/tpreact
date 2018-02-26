@@ -2,7 +2,7 @@
   "short_name": "TP Ndls",
   "name": "Questionnaire Tps Neerlandais",
   "lang": "fr",
-  "scope": "/Mobile/",
+  "scope": "/",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,7 +10,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./Mobile?utm_source=web_app_manifest",
+  "start_url": "/?utm_source=web_app_manifest",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#2196F3",
