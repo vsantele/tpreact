@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 // eslint-disable-next-line
 import Paper from 'material-ui/Paper'
-import 'typeface-roboto'
 // eslint-disable-next-line
 import Typography from 'material-ui/Typography'
 // eslint-disable-next-line
@@ -153,6 +152,13 @@ const styles = theme => ({
 
 })
 
+const options = [
+  {value: 'infNl', label: 'Infinitif Neerlandais', nb: 0},
+  {value: 'OVT', label: 'Imparfait', nb: 1},
+  {value: 'PP', label: 'Participe Passé', nb: 2},
+  {value: 'infFr', label: 'Infinitif Français', nb: 3}
+]
+
 export default withStyles(styles, {withTheme: true})(class Mobile extends Component {
   constructor (props) {
     super(props)
@@ -163,7 +169,13 @@ export default withStyles(styles, {withTheme: true})(class Mobile extends Compon
       limite: 20,
       aleatoire: true,
       nbAfficher: 0,
-      numeroCard: 0
+      numeroCard: 0,
+      options: [
+        {value: 'infNl', label: 'Infinitif Neerlandais', nb: 0},
+        {value: 'OVT', label: 'Imparfait', nb: 1},
+        {value: 'PP', label: 'Participe Passé', nb: 2},
+        {value: 'infFr', label: 'Infinitif Français', nb: 3}
+      ]
     }
     this.handleModalClose = this.handleModalClose.bind(this)
     this.handleModalOpen = this.handleModalOpen.bind(this)
@@ -219,6 +231,7 @@ export default withStyles(styles, {withTheme: true})(class Mobile extends Compon
   handleClick (e) {
     if (e.target.id === 'shuffle') {
       this.shuffleTp()
+      this.setState({numeroCard: 0})
     }
   }
   handleMove (e) {
@@ -227,10 +240,8 @@ export default withStyles(styles, {withTheme: true})(class Mobile extends Compon
       if (numeroCard < this.state.limite - 1) {
         numeroCard++
       }
-    } else {
-      if (numeroCard > 0) {
-        numeroCard--
-      }
+    } else if (numeroCard > 0) {
+      numeroCard--
     }
     this.setState({numeroCard: numeroCard})
   }
@@ -415,7 +426,7 @@ const Card = function (props) {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <Grid container alignItems="center" justify="center" direction="column" spacing = {0}>
                   <Grid item>
                     <Typography align='center' variant="caption" >
