@@ -155,6 +155,10 @@ const styles = theme => ({
   },
   danger: {
     backgroundColor: Red[500]
+  },
+  divider: {
+    marginTop: '8px',
+    marginBottom: '8px'
   }
 
 })
@@ -183,8 +187,9 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
         { value: 'PP', label: 'Participe Passé', nb: 2 },
         { value: 'infFr', label: 'Infinitif Français', nb: 3 }
       ],
-      value: 'infNl',
-      question: true
+      value: 'aucune',
+      question: false,
+      reponse: ''
     }
     this.handleModalClose = this.handleModalClose.bind(this)
     this.handleModalOpen = this.handleModalOpen.bind(this)
@@ -277,15 +282,16 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
 
     this.setState({
       numeroCard: numeroCard,
-      reponse: false
+      reponse: '',
+      estCorrect: undefined
     })
   }
   handleSelect (e) {
     console.log('value: ' + e.target.value)
     var value = e.target.value
-    var valueFinal = false
+    var valueFinal = 'false'
     let question
-    if (value === false) {
+    if (value === 'aucune') {
       valueFinal = value
       question = false
     } else if (value === 'random') {
@@ -322,7 +328,8 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
 
   handleReponse (e) {
     this.setState({
-      reponse: e.target.value
+      reponse: e.target.value,
+      estCorrect: undefined
     })
   }
 
@@ -356,6 +363,7 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                 handleCorrect = {this.handleCorrect}
                 handleReponse = {this.handleReponse}
                 estCorrect = {this.state.estCorrect}
+                reponse = {this.state.reponse}
               />
               <Link className={classes.link} to='/'>Back</Link>
             </div>
@@ -420,8 +428,9 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                               inputProps={{ id: 'question' }}
                               value={this.state.value}
                               autoWidth
+                              disabled
                             >
-                              <option key={'question' + 0} value={false}>Aucune</option>
+                              <option key={'question' + 0} value={'aucune'}>Aucune</option>
                               <option key={'questionInfFr'} value={'infFr'}>Infinitif Français</option>
                               <option key={'questionOVT'} value={'OVT'}>Imparfait</option>
                               <option key={'questionPP'} value={'PP'}>Participe Passé</option>
@@ -450,92 +459,67 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
 const Card = function (props) {
   const classes = props.classes
   const progress = (props.numeroCard / (props.limite - 1)) * 100
+  console.log('reponse: ' + props.reponse + ' estCorrect: ' + props.estCorrect)
   return (
     <div>
       En construction...
       <Paper className={classes.paper} >
         <div className={classes.card}>
-          <div className={props.estCorrect ? classes.success : classes.danger}>
-            {/* <div className={classes.numero}>
-            <Typography variant="body2" align='center'>
-            1
-            </Typography>
-          </div> */}
+          <div className={props.reponse ? props.estCorrect === undefined ? '' : props.estCorrect ? classes.success : classes.danger : ''}>
             <div>
-              { /* <Grid container justify="center" alignItems="center" direction="column" spacing={0}>
-              <Grid item>
-                <Typography variant='caption'>
-                  {props.options[0].label}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant='display2' gutterBottom>
-                  {
-                    props.tp[props.numeroCard][props.options[0].value]
-                  }
-                </Typography>
-              </Grid>
-            </Grid> */}
               <Cell
                 numCell = {0}
                 options = {props.options}
-                question = {true}
+                question = {false}
                 tp = {props.tp}
                 numeroCard = {props.numeroCard}
                 handleReponse = {props.handleReponse}
                 classes = {props.classes}
+                reponse = {props.reponse}
+                typo = 'display1'
               />
             </div>
-            <Divider />
+            <Divider className={classes.divider}/>
             <div>
               <Grid container justify="center" alignItems="center">
                 <Grid item>
-                  <Grid container alignItems="center" justify="center" direction="column" spacing={0}>
-                    <Grid item>
-                      <Typography align='center' variant="caption" >
-                        {props.options[1].label}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography align='center' variant='display1' gutterBottom>
-                        {
-                          props.tp[props.numeroCard][props.options[1].value]
-                        }
-                      </Typography>
-                    </Grid>
-                  </Grid>
+                  <Cell
+                    numCell = {1}
+                    options = {props.options}
+                    question = {false}
+                    tp = {props.tp}
+                    numeroCard = {props.numeroCard}
+                    handleReponse = {props.handleReponse}
+                    classes = {props.classes}
+                    reponse = {props.reponse}
+                    typo = 'display1'
+                  />
                 </Grid>
                 <Grid item>
-                  <Grid container alignItems="center" justify="center" direction="column" spacing={0}>
-                    <Grid item>
-                      <Typography align='center' variant="caption" >
-                        {props.options[2].label}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography align='center' variant='display1' gutterBottom>
-                        {
-                          props.tp[props.numeroCard][props.options[2].value]
-                        }
-                      </Typography>
-                    </Grid>
-                  </Grid>
+                  <Cell
+                    numCell = {2}
+                    options = {props.options}
+                    question = {false}
+                    tp = {props.tp}
+                    numeroCard = {props.numeroCard}
+                    handleReponse = {props.handleReponse}
+                    classes = {props.classes}
+                    reponse = {props.reponse}
+                    typo = 'display1'
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justify="center" direction="column" spacing={0}>
-                    <Grid item>
-                      <Typography align='center' variant="caption" >
-                        {props.options[3].label}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography align='center' variant='display1' gutterBottom>
-                        {
-                          props.tp[props.numeroCard][props.options[3].value]
-                        }
-                      </Typography>
-                    </Grid>
-                  </Grid>
+                  <Cell
+                    numCell = {3}
+                    options = {props.options}
+                    question = {false}
+                    tp = {props.tp}
+                    numeroCard = {props.numeroCard}
+                    handleReponse = {props.handleReponse}
+                    classes = {props.classes}
+                    reponse = {props.reponse}
+                    typo = 'display1'
+                  />
                 </Grid>
               </Grid>
             </div>
@@ -578,6 +562,7 @@ const Card = function (props) {
 const Cell = function (props) {
   const classes = props.classes
   const numCell = props.numCell
+  const typo = props.typo
   return (
     <Grid container alignItems="center" justify="center" direction="column" spacing={0}>
       <Grid item>
@@ -588,8 +573,8 @@ const Cell = function (props) {
       <Grid item>
         {
           props.question
-            ? <input tag='question' id = "question" className="search-input" type="text" placeholder={'Réponse'} onChange={props.handleReponse} />
-            : <Typography align='center' variant='display1' gutterBottom>
+            ? <input tag='question' id = "question" className="search-input" type="text" placeholder={'Réponse'} value={props.reponse} onChange={props.handleReponse} />
+            : <Typography align='center' variant={typo} gutterBottom>
               {
                 props.tp[props.numeroCard][props.options[numCell].value]
               }
