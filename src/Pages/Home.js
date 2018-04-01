@@ -58,7 +58,7 @@ export default class Home extends Component {
                 aleatoire = {this.props.aleatoire}
                 limite = {this.props.limite}
                 handleReponse = {this.props.handleReponse}
-                affReponse = {this.props.afficherReponse}
+                afficherReponse = {this.props.afficherReponse}
                 selectionPage = {this.props.selectionPage}
                 handleCheck = {this.props.handleCheck}
                 selectAllChbx = {this.props.selectAllChbx}

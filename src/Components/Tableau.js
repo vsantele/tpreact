@@ -44,7 +44,7 @@ export default class Tableau extends Component {
                 colonne = {this.props.colonne}
                 limite = {this.props.limite}
                 handleReponse = {this.props.handleReponse}
-                affReponse = {this.props.affReponse}
+                afficherReponse = {this.props.afficherReponse}
                 selectionPage = {this.props.selectionPage}
                 handleCheck = {this.props.handleCheck}
                 aleatoireQuestion= {this.props.aleatoireQuestion}
@@ -59,7 +59,7 @@ export default class Tableau extends Component {
                 colonne = {this.props.colonne}
                 limite = {this.props.limite}
                 handleReponse = {this.props.handleReponse}
-                affReponse = {this.props.affReponse}
+                afficherReponse = {this.props.afficherReponse}
                 selectionPage = {this.props.selectionPage}
                 handleCheck = {this.props.handleCheck}
                 aleatoireQuestion= {this.props.aleatoireQuestion}

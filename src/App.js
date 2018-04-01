@@ -554,11 +554,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             selectionPage = {this.state.selectionPage}
                             aleatoire = {this.state.aleatoire}
                             afficherReponse = {this.state.afficherReponse}
-                            affReponse = {this.state.afficherReponse}
                             limite = {this.state.limite}
                             tpLength = {this.state.tp.length}
                             colonne = {this.state.colonne}
-                            mobileOpen = {this.state.mobileOpen}µ
+                            mobileOpen = {this.state.mobileOpen}
                             tp = {this.state.tp}
                             tpRandom={this.state.tpRandom}
                             tpExclu = {this.state.tpExclu}
