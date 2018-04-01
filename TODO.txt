@@ -1,23 +1,15 @@
 URGENT:
-    - Regler problème SelectionTp qui fait planter le navigateur
+
 HAUT:
-    - Passage à material-ui (dépendances déjà présentes) voir bookmark tpreact OK 
-    - Ajout interface choix tp OK
+
 MOYEN:
-    - Modifier interface
-        |- Options ok 50%
-            |- Ameliorer Grid
-        |- Tableau OK 90%
-    - Ajout questionnaire
-        |- Tp input choisi random
     - Ajout Hidden Pour petit ecran et moyen ecran pour Option: ajout 3 points
     - Switch "Tout les TP" ne se décoche pas quand on déselectionne un  
     - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
     https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
+    - Proposer redirection mobile si mobile détecter
 BAS:
     - Opti code
-    - Ajout appBar OK
-    - Passage Gatsby Js
     - Bug correction faux, pas compter | comptage correct bon
 FAIBLE:
     - Suppression lignes inutiles
