@@ -25,7 +25,7 @@ export default class Row extends Component {
               nbColonne = {nb}
               question = {this.props.question}
               handleReponse = {this.props.handleReponse}
-              affReponse = {this.props.affReponse}
+              afficherReponse = {this.props.afficherReponse}
               aleatoireQuestion = {this.props.aleatoireQuestion}
               nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
               classes = {this.props.classes}

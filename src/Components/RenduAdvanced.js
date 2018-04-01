@@ -14,7 +14,7 @@ export default class RenduAdvanced extends Component {
     var colonne = this.props.colonne
     var nombre = [0, 1, 2, 3]
     var handleReponse = this.props.handleReponse
-    var affReponse = this.props.affReponse
+    var afficherReponse = this.props.afficherReponse
     var selectionPage = this.props.selectionPage
     var tpAfficher = this.props.tpAfficher
     var handleCheck = this.props.handleCheck
@@ -62,7 +62,7 @@ export default class RenduAdvanced extends Component {
                           listValue = {listValue}
                           colonne = {colonne}
                           handleReponse = {handleReponse}
-                          affReponse = {affReponse}
+                          afficherReponse = {afficherReponse}
                           selectionPage = {selectionPage}
                           tpAfficher = {tpAfficher}
                           handleCheck = {handleCheck}
