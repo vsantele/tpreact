@@ -40,10 +40,16 @@ export default class Rendu extends Component {
                             </Grid>
                             <Grid item>
                               <div className={classes.gridHeader}>
-                                <FormControl>
-                                  <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                                  <SwitchButton inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
-                                </FormControl>
+                                {
+                                  aleatoireQuestion
+                                    ? ''
+                                    : (
+                                      <FormControl>
+                                        <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
+                                        <SwitchButton inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                                      </FormControl>
+                                    )
+                                }
                               </div>
                             </Grid>
                           </Grid>

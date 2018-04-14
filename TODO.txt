@@ -1,7 +1,7 @@
-URGENT:
+﻿URGENT:
 
 HAUT:
-
+    - Changer adresse en récupérant location et pas "/" 
 MOYEN:
     - Ajout Hidden Pour petit ecran et moyen ecran pour Option: ajout 3 points
     - Switch "Tout les TP" ne se décoche pas quand on déselectionne un  

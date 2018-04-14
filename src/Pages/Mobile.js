@@ -86,7 +86,7 @@ const styles = theme => ({
     }
   },
   paper: {
-    width: '100%'
+    vw: 50
   },
   bigWord: {
     textAlign: 'center'
@@ -138,7 +138,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   grid: {
-    padding: 16,
+    padding: 8,
     textAlign: 'center'
   },
   numero: {
@@ -528,9 +528,9 @@ const Card = function (props) {
               container
               justify='space-between'
             >
-              <Grid item xs={1}>
+              <Grid item xs={2}>
                 <div className={classes.grid} onClick={props.handleMove}>
-                  <Button fullWidth id='previous'><LeftIcon /></Button>
+                  <Button size='large' fullWidth id='previous1'><LeftIcon /></Button>
                 </div>
               </Grid>
               {
@@ -544,9 +544,9 @@ const Card = function (props) {
                   )
                   : null
               }
-              <Grid item xs={1}>
+              <Grid item xs={2}>
                 <div className={classes.grid} onClick={props.handleMove}>
-                  <Button size='large' fullWidth id='next'><RightIcon style={{ textAlign: 'center', top: '50%' }} /></Button>
+                  <Button size='large' fullWidth id='next1'><RightIcon/></Button>
                 </div>
               </Grid>
             </Grid>

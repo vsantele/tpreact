@@ -6,6 +6,7 @@ import {AppBar, Toolbar, Typography, IconButton, Avatar, Menu, MenuItem, Hidden,
 import AccountCircle from 'material-ui-icons/AccountCircle'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line
 import Auth from './Auth'
 
 export default class ButtonAppBar extends Component {
@@ -72,7 +73,7 @@ export default class ButtonAppBar extends Component {
                       open={open}
                       onClose={this.props.handleClose}
                     >
-                      <Link to='/profil'><MenuItem onClick={this.props.handleClose}>Profile</MenuItem> </Link>
+                      <Link to='/Profile'><MenuItem onClick={this.props.handleClose}>Profile</MenuItem></Link>
                       {
                         this.props.user
                           ? <MenuItem onClick={logout}>Déconnexion</MenuItem>

@@ -67,7 +67,7 @@ import Green from 'material-ui/colors/green'
 import Red from 'material-ui/colors/red'
 import ReactGA from 'react-ga'
 // eslint-disable-next-line
-import firebase, { auth, provider } from './config/firebase.js'
+import firebase, { auth, provider } from './firebase/firebase.js'
 // eslint-disable-next-line
 import Avatar from 'material-ui/Avatar'
 // eslint-disable-next-line
@@ -92,6 +92,7 @@ import options from './config/options'
 import isMobile from './scripts/isMobile'
 // eslint-disable-next-line
 import Bienvenue from './Pages/Bienvenue'
+import Profile from './Pages/Profile'
 
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
@@ -125,7 +126,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       signIn: false,
       page: '/',
       advanced: false,
-      mobile: false
+      mobile: false,
+      test: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -416,20 +418,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       })
   }
   changePage (page) {
-    const uiConfig = {
-      // Popup signin flow rather than redirect flow.
-      signInFlow: 'redirect',
-      // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-      signInSuccessUrl: page,
-      // We will display Google and Facebook as auth providers.
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID
-      ]
-    }
+    var uiConfig = this.state.uiConfig
+    uiConfig.signInSuccessUrl = page
     this.setState({uiConfig: uiConfig})
   }
-  // effectue un premiet random (et set la fin du chargement)
   componentWillMount () {
     // IMPORT TP FROM FIREBASE
     /* const itemsRef = firebase.database().ref('tpTest')
@@ -470,7 +462,22 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
         // firebase.auth.FacebookAuthProvider.PROVIDER_ID
-      ]
+      ],
+      callbacks: {
+        // Avoid redirects after sign-in.
+        signInSuccess: (authResult, page) => {
+          function writeUserData (userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+              username: name,
+              email: email,
+              imageUrl: imageUrl
+            })
+          }
+          writeUserData(authResult.uid, authResult.displayName, authResult.email, authResult.photoURL)
+          this.setState({test: true})
+          return true
+        }
+      }
     }
     this.shuffleTp(this.state.tp)
     this.shuffleQuestion()
@@ -489,7 +496,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
 
   componentWillUnmount () {
-    this.firebase.off()
+    // firebase.off()
   }
   render () {
     const { classes } = this.props
@@ -578,6 +585,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   <Route exact path='/Mobile' component={Mobile} />
                   <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} /> } />
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
+                  <Route exact path='/Profile' render = {() => (this.state.user ? <Profile classes = {classes} user = {this.state.user}/> : <Redirect to='Auth' />)} />
                 </Switch>
               </div>
             </div>
