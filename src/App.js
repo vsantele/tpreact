@@ -1,4 +1,5 @@
-﻿// eslint-disable-next-line
+﻿/* @flow */
+// eslint-disable-next-line
 import React, {Component} from 'react'
 import 'raf/polyfill'
 import Tp from './tp.json'
@@ -67,7 +68,7 @@ import Green from 'material-ui/colors/green'
 import Red from 'material-ui/colors/red'
 import ReactGA from 'react-ga'
 // eslint-disable-next-line
-import firebase, { auth, provider } from './firebase/firebase.js'
+import firebase, { auth, provider, db } from './firebase/firebase.js'
 // eslint-disable-next-line
 import Avatar from 'material-ui/Avatar'
 // eslint-disable-next-line
@@ -92,6 +93,7 @@ import options from './config/options'
 import isMobile from './scripts/isMobile'
 // eslint-disable-next-line
 import Bienvenue from './Pages/Bienvenue'
+// eslint-disable-next-line
 import Profile from './Pages/Profile'
 
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
@@ -127,7 +129,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       page: '/',
       advanced: false,
       mobile: false,
-      test: false
+      test: 'false'
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -376,7 +378,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   };
 
   handleSelectionTpClose () {
-    this.shuffleTp()
+    // this.shuffleTp()
     this.setState({ selectionPage: false })
   };
   handleDrawerToggle () {
@@ -467,14 +469,23 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         // Avoid redirects after sign-in.
         signInSuccess: (authResult, page) => {
           function writeUserData (userId, name, email, imageUrl) {
-            firebase.database().ref('users/' + userId).set({
-              username: name,
-              email: email,
-              imageUrl: imageUrl
-            })
+            db
+              .collection('users')
+              .doc(userId)
+              .set({
+                username: name,
+                email: email,
+                imageUrl: imageUrl
+              })
+              .then(function () {
+                this.setState({test: userId})
+                console.log('Document successfully written!')
+              })
+              .catch(function (error) {
+                console.error('Error writing document: ', error)
+              })
           }
           writeUserData(authResult.uid, authResult.displayName, authResult.email, authResult.photoURL)
-          this.setState({test: true})
           return true
         }
       }
@@ -490,9 +501,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   componentDidMount () {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user })
+        db
+          .collection('users')
+          .doc(user.uid)
+          .get()
+          .then(doc => this.setState({user: doc.data()}))
       }
     })
+    /*  */
   }
 
   componentWillUnmount () {
@@ -585,7 +601,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   <Route exact path='/Mobile' component={Mobile} />
                   <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} /> } />
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
-                  <Route exact path='/Profile' render = {() => (this.state.user ? <Profile classes = {classes} user = {this.state.user}/> : <Redirect to='Auth' />)} />
+                  <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>
               </div>
             </div>

@@ -55,7 +55,7 @@ export default class ButtonAppBar extends Component {
                       color="inherit"
                     >
                       {
-                        <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.photoURL} /> ||
+                        <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.imageUrl} /> ||
                       <AccountCircle />
                       }
                     </IconButton>
@@ -73,11 +73,11 @@ export default class ButtonAppBar extends Component {
                       open={open}
                       onClose={this.props.handleClose}
                     >
-                      <Link to='/Profile'><MenuItem onClick={this.props.handleClose}>Profile</MenuItem></Link>
+                      <MenuItem onClick={this.props.handleClose}><Link to='/Profile'>Profile</Link></MenuItem>
                       {
                         this.props.user
                           ? <MenuItem onClick={logout}>Déconnexion</MenuItem>
-                          : <Link to='/Auth'><MenuItem onClick={this.props.handleClose}>Connection</MenuItem></Link>
+                          : <MenuItem onClick={this.props.handleClose}><Link to='/Auth'>Connection</Link></MenuItem>
                       }
                     </Menu>
                   </div>
