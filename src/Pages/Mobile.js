@@ -276,8 +276,10 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
       if (numeroCard < this.state.limite - 1) {
         numeroCard++
       }
-    } else if (numeroCard > 0) {
-      numeroCard--
+    } else if (e.target.id === 'previous') {
+      if (numeroCard > 0) {
+        numeroCard--
+      }
     }
 
     this.setState({
@@ -530,7 +532,7 @@ const Card = function (props) {
             >
               <Grid item xs={2}>
                 <div className={classes.grid} onClick={props.handleMove}>
-                  <Button size='large' fullWidth id='previous1'><LeftIcon /></Button>
+                  <Button size='large' fullWidth id='previous'><LeftIcon /></Button>
                 </div>
               </Grid>
               {
@@ -546,7 +548,7 @@ const Card = function (props) {
               }
               <Grid item xs={2}>
                 <div className={classes.grid} onClick={props.handleMove}>
-                  <Button size='large' fullWidth id='next1'><RightIcon/></Button>
+                  <Button size='large' fullWidth id='next'><RightIcon/></Button>
                 </div>
               </Grid>
             </Grid>
