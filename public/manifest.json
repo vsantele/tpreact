@@ -7,8 +7,23 @@
   "icons": [
     
     {
-      "src": "iconeTp.png",
+      "src": "favicon.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon32.png",
+      "sizes": "32x32",
       "type": "image/png"
     }
   ],
