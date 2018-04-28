@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 // eslint-disable-next-line
 import {AppBar, Toolbar, Typography, IconButton, Avatar, Menu, MenuItem, Hidden, Button} from 'material-ui'
 // eslint-disable-next-line
-import AccountCircle from 'material-ui-icons/AccountCircle'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line

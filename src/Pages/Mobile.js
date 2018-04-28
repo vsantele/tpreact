@@ -18,9 +18,11 @@ import Button from 'material-ui/Button'
 // eslint-disable-next-line
 import Icon from 'material-ui/Icon'
 // eslint-disable-next-line
-import Settings from 'material-ui-icons/Settings'
-// eslint-disable-next-line
-import {Done, NavigateBefore as LeftIcon, NavigateNext as RightIcon } from 'material-ui-icons'
+import {Done, NavigateBefore as LeftIcon, NavigateNext as RightIcon, Settings } from '@material-ui/icons'
+// import LeftIcon from '@material-ui/icons/NavigateBefore'
+// import RightIcon from '@material-ui/icons/NavigateNext'
+// import Settings from '@material-ui/icons/Settings'
+//  import Done from '@material-ui/icons/Done'
 // eslint-disable-next-line
 import Modal from 'material-ui/Modal'
 // eslint-disable-next-line
@@ -41,7 +43,7 @@ import { MenuItem } from 'material-ui/Menu'
 // eslint-disable-next-line
 import { LinearProgress } from 'material-ui/Progress'
 // eslint-disable-next-line
-import Reboot from 'material-ui/Reboot'
+import CssBaseline from 'material-ui/CssBaseline'
 import Green from 'material-ui/colors/green'
 import Red from 'material-ui/colors/red'
 
@@ -350,7 +352,7 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
     }) */
     return (
       <div>
-        <Reboot />
+        <CssBaseline />
         <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
             <div className={classes.content}>
@@ -562,7 +564,7 @@ const Card = function (props) {
 
 // eslint-disable-next-line
 const Cell = function (props) {
-  const classes = props.classes
+  // const classes = props.classes
   const numCell = props.numCell
   const typo = props.typo
   return (
