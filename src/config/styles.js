@@ -13,16 +13,16 @@ export default theme => ({
   table: {
     minWidth: 150
   },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
+  // container: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap'
+  // },
   formControl: {
     minWidth: 100
   },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2
-  },
+  // selectEmpty: {
+  //   marginTop: theme.spacing.unit * 2
+  // },
   button: {
     margin: theme.spacing.unit
   },
@@ -36,13 +36,13 @@ export default theme => ({
   flex: {
     flex: 1
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  },
-  control: {
-    padding: theme.spacing.unit * 2
-  },
+  // menuButton: {
+  //   marginLeft: -12,
+  //   marginRight: 20
+  // },
+  // control: {
+  //   padding: theme.spacing.unit * 2
+  // },
   content: {
     backgroundColor: theme.palette.background.default,
     width: `100%`,
@@ -113,24 +113,29 @@ export default theme => ({
     marginRight: theme.spacing.unit,
     width: 200
   },
-  containerAutoSuggest: {
-    flexGrow: 1,
-    position: 'relative',
-    height: 250
-  },
-  suggestionsContainerOpen: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0
-  },
-  suggestion: {
-    display: 'block'
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: 'none'
-  }
+  // containerAutoSuggest: {
+  //   flexGrow: 1,
+  //   position: 'relative',
+  //   height: 250
+  // },
+  // suggestionsContainerOpen: {
+  //   position: 'absolute',
+  //   zIndex: 1,
+  //   marginTop: theme.spacing.unit,
+  //   left: 0,
+  //   right: 0
+  // },
+  // suggestion: {
+  //   display: 'block'
+  // },
+  // suggestionsList: {
+  //   margin: 0,
+  //   padding: 0,
+  //   listStyleType: 'none'
+  // },
+  // fab: {
+  //   position: 'fixed',
+  //   bottom: theme.spacing.unit * 2,
+  //   right: theme.spacing.unit * 2
+  // }
 })
