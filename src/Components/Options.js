@@ -4,8 +4,27 @@ import React, {Component} from 'react'
 import {FormControl, InputLabel, Switch as SwitchButton, Button, Grid, Select, TextField} from 'material-ui'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line
+import Dialog, { DialogActions, DialogContent, DialogContentText, DialogTitle, withMobileDialog } from 'material-ui/Dialog'
 
 export default class Options extends Component {
+  constructor () {
+    super()
+    this.state = {
+      openAlert: false
+    }
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+  }
+
+  handleOpen () {
+    this.setState({openAlert: true})
+  }
+
+  handleClose () {
+    this.setState({openAlert: false})
+  }
+
   render () {
     const classes = this.props.classes
     if (this.props.selectionPage) {
@@ -120,9 +139,48 @@ export default class Options extends Component {
                 <Link to='/Mobile' className={classes.link} onClick={() => this.props.changePage('/Mobile')}><Button variant="raised" color="secondary" className={classes.button}> Vers Mobile</Button></Link>
               </div>
             </Grid>
+            <Grid item >
+              <div className={classes.grid}>
+                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen} >Plus</Button>
+              </div>
+            </Grid>
           </Grid>
+          <Alert open = {this.state.openAlert} handleClose = {this.handleClose} classes = {classes}/>
         </div>
       )
     }
   }
+}
+
+function Alert (props) {
+  const classes = props.classes
+  return (
+    <Dialog
+      open={props.open}
+      onClose={props.handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">{'Options Supplémentaire'}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+              Ajout d'options optionnelles
+        </DialogContentText>
+        <div className={classes.gridRoot}>
+          <Grid container spacing={8} >
+            <Grid item >
+              <div className={classes.grid}>
+                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleAdvanced} disabled>Advanced</Button>
+              </div>
+            </Grid>
+          </Grid>
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={props.handleClose} color="primary" autoFocus>
+              Fermer
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
 }
