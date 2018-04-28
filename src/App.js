@@ -2,86 +2,26 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 import 'raf/polyfill'
-import Tp from './tp.json'
+// import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
 import 'react-select/dist/react-select.css'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
 // eslint-disable-next-line
-import Reboot from 'material-ui/Reboot'
+import CssBaseline from 'material-ui/CssBaseline'
 // eslint-disable-next-line
 import {MuiThemeProvider, withStyles, createMuiTheme } from 'material-ui/styles'
-// eslint-disable-next-line
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
-// eslint-disable-next-line
-import Paper from 'material-ui/Paper'
-// eslint-disable-next-line
-import Input, {InputLabel} from 'material-ui/Input'
-// eslint-disable-next-line
-import { FormControl, FormHelperText } from 'material-ui/Form'
-// eslint-disable-next-line
-import Select from 'material-ui/Select'
-// eslint-disable-next-line
-import Button from 'material-ui/Button'
-// eslint-disable-next-line
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
-// eslint-disable-next-line
-import Checkbox from 'material-ui/Checkbox'
-// eslint-disable-next-line
-import SwitchButton from 'material-ui/Switch'
-// eslint-disable-next-line
-import Modal from 'material-ui/Modal'
-// eslint-disable-next-line
-import AppBar from 'material-ui/AppBar'
-// eslint-disable-next-line
-import Toolbar from 'material-ui/Toolbar'
-// eslint-disable-next-line
-import Typography from 'material-ui/Typography'
-// eslint-disable-next-line
-import IconButton from 'material-ui/IconButton'
-// eslint-disable-next-line
-import MenuIcon from 'material-ui-icons/Menu'
-// eslint-disable-next-line
-import Hidden from 'material-ui/Hidden'
-// eslint-disable-next-line
-import Divider from 'material-ui/Divider'
-// eslint-disable-next-line
-import Grid from 'material-ui/Grid'
-// eslint-disable-next-line
-import Tooltip from 'material-ui/Tooltip'
-// eslint-disable-next-line
-import TextField from 'material-ui/TextField'
-// eslint-disable-next-line
+
 import Helmet from 'react-helmet'
 // eslint-disable-next-line
-import Drawer from 'material-ui/Drawer'
+// import Drawer from 'material-ui/Drawer'
 // eslint-disable-next-line
 import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
-// import Questionnaire from './questionnaire'
-import Mobile from './Pages/Mobile'
-// eslint-disable-next-line
-import MatomoTracker from 'matomo-tracker'
-// eslint-disable-next-line
-import Green from 'material-ui/colors/green'
-// eslint-disable-next-line
-import Red from 'material-ui/colors/red'
+
 import ReactGA from 'react-ga'
 // eslint-disable-next-line
 import firebase, { auth, provider, db } from './firebase/firebase.js'
-// eslint-disable-next-line
-import Avatar from 'material-ui/Avatar'
-// eslint-disable-next-line
-import Menu, { MenuItem } from 'material-ui/Menu'
-// eslint-disable-next-line
-import * as firebaseui from 'firebaseui'
-// eslint-disable-next-line
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-// eslint-disable-next-line
-import Tableau from './Components/Tableau'
-// eslint-disable-next-line
-import Options from './Components/Options'
-// eslint-disable-next-line
 import ButtonAppBar from './Components/ButtonAppBar'
 // eslint-disable-next-line
 import Home from './Pages/Home'
@@ -93,17 +33,25 @@ import options from './config/options'
 import isMobile from './scripts/isMobile'
 // eslint-disable-next-line
 import Bienvenue from './Pages/Bienvenue'
+import * as Loadable from 'react-loadable'
 // eslint-disable-next-line
 import Profile from './Pages/Profile'
 
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
+
+const Loading = (props) => {return(<div className={props.classes.content}>CHARGEMENT.....</div>)}
+
+const Mobile = (classes) => Loadable({
+  loader: () => import('./Pages/Mobile.js'),
+  loading: () => <Loading classes = {classes} />
+})
 
 export default withStyles(styles, { withTheme: true })(class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
       loading: true, // chargment en cours
-      tp: Tp, // liste des tps dans l'ordre
+      tp: [], // liste des tps dans l'ordre
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
       colonne: [
@@ -425,35 +373,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.setState({uiConfig: uiConfig})
   }
   componentWillMount () {
-    // IMPORT TP FROM FIREBASE
-    /* const itemsRef = firebase.database().ref('tpTest')
-    itemsRef.on('value', (snapshot) => {
-      let items = snapshot.val()
-      let newTp = []
-      for (let i in items) {
-        newTp.push({
-          id: i,
-          reste: items[i]
-        })
-      }
-      this.setState({
-        tpTest: newTp
+    // IMPORT TP FROM FIRESTORE
+    db
+      .collection('tp').doc('neerlandais')
+      .get()
+      .then(tps => {
+        this.setState({tp: tps.data().neerlandais})
+        // console.log(tps.data().neerlandais)
+        this.shuffleTp()
       })
-    }) */
-    const itemsRef = firebase.database().ref('list')
-    itemsRef.on('value', (snapshot) => {
-      let lists = snapshot.val()
-      let newList = []
-      for (let i in lists) {
-        newList.push({
-          user: lists[i].user,
-          index: lists[i].index
-        })
-      }
-      this.setState({
-        list: newList
-      })
-    })
 
     const uiConfig = {
       // Popup signin flow rather than redirect flow.
@@ -508,7 +436,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           .then(doc => this.setState({user: doc.data()}))
       }
     })
-    /*  */
   }
 
   componentWillUnmount () {
@@ -532,7 +459,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     return (
       <BrowserRouter>
         <div>
-          <Reboot />
+          <CssBaseline />
           <MuiThemeProvider theme={theme}>
             <div className={classes.root}>
               <Helmet
@@ -598,8 +525,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                         )
                     }/>
                   { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                  <Route exact path='/Mobile' component={Mobile} />
-                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} /> } />
+                  <Route exact path='/Mobile' component={Mobile(classes)} />
+                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} user = {this.state.user} /> } />
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
                   <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>
