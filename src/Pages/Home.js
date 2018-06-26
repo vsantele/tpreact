@@ -10,6 +10,19 @@ import Options from '../Components/Options'
 import Tableau from '../Components/Tableau'
 
 export default class Home extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      advanced: false
+    }
+    this.handleAdvanced = this.handleAdvanced.bind(this)
+  }
+
+  handleAdvanced () {
+    var oldAvanced = this.state.advanced
+    this.setState({advanced: !oldAvanced})
+  }
+
   render () {
     var classes = this.props.classes
     return (
@@ -44,6 +57,7 @@ export default class Home extends Component {
                   afficherNbTp = {this.props.afficherNbTp}
                   classes ={classes}
                   changePage = {this.props.changePage}
+                  handleAdvanced = {this.handleAdvanced}
                 />
               </div>
             </Grid>
@@ -66,7 +80,7 @@ export default class Home extends Component {
                 selectAll = {this.props.selectAll}
                 aleatoireQuestion={this.props.aleatoireQuestion}
                 nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
-                advanced = {this.props.advanced}
+                advanced = {this.state.advanced}
                 classes = {classes}
               />
             </Grid>

@@ -21,7 +21,7 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
 
 import ReactGA from 'react-ga'
 // eslint-disable-next-line
-import firebase, { auth, provider, db } from './firebase/firebase.js'
+import { auth, provider, db } from './firebase/firebase.js'
 import ButtonAppBar from './Components/ButtonAppBar'
 // eslint-disable-next-line
 import Home from './Pages/Home'
@@ -39,7 +39,7 @@ import Profile from './Pages/Profile'
 
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
-const Loading = (props) => {return(<div className={props.classes.content}>CHARGEMENT.....</div>)}
+const Loading = (props) => {console.log("loading"); return(<div className={props.classes.content}>CHARGEMENT.....</div>)}
 
 const Mobile = (classes) => Loadable({
   loader: () => import('./Pages/Mobile.js'),
@@ -390,7 +390,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       signInSuccessUrl: this.state.page,
       // We will display Google and Facebook as auth providers.
       signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        provider.providerId
+        //firebase.auth.GoogleAuthProvider.PROVIDER_ID
         // firebase.auth.FacebookAuthProvider.PROVIDER_ID
       ],
       callbacks: {

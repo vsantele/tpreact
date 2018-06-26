@@ -6,7 +6,7 @@ import {Paper, Typography, Avatar, Button, TextField, Chip, Select, FormControl,
 import { Link, Redirect } from 'react-router-dom'
 import theme from '../config/theme'
 // eslint-disable-next-line
-import firebase, { auth, provider, db } from '../firebase/firebase.js'
+import { auth, provider, db } from '../firebase/firebase.js'
 // eslint-disable-next-line
 import Autosuggest from 'react-autosuggest'
 // eslint-disable-next-line

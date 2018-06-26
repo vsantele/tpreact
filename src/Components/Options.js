@@ -145,7 +145,7 @@ export default class Options extends Component {
               </div>
             </Grid>
           </Grid>
-          <Alert open = {this.state.openAlert} handleClose = {this.handleClose} classes = {classes}/>
+          <Alert open = {this.state.openAlert} handleClose = {this.handleClose} handleAdvanced = {this.props.handleAdvanced} classes = {classes}/>
         </div>
       )
     }
@@ -164,13 +164,13 @@ function Alert (props) {
       <DialogTitle id="alert-dialog-title">{'Options Supplémentaire'}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-              Ajout d'options optionnelles
+              Ajout d'options supplémentaires
         </DialogContentText>
         <div className={classes.gridRoot}>
           <Grid container spacing={8} >
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleAdvanced} disabled>Advanced</Button>
+                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleAdvanced}>Advanced</Button>
               </div>
             </Grid>
           </Grid>

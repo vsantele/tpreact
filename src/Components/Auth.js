@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 // eslint-disable-next-line
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 // eslint-disable-next-line
-import firebase, { auth, provider } from '../firebase/firebase.js'
+import { auth, provider } from '../firebase/firebase.js'
 // eslint-disable-next-line
 import { Typography, Paper, Button } from 'material-ui'
 // eslint-disable-next-line
@@ -27,7 +27,7 @@ export default class Auth extends Component {
 
                   : <div className={classes.margin}>
                     <Typography variant="title">Connexion:</Typography>
-                    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+                    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth}/>
                   </div>
               }
             </Paper>
