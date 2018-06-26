@@ -9,6 +9,7 @@
     "babel-polyfill": "^6.26.0",
     "firebase": "^4.5.1",
     "jquery": "^3.2.1",
+    "loadable-components": "^2.2.2",
     "material-design-icons": "^3.0.1",
     "material-ui": "^1.0.0-beta.43",
     "material-ui-icons": "^1.0.0-beta.17",
@@ -49,6 +50,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.69.0",
+    "jshint": "^2.9.5",
     "react-snap": "^1.11.4"
   }
 }
