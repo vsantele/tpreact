@@ -1,13 +1,14 @@
-import {initializeApp, apps, auth as Auth, firestore} from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
 import config from './config'
+var firebase = require('firebase/app')
+require('firebase/auth')
+require('firebase/firestore')
 
-if (!apps.length) {
-  initializeApp(config)
+if (!firebase.apps.length) {
+  firebase.initializeApp(config)
 }
-
-export const provider = new Auth.GoogleAuthProvider()
-export const auth = Auth()
-export const db = firestore()
+var firestore = firebase.firestore()
+firestore.settings({timestampsInSnapshots: true})
+export const provider = new firebase.auth.GoogleAuthProvider()
+export const auth = firebase.auth()
+export const db = firestore
 // export default firebase

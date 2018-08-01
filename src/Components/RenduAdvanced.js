@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 // eslint-disable-next-line
-import {Paper, Table, TableHead, TableRow, TableCell, FormControl, InputLabel, Switch as SwitchButton, Select, TableBody} from 'material-ui'
+import {Paper, Table, TableHead, TableRow, TableCell, FormControl, InputLabel, Switch as SwitchButton, Select, TableBody} from '@material-ui/core'
 // eslint-disable-next-line
 import Row from './Row'
 import options from '../config/options'
@@ -71,6 +71,8 @@ export default class RenduAdvanced extends Component {
                           classes = {classes}
                         />
                       )
+                    } else {
+                      return ''
                     }
                   })
               }

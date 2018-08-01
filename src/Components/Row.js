@@ -1,10 +1,9 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
-// eslint-disable-next-line
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
 import Cell from './Cell'
-
+/*eslint-enable */
 export default class Row extends Component {
   render () {
     var index = this.props.index

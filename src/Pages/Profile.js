@@ -1,19 +1,24 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
-import {Paper, Typography, Avatar, Button, TextField, Chip, Select, FormControl, InputLabel, Input, MenuItem} from 'material-ui'
-// eslint-disable-next-line
+//import {Paper, Typography, Avatar, Button, TextField, Chip, Select, FormControl, InputLabel, Input, MenuItem} from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Chip from '@material-ui/core/Chip'
+import Select from '@material-ui/core/Select'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
+import MenuItem from '@material-ui/core/MenuItem'
 import { Link, Redirect } from 'react-router-dom'
 import theme from '../config/theme'
-// eslint-disable-next-line
 import { auth, provider, db } from '../firebase/firebase.js'
-// eslint-disable-next-line
 import Autosuggest from 'react-autosuggest'
-// eslint-disable-next-line
 import match from 'autosuggest-highlight/match'
-// eslint-disable-next-line
 import parse from 'autosuggest-highlight/parse'
-
+/*eslint-enable */
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -70,7 +75,7 @@ export default class Profile extends Component {
             WORK IN PROGRESS...
             {
               this.props.user
-                ? <div><Connected user = {user} classes = {classes} /> {/* <EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> */ } </div>
+                ? <div><Connected user = {user} classes = {classes} /> {<EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> } </div>
                 : <NoConnected classes = {classes} />
             }
           </Paper>
@@ -102,7 +107,7 @@ function Connected (props) {
         <Typography variant='title'>Infos:</Typography>
         <div>
           <Typography variant='body2'>Nom: {user.username} </Typography>
-          <Typography variant='body2'>Avatar: <span style={{display: 'block'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.imageUrl}/></span></Typography>
+          <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.imageUrl}/></span></Typography></div>
           <Typography variant='body2'>Email: {user.email}</Typography>
           <Typography variant='body2'>Role: {user.role}</Typography>
           <Typography variant='body2'>Ecole: {user.ecoles}</Typography>
@@ -128,14 +133,6 @@ function EditProfil (props) {
           className={classes.textFieldProfil}
           value={user.role}
           onChange={(e) => props.handleChange(e, 'role1')}
-          margin='normal'
-        />
-        <TextField
-          id='ecoles'
-          label='ecoles'
-          className={classes.textFieldProfil}
-          value={user.role}
-          onChange={(e) => props.handleChange(e, 'ecoles')}
           margin='normal'
         />
         <FormControl className={classes.formControl}>

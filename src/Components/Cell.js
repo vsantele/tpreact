@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 // eslint-disable-next-line
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table'
+import TableCell from '@material-ui/core/TableCell'
 
 export default class Cell extends Component {
   render () {

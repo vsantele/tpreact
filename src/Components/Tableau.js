@@ -5,10 +5,11 @@ import Rendu from './Rendu'
 // eslint-disable-next-line
 // import RenduAdvanced from './RenduAdvanced'
 // eslint-disable-next-line
-import SelectionTp from './SelectionTp'
+// import SelectionTp from './SelectionTp'
 import loadable from 'loadable-components'
 
 const RenduAdvanced = loadable( () => import('./RenduAdvanced'))
+const SelectionTp = loadable( () => import('./SelectionTp'))
 
 export default class Tableau extends Component {
   render () {

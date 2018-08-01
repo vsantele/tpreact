@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 // eslint-disable-next-line
-import {Paper, Table, TableHead, TableRow, TableCell, TableBody, Checkbox} from 'material-ui'
+import {Paper, Table, TableHead, TableRow, TableCell, TableBody, Checkbox} from '@material-ui/core'
 
 export default class SelectionTp extends Component {
   render () {

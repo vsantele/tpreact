@@ -1,5 +1,5 @@
 ﻿/* @flow */
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
 import 'raf/polyfill'
 // import Tp from './tp.json'
@@ -8,42 +8,62 @@ import 'react-select/dist/react-select.css'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 import Alert from 'react-s-alert'
-// eslint-disable-next-line
-import CssBaseline from 'material-ui/CssBaseline'
-// eslint-disable-next-line
-import {MuiThemeProvider, withStyles, createMuiTheme } from 'material-ui/styles'
-
+import CssBaseline from '@material-ui/core/CssBaseline'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import withStyles from '@material-ui/core/styles/withStyles'
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+import purple from '@material-ui/core/colors/purple'
 import Helmet from 'react-helmet'
-// eslint-disable-next-line
-// import Drawer from 'material-ui/Drawer'
-// eslint-disable-next-line
-import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
-
+// import Drawer from '@material-ui/core/Drawer'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import ReactGA from 'react-ga'
-// eslint-disable-next-line
 import { auth, provider, db } from './firebase/firebase.js'
 import ButtonAppBar from './Components/ButtonAppBar'
-// eslint-disable-next-line
 import Home from './Pages/Home'
-// eslint-disable-next-line
 import Auth from './Components/Auth'
 import styles from './config/styles'
 import theme from './config/theme'
 import options from './config/options'
 import isMobile from './scripts/isMobile'
-// eslint-disable-next-line
 import Bienvenue from './Pages/Bienvenue'
-import * as Loadable from 'react-loadable'
-// eslint-disable-next-line
+import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
-
+/*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
-const Loading = (props) => {console.log("loading"); return(<div className={props.classes.content}>CHARGEMENT.....</div>)}
+const Loading = () => {console.log("loading"); return(
+  <div style={{
+    backgroundColor: theme.palette.background.default,
+    width: `100%`,
+    padding: theme.spacing.unit * 3,
+    height: 'calc(100% - 56px)',
+    marginTop: 56,
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64
+    }
+   }}>CHARGEMENT.....</div>
+)}
 
-const Mobile = (classes) => Loadable({
-  loader: () => import('./Pages/Mobile.js'),
-  loading: () => <Loading classes = {classes} />
+const ErrorComponent = ({error}) => {return(
+  <div style={{
+    backgroundColor: theme.palette.background.default,
+    width: `100%`,
+    padding: theme.spacing.unit * 3,
+    height: 'calc(100% - 56px)',
+    marginTop: 56,
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64
+    }
+  }}>
+    Oups! {error.message} 💥
+  </div>
+)}
+
+const Mobile = loadable( () => import('./Pages/Mobile.js'), {
+  LoadingComponent: Loading,
+  ErrorComponent: ErrorComponent
 })
 
 export default withStyles(styles, { withTheme: true })(class App extends Component {
@@ -66,7 +86,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       afficherReponse: false,
       anchorEl: null,
       selectedIndex: [0, 1, 2, 3, 4],
-      selectionPage: false,
+      selectionPage: true,
       selectAllChbx: true,
       mobileOpen: false,
       aleatoireQuestion: false,
@@ -77,7 +97,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       page: '/',
       advanced: false,
       mobile: false,
-      test: 'false'
+      test: 'false',
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -101,6 +121,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleMenu = this.handleMenu.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.changePage = this.changePage.bind(this)
+    this.selectList = this.selectList.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -363,7 +384,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     auth.signOut()
       .then(() => {
         this.setState({
-          user: null
+          user: null,
+          userTest: null
         })
       })
   }
@@ -372,16 +394,49 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     uiConfig.signInSuccessUrl = page
     this.setState({uiConfig: uiConfig})
   }
+
+  selectList (id) {
+    db
+    .collection('users')
+    .doc(this.state.userTest.uid)
+    .collection('lists')
+    .get()
+    .then(collection => {
+      const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
+      return listName.filter(list => list.id === id)[0].tps
+    })
+    .then( (list) => {
+      let tp = this.state.tp
+      for (let i in tp) {
+        if (list.indexOf(Number(i)) === -1) {
+
+          tp[i].afficher = false
+        } else {
+          tp[i].afficher = true
+        }
+      }
+      let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
+      this.setState({tp: tp, selectAllChbx: selectAllChbx})
+    }
+    )
+    //this.state.listSelected[0].tps.map()
+    
+  }
+
   componentWillMount () {
     // IMPORT TP FROM FIRESTORE
     db
       .collection('tp').doc('neerlandais')
       .get()
       .then(tps => {
+
+        //this.shuffleTp(tps.data().neerlandais)
         this.setState({tp: tps.data().neerlandais})
-        // console.log(tps.data().neerlandais)
-        this.shuffleTp()
       })
+      .then(() => {
+        this.shuffleTp(this.state.tp)
+      })
+      .then(() => this.setState({loading: false}))
 
     const uiConfig = {
       // Popup signin flow rather than redirect flow.
@@ -407,7 +462,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                 imageUrl: imageUrl
               })
               .then(function () {
-                this.setState({test: userId})
                 console.log('Document successfully written!')
               })
               .catch(function (error) {
@@ -415,14 +469,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
               })
           }
           writeUserData(authResult.uid, authResult.displayName, authResult.email, authResult.photoURL)
+          this.setState({userTest: authResult})
           return true
         }
       }
     }
-    this.shuffleTp(this.state.tp)
+    //this.shuffleTp(this.state.tp)
     this.shuffleQuestion()
     this.setState({
-      loading: false,
       uiConfig: uiConfig,
       page: window.location.pathname
     })
@@ -435,6 +489,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           .doc(user.uid)
           .get()
           .then(doc => this.setState({user: doc.data()}))
+        this.setState({userTest: user})
       }
     })
   }
@@ -462,7 +517,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         <div>
           <CssBaseline />
           <MuiThemeProvider theme={theme}>
-            <div className={classes.root}>
+            <div>
               <Helmet
                 title="Questionnaire Tp Néérlandais"
                 meta={[
@@ -521,17 +576,28 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             afficherNbTp = {this.state.afficherNbTp}
                             changePage= {this.changePage}
                             advanced = {this.state.advanced}
+                            loading = {this.state.loading}
+                            user = {this.state.userTest}
+                            selectList = {this.selectList}
                           />
                         )
                         )
                     }/>
                   { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                  <Route exact path='/Mobile' component={Mobile(classes)} />
+                  <Route exact path='/Mobile' component={Mobile} />
                   <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} user = {this.state.user} /> } />
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
                   <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>
               </div>
+              {/* <button onClick={() => {theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: {
+      main: '#f44336',
+    },
+  },
+})}}> test createMuiTheme </button>*/}
             </div>
           </MuiThemeProvider>
         </div>

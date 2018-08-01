@@ -1,10 +1,20 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
 import options from '../config/options'
-// eslint-disable-next-line
-import {Paper, Table, TableHead, TableRow, TableCell, FormControl, InputLabel, Switch as SwitchButton, TableBody, Grid, Typography} from 'material-ui'
-// eslint-disable-next-line
+// import {Paper, Table, TableHead, TableRow, TableCell, FormControl, InputLabel, Switch as Switch, TableBody, Grid, Typography} from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Switch from '@material-ui/core/Switch'
+import TableBody from '@material-ui/core/TableBody'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 import Row from './Row'
+/*eslint-enable */
 export default class Rendu extends Component {
   render () {
     const classes = this.props.classes
@@ -46,7 +56,7 @@ export default class Rendu extends Component {
                                     : (
                                       <FormControl>
                                         <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                                        <SwitchButton inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                                        <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
                                       </FormControl>
                                     )
                                 }
@@ -62,26 +72,30 @@ export default class Rendu extends Component {
             </TableHead>
             <TableBody>
               {
-                tp.filter(tpAfficher => tpAfficher.afficher)
-                  .map(function (listValue, index) {
-                    if (index < limite) {
-                      return (
-                        <Row key = {'row' + index}
-                          index = {index}
-                          listValue = {listValue}
-                          colonne = {colonne}
-                          handleReponse = {handleReponse}
-                          afficherReponse = {afficherReponse}
-                          selectionPage = {selectionPage}
-                          tpAfficher = {tpAfficher}
-                          handleCheck = {handleCheck}
-                          aleatoireQuestion = {aleatoireQuestion}
-                          nbAleatoireQuestion = {nbAleatoireQuestion}
-                          classes = {classes}
-                        />
-                      )
-                    }
-                  })
+                tp !== undefined
+                  ? tp.filter(tpAfficher => tpAfficher.afficher)
+                    .map(function (listValue, index) {
+                      if (index < limite) {
+                        return (
+                          <Row key = {'row' + index}
+                            index = {index}
+                            listValue = {listValue}
+                            colonne = {colonne}
+                            handleReponse = {handleReponse}
+                            afficherReponse = {afficherReponse}
+                            selectionPage = {selectionPage}
+                            tpAfficher = {tpAfficher}
+                            handleCheck = {handleCheck}
+                            aleatoireQuestion = {aleatoireQuestion}
+                            nbAleatoireQuestion = {nbAleatoireQuestion}
+                            classes = {classes}
+                          />
+                        )
+                      } else {
+                        return null
+                      }
+                    })
+                  : ''
               }
             </TableBody>
           </Table>

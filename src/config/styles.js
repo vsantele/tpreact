@@ -1,14 +1,15 @@
 // eslint-disable-next-line
-import theme from './theme'
-import Green from 'material-ui/colors/green'
-import Red from 'material-ui/colors/red'
+import theme from './theme.dark'
+import green from '@material-ui/core/colors/green'
+import red from '@material-ui/core/colors/red'
 
 export default theme => ({
   root: {
     width: '100%',
     overflowX: 'auto',
-    zIndex: 1,
-    overflow: 'hidden'
+    Index: 1,
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.default
   },
   table: {
     minWidth: 150
@@ -30,7 +31,7 @@ export default theme => ({
   checked: {
     color: '#f44336',
     '& + $bar': {
-      backgroundColor: '#f44336'
+      backgroundColor: theme.palette.secondary.main
     }
   },
   flex: {
@@ -92,10 +93,10 @@ export default theme => ({
     color: theme.palette.secondary.main
   },
   success: {
-    backgroundColor: Green[500]
+    backgroundColor: green[500]
   },
   danger: {
-    backgroundColor: Red[500]
+    backgroundColor: red[500]
   },
   avatar: {
     margin: 10
@@ -112,7 +113,7 @@ export default theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200
-  },
+  }
   // containerAutoSuggest: {
   //   flexGrow: 1,
   //   position: 'relative',

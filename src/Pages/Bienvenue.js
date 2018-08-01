@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 // eslint-disable-next-line
 import { Link, Route, Switch } from 'react-router-dom'
 // eslint-disable-next-line
-import {Typography, Paper} from 'material-ui'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
 export default class Bienvenue extends Component {
   render () {

@@ -5,7 +5,9 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 // eslint-disable-next-line
 import { auth, provider } from '../firebase/firebase.js'
 // eslint-disable-next-line
-import { Typography, Paper, Button } from 'material-ui'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
 

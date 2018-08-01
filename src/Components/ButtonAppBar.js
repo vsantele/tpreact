@@ -1,13 +1,29 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 // eslint-disable-next-line
-import {AppBar, Toolbar, Typography, IconButton, Avatar, Menu, MenuItem, Hidden, Button} from 'material-ui'
+import AppBar from '@material-ui/core/AppBar'
+// eslint-disable-next-line
+import Toolbar from '@material-ui/core/Toolbar'
+// eslint-disable-next-line
+import Typography from '@material-ui/core/Typography'
+// eslint-disable-next-line
+import IconButton from '@material-ui/core/IconButton'
+// eslint-disable-next-line
+import Avatar from '@material-ui/core/Avatar'
+// eslint-disable-next-line
+import Menu from '@material-ui/core/Menu'
+// eslint-disable-next-line
+import MenuItem from '@material-ui/core/MenuItem'
+// eslint-disable-next-line
+import Hidden from '@material-ui/core/Hidden'
+// eslint-disable-next-line
+import Button from '@material-ui/core/Button'
 // eslint-disable-next-line
 import AccountCircle from '@material-ui/icons/AccountCircle'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line
-import Auth from './Auth'
+//import Auth from './Auth'
 
 export default class ButtonAppBar extends Component {
   render () {
@@ -41,7 +57,7 @@ export default class ButtonAppBar extends Component {
                 </Typography>
               </Hidden>
               <Typography variant="caption" color="inherit" className={classes.flex}>
-                {this.props.page === '/' ? 'Ordinateur' : 'Smartphone'}
+                {this.props.page === '/Mobile' ? 'Smartphone' : 'Ordinateur'}
               </Typography>
             </Link>
             <div className={classes.accountIcon}>
@@ -56,7 +72,7 @@ export default class ButtonAppBar extends Component {
                     >
                       {
                         <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.imageUrl} /> ||
-                      <AccountCircle />
+                        <AccountCircle />
                       }
                     </IconButton>
                     <Menu

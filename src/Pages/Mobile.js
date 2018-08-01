@@ -1,52 +1,33 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, { Component } from 'react'
-// eslint-disable-next-line
-import { MuiThemeProvider, withStyles, createMuiTheme } from 'material-ui/styles'
+import { MuiThemeProvider, withStyles, createMuiTheme } from '@material-ui/core/styles'
 import Tp from '../tp.json'
-// eslint-disable-next-line
 import { Link } from 'react-router-dom'
-// eslint-disable-next-line
-import Divider from 'material-ui/Divider'
-// eslint-disable-next-line
-import Paper from 'material-ui/Paper'
-// eslint-disable-next-line
-import Typography from 'material-ui/Typography'
-// eslint-disable-next-line
-import Grid from 'material-ui/Grid'
-// eslint-disable-next-line
-import Button from 'material-ui/Button'
-// eslint-disable-next-line
-import Icon from 'material-ui/Icon'
-// eslint-disable-next-line
+import Divider from '@material-ui/core/Divider'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import Icon from '@material-ui/core/Icon'
 import {Done, NavigateBefore as LeftIcon, NavigateNext as RightIcon, Settings } from '@material-ui/icons'
 // import LeftIcon from '@material-ui/icons/NavigateBefore'
 // import RightIcon from '@material-ui/icons/NavigateNext'
 // import Settings from '@material-ui/icons/Settings'
-//  import Done from '@material-ui/icons/Done'
+// import Done from '@material-ui/icons/Done'
+import Modal from '@material-ui/core/Modal'
 // eslint-disable-next-line
-import Modal from 'material-ui/Modal'
-// eslint-disable-next-line
-import FormControl from 'material-ui/Form/FormControl'
-// eslint-disable-next-line
-import InputLabel from 'material-ui/Input/InputLabel'
-// eslint-disable-next-line
-import TextField from 'material-ui/TextField'
-// eslint-disable-next-line
-import SwitchButton from 'material-ui/Switch'
-// eslint-disable-next-line
-import MatomoTracker from 'matomo-tracker'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import TextField from '@material-ui/core/TextField'
+import SwitchButton from '@material-ui/core/Switch'
+// import MatomoTracker from 'matomo-tracker'
 import Shuffle from 'shuffle-array'
-// eslint-disable-next-line
-import Select from 'material-ui/Select'
-// eslint-disable-next-line
-import { MenuItem } from 'material-ui/Menu'
-// eslint-disable-next-line
-import { LinearProgress } from 'material-ui/Progress'
-// eslint-disable-next-line
-import CssBaseline from 'material-ui/CssBaseline'
-import Green from 'material-ui/colors/green'
-import Red from 'material-ui/colors/red'
-
+import Select from '@material-ui/core/Select'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import green from '@material-ui/core/colors/green'
+import red from '@material-ui/core/colors/red'
+/*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 const theme = createMuiTheme({
@@ -153,10 +134,10 @@ const styles = theme => ({
     left: theme.spacing.unit * 2
   },
   success: {
-    backgroundColor: Green[500]
+    backgroundColor: green[500]
   },
   danger: {
-    backgroundColor: Red[500]
+    backgroundColor: red[500]
   },
   divider: {
     marginTop: '8px',

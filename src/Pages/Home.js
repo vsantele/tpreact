@@ -1,14 +1,11 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
-import {Grid} from 'material-ui'
-// eslint-disable-next-line
+import Grid from '@material-ui/core/Grid'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Alert from 'react-s-alert'
-// eslint-disable-next-line
 import Options from '../Components/Options'
-// eslint-disable-next-line
 import Tableau from '../Components/Tableau'
-
+/*eslint-enable */
 export default class Home extends Component {
   constructor (props) {
     super(props)
@@ -47,7 +44,7 @@ export default class Home extends Component {
                   afficherReponse = {this.props.afficherReponse}
                   handleQuestion = {this.props.handleQuestion}
                   colonne = {this.props.colonne}
-                  mobileOpen = {this.props.mobileOpen}µ
+                  mobileOpen = {this.props.mobileOpen}
                   handleDrawerToggle = {this.props.handleDrawerToggle}
                   handleClickQuestionnaire={this.props.handleClickQuestionnaire}
                   aleatoireQuestion={this.props.aleatoireQuestion}
@@ -58,34 +55,40 @@ export default class Home extends Component {
                   classes ={classes}
                   changePage = {this.props.changePage}
                   handleAdvanced = {this.handleAdvanced}
+                  user={this.props.user}
+                  tp={this.props.tp}
+                  selectList={this.props.selectList}
                 />
               </div>
             </Grid>
-            <Grid item xs={12}>
-              <Tableau
-                handleSelect = {this.props.handleSelect}
-                handleQuestion = {this.props.handleQuestion}
-                tp = {this.props.tp}
-                tpRandom={this.props.tpRandom}
-                tpExclu = {this.props.tpExclu}
-                colonne= {this.props.colonne}
-                aleatoire = {this.props.aleatoire}
-                limite = {this.props.limite}
-                handleReponse = {this.props.handleReponse}
-                afficherReponse = {this.props.afficherReponse}
-                selectionPage = {this.props.selectionPage}
-                handleCheck = {this.props.handleCheck}
-                selectAllChbx = {this.props.selectAllChbx}
-                handleSelectionTpClose = {this.props.handleSelectionTpClose}
-                selectAll = {this.props.selectAll}
-                aleatoireQuestion={this.props.aleatoireQuestion}
-                nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
-                advanced = {this.state.advanced}
-                classes = {classes}
-              />
-            </Grid>
+            {
+              !this.props.loading
+                ? <Grid item xs={12}>
+                  <Tableau
+                    handleSelect = {this.props.handleSelect}
+                    handleQuestion = {this.props.handleQuestion}
+                    tp = {this.props.tp}
+                    tpRandom={this.props.tpRandom}
+                    tpExclu = {this.props.tpExclu}
+                    colonne= {this.props.colonne}
+                    aleatoire = {this.props.aleatoire}
+                    limite = {this.props.limite}
+                    handleReponse = {this.props.handleReponse}
+                    afficherReponse = {this.props.afficherReponse}
+                    selectionPage = {this.props.selectionPage}
+                    handleCheck = {this.props.handleCheck}
+                    selectAllChbx = {this.props.selectAllChbx}
+                    handleSelectionTpClose = {this.props.handleSelectionTpClose}
+                    selectAll = {this.props.selectAll}
+                    aleatoireQuestion={this.props.aleatoireQuestion}
+                    nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
+                    advanced = {this.state.advanced}
+                    classes = {classes}
+                  />
+                </Grid>
+                : <div style={{width: `100%`}}><LinearProgress color="primary" variant="query" /></div>
+            }
             <br />
-
           </Grid>
         </main>
         <Alert stack={{limit: 3}} position='bottom-right' />
