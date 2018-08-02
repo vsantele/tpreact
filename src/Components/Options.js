@@ -20,7 +20,9 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider'
+import Snackbar from '@material-ui/core/Snackbar'
+import CloseIcon from '@material-ui/icons/Close'
 
 /*eslint-enable */
 export default withMobileDialog()(class Options extends Component {
@@ -31,6 +33,7 @@ export default withMobileDialog()(class Options extends Component {
       saveAlert: false,
       private: true,
       openList: false,
+      openSnackbar: false,
       listName: []
     }
     this.handleOpen = this.handleOpen.bind(this)
@@ -91,7 +94,11 @@ export default withMobileDialog()(class Options extends Component {
         .doc()
       doc
         .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps()})
-        .then(this.setState({saveAlert: false, name: ''}))
+        .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar:'Liste enregistré avec succès'}))
+        .catch(error => {
+          this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
+          console.error('Erreur enregistrement liste: ', error)
+        })
     }
   }
 
@@ -149,6 +156,30 @@ export default withMobileDialog()(class Options extends Component {
               : null
           }
           <SaveAlert name={this.state.name} open = {this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert = {this.closeSaveAlert} fullscreen = {this.props.fullscreen} private={this.state.private} privateSwitch={this.privateSwitch} classes = {classes} />
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={this.state.openSnackbar}
+            autoHideDuration={6000}
+            onClose={() => this.setState({openSnackbar: false})}
+            ContentProps={{
+              'aria-describedby': 'Liste enregistré',
+            }}
+            message={<span id={this.state.msgSnackbar}>{this.state.msgSnackbar} </span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={() => this.setState({openSnackbar: false})}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </div>
       )
     } else {

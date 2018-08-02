@@ -13,6 +13,9 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import withStyles from '@material-ui/core/styles/withStyles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import purple from '@material-ui/core/colors/purple'
+import Snackbar from '@material-ui/core/Snackbar'
+import CloseIcon from '@material-ui/icons/Close'
+import IconButton from '@material-ui/core/IconButton'
 import Helmet from 'react-helmet'
 // import Drawer from '@material-ui/core/Drawer'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
@@ -98,6 +101,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       advanced: false,
       mobile: false,
       test: 'false',
+      msgSnackbar:'Erreur texte Snackbar...'
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -399,7 +403,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   selectList (id) {
     db
     .collection('users')
-    .doc(this.state.userTest.uid)
+    .doc(this.state.user.uid)
     .collection('lists')
     .get()
     .then(collection => {
@@ -417,8 +421,12 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         }
       }
       let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
-      this.setState({tp: tp, selectAllChbx: selectAllChbx})
-    }) 
+      this.setState({tp: tp, selectAllChbx: selectAllChbx })
+    })
+    .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
+    .catch((error) => {
+      this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
+    })
   }
 
   connexion () {
@@ -570,6 +578,30 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
                   <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>
+                <Snackbar
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={this.state.openSnackbar}
+                  autoHideDuration={6000}
+                  onClose={() => this.setState({openSnackbar: false})}
+                  ContentProps={{
+                    'aria-describedby': 'Liste appliquée',
+                  }}
+                  message={<span id='listSnack'>{this.state.msgSnackbar} </span>}
+                  action={[
+                    <IconButton
+                      key="close"
+                      aria-label="Close"
+                      color="inherit"
+                      className={classes.close}
+                      onClick={() => this.setState({openSnackbar: false})}
+                    >
+                      <CloseIcon />
+                    </IconButton>,
+                  ]}
+                />
               </div>
               {/* <button onClick={() => {theme = createMuiTheme({
   palette: {

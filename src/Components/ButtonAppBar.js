@@ -56,9 +56,11 @@ export default class ButtonAppBar extends Component {
                   Tp en Néérlandais
                 </Typography>
               </Hidden>
-              <Typography variant="caption" color="inherit" className={classes.flex}>
+              {process.env.NODE_ENV === 'test'
+              ?(<Typography variant="caption" color="inherit" className={classes.flex}>
                 {this.props.page === '/Mobile' ? 'Smartphone' : 'Ordinateur'}
-              </Typography>
+              </Typography>)
+              : null}
             </Link>
             <div className={classes.accountIcon}>
               { this.props.user
