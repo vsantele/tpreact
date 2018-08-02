@@ -71,7 +71,7 @@ export default class ButtonAppBar extends Component {
                       color="inherit"
                     >
                       {
-                        <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.imageUrl} /> ||
+                        <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.photoURL} /> ||
                         <AccountCircle />
                       }
                     </IconButton>
@@ -79,7 +79,7 @@ export default class ButtonAppBar extends Component {
                       id="menu-appbar"
                       anchorEl={this.props.anchorEl}
                       anchorOrigin={{
-                        vertical: 'top',
+                        vertical: 'bottom',
                         horizontal: 'right'
                       }}
                       transformOrigin={{

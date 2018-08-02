@@ -7,8 +7,11 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
 var firestore = firebase.firestore()
+var auth = firebase.auth()
+auth.useDeviceLanguage()
+var provider = new firebase.auth.GoogleAuthProvider()
+//provider.addScope('https://www.googleapis.com/auth/userinfo.profile')
 firestore.settings({timestampsInSnapshots: true})
-export const provider = new firebase.auth.GoogleAuthProvider()
-export const auth = firebase.auth()
+export { provider, auth }
 export const db = firestore
 // export default firebase

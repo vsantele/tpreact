@@ -30,7 +30,7 @@ export default withMobileDialog()(class Options extends Component {
       openAlert: false,
       saveAlert: false,
       private: true,
-      openList: true,
+      openList: false,
       listName: []
     }
     this.handleOpen = this.handleOpen.bind(this)
@@ -76,7 +76,7 @@ export default withMobileDialog()(class Options extends Component {
     const tps = this.props.tp
     function getTps () {
       let listTps = []
-      tps.map(tp => {
+      tps.forEach(tp => {
         if (tp.afficher) {
           listTps.push(tp.id)
         }
@@ -125,13 +125,12 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item>
               <div className={classes.grid}>
-                <Button variant="raised" color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
+                <Button variant="raised" color="secondary" className={classes.button} onClick={this.props.handleSelectionTpClose} id="selectionTpClose"> Valider!</Button>
               </div>
             </Grid>
-
             <Grid item>
               <div className={classes.grid}>
-                <Button variant="raised" color="secondary" className={classes.button} onClick={this.props.handleSelectionTpClose} id="selectionTpClose"> Valider!</Button>
+                <Button variant="raised" color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
               </div>
             </Grid>
             <Grid item>

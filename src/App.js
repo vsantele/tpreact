@@ -86,7 +86,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       afficherReponse: false,
       anchorEl: null,
       selectedIndex: [0, 1, 2, 3, 4],
-      selectionPage: true,
+      selectionPage: false,
       selectAllChbx: true,
       mobileOpen: false,
       aleatoireQuestion: false,
@@ -122,6 +122,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleClose = this.handleClose.bind(this)
     this.changePage = this.changePage.bind(this)
     this.selectList = this.selectList.bind(this)
+    this.connexion = this.connexion.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -349,6 +350,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleSelectionTpClose () {
     // this.shuffleTp()
     this.setState({ selectionPage: false })
+    this.shuffleTp()
   };
   handleDrawerToggle () {
     this.setState({ mobileOpen: !this.state.mobileOpen })
@@ -384,8 +386,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     auth.signOut()
       .then(() => {
         this.setState({
-          user: null,
-          userTest: null
+          user: null
         })
       })
   }
@@ -417,10 +418,32 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       }
       let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
       this.setState({tp: tp, selectAllChbx: selectAllChbx})
-    }
-    )
-    //this.state.listSelected[0].tps.map()
-    
+    }) 
+  }
+
+  connexion () {
+    auth.signInWithPopup(provider).then(result => {
+      const user = result.user
+      db
+        .collection('users')
+        .doc(user.uid)
+        .set({
+          id: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          email: user.email,
+          locale: result.additionalUserInfo.profile.locale,
+          provider: result.additionalUserInfo.providerId
+        })
+        .then(function () {
+          console.log('Document successfully written!') 
+        })
+        .catch(function (error) {
+          console.error('Error writing document: ', error)
+        })
+    }).catch(error => {
+      console.error('Error authentification: ', error)
+    })
   }
 
   componentWillMount () {
@@ -437,59 +460,17 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         this.shuffleTp(this.state.tp)
       })
       .then(() => this.setState({loading: false}))
-
-    const uiConfig = {
-      // Popup signin flow rather than redirect flow.
-      signInFlow: 'redirect',
-      // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-      signInSuccessUrl: this.state.page,
-      // We will display Google and Facebook as auth providers.
-      signInOptions: [
-        provider.providerId
-        //firebase.auth.GoogleAuthProvider.PROVIDER_ID
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID
-      ],
-      callbacks: {
-        // Avoid redirects after sign-in.
-        signInSuccess: (authResult, page) => {
-          function writeUserData (userId, name, email, imageUrl) {
-            db
-              .collection('users')
-              .doc(userId)
-              .set({
-                username: name,
-                email: email,
-                imageUrl: imageUrl
-              })
-              .then(function () {
-                console.log('Document successfully written!')
-              })
-              .catch(function (error) {
-                console.error('Error writing document: ', error)
-              })
-          }
-          writeUserData(authResult.uid, authResult.displayName, authResult.email, authResult.photoURL)
-          this.setState({userTest: authResult})
-          return true
-        }
-      }
-    }
+    
     //this.shuffleTp(this.state.tp)
     this.shuffleQuestion()
     this.setState({
-      uiConfig: uiConfig,
       page: window.location.pathname
     })
   }
   componentDidMount () {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        db
-          .collection('users')
-          .doc(user.uid)
-          .get()
-          .then(doc => this.setState({user: doc.data()}))
-        this.setState({userTest: user})
+        this.setState({user: user})
       }
     })
   }
@@ -577,7 +558,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             changePage= {this.changePage}
                             advanced = {this.state.advanced}
                             loading = {this.state.loading}
-                            user = {this.state.userTest}
+                            user = {this.state.user}
                             selectList = {this.selectList}
                           />
                         )
@@ -585,7 +566,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                     }/>
                   { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
                   <Route exact path='/Mobile' component={Mobile} />
-                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} user = {this.state.user} /> } />
+                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} user = {this.state.user} connexion={this.connexion} /> } />
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
                   <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>

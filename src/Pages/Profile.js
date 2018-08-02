@@ -62,9 +62,7 @@ export default class Profile extends Component {
       this.setState({loading: true})
     }, 1000, this.props.user !== null)
   }
-  componentWillReceiveProps () {
-    console.log(this.props.user)
-  }
+
   render () {
     const classes = this.props.classes
     const user = this.props.user
@@ -75,7 +73,7 @@ export default class Profile extends Component {
             WORK IN PROGRESS...
             {
               this.props.user
-                ? <div><Connected user = {user} classes = {classes} /> {<EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> } </div>
+                ? <div><Connected user = {user} classes = {classes} /> {/* <EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> */} </div>
                 : <NoConnected classes = {classes} />
             }
           </Paper>
@@ -102,16 +100,16 @@ function Connected (props) {
   const classes = props.classes
   return (
     <div className={classes.margin}>
-      <Typography variant='headline'>Profile de {user.username}</Typography>
+      <Typography variant='headline'>Profile de {user.displayName}</Typography>
       <div>
         <Typography variant='title'>Infos:</Typography>
         <div>
-          <Typography variant='body2'>Nom: {user.username} </Typography>
-          <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.imageUrl}/></span></Typography></div>
-          <Typography variant='body2'>Email: {user.email}</Typography>
+          <Typography variant='body2'>Nom: {user.displayName} </Typography>
+          <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.photoURL}/></span></Typography></div>
+          {/* <Typography variant='body2'>Email: {user.email}</Typography>
           <Typography variant='body2'>Role: {user.role}</Typography>
           <Typography variant='body2'>Ecole: {user.ecoles}</Typography>
-          <Typography variant='body2'>Classe: {user.classes}</Typography>
+          <Typography variant='body2'>Classe: {user.classes}</Typography> */}
         </div>
       </div>
     </div>
