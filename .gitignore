@@ -25,3 +25,4 @@ src/bakFonction.js
 .vscode/launch.json
 .vscode/settings.json
 backup/*
+firebaseFunctions/*

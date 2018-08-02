@@ -28,6 +28,7 @@ export default class Auth extends Component {
                   : <div className={classes.margin}>
                     <Typography variant="title">Connexion:</Typography>
                     <Connexion connexion={this.props.connexion}/>
+                    <Typography variant='caption'>Bientôt disponible: Facebook et email ;D</Typography>
                   </div>
               }
             </Paper>

@@ -44,6 +44,7 @@ export default withMobileDialog()(class Options extends Component {
     this.privateSwitch = this.privateSwitch.bind(this)
     this.handleSave = this.handleSave.bind(this)
     this.openList = this.openList.bind(this)
+    this.deleteList = this.deleteList.bind(this)
   }
 
   handleOpen () {
@@ -94,7 +95,7 @@ export default withMobileDialog()(class Options extends Component {
         .doc()
       doc
         .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps()})
-        .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar:'Liste enregistré avec succès'}))
+        .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar: 'Liste enregistré avec succès'}))
         .catch(error => {
           this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
           console.error('Erreur enregistrement liste: ', error)
@@ -104,16 +105,35 @@ export default withMobileDialog()(class Options extends Component {
 
   openList () {
     if (this.props.user) {
-      db
-        .collection('users')
-        .doc(this.props.user.uid)
-        .collection('lists')
-        .get()
-        .then(collection => {
-          const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
-          this.setState({ listName: listName, openList: true })
-        })
+      if (!this.props.openList) {
+        db
+          .collection('users')
+          .doc(this.props.user.uid)
+          .collection('lists')
+          .get()
+          .then(collection => {
+            const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
+            this.setState({ listName: listName, openList: true })
+          })
+      } else {
+        this.setState({openList: false})
+      }
     }
+  }
+
+  deleteList (id) {
+    db
+      .collection('users')
+      .doc(this.props.user.uid)
+      .collection('lists')
+      .doc(id)
+      .delete()
+      .then(this.setState({openSnackbar: true, msgSnackbar: 'Liste supprimé avec succès'}))
+      .catch(error => {
+        console.error('erreur suppression liste: ', error)
+        this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
+      })
+      .then(this.openList())
   }
 
   render () {
@@ -142,7 +162,7 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item>
               <div className={classes.grid}>
-                <Button variant="raised" color="secondary" className={classes.button} onClick={this.openList} id='openlist' disabled={!this.props.user}>Afficher listes</Button>
+                <Button variant="raised" color="secondary" className={classes.button} onClick={this.openList} id='openlist' disabled={!this.props.user}>{this.state.openList ? 'Cacher listes' : 'Afficher listes'}</Button>
               </div>
             </Grid>
           </Grid>
@@ -150,7 +170,7 @@ export default withMobileDialog()(class Options extends Component {
             this.state.openList
               ? (
                 this.state.listName !== []
-                  ? <div><ShowList listName = {this.state.listName} selectList={this.props.selectList} classes = {classes} /></div>
+                  ? <div><ShowList listName = {this.state.listName} selectList={this.props.selectList} classes = {classes} deleteList = {this.deleteList}/></div>
                   : <div>Vous n'avez pas encore enregister de listes pour le moment </div>
               )
               : null
@@ -159,13 +179,13 @@ export default withMobileDialog()(class Options extends Component {
           <Snackbar
             anchorOrigin={{
               vertical: 'top',
-              horizontal: 'left',
+              horizontal: 'left'
             }}
             open={this.state.openSnackbar}
             autoHideDuration={6000}
             onClose={() => this.setState({openSnackbar: false})}
             ContentProps={{
-              'aria-describedby': 'Liste enregistré',
+              'aria-describedby': 'Liste enregistré'
             }}
             message={<span id={this.state.msgSnackbar}>{this.state.msgSnackbar} </span>}
             action={[
@@ -177,7 +197,7 @@ export default withMobileDialog()(class Options extends Component {
                 onClick={() => this.setState({openSnackbar: false})}
               >
                 <CloseIcon />
-              </IconButton>,
+              </IconButton>
             ]}
           />
         </div>
@@ -393,12 +413,21 @@ function ShowList (props) {
   return (
     <div >
       <Divider />
-      <Grid container>
-        {props.listName.map(list => (
-          <Grid item key={list.id} xs={1}>
-            <Button variant='outlined' color='secondary' className={props.classes.button} onClick={() => props.selectList(list.id)} >{list.name}</Button>
-          </Grid>
-        ))}
+      <Grid container spacing={16} style={{margin: '0.5em'}}>
+        {props.listName.length !== 0
+          ? (props.listName.map(list => (
+            <Grid item key={list.id}>
+              <Paper>
+                <Button color='secondary' className={props.classes.button} onClick={() => props.selectList(list.id)}>
+                  {list.name}
+                </Button>
+                <IconButton onClick= {() => props.deleteList(list.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Paper>
+            </Grid>
+          )))
+          : <Typography variant="body1">Vous n'avez pas encore de listes enregistrées. Pour en ajouter une, sélectionnez les temps primitifs que vous voulez et appuyez sur "Sauvegarder liste"</Typography>}
       </Grid>
     </div>
   )
