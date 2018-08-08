@@ -344,7 +344,7 @@ export default withMobileDialog()(class Options extends Component {
                   <InputLabel htmlFor='aleatoire' shrink>Aleatoire</InputLabel>
                   <Switch inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(this.props.aleatoire)} onChange={this.props.handleInputChange} />
                 </FormControl> */}
-                <Button id="aleatoire" name='aleatoire' inputProps={{id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire'}} variant='secondary' className={buttonClassname} onClick={this.props.handleInputChange}>Aléatoire</Button>
+                <Button id="aleatoire" name='aleatoire' color='secondary' className={buttonClassname} onClick={this.props.handleInputChange}>Aléatoire</Button>
               </div>
             </Grid>
             <Grid item >
