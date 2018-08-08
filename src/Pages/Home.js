@@ -51,6 +51,7 @@ export default class Home extends Component {
                   nbTrou = {this.props.nbTrou}
                   handleChangeNbTrou = {this.props.handleChangeNbTrou}
                   handleSelectNombre = {this.props.handleSelectNombre}
+                  valueSelectTp = {this.props.valueSelectTp}
                   afficherNbTp = {this.props.afficherNbTp}
                   classes ={classes}
                   changePage = {this.props.changePage}
@@ -58,6 +59,8 @@ export default class Home extends Component {
                   user={this.props.user}
                   tp={this.props.tp}
                   selectList={this.props.selectList}
+                  setListWithToken = {this.props.setListWithToken}
+                  listSelected = {this.props.listSelected}
                 />
               </div>
             </Grid>

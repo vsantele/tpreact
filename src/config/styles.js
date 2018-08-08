@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import theme from './theme.dark'
+import theme from './theme'
 import green from '@material-ui/core/colors/green'
 import red from '@material-ui/core/colors/red'
 
@@ -113,6 +113,39 @@ export default theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12
+  },
+  buttonSuccess: {
+    color: theme.palette.getContrastText(green[500]),
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700]
+    },
+    boxShadow: 'rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px'
+  },
+  buttonFailed: {
+    color: theme.palette.getContrastText('#f44336'),
+    backgroundColor: '#f44336',
+    '&:hover': {
+      backgroundColor: '#ba000d'
+    },
+    boxShadow: 'rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px'
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
   }
   // containerAutoSuggest: {
   //   flexGrow: 1,

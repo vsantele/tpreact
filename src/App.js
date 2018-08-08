@@ -1,5 +1,4 @@
-﻿/* @flow */
-/*eslint-disable */
+﻿/*eslint-disable */
 import React, {Component} from 'react'
 import 'raf/polyfill'
 // import Tp from './tp.json'
@@ -11,8 +10,6 @@ import Alert from 'react-s-alert'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import withStyles from '@material-ui/core/styles/withStyles'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import purple from '@material-ui/core/colors/purple'
 import Snackbar from '@material-ui/core/Snackbar'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
@@ -64,6 +61,7 @@ const ErrorComponent = ({error}) => {return(
   </div>
 )}
 
+// eslint-disable-next-line
 const Mobile = loadable( () => import('./Pages/Mobile.js'), {
   LoadingComponent: Loading,
   ErrorComponent: ErrorComponent
@@ -101,7 +99,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       advanced: false,
       mobile: false,
       test: 'false',
-      msgSnackbar:'Erreur texte Snackbar...'
+      msgSnackbar:'Erreur texte Snackbar...',
+      valueSelectTp: 20,
+      listSelected: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -127,6 +127,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.changePage = this.changePage.bind(this)
     this.selectList = this.selectList.bind(this)
     this.connexion = this.connexion.bind(this)
+    this.setListWithToken = this.setListWithToken.bind(this)
+    this.selectTp = this.selectTp.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -168,7 +170,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     const target = e.target
     /* valeur de l'input: si c'est une checkbox, retourne valeur de checked sinon si c'est un nombre, retorune la valeur passé dans la fonction setLimite,
      sinon retourne valeur */
-    const value = target.type === 'checkbox' ? target.checked : target.type === 'number' ? parseInt(target.value, 10) : target.value
+    const value = target.id === 'aleatoire' ? !this.state.aleatoire : target.type === 'number' ? parseInt(target.value, 10) : target.value
     // nom de l'input
     const name = target.name
     // setState du nom de la target avec la valeur
@@ -204,20 +206,26 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
   handleSelectNombre (e) {
-    var value = e.target.value
-    var limite = this.state.limite
-    var afficherNbTp
+    let value = e.target.value
+    let limite = this.state.limite
+    let afficherNbTp
+    let valueSelectTp
     if (value === 'tout') {
       limite = 134
+      valueSelectTp = 'tout'
       afficherNbTp = false
     } else if (value === 'libre') {
       afficherNbTp = true
+      valueSelectTp = 'libre'
     } else {
       limite = parseInt(value, 10)
+      afficherNbTp = false
+      valueSelectTp = limite
     }
     this.setState({
       limite: limite,
-      afficherNbTp: afficherNbTp
+      afficherNbTp: afficherNbTp,
+      valueSelectTp: valueSelectTp
     })
   }
   handleClick (e) {
@@ -299,8 +307,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       html: true
     })
   }
-  handleAffReponse (e) {
-    var value = e.target.checked
+  handleAffReponse () {
+    var value = !this.state.afficherReponse
     this.setState({
       afficherReponse: value
     })
@@ -349,11 +357,45 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
 
   handleSelectionTpOpen () {
     this.setState({ selectionPage: true })
-  };
+  }
 
   handleSelectionTpClose () {
-    // this.shuffleTp()
-    this.setState({ selectionPage: false })
+    let nbTpSelected = 0
+    this.state.tp.forEach((tp) => {
+      tp.afficher? nbTpSelected ++ : null
+    })
+
+    let valueSelectTp
+    let limite
+    let afficherNbTp
+    switch(nbTpSelected) {
+      case 20:
+        limite = 20
+        valueSelectTp = 20
+        afficherNbTp = false
+        break
+      case 40:
+        limite = 40
+        valueSelectTp = 40
+        afficherNbTp = false
+       break
+      case 60:
+        limite = 60
+        valueSelectTp = 60
+        afficherNbTp = false
+        break
+      case this.state.tp.length:
+        limite = 134
+        valueSelectTp = 'tout'
+        afficherNbTp = false
+        break
+      default:
+        limite = nbTpSelected
+        valueSelectTp = 'libre'
+        afficherNbTp = true
+
+    }
+    this.setState({ selectionPage: false, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp  })
     this.shuffleTp()
   };
   handleDrawerToggle () {
@@ -400,6 +442,49 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.setState({uiConfig: uiConfig})
   }
 
+  selectTp(list) {
+    let tp = this.state.tp
+      for (let i in tp) {
+        if (list.indexOf(Number(i)) === -1) {
+
+          tp[i].afficher = false
+        } else {
+          tp[i].afficher = true
+        }
+      }
+      let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
+      let valueSelectTp
+      let limite
+      let afficherNbTp
+      switch(list.length) {
+        case 20:
+          limite = 20
+          valueSelectTp = 20
+          afficherNbTp = false
+          break
+        case 40:
+          limite = 40
+          valueSelectTp = 40
+          afficherNbTp = false
+         break
+        case 60:
+          limite = 60
+          valueSelectTp = 60
+          afficherNbTp = false
+          break
+        case tp.length:
+          limite = 134
+          valueSelectTp = 'tout'
+          afficherNbTp = false
+          break
+        default:
+          limite = list.length
+          valueSelectTp = 'libre'
+          afficherNbTp = true
+      }
+      this.setState({tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
+  }
+
   selectList (id) {
     db
     .collection('users')
@@ -410,23 +495,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
       return listName.filter(list => list.id === id)[0].tps
     })
-    .then( (list) => {
-      let tp = this.state.tp
-      for (let i in tp) {
-        if (list.indexOf(Number(i)) === -1) {
-
-          tp[i].afficher = false
-        } else {
-          tp[i].afficher = true
-        }
-      }
-      let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
-      this.setState({tp: tp, selectAllChbx: selectAllChbx })
-    })
+    .then((list) => this.selectTp(list))
     .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
     .catch((error) => {
       this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
     })
+  }
+
+  setListWithToken (result) {
+    this.selectTp(result)
   }
 
   connexion () {
@@ -562,12 +639,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             nbTrou = {this.state.nbTrou}
                             handleChangeNbTrou = {this.handleChangeNbTrou}
                             handleSelectNombre = {this.handleSelectNombre}
+                            valueSelectTp = {this.state.valueSelectTp}
                             afficherNbTp = {this.state.afficherNbTp}
                             changePage= {this.changePage}
                             advanced = {this.state.advanced}
                             loading = {this.state.loading}
                             user = {this.state.user}
                             selectList = {this.selectList}
+                            setListWithToken={this.setListWithToken}
+                            listSelected = {this.state.listSelected}
                           />
                         )
                         )

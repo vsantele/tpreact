@@ -8,7 +8,7 @@
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-polyfill": "^6.26.0",
-    "firebase": "^4.5.1",
+    "firebase": "^5.3.1",
     "jquery": "^3.2.1",
     "loadable-components": "^2.2.2",
     "minified": "^1.0.1",
