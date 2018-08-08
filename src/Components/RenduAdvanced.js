@@ -72,7 +72,7 @@ export default class RenduAdvanced extends Component {
                         />
                       )
                     } else {
-                      return ''
+                      return null
                     }
                   })
               }

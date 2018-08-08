@@ -9,8 +9,12 @@ import Paper from '@material-ui/core/Paper'
 // eslint-disable-next-line
 import Button from '@material-ui/core/Button'
 // eslint-disable-next-line
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
+/* <div className={classes.margin}>
+      <Typography variant="title">Vous êtes déjà connecter</Typography>
+      <Link to='Profile'><Button variant='raised' color='secondary' >Vers profile</Button></Link>
+    </div> */
 export default class Auth extends Component {
   render () {
     const classes = this.props.classes
@@ -21,10 +25,7 @@ export default class Auth extends Component {
             <Paper style ={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
               {
                 this.props.user !== null
-                  ? <div className={classes.margin}>
-                    <Typography variant="title">Vous êtes déjà connecter</Typography>
-                    <Link to='Profile'><Button variant='raised' color='secondary' >Vers profile</Button></Link>
-                  </div>
+                  ? <Redirect to='/'/>
                   : <div className={classes.margin}>
                     <Typography variant="title">Connexion:</Typography>
                     <Connexion connexion={this.props.connexion}/>

@@ -52,7 +52,7 @@ export default class Rendu extends Component {
                               <div className={classes.gridHeader}>
                                 {
                                   aleatoireQuestion
-                                    ? ''
+                                    ? null
                                     : (
                                       <FormControl>
                                         <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
@@ -95,7 +95,7 @@ export default class Rendu extends Component {
                         return null
                       }
                     })
-                  : ''
+                  : null
               }
             </TableBody>
           </Table>

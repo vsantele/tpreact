@@ -14,10 +14,10 @@ import Input from '@material-ui/core/Input'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link, Redirect } from 'react-router-dom'
 import theme from '../config/theme'
-import { auth, provider, db } from '../firebase/firebase.js'
-import Autosuggest from 'react-autosuggest'
-import match from 'autosuggest-highlight/match'
-import parse from 'autosuggest-highlight/parse'
+import { db } from '../firebase/firebase.js'
+//import Autosuggest from 'react-autosuggest'
+//import match from 'autosuggest-highlight/match'
+//import parse from 'autosuggest-highlight/parse'
 /*eslint-enable */
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8

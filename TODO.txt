@@ -1,20 +1,21 @@
 ﻿URGENT:
-
+    -REMPLACER BIBLIOTHEQUE REQUESTS!!!!!!! TROP GROS BUILD!!! (+300Ko)
 HAUT:
     - Changer adresse en récupérant location et pas "/" 
 MOYEN:
-    - Ajout Hidden Pour petit ecran et moyen ecran pour Option: ajout 3 points
-    - Switch "Tout les TP" ne se décoche pas quand on déselectionne un (ajout bouton intermediate)
+    - Switch "Tout les TP" (ajout bouton intermediate)
     - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
     https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
-    - Proposer redirection mobile si mobile détecter OK MAIS MODIFIER
     - Page profile avec classe, ecole, role, liste
-    - Ajout liste et partage
-    - Ajout role prof
+    - AddList: Verifier si il y a un nom
 BAS:
     - Opti code
     - Bug correction faux, pas compter | comptage correct bon
     - ajout stat
+    - Alert correction: Modifier => utiliser snackbar material-ui
+    - Ameliorer correction => regex pour, par ex, voler
+        - + add verse = verse.replace(" ", "");
+                verse = verse.toLowerCase();
 FAIBLE:
     - Suppression lignes inutiles
     - AfficherReponse = AffReponse
