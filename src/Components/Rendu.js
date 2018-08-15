@@ -14,7 +14,7 @@ import TableBody from '@material-ui/core/TableBody'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Row from './Row'
-/*eslint-enable */
+/* eslint-enable */
 export default class Rendu extends Component {
   render () {
     const classes = this.props.classes
@@ -30,6 +30,7 @@ export default class Rendu extends Component {
     var handleCheck = this.props.handleCheck
     var aleatoireQuestion = this.props.aleatoireQuestion
     var nbAleatoireQuestion = this.props.nbAleatoireQuestion
+    const type = this.props.type
     return (
       <div>
         <Paper className={classes.root}>
@@ -39,16 +40,16 @@ export default class Rendu extends Component {
                 <TableCell>#</TableCell>
                 {
                   nombre.map((nb) =>
-                    <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
+                    <TableCell key={'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
                       <div>
                         <div className={classes.gridRoot}>
                           <Grid container>
                             <Grid item >
                               <div className={classes.gridHeader}>
-                                <Typography variant="title"> {options[nb].label} </Typography>
+                                <Typography variant='title'> {options[nb].label} </Typography>
                               </div>
                             </Grid>
-                            <Grid item>
+                            <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
                               <div className={classes.gridHeader}>
                                 {
                                   aleatoireQuestion
@@ -56,7 +57,7 @@ export default class Rendu extends Component {
                                     : (
                                       <FormControl>
                                         <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                                        <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                                        <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}} />
                                       </FormControl>
                                     )
                                 }
@@ -77,18 +78,20 @@ export default class Rendu extends Component {
                     .map(function (listValue, index) {
                       if (index < limite) {
                         return (
-                          <Row key = {'row' + index}
-                            index = {index}
-                            listValue = {listValue}
-                            colonne = {colonne}
-                            handleReponse = {handleReponse}
-                            afficherReponse = {afficherReponse}
-                            selectionPage = {selectionPage}
-                            tpAfficher = {tpAfficher}
-                            handleCheck = {handleCheck}
-                            aleatoireQuestion = {aleatoireQuestion}
-                            nbAleatoireQuestion = {nbAleatoireQuestion}
-                            classes = {classes}
+                          <Row key={'row' + index}
+                            index={index}
+                            listValue={listValue}
+                            colonne={colonne}
+                            handleReponse={handleReponse}
+                            afficherReponse={afficherReponse}
+                            selectionPage={selectionPage}
+                            tpAfficher={tpAfficher}
+                            handleCheck={handleCheck}
+                            aleatoireQuestion={aleatoireQuestion}
+                            nbAleatoireQuestion={nbAleatoireQuestion}
+                            classes={classes}
+                            type={type}
+                            level={type}
                           />
                         )
                       } else {

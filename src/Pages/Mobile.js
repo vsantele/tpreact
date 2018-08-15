@@ -26,7 +26,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import green from '@material-ui/core/colors/green'
 import red from '@material-ui/core/colors/red'
-/*eslint-enable */
+/* eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 const theme = createMuiTheme({
@@ -343,26 +343,26 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                 numeroCard={this.state.numeroCard}
                 limite={this.state.limite}
                 options={this.state.options}
-                question = {this.state.question}
-                handleCorrect = {this.handleCorrect}
-                handleReponse = {this.handleReponse}
-                estCorrect = {this.state.estCorrect}
-                reponse = {this.state.reponse}
+                question={this.state.question}
+                handleCorrect={this.handleCorrect}
+                handleReponse={this.handleReponse}
+                estCorrect={this.state.estCorrect}
+                reponse={this.state.reponse}
               />
-              <Link className={classes.link} to='/'>Back</Link>
+              <Link className={classes.link} to='/Home'>Back</Link>
             </div>
             <div>
-              <Button variant='fab' color="secondary" aria-label="edit" className={classes.fab} onClick={this.handleModalOpen}>
+              <Button variant='fab' color='secondary' aria-label='edit' className={classes.fab} onClick={this.handleModalOpen}>
                 <Settings />
               </Button>
               <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
+                aria-labelledby='simple-modal-title'
+                aria-describedby='simple-modal-description'
                 open={this.state.openModal}
                 onClose={this.handleModalClose}
               >
                 <div className={classes.paperModal}>
-                  <Typography variant="title" id="modal-title">
+                  <Typography variant='title' id='modal-title'>
                     Options
                   </Typography>
                   <Divider />
@@ -387,17 +387,17 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                             <FormControl>
                               <TextField
                                 error={this.state.limite < 0}
-                                id="limite"
-                                label="limite"
-                                name="limite"
+                                id='limite'
+                                label='limite'
+                                name='limite'
                                 value={this.state.limite}
                                 onChange={this.handleInputChange}
-                                type="number"
+                                type='number'
                                 className={classes.textField}
                                 InputLabelProps={{
                                   shrink: true
                                 }}
-                                margin="dense"
+                                margin='dense'
                                 disabled={!this.state.aleatoire}
                               />
                             </FormControl>
@@ -452,57 +452,57 @@ const Card = function (props) {
           <div className={props.reponse ? props.estCorrect === undefined ? '' : props.estCorrect ? classes.success : classes.danger : ''}>
             <div>
               <Cell
-                numCell = {0}
-                options = {props.options}
-                question = {false}
-                tp = {props.tp}
-                numeroCard = {props.numeroCard}
-                handleReponse = {props.handleReponse}
-                classes = {props.classes}
-                reponse = {props.reponse}
-                typo = 'display1'
+                numCell={0}
+                options={props.options}
+                question={false}
+                tp={props.tp}
+                numeroCard={props.numeroCard}
+                handleReponse={props.handleReponse}
+                classes={props.classes}
+                reponse={props.reponse}
+                typo='display1'
               />
             </div>
-            <Divider className={classes.divider}/>
+            <Divider className={classes.divider} />
             <div>
-              <Grid container justify="center" alignItems="center">
+              <Grid container justify='center' alignItems='center'>
                 <Grid item>
                   <Cell
-                    numCell = {1}
-                    options = {props.options}
-                    question = {false}
-                    tp = {props.tp}
-                    numeroCard = {props.numeroCard}
-                    handleReponse = {props.handleReponse}
-                    classes = {props.classes}
-                    reponse = {props.reponse}
-                    typo = 'display1'
+                    numCell={1}
+                    options={props.options}
+                    question={false}
+                    tp={props.tp}
+                    numeroCard={props.numeroCard}
+                    handleReponse={props.handleReponse}
+                    classes={props.classes}
+                    reponse={props.reponse}
+                    typo='display1'
                   />
                 </Grid>
                 <Grid item>
                   <Cell
-                    numCell = {2}
-                    options = {props.options}
-                    question = {false}
-                    tp = {props.tp}
-                    numeroCard = {props.numeroCard}
-                    handleReponse = {props.handleReponse}
-                    classes = {props.classes}
-                    reponse = {props.reponse}
-                    typo = 'display1'
+                    numCell={2}
+                    options={props.options}
+                    question={false}
+                    tp={props.tp}
+                    numeroCard={props.numeroCard}
+                    handleReponse={props.handleReponse}
+                    classes={props.classes}
+                    reponse={props.reponse}
+                    typo='display1'
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Cell
-                    numCell = {3}
-                    options = {props.options}
-                    question = {false}
-                    tp = {props.tp}
-                    numeroCard = {props.numeroCard}
-                    handleReponse = {props.handleReponse}
-                    classes = {props.classes}
-                    reponse = {props.reponse}
-                    typo = 'display1'
+                    numCell={3}
+                    options={props.options}
+                    question={false}
+                    tp={props.tp}
+                    numeroCard={props.numeroCard}
+                    handleReponse={props.handleReponse}
+                    classes={props.classes}
+                    reponse={props.reponse}
+                    typo='display1'
                   />
                 </Grid>
               </Grid>
@@ -522,7 +522,7 @@ const Card = function (props) {
                   ? (
                     <Grid item xs={1}>
                       <div className={classes.grid} onClick={props.handleCorrect}>
-                        <Button id='correction'><Done/></Button>
+                        <Button id='correction'><Done /></Button>
                       </div>
                     </Grid>
                   )
@@ -530,11 +530,11 @@ const Card = function (props) {
               }
               <Grid item xs={2}>
                 <div className={classes.grid} onClick={props.handleMove}>
-                  <Button size='large' fullWidth id='next'><RightIcon/></Button>
+                  <Button size='large' fullWidth id='next'><RightIcon /></Button>
                 </div>
               </Grid>
             </Grid>
-            <LinearProgress color="secondary" variant="determinate" value={progress} />
+            <LinearProgress color='secondary' variant='determinate' value={progress} />
           </div>
         </div>
       </Paper>
@@ -548,16 +548,16 @@ const Cell = function (props) {
   const numCell = props.numCell
   const typo = props.typo
   return (
-    <Grid container alignItems="center" justify="center" direction="column" spacing={0}>
+    <Grid container alignItems='center' justify='center' direction='column' spacing={0}>
       <Grid item>
-        <Typography align='center' variant="caption" >
+        <Typography align='center' variant='caption' >
           {props.options[numCell].label}
         </Typography>
       </Grid>
       <Grid item>
         {
           props.question
-            ? <input tag='question' id = "question" className="search-input" type="text" placeholder={'Réponse'} value={props.reponse} onChange={props.handleReponse} />
+            ? <input tag='question' id='question' className='search-input' type='text' placeholder={'Réponse'} value={props.reponse} onChange={props.handleReponse} />
             : <Typography align='center' variant={typo} gutterBottom>
               {
                 props.tp[props.numeroCard][props.options[numCell].value]

@@ -1,7 +1,13 @@
 // eslint-disable-next-line
 import React, {Component} from 'react'
 // eslint-disable-next-line
-import {Paper, Table, TableHead, TableRow, TableCell, TableBody, Checkbox} from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import TableBody from '@material-ui/core/TableBody'
+import Checkbox from '@material-ui/core/Checkbox'
 
 export default class SelectionTp extends Component {
   render () {
@@ -19,7 +25,7 @@ export default class SelectionTp extends Component {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell> </TableCell>
+              <TableCell />
               {[0, 1, 2, 3].map(nb => <TableCell key={'STH' + nb}><span style={{fontSize: '18px'}}>{colonne[nb].label}</span></TableCell>)}
             </TableRow>
           </TableHead>
@@ -28,20 +34,20 @@ export default class SelectionTp extends Component {
               tp.map((tp, index) => {
                 return (
                   <TableRow onClick={event => handleCheck(index)} key={'rowSeTp' + tp.id}>
-                    <TableCell scope = 'row'><span style={{fontSize: '18px'}}> {index + 1 }</span></TableCell>
-                    <TableCell key = {'chbk' + tp.id}>
+                    <TableCell scope='row'><span style={{fontSize: '18px'}}> {index + 1 }</span></TableCell>
+                    <TableCell key={'chbk' + tp.id}>
                       <Checkbox
                         checked={tp.afficher}
                         id={'check' + tp.id}
                         tabIndex={-1}
                         disableRipple
-                        classes= {{checked: classes.checked}}
+                        classes={{checked: classes.checked}}
                       />
                     </TableCell>
-                    <TableCell key= {'0C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infNl}</span> </TableCell>
-                    <TableCell key= {'1C' + tp.id}><span style={{fontSize: '18px'}}>{tp.OVT}</span> </TableCell>
-                    <TableCell key= {'2C' + tp.id}><span style={{fontSize: '18px'}}>{tp.PP}</span> </TableCell>
-                    <TableCell key= {'3C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infFr}</span> </TableCell>
+                    <TableCell key={'0C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infNl}</span> </TableCell>
+                    <TableCell key={'1C' + tp.id}><span style={{fontSize: '18px'}}>{tp.OVT}</span> </TableCell>
+                    <TableCell key={'2C' + tp.id}><span style={{fontSize: '18px'}}>{tp.PP}</span> </TableCell>
+                    <TableCell key={'3C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infFr}</span> </TableCell>
                   </TableRow>)
               })
             }

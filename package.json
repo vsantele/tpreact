@@ -48,5 +48,11 @@
     "jshint": "^2.9.5",
     "react-snap": "^1.11.4",
     "source-map-explorer": "^1.5.0"
+  },
+  "standard": {
+    "ignore": [
+      "App.test.js",
+      "registerServiceWorker.js"
+    ]
   }
 }

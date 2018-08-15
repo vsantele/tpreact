@@ -1,13 +1,13 @@
 ﻿URGENT:
-    -REMPLACER BIBLIOTHEQUE REQUESTS!!!!!!! TROP GROS BUILD!!! (+300Ko)
+
 HAUT:
     - Changer adresse en récupérant location et pas "/" 
 MOYEN:
     - Switch "Tout les TP" (ajout bouton intermediate)
     - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
     https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
-    - Page profile avec classe, ecole, role, liste
     - AddList: Verifier si il y a un nom
+    - Terminer params dans url
 BAS:
     - Opti code
     - Bug correction faux, pas compter | comptage correct bon
@@ -16,6 +16,7 @@ BAS:
     - Ameliorer correction => regex pour, par ex, voler
         - + add verse = verse.replace(" ", "");
                 verse = verse.toLowerCase();
+    - Page profile avec classe, ecole, role, liste
 FAIBLE:
     - Suppression lignes inutiles
     - AfficherReponse = AffReponse

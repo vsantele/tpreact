@@ -39,7 +39,7 @@ export default class ButtonAppBar extends Component {
         <AppBar className={classes.appBar}>
           <Toolbar>
             <Link
-              to='/'
+              to='/Bienvenue'
               onClick={() => { document.location.href === 'https://flamboyant-chandrasekhar-71d621.netlify.com/' ? window.scrollTo(0, 0) : window.scrollTo(0, 0) }}
               style={{
                 color: 'white',
@@ -47,17 +47,17 @@ export default class ButtonAppBar extends Component {
               }}
             >
               <Hidden xsDown>
-                <Typography variant="title" color="inherit" className={classes.flex}>
-                  Temps Primitifs en Néérlandais
+                <Typography variant='title' color='inherit' className={classes.flex}>
+                  Les verbes irréguliers en néérlandais
                 </Typography>
               </Hidden>
               <Hidden smUp>
                 <Typography variant='title' color='inherit' className={classes.flex}>
-                  Tp en Néérlandais
+                  Verbes irréguliers en néérlandais
                 </Typography>
               </Hidden>
               {process.env.NODE_ENV === 'test'
-                ? (<Typography variant="caption" color="inherit" className={classes.flex}>
+                ? (<Typography variant='caption' color='inherit' className={classes.flex}>
                   {this.props.page === '/Mobile' ? 'Smartphone' : 'Ordinateur'}
                 </Typography>)
                 : null}
@@ -68,9 +68,9 @@ export default class ButtonAppBar extends Component {
                   <div>
                     <IconButton
                       aria-owns={this.props.open ? 'menu-appbar' : null}
-                      aria-haspopup="true"
+                      aria-haspopup='true'
                       onClick={this.props.handleMenu}
-                      color="inherit"
+                      color='inherit'
                     >
                       {
                         <Avatar className={classes.avatar} alt={this.props.user.displayName || this.props.user.email} src={this.props.user.photoURL} /> ||
@@ -78,7 +78,7 @@ export default class ButtonAppBar extends Component {
                       }
                     </IconButton>
                     <Menu
-                      id="menu-appbar"
+                      id='menu-appbar'
                       anchorEl={this.props.anchorEl}
                       anchorOrigin={{
                         vertical: 'bottom',
@@ -101,7 +101,7 @@ export default class ButtonAppBar extends Component {
                   </div>
 
                 )
-                : <Link to='/Auth'><Button className={classes.button} variant="raised" color='secondary' onClick={this.props.handleClose}>Connection</Button></Link>
+                : <Link to='/Auth'><Button className={classes.button} variant='raised' color='secondary' onClick={this.props.handleClose}>Connection</Button></Link>
               }
             </div>
 

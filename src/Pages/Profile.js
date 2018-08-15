@@ -18,7 +18,7 @@ import { db } from '../firebase/firebase.js'
 //import Autosuggest from 'react-autosuggest'
 //import match from 'autosuggest-highlight/match'
 //import parse from 'autosuggest-highlight/parse'
-/*eslint-enable */
+/* eslint-enable */
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -73,8 +73,8 @@ export default class Profile extends Component {
             WORK IN PROGRESS...
             {
               this.props.user
-                ? <div><Connected user = {user} classes = {classes} /> {/* <EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> */} </div>
-                : <NoConnected classes = {classes} />
+                ? <div><Connected user={user} classes={classes} /> {/* <EditProfil names={names} name= {this.state.name} ecoles = {this.state.ecoles} ecolesSelected = {this.state.ecolesSelected} classes = {classes} user = {user} handleChange = {this.handleChange}/> */} </div>
+                : <NoConnected classes={classes} />
             }
           </Paper>
         </div>
@@ -105,7 +105,7 @@ function Connected (props) {
         <Typography variant='title'>Infos:</Typography>
         <div>
           <Typography variant='body2'>Nom: {user.displayName} </Typography>
-          <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.photoURL}/></span></Typography></div>
+          <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.photoURL} /></span></Typography></div>
           {/* <Typography variant='body2'>Email: {user.email}</Typography>
           <Typography variant='body2'>Role: {user.role}</Typography>
           <Typography variant='body2'>Ecole: {user.ecoles}</Typography>
@@ -124,7 +124,7 @@ function EditProfil (props) {
   return (
     <div className={classes.margin}>
       Inutile pour le moment ^^
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete='off'>
         <TextField
           id='role1'
           label='role1'
@@ -134,12 +134,12 @@ function EditProfil (props) {
           margin='normal'
         />
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="ecoles">Ecoles</InputLabel>
+          <InputLabel htmlFor='ecoles'>Ecoles</InputLabel>
           <Select
             multiple
             value={props.ecolesSelected}
             onChange={(e) => props.handleChange(e, 'ecoles')}
-            input={<Input id="select-multiple-chip" />}
+            input={<Input id='select-multiple-chip' />}
             renderValue={selected => (
               <div className={classes.chips}>
                 {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}

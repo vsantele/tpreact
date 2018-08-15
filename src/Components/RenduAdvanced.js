@@ -29,7 +29,7 @@ export default class RenduAdvanced extends Component {
                 <TableCell>#</TableCell>
                 {
                   nombre.map((nb) =>
-                    <TableCell key= {'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
+                    <TableCell key={'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
                       <div>
                         <FormControl className={classes.formControl}>
                           <InputLabel htmlFor={nb}>Colonne {nb + 1}</InputLabel>
@@ -43,7 +43,7 @@ export default class RenduAdvanced extends Component {
                         </FormControl>
                         <FormControl>
                           <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                          <SwitchButton inputProps={{ id: 'col' + nb }} onChange={this.props.handleQuestion} checked={this.props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}}/>
+                          <SwitchButton inputProps={{ id: 'col' + nb }} onChange={this.props.handleQuestion} checked={this.props.colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}} />
                         </FormControl>
                       </div>
                     </TableCell>
@@ -57,18 +57,18 @@ export default class RenduAdvanced extends Component {
                   .map(function (listValue, index) {
                     if (index < limite) {
                       return (
-                        <Row key = {'row' + index}
-                          index = {index}
-                          listValue = {listValue}
-                          colonne = {colonne}
-                          handleReponse = {handleReponse}
-                          afficherReponse = {afficherReponse}
-                          selectionPage = {selectionPage}
-                          tpAfficher = {tpAfficher}
-                          handleCheck = {handleCheck}
-                          aleatoireQuestion = {aleatoireQuestion}
-                          nbAleatoireQuestion = {nbAleatoireQuestion}
-                          classes = {classes}
+                        <Row key={'row' + index}
+                          index={index}
+                          listValue={listValue}
+                          colonne={colonne}
+                          handleReponse={handleReponse}
+                          afficherReponse={afficherReponse}
+                          selectionPage={selectionPage}
+                          tpAfficher={tpAfficher}
+                          handleCheck={handleCheck}
+                          aleatoireQuestion={aleatoireQuestion}
+                          nbAleatoireQuestion={nbAleatoireQuestion}
+                          classes={classes}
                         />
                       )
                     } else {

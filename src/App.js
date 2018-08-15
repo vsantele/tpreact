@@ -28,6 +28,8 @@ import isMobile from './scripts/isMobile'
 import Bienvenue from './Pages/Bienvenue'
 import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
+import Selection from './Pages/Selection'
+import Liste from './Pages/Liste'
 /*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
@@ -76,17 +78,16 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
       colonne: [
-        {value: 'infNl', label: 'Infinitif Nl', question: true, afficher: true},
+        {value: 'infNl', label: 'Infinitif Nl', question: false, afficher: true},
         {value: 'OVT', label: 'OVT', question: false, afficher: true},
         {value: 'PP', label: 'Participe Passé', question: false, afficher: true},
         {value: 'infFr', label: 'Infinitif FR', question: false, afficher: true}
       ], // ordre des colonnes
-      aleatoire: true, // ordre aleatoire ou non
+      aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
       afficherReponse: false,
       anchorEl: null,
-      selectedIndex: [0, 1, 2, 3, 4],
       selectionPage: false,
       selectAllChbx: true,
       mobileOpen: false,
@@ -95,10 +96,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       afficherNbTp: false,
       user: null,
       signIn: false,
-      page: '/',
+      page: '/Home',
       advanced: false,
       mobile: false,
-      test: 'false',
       msgSnackbar:'Erreur texte Snackbar...',
       valueSelectTp: 20,
       listSelected: false
@@ -129,6 +129,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.connexion = this.connexion.bind(this)
     this.setListWithToken = this.setListWithToken.bind(this)
     this.selectTp = this.selectTp.bind(this)
+    this.addList = this.addList.bind(this)
+    this.allList = this.allList.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -137,8 +139,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       tpRandom: tpRandomized // liste des tps dans un ordre aléatoire
     })
   }
-  shuffleQuestion () {
-    const nbTrou = this.state.nbTrou
+  shuffleQuestion (nbTrou) {
     function shuffleRow () {
       var trouRow = []
       var list = [0, 1, 2, 3]
@@ -232,7 +233,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     // si on clic sur random, ça random
     if (e.target.id === 'shuffle') {
       this.shuffleTp()
-      this.shuffleQuestion()
     } else if (e.target.id === 'correction') {
       var tp = this.state.aleatoire ? this.state.tpRandom : this.state.tp
       var reponseMauvais = 0
@@ -355,6 +355,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
 
+  allList () {
+    let tp = this.state.tp
+    for (let i in tp) {
+      tp[i].afficher = true
+    }
+    this.setState({tp: tp, selectAllChbx: true, limite: 134, afficherNbTp: false, valueSelectTp: 'tout'})
+  }
+
   handleSelectionTpOpen () {
     this.setState({ selectionPage: true })
   }
@@ -410,7 +418,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   handleChangeNbTrou (e) {
     var value = e.target.value
-    this.setState({ nbTrou: value }, () => this.shuffleQuestion())
+    this.setState({ nbTrou: value }, () => this.shuffleQuestion(value))
   }
   handleMenu (event) {
     this.setState({ anchorEl: event.currentTarget })
@@ -446,7 +454,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     let tp = this.state.tp
       for (let i in tp) {
         if (list.indexOf(Number(i)) === -1) {
-
           tp[i].afficher = false
         } else {
           tp[i].afficher = true
@@ -503,7 +510,55 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
 
   setListWithToken (result) {
-    this.selectTp(result)
+    this.selectTp (result)
+  }
+
+  addList (token) {
+    let msgSnackbar = ''
+    // eslint-disable-next-line
+    let header = new Headers()
+    header.append('Content-Type', 'application/json')
+    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/addListWithCode?token=' + token
+    if (token.length !== 5) {
+      console.error('Erreur, taille token incorrect')
+      msgSnackbar = 'Erreur, taille token incorrect'
+      this.setState({msgSnackbar: msgSnackbar, openSnackbar: true})
+    } else {
+      // eslint-disable-next-line
+      const req = new XMLHttpRequest()
+      req.open('POST', url)
+      // req.responseType = 'json'
+      req.onload = () => {
+        console.log(req.response)
+        const body = req.response
+        if (req.status === 200) {
+          console.log('réponse recue: %s', req.responseType)
+        } else {
+          console.log('Status de la réponse %d (%s)', req.status, req.statusText)
+        }
+        try {
+          if (req.status === 500) {
+            throw new Error('Erreur serveur, ' + body)
+          }
+          let result = JSON.parse(body)
+          let list = {
+            name: result.name,
+            tps: result.tps
+          }
+          console.log(result)
+          this.setListWithToken(result.tps)
+          msgSnackbar = 'List importé avec succès'
+          this.setState({msgSnackbar: msgSnackbar})
+          return list
+        } catch (e) {
+          msgSnackbar = e.message
+          console.error('Erreur request: ', e.message)
+          this.setState({msgSnackbar: msgSnackbar, openSnackbar: true})
+          return e
+        }
+      }
+      req.send()
+    }
   }
 
   connexion () {
@@ -545,8 +600,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         this.shuffleTp(this.state.tp)
       })
       .then(() => this.setState({loading: false}))
-    
-    //this.shuffleTp(this.state.tp)
     this.shuffleQuestion()
     this.setState({
       page: window.location.pathname
@@ -558,6 +611,23 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         this.setState({user: user})
       }
     })
+    // function $_GET(param) {
+    //   var vars = {}
+    //   //eslint-disable-next-line
+    //   window.location.href.replace( location.hash, '' ).replace( 
+    //     /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+    //     function( m, key, value ) { // callback
+    //       vars[key] = value !== undefined ? value : ''
+    //     }
+    //   )
+    //   if ( param ) {
+    //     return vars[param] ? vars[param] : null
+    //   }
+    //   return vars
+    // }
+    // const token = decodeURI($_GET("token"))
+    // console.log(token)
+    // if (token) this.addList(token)
   }
 
   componentWillUnmount () {
@@ -585,10 +655,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           <MuiThemeProvider theme={theme}>
             <div>
               <Helmet
-                title="Questionnaire Tp Néérlandais"
+                title="Tp Néérlandais"
                 meta={[
-                  { name: 'description', content: 'Questionnaire Tp Néérlandais' },
-                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison' }
+                  { name: 'description', content: 'Verbes irréguliers néérlandais' },
+                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier' }
                 ]}
               />
               <ButtonAppBar
@@ -603,13 +673,33 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
               />
               <div>
                 <Switch>
+                  <Redirect exact from='/' to='/Bienvenue' />
+                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
+                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
+                  <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
+                  <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
+                  <Route extact path='/Selection' render = {
+                    () => <Selection
+                      classes = {classes}  
+                      handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                      handleSelectionTpClose = {this.handleSelectionTpClose}
+                      selectAll = {this.selectAll}
+                      selectAllChbx = {this.state.selectAllChbx}
+                      selectionPage = {this.state.selectionPage}
+                      tp = {this.state.tp}
+                      user = {this.state.user}
+                      setListWithToken={this.setListWithToken}
+                      colonne = {this.state.colonne}
+                      loading={this.state.loading}
+                      handleCheck = {this.handleCheck}
+                     />}
+                  />
+                  <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} allList = {this.allList} link = {link}/>}/>
                   <Route
-                    exact
-                    path='/'
+                    path='/Home' // path='/:type/:token
                     render={
-                      () =>
-                        (isMobile ? (<Redirect to="/Mobile"/>) : (
-                          <Home
+                      (link) =>
+                        (<Home
                             classes = {classes}
                             handleInputChange = {this.handleInputChange}
                             handleClick = {this.handleClick}
@@ -648,15 +738,12 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             selectList = {this.selectList}
                             setListWithToken={this.setListWithToken}
                             listSelected = {this.state.listSelected}
+                            allList = {this.allList}
+                            shuffleQuestion={this.shuffleQuestion}
+                            link = {link}
                           />
                         )
-                        )
                     }/>
-                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                  <Route exact path='/Mobile' component={Mobile} />
-                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} uiConfig = {this.state.uiConfig} user = {this.state.user} connexion={this.connexion} /> } />
-                  <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} />} />
-                  <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 </Switch>
                 <Snackbar
                   anchorOrigin={{
