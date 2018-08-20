@@ -6,7 +6,7 @@ import Shuffle from 'shuffle-array'
 import 'react-select/dist/react-select.css'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
-import Alert from 'react-s-alert'
+// import Alert from 'react-s-alert'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -24,7 +24,7 @@ import Auth from './Components/Auth'
 import styles from './config/styles'
 import theme from './config/theme'
 import options from './config/options'
-import isMobile from './scripts/isMobile'
+// import isMobile from './scripts/isMobile'
 import Bienvenue from './Pages/Bienvenue'
 import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
@@ -86,7 +86,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
-      afficherReponse: false,
       anchorEl: null,
       selectionPage: false,
       selectAllChbx: true,
@@ -101,7 +100,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       mobile: false,
       msgSnackbar:'Erreur texte Snackbar...',
       valueSelectTp: 20,
-      listSelected: false
+      listSelected: false,
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -109,7 +108,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleQuestion = this.handleQuestion.bind(this)
     this.handleReponse = this.handleReponse.bind(this)
     this.shuffleTp = this.shuffleTp.bind(this)
-    this.handleAffReponse = this.handleAffReponse.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
     this.handleSelectionTpOpen = this.handleSelectionTpOpen.bind(this)
     this.handleSelectionTpClose = this.handleSelectionTpClose.bind(this)
@@ -131,6 +129,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.selectTp = this.selectTp.bind(this)
     this.addList = this.addList.bind(this)
     this.allList = this.allList.bind(this)
+    this.resetTp = this.resetTp.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -231,39 +230,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   handleClick (e) {
     // si on clic sur random, ça random
-    if (e.target.id === 'shuffle') {
       this.shuffleTp()
-    } else if (e.target.id === 'correction') {
-      var tp = this.state.aleatoire ? this.state.tpRandom : this.state.tp
-      var reponseMauvais = 0
-      var reponseVide = 0
-      var reponseBon = 0
-      var reponseTotal = 0
-      var colonne = this.state.colonne
-      var correct = (i) => colonne[i].value
-      for (var i = 0; i < this.state.limite; i++) {
-        for (var j = 0; j < 4; j++) {
-          if (colonne[j].question) {
-            if (tp[i]['correct'][correct(j)] === false) {
-              reponseMauvais++
-            } else if (tp[i]['correct'][correct(j)] === 'neutre') {
-              reponseVide++
-            } else if (tp[i]['correct'][correct(j)] === true) {
-              reponseBon++
             }
-            reponseTotal++
-          }
-        }
-      }
-      var ratio = reponseBon / reponseTotal
-      var type = ratio >= 0.75 ? 'success' : ratio >= 0.5 ? 'warning' : 'error'
-      var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio}
-      this.setState({
-        correction: correction
-      })
-      this.showAlert(type, ratio, reponseTotal, reponseVide, reponseBon, reponseMauvais)
-    }
-  }
   handleQuestion (e) {
     // function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
     function setValue (colonne, value, previousColonne) {
@@ -279,6 +247,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       [name]: value
     })
   }
+
   handleReponse (correct, index, category) {
     let previousState
     let tpList
@@ -295,24 +264,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
 
-  showAlert (type, ratio, total, vide, bon, mauvais) {
-    function precisionRound (number, precision) {
-      var factor = Math.pow(10, precision)
-      return Math.round(number * factor) / factor
-    }
-    Alert[type](`Tu as eu ${precisionRound(ratio * 100, 2)}% <ul><li>Total: ${total}</li> <li>Bon: ${bon}</li> <li>Mauvais: ${mauvais}</li> <li>Vide: ${vide}</li></ul>`, {
-      position: 'bottom-right',
-      effect: 'slide',
-      timeout: 7500,
-      html: true
-    })
-  }
-  handleAffReponse () {
-    var value = !this.state.afficherReponse
-    this.setState({
-      afficherReponse: value
-    })
-  }
   handleCheck (value) {
     let tp = this.state.tp
     tp[value].afficher = !tp[value].afficher
@@ -513,6 +464,20 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.selectTp (result)
   }
 
+  resetTp () {
+    console.log('resetTp')
+    let tp = this.state.tp
+    let colonne = this.state.colonne
+    tp.map(tp => {
+      for (let i = 0; i < 4; i++) {
+        let nomCol = colonne[i].value
+        tp['correct'][nomCol] = 'neutre'
+      }
+    })
+    this.setState({tp: tp})
+    this.shuffleTp()
+  }
+
   addList (token) {
     let msgSnackbar = ''
     // eslint-disable-next-line
@@ -704,7 +669,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             handleInputChange = {this.handleInputChange}
                             handleClick = {this.handleClick}
                             handleSelect = {this.handleSelect}
-                            handleAffReponse = {this.handleAffReponse}
                             handleSelectionTpOpen = {this.handleSelectionTpOpen}
                             handleSelectionTpClose = {this.handleSelectionTpClose}
                             handleQuestion = {this.handleQuestion}
@@ -715,7 +679,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             selectAllChbx = {this.state.selectAllChbx}
                             selectionPage = {this.state.selectionPage}
                             aleatoire = {this.state.aleatoire}
-                            afficherReponse = {this.state.afficherReponse}
                             limite = {this.state.limite}
                             tpLength = {this.state.tp.length}
                             colonne = {this.state.colonne}
@@ -741,6 +704,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                             allList = {this.allList}
                             shuffleQuestion={this.shuffleQuestion}
                             link = {link}
+                            resetTp = {this.resetTp}
                           />
                         )
                     }/>
@@ -770,14 +734,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   ]}
                 />
               </div>
-              {/* <button onClick={() => {theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: {
-      main: '#f44336',
-    },
-  },
-})}}> test createMuiTheme </button>*/}
             </div>
           </MuiThemeProvider>
         </div>

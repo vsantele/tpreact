@@ -5,20 +5,93 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import Alert from 'react-s-alert'
 import Options from '../Components/Options'
 import Tableau from '../Components/Tableau'
+import theme from '../config/theme'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
+import ErrorIcon from '@material-ui/icons/Error'
+import WarningIcon from '@material-ui/icons/Warning'
 /* eslint-enable */
 export default class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      advanced: false
+      advanced: false,
+      correction: {},
+      affCorSnack: false,
+      affCor: false
     }
     this.handleAdvanced = this.handleAdvanced.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleAffReponse = this.handleAffReponse.bind(this)
   }
 
   handleAdvanced () {
     var oldAvanced = this.state.advanced
     this.setState({advanced: !oldAvanced})
   }
+
+  handleClick () {
+    var tp = this.props.aleatoire ? this.props.tpRandom : this.props.tp
+    var reponseMauvais = 0
+    var reponseVide = 0
+    var reponseBon = 0
+    var reponseTotal = 0
+    var colonne = this.props.colonne
+    var correct = (i) => colonne[i].value
+    if (this.state.type === 'etude') {
+      console.log('etude')
+      for (let i = 0; i < this.props.limite; i++) {
+        for (var j = 0; j < 4; j++) {
+          if (colonne[j].question) {
+            if (tp[i]['correct'][correct(j)] === false) {
+              reponseMauvais++
+            } else if (tp[i]['correct'][correct(j)] === 'neutre') {
+              reponseVide++
+            } else if (tp[i]['correct'][correct(j)] === true) {
+              reponseBon++
+            }
+            reponseTotal++
+          }
+        }
+      }
+    } else if (this.state.type === 'test') {
+      console.log('test')
+      for (let i = 0; i < this.props.limite; i++) {
+        this.props.nbAleatoireQuestion[i].forEach((numCol) => {
+          if (numCol !== -1) {
+            console.log('numCol', correct(numCol))
+            if (tp[i]['correct'][correct(numCol)] === false) {
+              reponseMauvais++
+            } else if (tp[i]['correct'][correct(numCol)] === 'neutre') {
+              reponseVide++
+            } else if (tp[i]['correct'][correct(numCol)] === true) {
+              reponseBon++
+            }
+            reponseTotal++
+          }
+        })
+      }
+    }
+    var ratio = reponseBon / reponseTotal
+    var type = ratio >= 0.75 ? 'success' : ratio >= 0.5 ? 'warning' : 'error'
+    var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio, type: type}
+    this.setState({
+      correction: correction,
+      affCorSnack: true
+    })
+  }
+
+  handleAffReponse () {
+    var value = !this.state.affCor
+    this.setState({
+      affCor: value
+    })
+  }
+
   componentWillMount () {
     // const paramsType = this.props.link.match.params.type
     // const paramsToken = this.props.link.match.params.token
@@ -33,6 +106,8 @@ export default class Home extends Component {
         this.props.shuffleQuestion(level)
         break
     }
+    this.props.resetTp()
+    this.setState({type: type})
     // if (paramsType === 'All') {
     //   this.props.allList()
     //   this.setState({isPageExist: true})
@@ -58,13 +133,12 @@ export default class Home extends Component {
       <div className={classes.appFrame}>
         <main className={classes.content}>
           <Grid container direction='column' justify='flex-start' alignItems='center'>
-            <Grid item xs={12}>
+            <Grid item>
               <Options
                 aleatoire={this.props.aleatoire}
                 handleInputChange={this.props.handleInputChange}
                 handleClick={this.props.handleClick}
                 handleSelect={this.props.handleSelect}
-                handleAffReponse={this.props.handleAffReponse}
                 limite={this.props.limite}
                 tpLength={this.props.tp.length}
                 handleSelectionTpOpen={this.props.handleSelectionTpOpen}
@@ -92,8 +166,9 @@ export default class Home extends Component {
                 selectList={this.props.selectList}
                 setListWithToken={this.props.setListWithToken}
                 listSelected={this.props.listSelected}
-                type={type}
+                type={this.state.type}
                 level={level}
+                bottom={false}
               />
             </Grid>
             {
@@ -108,27 +183,61 @@ export default class Home extends Component {
                     colonne={this.props.colonne}
                     aleatoire={this.props.aleatoire}
                     limite={this.props.limite}
-                    handleReponse={this.props.handleReponse}
-                    afficherReponse={this.props.afficherReponse}
                     selectionPage={this.props.selectionPage}
                     handleCheck={this.props.handleCheck}
+                    handleReponse={this.props.handleReponse}
                     selectAllChbx={this.props.selectAllChbx}
                     handleSelectionTpClose={this.props.handleSelectionTpClose}
                     selectAll={this.props.selectAll}
                     aleatoireQuestion={this.props.aleatoireQuestion}
                     nbAleatoireQuestion={this.props.nbAleatoireQuestion}
                     advanced={this.state.advanced}
-                    type={type}
+                    affCor={this.state.affCor}
+                    type={this.state.type}
                     level={level}
                     classes={classes}
                   />
                 </Grid>
+
                 : <div style={{width: `100%`}}><LinearProgress color='primary' variant='query' /></div>
             }
+            <Grid item >
+              <Options bottom = {true} type={type} handleAffReponse = {this.handleAffReponse} handleClick={this.handleClick} colonne={this.props.colonne} classes = {classes}/>
+            </Grid>
             <br />
           </Grid>
         </main>
-        <Alert stack={{limit: 3}} position='bottom-right' />
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left'
+          }}
+          open={this.state.affCorSnack}
+          autoHideDuration={6000}
+          onClose={() => this.setState({affCorSnack: false})}
+        >
+          <SnackbarContent
+            className={this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? classes.error : classes.warning : classes.success}
+            message={
+              <div id='reponse'>
+                {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{marginRight: theme.spacing.unit, fontSize: '20'}} /> : <WarningIcon style={{marginRight: theme.spacing.unit}} /> : <CheckCircleIcon style={{marginRight: theme.spacing.unit}}/>}
+                        Vous avez eu {this.state.correction.ratio * 100 } / 100
+              </div>
+            }
+            onClose={() => this.setState({affCorSnack: false})}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                style={{marginRight: theme.spacing.unit}}
+                onClick={() => this.setState({affCorSnack: false})}
+              >
+                <CloseIcon />
+              </IconButton>
+            ]}
+          />
+        </Snackbar>
       </div>
     )
   }

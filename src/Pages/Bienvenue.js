@@ -18,6 +18,10 @@ import Dialog from '@material-ui/core/Dialog'
 import {db} from '../firebase/firebase'
 import Progress from '@material-ui/core/LinearProgress'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
+import ButtonBase from '@material-ui/core/ButtonBase'
+import cerveauVelo from '../Images/cerveauVelo.png'
+import cerveauBoxe from '../Images/cerveauBoxe.png'
+import VerIrrNdls from '../Images/Les verbes irréguliers Néerlandais.png'
 /*esling-enable*/
 
 export default withMobileDialog()(class Bienvenue extends Component {
@@ -36,6 +40,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
     this.closeListAlert= this.closeListAlert.bind(this)
     this.getList = this.getList.bind(this)
     this.redirectList = this.redirectList.bind(this)
+    this.clickMesList = this.clickMesList.bind(this)
   }
 
   showList () {
@@ -68,9 +73,18 @@ export default withMobileDialog()(class Bienvenue extends Component {
       })
   }
 
-  redirectList(tps) {
+  redirectList (tps) {
     this.props.selectTp(tps)
     this.setState({redirectListe: true})
+  }
+
+  clickMesList () {
+    if (this.props.user !== null) {
+      this.getList()  
+      this.setState({openListTp: true, loadingGetList: true})
+    } else {
+      this.setState({openListTp: true})
+    }
   }
 
   render () {
@@ -79,10 +93,39 @@ export default withMobileDialog()(class Bienvenue extends Component {
     return (
       <div className={classes.affFrame}>
         <div className={classes.content}>
+        <Grid container spacing={40} direction='column' justify='center' alignItems='center'>
+            <Grid item>
+              <img src={VerIrrNdls} />
+            </Grid>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <Grid container spacing={24} direction="row" justify="center" alignItems="baseline" >
+            <Grid item container spacing={40} direction="row" justify="center" alignItems="baseline" >
               <Grid item>
-                <Button variant='contained' size='large' color='primary' onClick={this.showList}>Voir les listes</Button>
+                <ButtonBase
+                  focusRipple
+                  className={classes.image}
+                  focusVisibleClassName={classes.focusVisible}
+                  style={{width: '250px', 'height': '250px'}}
+                  onClick={this.showList}
+                >
+                  <span
+                    className={classes.imageSrc}
+                    // src={cerveauCourse}
+                    style={{
+                      backgroundImage: `url(${cerveauVelo})`
+                    }}
+                  />
+                  <span className={classes.imageButton}>
+                    <Typography
+                      component="span"
+                      variant="button"
+                      color="inherit"
+                      className={classes.imageTitle}
+                    >
+                      voir les listes
+                      <span className={classes.imageMarked} />
+                    </Typography>
+                  </span>
+                </ButtonBase>
                 <Collapse in={this.state.showList} >
                   <MenuList >
                     <Link to={{pathname:'/Liste', state:{all: true}}}>
@@ -90,19 +133,40 @@ export default withMobileDialog()(class Bienvenue extends Component {
                         Liste complète
                       </MenuItem>
                     </Link>
-                    <MenuItem onClick={() =>{
-                      this.getList()  
-                      this.setState({openListTp: true, loadingGetList: true})
-                      }}
-                    >
+                    <MenuItem onClick={this.clickMesList}>
                       Mes listes
                     </MenuItem>
                   </MenuList>
-
                 </Collapse>
               </Grid>
               <Grid item>
-                <Button variant='contained' size='large' color='primary' onClick={this.showCreate}>Gérer liste</Button>
+                <ButtonBase
+                  focusRipple
+                  className={classes.image}
+                  focusVisibleClassName={classes.focusVisible}
+                  style={{width: '250px', 'height': '250px'}}
+                  onClick={this.showCreate}
+                >
+                  <span
+                    className={classes.imageSrc}
+                    // src={cerveauCourse}
+                    style={{
+                      backgroundImage: `url(${cerveauBoxe})`
+                    }}
+                  />
+                  
+                  <span className={classes.imageButton}>
+                    <Typography
+                      component="span"
+                      variant="button"
+                      color="inherit"
+                      className={classes.imageTitle}
+                    >
+                      gérer les listes
+                      <span className={classes.imageMarked} />
+                    </Typography>
+                  </span>
+                </ButtonBase>
                 <Collapse in={this.state.showCreate}>
                   <MenuList>
                     <Link to='/Selection'>
@@ -125,6 +189,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
             <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes}/>
             <List open={this.state.openListTp} loading={this.state.loadingGetList} listName={this.state.listName} classes = {classes} selectList={this.redirectList} user={this.props.user} fullScreen={this.props.fullScreen} getList={this.getList} closeListAlert={this.closeListAlert}/>
           </div>
+          </Grid>
         </div>
       </div>
     )
@@ -132,17 +197,33 @@ export default withMobileDialog()(class Bienvenue extends Component {
 })
 
 function List (props) {
-  return (
-    <Dialog open={props.open} fullScreen={props.fullScreen} onClose={props.closeListAlert} onBackdropClick={props.closeListAlert} scroll='body' maxWidth='md' >
-      <DialogTitle>Listes de temps primitifs enregistrées</DialogTitle>
-      <DialogContent>
-        <ShowListTp loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user} />
-      </DialogContent>
-      <DialogActions>
-      <Button onClick={props.closeListAlert} color='primary' autoFocus>
-        Fermer
-      </Button>
-      </DialogActions>
-    </Dialog>
-  )
+  if (props.user !== null) {
+    return (
+      <Dialog open={props.open} fullScreen={props.fullScreen} onClose={props.closeListAlert} onBackdropClick={props.closeListAlert} scroll='body' maxWidth='md' >
+        <DialogTitle>Listes de temps primitifs enregistrées</DialogTitle>
+        <DialogContent>
+          <ShowListTp loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user} />
+        </DialogContent>
+        <DialogActions>
+        <Button onClick={props.closeListAlert} color='primary' autoFocus>
+          Fermer
+        </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  } else {
+    return(
+      <Dialog open={props.open} fullScreen={props.fullScreen} onClose={props.closeListAlert} onBackdropClick={props.closeListAlert} scroll='body' maxWidth='md' >
+        <DialogTitle>Listes de temps primitifs enregistrées</DialogTitle>
+        <DialogContent>
+          Vous devez être connecté pour accéder à vos listes.
+        </DialogContent>
+        <DialogActions>
+        <Button onClick={props.closeListAlert} color='primary' autoFocus>
+          Fermer
+        </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
 }

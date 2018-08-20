@@ -18,13 +18,15 @@ import withMobileDialog from '@material-ui/core/withMobileDialog'
 import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
+import {Redirect} from 'react-router-dom'
 
 class AddAlert extends Component {
   constructor (props) {
     super(props)
     this.state = {
       tokenAdd:'',
-      toSave:false
+      toSave:false,
+      redirect: false
     }
     this.addList = this.addList.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -89,7 +91,7 @@ class AddAlert extends Component {
                 throw new Error('Erreur save, ' + e)
               })
           }
-          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false})
+          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true})
           this.props.closeAddAlert()
           return list
         } catch (e) {
@@ -111,6 +113,10 @@ class AddAlert extends Component {
     const classes = this.props.classes
     return (
       <div>
+      {this.state.redirect
+        ? <Redirect to={{pathname:'/Liste', state:{}}} />
+        : null
+      }
       <Dialog
         fullScreen={this.props.fullScreen}
         open={this.props.open}

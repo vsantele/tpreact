@@ -2,6 +2,7 @@
 import theme from './theme'
 import green from '@material-ui/core/colors/green'
 import red from '@material-ui/core/colors/red'
+import amber from '@material-ui/core/colors/amber'
 
 export default theme => ({
   root: {
@@ -14,16 +15,9 @@ export default theme => ({
   table: {
     minWidth: 150
   },
-  // container: {
-  //   display: 'flex',
-  //   flexWrap: 'wrap'
-  // },
   formControl: {
     minWidth: 100
   },
-  // selectEmpty: {
-  //   marginTop: theme.spacing.unit * 2
-  // },
   button: {
     margin: theme.spacing.unit
   },
@@ -37,19 +31,14 @@ export default theme => ({
   flex: {
     flex: 1
   },
-  // menuButton: {
-  //   marginLeft: -12,
-  //   marginRight: 20
-  // },
-  // control: {
-  //   padding: theme.spacing.unit * 2
-  // },
   content: {
     backgroundColor: theme.palette.background.default,
     width: `100%`,
     padding: theme.spacing.unit * 3,
     height: 'calc(100% - 56px)',
     marginTop: 56,
+    marginRight: 'auto',
+    marginLeft: 'auto',
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
       marginTop: 64
@@ -93,7 +82,13 @@ export default theme => ({
     color: theme.palette.secondary.main
   },
   success: {
-    backgroundColor: green[500]
+    backgroundColor: green[600]
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark
+  },
+  warning: {
+    backgroundColor: amber[700]
   },
   danger: {
     backgroundColor: red[500]
@@ -146,30 +141,73 @@ export default theme => ({
   },
   iconSmall: {
     fontSize: 20
+  },
+  image: {
+    position: 'relative',
+    height: 200,
+    [theme.breakpoints.down('xs')]: {
+      width: '100% !important', // Overrides inline-style
+      height: 100
+    },
+    '&:hover, &$focusVisible': {
+      zIndex: 1,
+      '& $imageBackdrop': {
+        opacity: 0.15
+      },
+      '& $imageMarked': {
+        opacity: 0
+      },
+      '& $imageTitle': {
+        border: '4px solid currentColor'
+      }
+    }
+  },
+  focusVisible: {},
+  imageButton: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#2196F3'
+  },
+  imageSrc: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 40%'
+  },
+  imageBackdrop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.common.black,
+    opacity: 0.4,
+    transition: theme.transitions.create('opacity')
+  },
+  imageTitle: {
+    position: 'relative',
+    backgroundColor: `rgba(255,255,255,0.7)`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme.spacing.unit + 6}px`
+  },
+  imageMarked: {
+    height: 3,
+    width: 18,
+    backgroundColor: '#2196F3',
+    position: 'absolute',
+    bottom: -2,
+    left: 'calc(50% - 9px)',
+    transition: theme.transitions.create('opacity')
+  },
+  textInput: {
+    color: '#0D47A1'
   }
-  // containerAutoSuggest: {
-  //   flexGrow: 1,
-  //   position: 'relative',
-  //   height: 250
-  // },
-  // suggestionsContainerOpen: {
-  //   position: 'absolute',
-  //   zIndex: 1,
-  //   marginTop: theme.spacing.unit,
-  //   left: 0,
-  //   right: 0
-  // },
-  // suggestion: {
-  //   display: 'block'
-  // },
-  // suggestionsList: {
-  //   margin: 0,
-  //   padding: 0,
-  //   listStyleType: 'none'
-  // },
-  // fab: {
-  //   position: 'fixed',
-  //   bottom: theme.spacing.unit * 2,
-  //   right: theme.spacing.unit * 2
-  // }
 })

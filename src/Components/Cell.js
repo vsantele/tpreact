@@ -19,11 +19,10 @@ export default class Cell extends Component {
     var value = this.props.value[colonne.value]
     var handleReponse = this.props.handleReponse
     var correct = this.props.value['correct'][colonne.value]
-    var afficherReponse = this.props.afficherReponse
     if (this.props.type === 'test') {
       if (this.props.nbAleatoireQuestion[index].indexOf(this.props.nb) !== -1) {
         return (
-          <TableCell key={id + colonne.value} className={correct === true ? classes.success : correct === false ? classes.danger : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField label='Réponse' id={index} tag='question' className='search-input' type='text' onBlur={(e) => verification(e)} /> <span style={{display: afficherReponse ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
+          <TableCell key={id + colonne.value} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField label='Réponse' id={String(index)} tag='question' InputProps={{classes: {input: classes.textInput}}} className='search-input' type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affCor && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
         )
       } else {
         return (
@@ -33,7 +32,7 @@ export default class Cell extends Component {
     } else {
       if (colonne.question === true) {
         return (
-          <TableCell key={id + colonne.value} className={correct === true ? classes.success : correct === false ? classes.danger : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={index} tag='question' type='text' label='Réponse' onBlur={(e) => verification(e)} /> <span style={{display: afficherReponse ? 'inline' : 'none', fontSize: '16px'}}>{value}</span> </TableCell>
+          <TableCell key={id + colonne.value} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(index)} tag='question' type='text' label='Réponse' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affCor && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span> </TableCell>
         )
       } else {
         return (

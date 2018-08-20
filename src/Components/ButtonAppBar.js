@@ -40,27 +40,21 @@ export default class ButtonAppBar extends Component {
           <Toolbar>
             <Link
               to='/Bienvenue'
-              onClick={() => { document.location.href === 'https://flamboyant-chandrasekhar-71d621.netlify.com/' ? window.scrollTo(0, 0) : window.scrollTo(0, 0) }}
               style={{
                 color: 'white',
                 textDecoration: 'none'
               }}
             >
               <Hidden xsDown>
-                <Typography variant='title' color='inherit' className={classes.flex}>
-                  Les verbes irréguliers en néérlandais
+                <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
+                  Les verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néérlandais</span>
                 </Typography>
               </Hidden>
               <Hidden smUp>
-                <Typography variant='title' color='inherit' className={classes.flex}>
-                  Verbes irréguliers en néérlandais
+                <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
+                  Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néérlandais</span>
                 </Typography>
               </Hidden>
-              {process.env.NODE_ENV === 'test'
-                ? (<Typography variant='caption' color='inherit' className={classes.flex}>
-                  {this.props.page === '/Mobile' ? 'Smartphone' : 'Ordinateur'}
-                </Typography>)
-                : null}
             </Link>
             <div className={classes.accountIcon}>
               { this.props.user
@@ -95,7 +89,7 @@ export default class ButtonAppBar extends Component {
                       {
                         this.props.user
                           ? <MenuItem onClick={logout}>Déconnexion</MenuItem>
-                          : <MenuItem onClick={this.props.handleClose}><Link to='/Auth'>Connection</Link></MenuItem>
+                          : <MenuItem onClick={this.props.handleClose}><Link to='/Auth'>Connexion</Link></MenuItem>
                       }
                     </Menu>
                   </div>

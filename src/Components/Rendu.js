@@ -30,6 +30,7 @@ export default class Rendu extends Component {
     var handleCheck = this.props.handleCheck
     var aleatoireQuestion = this.props.aleatoireQuestion
     var nbAleatoireQuestion = this.props.nbAleatoireQuestion
+    const affCor = this.props.affCor
     const type = this.props.type
     return (
       <div>
@@ -41,30 +42,28 @@ export default class Rendu extends Component {
                 {
                   nombre.map((nb) =>
                     <TableCell key={'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
-                      <div>
-                        <div className={classes.gridRoot}>
-                          <Grid container>
-                            <Grid item >
-                              <div className={classes.gridHeader}>
-                                <Typography variant='title'> {options[nb].label} </Typography>
-                              </div>
-                            </Grid>
-                            <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
-                              <div className={classes.gridHeader}>
-                                {
-                                  aleatoireQuestion
-                                    ? null
-                                    : (
-                                      <FormControl>
-                                        <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel>
-                                        <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}} />
-                                      </FormControl>
-                                    )
-                                }
-                              </div>
-                            </Grid>
+                      <div className={classes.gridRoot}>
+                        <Grid container>
+                          <Grid item >
+                            <div className={classes.gridHeader}>
+                              <Typography variant='title'> {options[nb].label} </Typography>
+                            </div>
                           </Grid>
-                        </div>
+                          <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
+                            <div className={classes.gridHeader}>
+                              {
+                                aleatoireQuestion
+                                  ? null
+                                  : (
+                                    <FormControl>
+                                      {/* <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel> */}
+                                      <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}} />
+                                    </FormControl>
+                                  )
+                              }
+                            </div>
+                          </Grid>
+                        </Grid>
                       </div>
                     </TableCell>
                   )
@@ -83,13 +82,13 @@ export default class Rendu extends Component {
                             listValue={listValue}
                             colonne={colonne}
                             handleReponse={handleReponse}
-                            afficherReponse={afficherReponse}
                             selectionPage={selectionPage}
                             tpAfficher={tpAfficher}
                             handleCheck={handleCheck}
                             aleatoireQuestion={aleatoireQuestion}
                             nbAleatoireQuestion={nbAleatoireQuestion}
                             classes={classes}
+                            affCor={affCor}
                             type={type}
                             level={type}
                           />

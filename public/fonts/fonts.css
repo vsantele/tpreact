@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Mathilde';
+    src: url('./Mathilde/subset-Mathilde.woff2') format('woff2'),
+        url('./Mathilde/subset-Mathilde.woff') format('woff'),
+        url('./Mathilde/subset-Mathilde.svg') format('svg'),
+        url('./Mathilde/subset.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Bahnschrift';
+    font-stretch: 'condensed';
+    src: local('Bahnschrift')
+        url('./Bahnschrift/subset-Bahnschrift.woff2') format('woff2'),
+        url('./Bahnschrift/subset-Bahnschrift.woff') format('woff'),
+        url('./Bahnschrift/subset-Bahnschrift.svg') format('svg'),
+        url('./Bahnschrift/bahnschrift.ttf') format('truetype');
+}

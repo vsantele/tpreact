@@ -16,7 +16,10 @@ export default createMuiTheme({
     }
   },
   typography: {
-    fontSize: 16
+    fontSize: 16,
+    button: {
+      fontFamily: 'Bahnschrift, "Roboto", "Helvetica", "Arial", sans-serif'
+    }
   },
   shape: {
     borderRadius: 4

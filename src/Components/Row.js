@@ -24,12 +24,12 @@ export default class Row extends Component {
               nbColonne={nb}
               question={this.props.question}
               handleReponse={this.props.handleReponse}
-              afficherReponse={this.props.afficherReponse}
               aleatoireQuestion={this.props.aleatoireQuestion}
               nbAleatoireQuestion={this.props.nbAleatoireQuestion}
               classes={this.props.classes}
               type={this.props.type}
               level={this.props.level}
+              affCor={this.props.affCor}
             />
           )
         }

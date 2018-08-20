@@ -63,12 +63,12 @@ export default class Tableau extends Component {
                 colonne = {this.props.colonne}
                 limite = {this.props.limite}
                 handleReponse = {this.props.handleReponse}
-                afficherReponse = {this.props.afficherReponse}
                 selectionPage = {this.props.selectionPage}
                 handleCheck = {this.props.handleCheck}
                 aleatoireQuestion= {this.props.aleatoireQuestion}
                 nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
                 type ={this.props.type}
+                affCor = {this.props.affCor}
                 classes = {classes}
               />
           }

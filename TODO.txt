@@ -1,7 +1,8 @@
 ﻿URGENT:
 
 HAUT:
-    - Changer adresse en récupérant location et pas "/" 
+    - Modifier comptage correction si test OK
+        - Récupérer info si test, (peut-être bouger fct correction dans Home pour récup state type) OK
 MOYEN:
     - Switch "Tout les TP" (ajout bouton intermediate)
     - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
@@ -10,9 +11,9 @@ MOYEN:
     - Terminer params dans url
 BAS:
     - Opti code
-    - Bug correction faux, pas compter | comptage correct bon
+    - Bug correction faux, pas compter | comptage correct bon ok
     - ajout stat
-    - Alert correction: Modifier => utiliser snackbar material-ui
+    - Alert correction: Modifier => utiliser snackbar material-ui OK
     - Ameliorer correction => regex pour, par ex, voler
         - + add verse = verse.replace(" ", "");
                 verse = verse.toLowerCase();
