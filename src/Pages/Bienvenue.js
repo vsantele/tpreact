@@ -19,9 +19,9 @@ import {db} from '../firebase/firebase'
 import Progress from '@material-ui/core/LinearProgress'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import ButtonBase from '@material-ui/core/ButtonBase'
-import cerveauVelo from '../Images/cerveauVelo.png'
-import cerveauBoxe from '../Images/cerveauBoxe.png'
-import VerIrrNdls from '../Images/Les verbes irréguliers Néerlandais.png'
+// import cerveauVelo from '../Images/cerveauVelo.png'
+// import cerveauBoxe from '../Images/cerveauBoxe.png'
+// import VerIrrNdls from '../Images/Les verbes irréguliers Néerlandais.png'
 /*esling-enable*/
 
 export default withMobileDialog()(class Bienvenue extends Component {
@@ -95,7 +95,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
         <div className={classes.content}>
         <Grid container spacing={40} direction='column' justify='center' alignItems='center'>
             <Grid item>
-              <img src={VerIrrNdls} />
+              <img src='http://res.cloudinary.com/wolfvic/image/upload/q_auto:best/v1534806587/tp%20ndls/Les_verbes_irr%C3%A9guliers_N%C3%A9erlandais.png' />
             </Grid>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Grid item container spacing={40} direction="row" justify="center" alignItems="baseline" >
@@ -111,7 +111,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                     className={classes.imageSrc}
                     // src={cerveauCourse}
                     style={{
-                      backgroundImage: `url(${cerveauVelo})`
+                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauVelo.png)`
                     }}
                   />
                   <span className={classes.imageButton}>
@@ -151,7 +151,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                     className={classes.imageSrc}
                     // src={cerveauCourse}
                     style={{
-                      backgroundImage: `url(${cerveauBoxe})`
+                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauBoxe.png)`
                     }}
                   />
                   

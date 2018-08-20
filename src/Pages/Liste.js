@@ -45,7 +45,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(${cerveauCordeSaute})`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauCordeSaute.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
@@ -74,7 +74,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(${cerveauCourse})`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauCourse.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
@@ -103,7 +103,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(${cerveauAbdo})`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauAbdo.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
