@@ -224,7 +224,7 @@ export default class Home extends Component {
             message={
               <div id='reponse'>
                 {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{marginRight: theme.spacing.unit, fontSize: '20'}} /> : <WarningIcon style={{marginRight: theme.spacing.unit}} /> : <CheckCircleIcon style={{marginRight: theme.spacing.unit}}/>}
-                        Vous avez eu {this.state.correction.ratio * 100 } / 100
+                        Vous avez eu {(this.state.correction.ratio * 100).toFixed(2) } / 100
               </div>
             }
             onClose={() => this.setState({affCorSnack: false})}
