@@ -44,7 +44,8 @@ export default withMobileDialog()(class Options extends Component {
       nameAdd: '',
       name: '',
       loadingAdd: false,
-      loadingGetList: false
+      loadingGetList: false,
+      errorNom: false
     }
     this.openSaveAlert = this.openSaveAlert.bind(this)
     this.closeSaveAlert = this.closeSaveAlert.bind(this)
@@ -105,18 +106,23 @@ export default withMobileDialog()(class Options extends Component {
       return listTps
     }
     if (this.props.user) {
-      const doc = db
-        .collection('users')
-        .doc(this.props.user.uid)
-        .collection('lists')
-        .doc()
-      doc
-        .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps(), token: this.state.token, timestamp: this.state.timestamp})
-        .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar: 'Liste enregistrée avec succès'}))
-        .catch(error => {
-          this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
-          console.error('Erreur enregistrement liste: ', error)
-        })
+      if (this.state.name.length === 0) {
+        console.error('Nom de la liste Vide')
+        this.setState({openSnackbar: true, msgSnackbar: 'Nom de la liste Vide', errorNom: true})
+      } else {
+        const doc = db
+          .collection('users')
+          .doc(this.props.user.uid)
+          .collection('lists')
+          .doc()
+        doc
+          .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps(), token: this.state.token, timestamp: this.state.timestamp})
+          .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar: 'Liste enregistrée avec succès', errorNom: false}))
+          .catch(error => {
+            this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
+            console.error('Erreur enregistrement liste: ', error)
+          })
+      }
     }
   }
 
@@ -240,12 +246,6 @@ export default withMobileDialog()(class Options extends Component {
       <div className={classes.gridRoot} style={{marginBottom: '1em'}}>
         <Grid container spacing={24}>
           <Grid item className={classes.grid}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor='selectAll' shrink>Tout les TP</InputLabel>
-              <Switch onClick={this.props.selectAll} id='selectAll' classes={{checked: classes.checked, bar: classes.bar}} checked={Boolean(this.props.selectAllChbx)} />
-            </FormControl>
-          </Grid>
-          <Grid item className={classes.grid}>
             <Link to='/Home'><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider!</Button></Link>
           </Grid>
           <Grid item className={classes.grid}>
@@ -269,7 +269,7 @@ export default withMobileDialog()(class Options extends Component {
             )
             : null
         }
-        <SaveAlert name={this.state.name} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} />
+        <SaveAlert name={this.state.name} errorNom={this.state.errorNom} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} />
         <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes} />
         <Snackbar
           anchorOrigin={{
@@ -278,7 +278,7 @@ export default withMobileDialog()(class Options extends Component {
           }}
           open={this.state.openSnackbar}
           autoHideDuration={6000}
-          onClose={() => this.setState({openSnackbar: false})}
+          onClose={() => this.setState({openSnackbar: false, errorNom: false})}
           ContentProps={{
             'aria-describedby': 'Liste enregistré'
           }}
@@ -289,7 +289,7 @@ export default withMobileDialog()(class Options extends Component {
               aria-label='Close'
               color='inherit'
               className={classes.close}
-              onClick={() => this.setState({openSnackbar: false})}
+              onClick={() => this.setState({openSnackbar: false, errorNom: false})}
             >
               <CloseIcon />
             </IconButton>
@@ -323,6 +323,7 @@ function SaveAlert (props) {
               <div className={classes.grid}>
                 <FormControl>
                   <TextField
+                    error={props.errorNom}
                     id='name'
                     label='Titre'
                     onChange={props.handleChange}

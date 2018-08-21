@@ -7,6 +7,9 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 import Checkbox from '@material-ui/core/Checkbox'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Switch from '@material-ui/core/Switch'
 /*eslint-enable */
 
 export default class SelectionTp extends Component {
@@ -25,7 +28,12 @@ export default class SelectionTp extends Component {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell />
+              <TableCell>
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor='selectAll' shrink>Tout les TP</InputLabel>
+                  <Switch onClick={this.props.selectAll} id='selectAll' classes={{checked: classes.checked, bar: classes.bar}} checked={Boolean(this.props.selectAllChbx)} />
+                </FormControl>
+              </TableCell>
               {[0, 1, 2, 3].map(nb => <TableCell key={'STH' + nb}><span style={{fontSize: '18px'}}>{colonne[nb].label}</span></TableCell>)}
             </TableRow>
           </TableHead>

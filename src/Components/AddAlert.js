@@ -26,7 +26,9 @@ class AddAlert extends Component {
     this.state = {
       tokenAdd:'',
       toSave:false,
-      redirect: false
+      redirect: false,
+      nameAdd: '',
+      errorNameAdd: false
     }
     this.addList = this.addList.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -51,7 +53,11 @@ class AddAlert extends Component {
     if (token.length !== 5) {
       console.error('Erreur, taille token incorrect')
       msgSnackbar = 'Erreur, taille token incorrect'
-      this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loading: false})
+      this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loading: false, errorTokenAdd: true})
+    } else if (save && this.state.nameAdd.length === 0) {
+      console.error('Erreur, Nom de la liste incorrect')
+      msgSnackbar = 'Erreur, Nom de la liste vide'
+      this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loading: false, errorNameAdd: true})
     } else {
       // eslint-disable-next-line
       const req = new XMLHttpRequest()
@@ -74,7 +80,6 @@ class AddAlert extends Component {
             name: result.name,
             tps: result.tps
           }
-          console.log(result)
           this.props.setListWithToken(result.tps)
           msgSnackbar = 'Liste importée avec succès'
           if (save) {
@@ -91,7 +96,7 @@ class AddAlert extends Component {
                 throw new Error('Erreur save, ' + e)
               })
           }
-          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true})
+          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true, errorNameAdd: false, errorTokenAdd: false})
           this.props.closeAddAlert()
           return list
         } catch (e) {
@@ -126,13 +131,14 @@ class AddAlert extends Component {
         <DialogTitle>Ajout liste avec code</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          Ajoute une liste correspondant à un code de 5 caractères et l'enregistre si besoin
+            Ajoute une liste correspondant à un code de 5 caractères et l'enregistre si besoin
           </DialogContentText>
           <div className={classes.gridRoot}>
             <Grid container spacing={32} alignItems='baseline' justify='flex-start'>
               <Grid item>
                 <FormControl style={{width: '5em'}}>
                   <TextField
+                    error={this.state.errorTokenAdd}
                     id='tokenAdd'
                     label='Token'
                     value={this.state.tokenAdd}
@@ -151,7 +157,7 @@ class AddAlert extends Component {
               </Grid>
               <Grid item>
                 <FormControl>
-                  <TextField id='nameAdd' label='Nom liste' onChange={this.handleChange('nameAdd')} disabled={!(this.state.toSave && this.props.user)} />
+                  <TextField error={this.state.errorNameAdd} id='nameAdd' label='Nom liste' onChange={this.handleChange('nameAdd')} disabled={!(this.state.toSave && this.props.user)} />
                   <FormHelperText style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise</FormHelperText>
                 </FormControl>
               </Grid>
@@ -175,7 +181,7 @@ class AddAlert extends Component {
             }}
             open={this.state.openSnackbar}
             autoHideDuration={6000}
-            onClose={() => this.setState({openSnackbar: false})}
+            onClose={() => this.setState({openSnackbar: false, errorNameAdd: false, errorTokenAdd: false})}
             ContentProps={{
               'aria-describedby': 'Liste enregistré'
             }}
@@ -186,7 +192,7 @@ class AddAlert extends Component {
                 aria-label='Close'
                 color='inherit'
                 className={classes.close}
-                onClick={() => this.setState({openSnackbar: false})}
+                onClick={() => this.setState({openSnackbar: false, errorNameAdd: false, errorTokenAdd: false})}
               >
                 <CloseIcon />
               </IconButton>

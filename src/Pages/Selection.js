@@ -32,6 +32,8 @@ export default class Selection extends Component {
                     tp={this.props.tp}
                     colonne={this.props.colonne}
                     handleCheck={this.props.handleCheck}
+                    selectAll={this.props.selectAll}
+                    selectAllChbx={this.props.selectAllChbx}
                     classes={classes}
                   />
                 </Grid>
