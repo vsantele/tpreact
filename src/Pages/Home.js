@@ -21,7 +21,8 @@ export default class Home extends Component {
       advanced: false,
       correction: {},
       affCorSnack: false,
-      affCor: false
+      affCor: false,
+      affRep: false
     }
     this.handleAdvanced = this.handleAdvanced.bind(this)
     this.componentWillMount = this.componentWillMount.bind(this)
@@ -81,14 +82,15 @@ export default class Home extends Component {
     var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio, type: type}
     this.setState({
       correction: correction,
-      affCorSnack: true
+      affCorSnack: true,
+      affCor: true
     })
   }
 
   handleAffReponse () {
     var value = !this.state.affCor
     this.setState({
-      affCor: value
+      affRep: value
     })
   }
 
@@ -193,6 +195,7 @@ export default class Home extends Component {
                     nbAleatoireQuestion={this.props.nbAleatoireQuestion}
                     advanced={this.state.advanced}
                     affCor={this.state.affCor}
+                    affRep={this.state.affRep}
                     type={this.state.type}
                     level={level}
                     classes={classes}

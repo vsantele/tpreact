@@ -32,6 +32,7 @@ export default class Rendu extends Component {
     var nbAleatoireQuestion = this.props.nbAleatoireQuestion
     const affCor = this.props.affCor
     const type = this.props.type
+    const affRep = this.props.affRep
     return (
       <div>
         <Paper className={classes.root}>
@@ -89,6 +90,7 @@ export default class Rendu extends Component {
                             nbAleatoireQuestion={nbAleatoireQuestion}
                             classes={classes}
                             affCor={affCor}
+                            affRep={affRep}
                             type={type}
                             level={type}
                           />

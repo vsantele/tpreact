@@ -69,6 +69,7 @@ export default class Tableau extends Component {
                 nbAleatoireQuestion = {this.props.nbAleatoireQuestion}
                 type ={this.props.type}
                 affCor = {this.props.affCor}
+                affRep={this.props.affRep}
                 classes = {classes}
               />
           }

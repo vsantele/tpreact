@@ -30,6 +30,7 @@ export default class Row extends Component {
               type={this.props.type}
               level={this.props.level}
               affCor={this.props.affCor}
+              affRep={this.props.affRep}
             />
           )
         }
