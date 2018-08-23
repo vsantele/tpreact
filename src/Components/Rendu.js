@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, {Component} from 'react'
-import options from '../config/options'
 // import {Paper, Table, TableHead, TableRow, TableCell, FormControl, InputLabel, Switch as Switch, TableBody, Grid, Typography} from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
@@ -21,10 +20,7 @@ export default class Rendu extends Component {
     var tp = this.props.tp
     var limite = this.props.limite
     var colonne = this.props.colonne
-    var nombre = [0, 1, 2, 3]
-    var handleQuestion = this.props.handleQuestion
     var handleReponse = this.props.handleReponse
-    var afficherReponse = this.props.afficherReponse
     var selectionPage = this.props.selectionPage
     var tpAfficher = this.props.tpAfficher
     var handleCheck = this.props.handleCheck
@@ -41,13 +37,13 @@ export default class Rendu extends Component {
               <TableRow>
                 <TableCell>#</TableCell>
                 {
-                  nombre.map((nb) =>
-                    <TableCell key={'th' + nb} style={{'display': colonne[nb].afficher ? 'table-cell' : 'none'}}>
+                  colonne.map((col, index) =>
+                    <TableCell key={'th' + index} style={{'display': col.afficher ? 'table-cell' : 'none'}}>
                       <div className={classes.gridRoot}>
                         <Grid container>
                           <Grid item >
                             <div className={classes.gridHeader}>
-                              <Typography variant='title'> {options[nb].label} </Typography>
+                              <Typography variant='title'> {col.label}  </Typography>
                             </div>
                           </Grid>
                           <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
@@ -58,7 +54,7 @@ export default class Rendu extends Component {
                                   : (
                                     <FormControl>
                                       {/* <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel> */}
-                                      <Switch inputProps={{ id: 'col' + nb }} onChange={handleQuestion} checked={colonne[nb].question} classes={{checked: classes.checked, bar: classes.bar}} />
+                                      <Switch inputProps={{ id: 'col' + index }} checked={col.question} classes={{checked: classes.checked, bar: classes.bar}} />
                                     </FormControl>
                                   )
                               }

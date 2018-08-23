@@ -5,6 +5,10 @@ import Button from '@material-ui/core/Button'
 import Collapse from '@material-ui/core/Collapse'
 import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
+import ListItem from '@material-ui/core/ListItem'
+import List from '@material-ui/core/List'
+import ListItemText from '@material-ui/core/ListItemText'
+import Checkbox from '@material-ui/core/Checkbox'
 import {Link} from 'react-router-dom'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Typography from '@material-ui/core/Typography'
@@ -17,9 +21,29 @@ class Liste extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      openTest: false
+      openTest: false,
+      openEtude: false,
+      etudeChecked: []
     }
+    this.handleToggle = this.handleToggle.bind(this)
   }
+
+  handleToggle (value) {
+    const checked = this.state.etudeChecked
+    const currentIndex = checked.indexOf(value)
+    const newChecked = [...checked]
+
+    if (currentIndex === -1) {
+      newChecked.push(value)
+    } else {
+      newChecked.splice(currentIndex, 1)
+    }
+
+    this.setState({
+      etudeChecked: newChecked
+    })
+  }
+
   componentWillMount () {
     const linkAll = this.props.link.location.state.all
     if (linkAll) {
@@ -50,9 +74,9 @@ class Liste extends Component {
                 />
                 <span className={classes.imageButton}>
                   <Typography
-                    component="span"
-                    variant="button"
-                    color="inherit"
+                    component='span'
+                    variant='button'
+                    color='inherit'
                     className={classes.imageTitle}
                   >
                         Voir
@@ -68,7 +92,8 @@ class Liste extends Component {
                 className={classes.image}
                 focusVisibleClassName={classes.focusVisible}
                 style={{width: '250px', 'height': '250px'}}
-                component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}
+                onClick={() => this.setState({openEtude: !this.state.openEtude})}
+                // component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}
               >
                 <span
                   className={classes.imageSrc}
@@ -79,9 +104,9 @@ class Liste extends Component {
                 />
                 <span className={classes.imageButton}>
                   <Typography
-                    component="span"
-                    variant="button"
-                    color="inherit"
+                    component='span'
+                    variant='button'
+                    color='inherit'
                     className={classes.imageTitle}
                   >
                         Etudier
@@ -89,6 +114,20 @@ class Liste extends Component {
                   </Typography>
                 </span>
               </ButtonBase>
+              <Collapse in={this.state.openEtude}>
+                <List>
+                  {this.props.colonne.map((col, index) => (
+                    <ListItem
+                      button
+                      onClick={() => this.handleToggle(index)}
+                    >
+                      <Checkbox checked={this.state.etudeChecked.indexOf(index) !== -1} tabIndex={-1} disableRipple />
+                      <ListItemText primary={col.label} />
+                    </ListItem>
+                  ))}
+                </List>
+                <Button variant='outlined' color='primary' component={Link} to={{pathname: '/Home', state: {type: 'etude', col: this.state.etudeChecked}}} disabled={this.state.etudeChecked.length === 0 || this.state.etudeChecked.length >= 4}>Valider</Button>
+              </Collapse>
             </Grid>
             <Grid item>
               {/* <Button variant='raised' color='secondary' onClick={() => { this.setState({openTest: !this.state.openTest}) }}>Test</Button> */}
@@ -108,9 +147,9 @@ class Liste extends Component {
                 />
                 <span className={classes.imageButton}>
                   <Typography
-                    component="span"
-                    variant="button"
-                    color="inherit"
+                    component='span'
+                    variant='button'
+                    color='inherit'
                     className={classes.imageTitle}
                   >
                         Test
@@ -119,23 +158,13 @@ class Liste extends Component {
                 </span>
               </ButtonBase>
               <Collapse in={this.state.openTest}>
-                <MenuList>
-                  <Link to={{pathname: '/Home', state: {type: 'test', level: '1'}}}>
-                    <MenuItem>
-                      Niveau 1
-                    </MenuItem>
-                  </Link>
-                  <Link to={{pathname: '/Home', state: {type: 'test', level: '2'}}}>
-                    <MenuItem>
-                      Niveau 2
-                    </MenuItem>
-                  </Link>
-                  <Link to={{pathname: '/Home', state: {type: 'test', level: '3'}}}>
-                    <MenuItem>
-                      Niveau 3
-                    </MenuItem>
-                  </Link>
-                </MenuList>
+                <List>
+                  {[1, 2, 3].map(lvl => (
+                    <ListItem button component={Link} to={{pathname: '/Home', state: {type: 'test', level: lvl}}}>
+                      <ListItemText primary={`Niveau ${lvl}`} />
+                    </ListItem>
+                  ))}
+                </List>
               </Collapse>
             </Grid>
           </Grid>

@@ -9,28 +9,11 @@ import Rendu from './Rendu'
 import loadable from 'loadable-components'
 
 const RenduAdvanced = loadable( () => import('./RenduAdvanced'))
-const SelectionTp = loadable( () => import('./SelectionTp'))
 
 export default class Tableau extends Component {
   render () {
     var tp
     const classes = this.props.classes
-    if (this.props.selectionPage) {
-      return (
-        <div>
-          <SelectionTp
-            tp = {this.props.tp}
-            colonne = {this.props.colonne}
-            tpExclu = {this.props.tpExclu}
-            handleCheck = {this.props.handleCheck}
-            classes = {classes}
-            selectAllChbx = {this.props.selectAllChbx}
-            handleSelectionTpClose = {this.props.handleSelectionTpClose}
-            selectAll = {this.props.selectAll}
-          />
-        </div>
-      )
-    } else {
       if (!this.props.aleatoire) {
         tp = this.props.tp
       } else {
@@ -76,5 +59,4 @@ export default class Tableau extends Component {
         </div>
       )
     }
-  }
 }

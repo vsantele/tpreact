@@ -252,15 +252,15 @@ export default withMobileDialog()(class Options extends Component {
             <Button variant='raised' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
             <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
           </Grid>
-          <Grid item className={classes.grid}>
+          {/* <Grid item className={classes.grid}>
             <Button variant='raised' color='secondary' className={classes.button} onClick={this.openList} id='openlist' disabled={!this.props.user}>{this.state.openList ? 'Cacher listes' : 'Afficher listes'}</Button>
             <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
           </Grid>
           <Grid item className={classes.grid}>
             <Button variant='raised' color='secondary' className={classes.button} onClick={() => this.setState({addAlert: true})} id='addAlert' >Ajouter liste</Button>
-          </Grid>
+          </Grid> */}
         </Grid>
-        {
+        {/* {
           this.state.openList
             ? (
               this.state.listName !== []
@@ -268,7 +268,7 @@ export default withMobileDialog()(class Options extends Component {
                 : <div>Vous n'avez pas encore enregister de listes pour le moment </div>
             )
             : null
-        }
+        } */}
         <SaveAlert name={this.state.name} errorNom={this.state.errorNom} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} />
         <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes} />
         <Snackbar
@@ -381,7 +381,6 @@ function ShowList (props) {
               : <Typography variant='body1'>Vous n'avez pas encore de listes enregistrées. Pour en ajouter une, sélectionnez les temps primitifs que vous voulez et appuyez sur "Sauvegarder liste" ou ajoutez en une avec un token</Typography>}
           </Grid>
       }
-
     </div>
   )
 }

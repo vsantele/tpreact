@@ -78,10 +78,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
       colonne: [
-        {value: 'infNl', label: 'Infinitif Nl', question: false, afficher: true},
-        {value: 'OVT', label: 'OVT', question: false, afficher: true},
-        {value: 'PP', label: 'Participe Passé', question: false, afficher: true},
-        {value: 'infFr', label: 'Infinitif FR', question: false, afficher: true}
+        {value: 'infNl', label: 'Infinitif néerlandais', question: false, afficher: true},
+        {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
+        {value: 'PP', label: 'Participe passé', question: false, afficher: true},
+        {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
       ], // ordre des colonnes
       aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
@@ -231,21 +231,31 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleClick (e) {
     // si on clic sur random, ça random
       this.shuffleTp()
-            }
-  handleQuestion (e) {
-    // function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
-    function setValue (colonne, value, previousColonne) {
-      previousColonne[colonne].question = value
-      return previousColonne
     }
-    const question = this.state.colonne
-    const target = e.target
-    const colonne = target.id.substring(3, 4)
-    const value = setValue(colonne, target.checked, question)
-    const name = 'question'
-    this.setState({
-      [name]: value
+  handleQuestion (col) {
+    // // OLD function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité 
+    // function setValue (colonne, value, previousColonne) {
+    //   previousColonne[colonne].question = value
+    //   return previousColonne
+    // }
+    // const question = this.state.colonne
+    // const target = e.target
+    // const colonne = target.id.substring(3, 4)
+    // const value = setValue(colonne, target.checked, question)
+    // const name = 'question'
+    // this.setState({
+    //   [name]: value
+    // })
+    let colonne = this.state.colonne
+    colonne.map((colonne,index) => {
+      if(col.indexOf(index) !== -1) {
+        colonne.question = true
+      } else {
+        colonne.question = false
+      }
     })
+    console.log(colonne)
+    this.setState({colonne: colonne})
   }
 
   handleReponse (correct, index, category) {
@@ -620,9 +630,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           <MuiThemeProvider theme={theme}>
             <div>
               <Helmet
-                title="Tp Néérlandais"
+                title="Tp Néerlandais"
                 meta={[
-                  { name: 'description', content: 'Verbes irréguliers néérlandais' },
+                  { name: 'description', content: 'Verbes irréguliers néerlandais' },
                   { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier' }
                 ]}
               />
@@ -659,7 +669,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                       handleCheck = {this.handleCheck}
                      />}
                   />
-                  <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} allList = {this.allList} link = {link}/>}/>
+                  <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
                   <Route
                     path='/Home' // path='/:type/:token
                     render={

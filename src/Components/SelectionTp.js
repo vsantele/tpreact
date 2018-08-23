@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Switch from '@material-ui/core/Switch'
-/*eslint-enable */
+/* eslint-enable */
 
 export default class SelectionTp extends Component {
   render () {

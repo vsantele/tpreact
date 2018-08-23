@@ -10,9 +10,9 @@ import SnackbarContent from '@material-ui/core/SnackbarContent'
 import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import CheckCircleIcon from '@material-ui/icons/CheckCircle'
-import ErrorIcon from '@material-ui/icons/Error'
-import WarningIcon from '@material-ui/icons/Warning'
+import CheckCircleIcon from '@material-ui/icons/Mood' // from '@material-ui/icons/CheckCircle'
+import ErrorIcon from '@material-ui/icons/MoodBad' // from '@material-ui/icons/Error'
+import WarningIcon from '@material-ui/icons/SentimentNeutral' // from '@material-ui/icons/Warning'
 /* eslint-enable */
 export default class Home extends Component {
   constructor (props) {
@@ -99,10 +99,12 @@ export default class Home extends Component {
     // const paramsToken = this.props.link.match.params.token
     let type = (this.props.link.location.state !== undefined) ? this.props.link.location.state.type : 'etude'
     let level = (this.props.link.location.state !== undefined) ? this.props.link.location.state.level : 1
+    let col = (this.props.link.location.state !== undefined) ? this.props.link.location.state.col : [0]
     switch (type) {
       case 'voir':
         break
       case 'etude':
+        this.props.handleQuestion(col)
         break
       case 'test':
         this.props.shuffleQuestion(level)
@@ -205,7 +207,7 @@ export default class Home extends Component {
                 : <div style={{width: `100%`}}><LinearProgress color='primary' variant='query' /></div>
             }
             <Grid item >
-              <Options bottom = {true} type={type} handleAffReponse = {this.handleAffReponse} handleClick={this.handleClick} colonne={this.props.colonne} classes = {classes}/>
+              <Options bottom type={type} handleAffReponse={this.handleAffReponse} handleClick={this.handleClick} colonne={this.props.colonne} classes={classes} />
             </Grid>
             <br />
           </Grid>
@@ -223,16 +225,16 @@ export default class Home extends Component {
             className={this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? classes.error : classes.warning : classes.success}
             message={
               <div id='reponse'>
-                {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{marginRight: theme.spacing.unit, fontSize: '20'}} /> : <WarningIcon style={{marginRight: theme.spacing.unit}} /> : <CheckCircleIcon style={{marginRight: theme.spacing.unit}}/>}
+                {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{marginRight: theme.spacing.unit}} /> : <WarningIcon style={{marginRight: theme.spacing.unit}} /> : <CheckCircleIcon style={{marginRight: theme.spacing.unit}} />}
                         Vous avez eu {(this.state.correction.ratio * 100).toFixed(2) } / 100
               </div>
             }
             onClose={() => this.setState({affCorSnack: false})}
             action={[
               <IconButton
-                key="close"
-                aria-label="Close"
-                color="inherit"
+                key='close'
+                aria-label='Close'
+                color='inherit'
                 style={{marginRight: theme.spacing.unit}}
                 onClick={() => this.setState({affCorSnack: false})}
               >

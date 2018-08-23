@@ -209,5 +209,9 @@ export default theme => ({
   },
   textInput: {
     color: '#0D47A1'
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    marginTop:'0.3em'
   }
 })

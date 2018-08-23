@@ -128,7 +128,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                 </ButtonBase>
                 <Collapse in={this.state.showList} >
                   <MenuList >
-                    <Link to={{pathname:'/Liste', state:{all: true}}}>
+                    <Link to={{pathname:'/Liste', state:{all: true}}} style={{textDecorationLine: 'none'}}>
                       <MenuItem >
                         Liste complète
                       </MenuItem>
@@ -169,12 +169,12 @@ export default withMobileDialog()(class Bienvenue extends Component {
                 </ButtonBase>
                 <Collapse in={this.state.showCreate}>
                   <MenuList>
-                    <Link to='/Selection'>
-                      <MenuItem>
+                    <Link to='/Selection' style={{textDecorationLine: 'none'}}>
+                      <MenuItem >
                         Créer une nouvelle liste
                       </MenuItem>
                     </Link>
-                    <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='blank'>
+                    <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='blank' style={{textDecorationLine: 'none'}}>
                       <MenuItem>
                         Modifier une liste (soon)
                       </MenuItem>

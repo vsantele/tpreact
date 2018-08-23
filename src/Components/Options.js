@@ -46,7 +46,7 @@ export default withMobileDialog()(class Options extends Component {
       else return false
     } else if (this.props.type === 'test') {
       return true
-    } else { 
+    } else {
       return false
     }
   }
@@ -62,7 +62,7 @@ export default withMobileDialog()(class Options extends Component {
     if (this.props.bottom) {
       return (
         <div className={classes.gridRoot}>
-          <Grid container spacing={8} justify="flex-end">
+          <Grid container spacing={8} justify='flex-end'>
             <Grid item style={{display: type !== 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
                 <Button variant='raised' color='secondary' className={classes.button} id='correction' onClick={this.props.handleClick} disabled={!this.showCorRep()}>Correction</Button>
@@ -79,19 +79,19 @@ export default withMobileDialog()(class Options extends Component {
     } else {
       return (
         <div className={classes.gridRoot}>
-          <Grid container spacing={8} justify="space-between">
+          <Grid container spacing={8} justify='space-between'>
             <Grid item >
               <div className={classes.grid}>
                 {/* <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='aleatoire' shrink>Aleatoire</InputLabel>
                   <Switch inputProps={{ id: 'aleatoire', tag: 'aleatoire', name: 'aleatoire', type: 'checkbox' }} classes= {{checked: classes.checked, bar: classes.bar}} checked={Boolean(this.props.aleatoire)} onChange={this.props.handleInputChange} />
                 </FormControl> */}
-                <Button id='aleatoire' name='aleatoire' color='secondary' className={buttonClassname} onClick={this.props.handleInputChange}>Aléatoire <Shuffle/> </Button>
+                <Button id='aleatoire' name='aleatoire' color='secondary' className={buttonClassname} onClick={this.props.handleInputChange}>Aléatoire <Shuffle /> </Button>
               </div>
             </Grid>
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!this.props.aleatoire} >Recharger  <Refresh/> </Button>
+                <Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!this.props.aleatoire} >Recharger  <Refresh /> </Button>
               </div>
             </Grid>
             <Grid item style={{display: this.props.listSelected ? 'flex' : 'flex'}} >
@@ -135,11 +135,11 @@ export default withMobileDialog()(class Options extends Component {
                 </FormControl>
               </div>
             </Grid>
-            <Grid item style={{display: type === 'voir' ? 'none' : 'flex'}}>
+            {/* <Grid item style={{display: type === 'voir' ? 'none' : 'flex'}}>
               <div className={classes.grid}>
                 <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>Plus</Button>
               </div>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Alert open={this.state.openAlert} handleClose={this.handleClose} handleAdvanced={this.props.handleAdvanced} classes={classes} />
         </div>

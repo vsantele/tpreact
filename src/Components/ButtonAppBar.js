@@ -47,12 +47,12 @@ export default class ButtonAppBar extends Component {
             >
               <Hidden xsDown>
                 <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
-                  Les verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néérlandais</span>
+                  Les verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néerlandais</span>
                 </Typography>
               </Hidden>
               <Hidden smUp>
                 <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
-                  Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néérlandais</span>
+                  Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néerlandais</span>
                 </Typography>
               </Hidden>
             </Link>
@@ -95,7 +95,7 @@ export default class ButtonAppBar extends Component {
                   </div>
 
                 )
-                : <Link to='/Auth'><Button className={classes.button} variant='raised' color='secondary' onClick={this.props.handleClose}>Connection</Button></Link>
+                : <Link to='/Auth'><Button className={classes.button} variant='raised' color='secondary' onClick={this.props.handleClose}>Connexion</Button></Link>
               }
             </div>
 
