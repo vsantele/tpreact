@@ -253,6 +253,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       } else {
         colonne.question = false
       }
+      return true
     })
     console.log(colonne)
     this.setState({colonne: colonne})
@@ -331,7 +332,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleSelectionTpClose () {
     let nbTpSelected = 0
     this.state.tp.forEach((tp) => {
-      tp.afficher? nbTpSelected ++ : null
+      nbTpSelected +=  tp.afficher? 1 : 0
     })
 
     let valueSelectTp
@@ -475,7 +476,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
 
   resetTp () {
-    console.log('resetTp')
     let tp = this.state.tp
     let colonne = this.state.colonne
     tp.map(tp => {
@@ -483,6 +483,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         let nomCol = colonne[i].value
         tp['correct'][nomCol] = 'neutre'
       }
+      return true
     })
     this.setState({tp: tp})
     this.shuffleTp()

@@ -145,12 +145,12 @@ const styles = theme => ({
 
 })
 
-const optionsBase = [
-  { value: 'infNl', label: 'Infinitif Neerlandais', nb: 0 },
-  { value: 'OVT', label: 'Imparfait', nb: 1 },
-  { value: 'PP', label: 'Participe Passé', nb: 2 },
-  { value: 'infFr', label: 'Infinitif Français', nb: 3 }
-]
+// const optionsBase = [
+//   { value: 'infNl', label: 'Infinitif Neerlandais', nb: 0 },
+//   { value: 'OVT', label: 'Imparfait', nb: 1 },
+//   { value: 'PP', label: 'Participe Passé', nb: 2 },
+//   { value: 'infFr', label: 'Infinitif Français', nb: 3 }
+// ]
 
 export default withStyles(styles, { withTheme: true })(class Mobile extends Component {
   constructor (props) {

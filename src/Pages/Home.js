@@ -36,17 +36,16 @@ export default class Home extends Component {
   }
 
   handleClick () {
-    var tp = this.props.aleatoire ? this.props.tpRandom : this.props.tp
-    var reponseMauvais = 0
-    var reponseVide = 0
-    var reponseBon = 0
-    var reponseTotal = 0
-    var colonne = this.props.colonne
-    var correct = (i) => colonne[i].value
+    let tp = this.props.aleatoire ? this.props.tpRandom : this.props.tp
+    let reponseMauvais = 0
+    let reponseVide = 0
+    let reponseBon = 0
+    let reponseTotal = 0
+    let colonne = this.props.colonne
+    let correct = (i) => colonne[i].value
     if (this.state.type === 'etude') {
-      console.log('etude')
       for (let i = 0; i < this.props.limite; i++) {
-        for (var j = 0; j < 4; j++) {
+        for (let j = 0; j < 4; j++) {
           if (colonne[j].question) {
             if (tp[i]['correct'][correct(j)] === false) {
               reponseMauvais++
@@ -60,11 +59,10 @@ export default class Home extends Component {
         }
       }
     } else if (this.state.type === 'test') {
-      console.log('test')
       for (let i = 0; i < this.props.limite; i++) {
         this.props.nbAleatoireQuestion[i].forEach((numCol) => {
           if (numCol !== -1) {
-            console.log('numCol', correct(numCol))
+            // console.log('numCol', correct(numCol))
             if (tp[i]['correct'][correct(numCol)] === false) {
               reponseMauvais++
             } else if (tp[i]['correct'][correct(numCol)] === 'neutre') {
@@ -109,6 +107,8 @@ export default class Home extends Component {
       case 'test':
         this.props.shuffleQuestion(level)
         break
+      default:
+        return null
     }
     this.props.resetTp()
     this.setState({type: type})

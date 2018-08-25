@@ -40,7 +40,7 @@ export default withMobileDialog()(class Options extends Component {
     let nbColQ = 0
     if (this.props.type === 'etude') {
       for (let i in col) {
-        col[i].question ? nbColQ++ : null
+        nbColQ += col[i].question ? 1 : 0
       }
       if (nbColQ !== 0) return true
       else return false

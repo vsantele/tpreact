@@ -29,10 +29,10 @@ const MenuProps = {
     }
   }
 }
-const names = [
-  'Saint Charles Dottignies',
-  'Saint Charles Luingne'
-]
+// const names = [
+//   'Saint Charles Dottignies',
+//   'Saint Charles Luingne'
+// ]
 
 export default class Profile extends Component {
   constructor () {
@@ -120,7 +120,7 @@ function Connected (props) {
 function EditProfil (props) {
   const classes = props.classes
   var user = props.user
-  const names = props.names
+  // const names = props.names
   return (
     <div className={classes.margin}>
       Inutile pour le moment ^^
