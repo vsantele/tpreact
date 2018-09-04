@@ -1,6 +1,8 @@
 /*eslint-disable */
 import React, {Component} from 'react'
-import { Link, Route, Switch, Redirect } from 'react-router-dom'
+// import { Link, Redirect } from 'react-router-dom'
+import Link from 'react-router-dom/Link'
+import Redirect from 'react-router-dom/Redirect'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -11,12 +13,10 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
-import Auth from '../Components/Auth'
 import AddAlert from '../Components/AddAlert'
 import ShowListTp from '../Components/ShowList'
 import Dialog from '@material-ui/core/Dialog'
 import {db} from '../firebase/firebase'
-import Progress from '@material-ui/core/LinearProgress'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import ButtonBase from '@material-ui/core/ButtonBase'
 // import cerveauVelo from '../Images/cerveauVelo.png'
@@ -95,7 +95,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
         <div className={classes.content}>
         <Grid container spacing={40} direction='column' justify='center' alignItems='center'>
             <Grid item>
-              <img src='http://res.cloudinary.com/wolfvic/image/upload/q_auto:best/v1534806587/tp%20ndls/Les_verbes_irr%C3%A9guliers_N%C3%A9erlandais.png' />
+              <img src='https://res.cloudinary.com/wolfvic/image/upload/q_auto:best/v1534806587/tp%20ndls/Les_verbes_irr%C3%A9guliers_N%C3%A9erlandais.png' />
             </Grid>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Grid item container spacing={40} direction="row" justify="center" alignItems="baseline" >

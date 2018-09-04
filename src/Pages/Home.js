@@ -100,6 +100,7 @@ export default class Home extends Component {
     let col = (this.props.link.location.state !== undefined) ? this.props.link.location.state.col : [0]
     switch (type) {
       case 'voir':
+        this.props.resetQuestion()
         break
       case 'etude':
         this.props.handleQuestion(col)

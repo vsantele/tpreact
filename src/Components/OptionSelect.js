@@ -246,29 +246,13 @@ export default withMobileDialog()(class Options extends Component {
       <div className={classes.gridRoot} style={{marginBottom: '1em'}}>
         <Grid container spacing={24}>
           <Grid item className={classes.grid}>
-            <Link to='/Home'><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider!</Button></Link>
+            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider!</Button></Link>
           </Grid>
           <Grid item className={classes.grid}>
             <Button variant='raised' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
             <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
           </Grid>
-          {/* <Grid item className={classes.grid}>
-            <Button variant='raised' color='secondary' className={classes.button} onClick={this.openList} id='openlist' disabled={!this.props.user}>{this.state.openList ? 'Cacher listes' : 'Afficher listes'}</Button>
-            <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
-          </Grid>
-          <Grid item className={classes.grid}>
-            <Button variant='raised' color='secondary' className={classes.button} onClick={() => this.setState({addAlert: true})} id='addAlert' >Ajouter liste</Button>
-          </Grid> */}
         </Grid>
-        {/* {
-          this.state.openList
-            ? (
-              this.state.listName !== []
-                ? <div><ShowList listName={this.state.listName} loading={this.state.loadingGetList} selectList={this.props.selectList} classes={classes} deleteList={this.deleteList} /></div>
-                : <div>Vous n'avez pas encore enregister de listes pour le moment </div>
-            )
-            : null
-        } */}
         <SaveAlert name={this.state.name} errorNom={this.state.errorNom} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} />
         <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes} />
         <Snackbar
@@ -352,35 +336,5 @@ function SaveAlert (props) {
         </Button>
       </DialogActions>
     </Dialog>
-  )
-}
-
-// eslint-disable-next-line
-function ShowList (props) {
-  return (
-    <div >
-      <Divider />
-      {
-        props.loading
-          ? <Progress />
-          : <Grid container spacing={16} style={{margin: '0.5em'}}>
-            {props.listName.length !== 0
-              ? (props.listName.map(list => (
-                <Grid item key={list.id}>
-                  <Paper>
-                    <Button color='secondary' className={props.classes.button} onClick={() => props.selectList(list.id)}>
-                      {list.name}
-                    </Button>
-                    <IconButton onClick={() => props.deleteList(list.id)}>
-                      <DeleteIcon />
-                    </IconButton>
-                    <Typography variant='caption' style={{margin: '0.2em', textAlign: 'center'}} >{list.private ? 'privée' : 'public: ' + list.token}</Typography>
-                  </Paper>
-                </Grid>
-              )))
-              : <Typography variant='body1'>Vous n'avez pas encore de listes enregistrées. Pour en ajouter une, sélectionnez les temps primitifs que vous voulez et appuyez sur "Sauvegarder liste" ou ajoutez en une avec un token</Typography>}
-          </Grid>
-      }
-    </div>
   )
 }

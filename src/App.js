@@ -3,9 +3,6 @@ import React, {Component} from 'react'
 import 'raf/polyfill'
 // import Tp from './tp.json'
 import Shuffle from 'shuffle-array'
-import 'react-select/dist/react-select.css'
-import 'react-s-alert/dist/s-alert-default.css'
-import 'react-s-alert/dist/s-alert-css-effects/slide.css'
 // import Alert from 'react-s-alert'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
@@ -33,41 +30,71 @@ import Liste from './Pages/Liste'
 /*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
-const Loading = () => {console.log("loading"); return(
-  <div style={{
-    backgroundColor: theme.palette.background.default,
-    width: `100%`,
-    padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64
-    }
-   }}>CHARGEMENT.....</div>
-)}
+const Loading = () => {
+  console.log('loading')
+  return (
+    <div style={{
+      backgroundColor: theme.palette.background.default,
+      width: `100%`,
+      padding: theme.spacing.unit * 3,
+      height: 'calc(100% - 56px)',
+      marginTop: 56,
+      [theme.breakpoints.up('sm')]: {
+        height: 'calc(100% - 64px)',
+        marginTop: 64
+      }
+    }}>CHARGEMENT.....</div>
+  )
+}
 
-const ErrorComponent = ({error}) => {return(
-  <div style={{
-    backgroundColor: theme.palette.background.default,
-    width: `100%`,
-    padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64
-    }
-  }}>
+const ErrorComponent = ({error}) => {
+  return (
+    <div style={{
+      backgroundColor: theme.palette.background.default,
+      width: `100%`,
+      padding: theme.spacing.unit * 3,
+      height: 'calc(100% - 56px)',
+      marginTop: 56,
+      [theme.breakpoints.up('sm')]: {
+        height: 'calc(100% - 64px)',
+        marginTop: 64
+      }
+    }}>
     Oups! {error.message} 💥
-  </div>
-)}
+    </div>
+  )
+}
 
 // eslint-disable-next-line
-const Mobile = loadable( () => import('./Pages/Mobile.js'), {
-  LoadingComponent: Loading,
-  ErrorComponent: ErrorComponent
-})
+// const Mobile = loadable( () => import('./Pages/Mobile.js'), {
+//   LoadingComponent: Loading,
+//   ErrorComponent: ErrorComponent
+// })
+// eslint-disable-next-line
+// const Home = loadable( () => import('./Pages/Home'), { // eslint-disable-next-line
+//   LoadingComponent: Loading,
+//   ErrorComponent: ErrorComponent
+// })
+
+// const Selection = loadable( () => import('./Pages/Selection'), {
+//     LoadingComponent: Loading,
+//     ErrorComponent: ErrorComponent
+// })
+
+// const Auth = loadable( () => import('./Components/Auth'), {
+//   LoadingComponent: Loading,
+//   ErrorComponent: ErrorComponent
+// }) 
+
+// const Liste = loadable(() => import('./Pages/Liste'),{
+//   LoadingComponent: Loading,
+//   ErrorComponent: ErrorComponent
+// })
+
+// const Profile = loadable(() => import('./Pages/Profile'),{
+//   LoadingComponent: Loading,
+//   ErrorComponent: ErrorComponent
+// })
 
 export default withStyles(styles, { withTheme: true })(class App extends Component {
   constructor (props) {
@@ -98,9 +125,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       page: '/Home',
       advanced: false,
       mobile: false,
-      msgSnackbar:'Erreur texte Snackbar...',
+      msgSnackbar: 'Erreur texte Snackbar...',
       valueSelectTp: 20,
-      listSelected: false,
+      listSelected: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -130,6 +157,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.addList = this.addList.bind(this)
     this.allList = this.allList.bind(this)
     this.resetTp = this.resetTp.bind(this)
+    this.resetQuestion = this.resetQuestion.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -230,8 +258,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   handleClick (e) {
     // si on clic sur random, ça random
-      this.shuffleTp()
-    }
+    this.shuffleTp()
+  }
   handleQuestion (col) {
     // // OLD function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité 
     // function setValue (colonne, value, previousColonne) {
@@ -247,15 +275,14 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     //   [name]: value
     // })
     let colonne = this.state.colonne
-    colonne.map((colonne,index) => {
-      if(col.indexOf(index) !== -1) {
+    colonne.map((colonne, index) => {
+      if (col.indexOf(index) !== -1) {
         colonne.question = true
       } else {
         colonne.question = false
       }
       return true
     })
-    console.log(colonne)
     this.setState({colonne: colonne})
   }
 
@@ -332,13 +359,13 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleSelectionTpClose () {
     let nbTpSelected = 0
     this.state.tp.forEach((tp) => {
-      nbTpSelected +=  tp.afficher? 1 : 0
+      nbTpSelected += tp.afficher ? 1 : 0
     })
 
     let valueSelectTp
     let limite
     let afficherNbTp
-    switch(nbTpSelected) {
+    switch (nbTpSelected) {
       case 20:
         limite = 20
         valueSelectTp = 20
@@ -348,7 +375,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         limite = 40
         valueSelectTp = 40
         afficherNbTp = false
-       break
+        break
       case 60:
         limite = 60
         valueSelectTp = 60
@@ -363,9 +390,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         limite = nbTpSelected
         valueSelectTp = 'libre'
         afficherNbTp = true
-
     }
-    this.setState({ selectionPage: false, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp  })
+    this.setState({ selectionPage: false, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp })
     this.shuffleTp()
   };
   handleDrawerToggle () {
@@ -412,67 +438,67 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.setState({uiConfig: uiConfig})
   }
 
-  selectTp(list) {
+  selectTp (list) {
     let tp = this.state.tp
-      for (let i in tp) {
-        if (list.indexOf(Number(i)) === -1) {
-          tp[i].afficher = false
-        } else {
-          tp[i].afficher = true
-        }
+    for (let i in tp) {
+      if (list.indexOf(Number(i)) === -1) {
+        tp[i].afficher = false
+      } else {
+        tp[i].afficher = true
       }
-      let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
-      let valueSelectTp
-      let limite
-      let afficherNbTp
-      switch(list.length) {
-        case 20:
-          limite = 20
-          valueSelectTp = 20
-          afficherNbTp = false
-          break
-        case 40:
-          limite = 40
-          valueSelectTp = 40
-          afficherNbTp = false
-         break
-        case 60:
-          limite = 60
-          valueSelectTp = 60
-          afficherNbTp = false
-          break
-        case tp.length:
-          limite = 134
-          valueSelectTp = 'tout'
-          afficherNbTp = false
-          break
-        default:
-          limite = list.length
-          valueSelectTp = 'libre'
-          afficherNbTp = true
-      }
-      this.setState({tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
+    }
+    let selectAllChbx = tp.filter(tp => tp.afficher).length === tp.length
+    let valueSelectTp
+    let limite
+    let afficherNbTp
+    switch (list.length) {
+      case 20:
+        limite = 20
+        valueSelectTp = 20
+        afficherNbTp = false
+        break
+      case 40:
+        limite = 40
+        valueSelectTp = 40
+        afficherNbTp = false
+        break
+      case 60:
+        limite = 60
+        valueSelectTp = 60
+        afficherNbTp = false
+        break
+      case tp.length:
+        limite = 134
+        valueSelectTp = 'tout'
+        afficherNbTp = false
+        break
+      default:
+        limite = list.length
+        valueSelectTp = 'libre'
+        afficherNbTp = true
+    }
+    this.setState({ tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
   }
 
   selectList (id) {
     db
-    .collection('users')
-    .doc(this.state.user.uid)
-    .collection('lists')
-    .get()
-    .then(collection => {
-      const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
-      return listName.filter(list => list.id === id)[0].tps
-    })
-    .then((list) => this.selectTp(list))
-    .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
-    .catch((error) => {
-      this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
-    })
+      .collection('users')
+      .doc(this.state.user.uid)
+      .collection('lists')
+      .get()
+      .then(collection => {
+        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
+        return listName.filter(list => list.id === id)[0].tps
+      })
+      .then((list) => this.selectTp(list))
+      .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
+      .catch((error) => {
+        this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
+      })
   }
 
   setListWithToken (result) {
-    this.selectTp (result)
+    this.selectTp(result)
   }
 
   resetTp () {
@@ -537,6 +563,15 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     }
   }
 
+  resetQuestion () {
+    let col = this.state.colonne
+    col.map(col => {
+      col.question = false
+      return null
+    })
+    this.setState({colonne: col})
+  }
+
   connexion () {
     auth.signInWithPopup(provider).then(result => {
       const user = result.user
@@ -552,7 +587,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
           provider: result.additionalUserInfo.providerId
         })
         .then(function () {
-          console.log('Document successfully written!') 
+          console.log('Document successfully written!')
         })
         .catch(function (error) {
           console.error('Error writing document: ', error)
@@ -568,8 +603,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       .collection('tp').doc('neerlandais')
       .get()
       .then(tps => {
-
-        //this.shuffleTp(tps.data().neerlandais)
+        // this.shuffleTp(tps.data().neerlandais)
         this.setState({tp: tps.data().neerlandais})
       })
       .then(() => {
@@ -656,7 +690,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
                   <Route extact path='/Selection' render = {
                     () => <Selection
-                      classes = {classes}  
+                      classes = {classes}
                       handleSelectionTpOpen = {this.handleSelectionTpOpen}
                       handleSelectionTpClose = {this.handleSelectionTpClose}
                       selectAll = {this.selectAll}
@@ -668,7 +702,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                       colonne = {this.state.colonne}
                       loading={this.state.loading}
                       handleCheck = {this.handleCheck}
-                     />}
+                    />}
                   />
                   <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
                   <Route
@@ -676,60 +710,61 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                     render={
                       (link) =>
                         (<Home
-                            classes = {classes}
-                            handleInputChange = {this.handleInputChange}
-                            handleClick = {this.handleClick}
-                            handleSelect = {this.handleSelect}
-                            handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                            handleSelectionTpClose = {this.handleSelectionTpClose}
-                            handleQuestion = {this.handleQuestion}
-                            handleDrawerToggle = {this.handleDrawerToggle}
-                            handleReponse = {this.handleReponse}
-                            handleCheck = {this.handleCheck}
-                            selectAll = {this.selectAll}
-                            selectAllChbx = {this.state.selectAllChbx}
-                            selectionPage = {this.state.selectionPage}
-                            aleatoire = {this.state.aleatoire}
-                            limite = {this.state.limite}
-                            tpLength = {this.state.tp.length}
-                            colonne = {this.state.colonne}
-                            mobileOpen = {this.state.mobileOpen}
-                            tp = {this.state.tp}
-                            tpRandom={this.state.tpRandom}
-                            tpExclu = {this.state.tpExclu}
-                            aleatoireQuestion={this.state.aleatoireQuestion}
-                            nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
-                            handleClickQuestionnaire={this.handleClickQuestionnaire}
-                            nbTrou = {this.state.nbTrou}
-                            handleChangeNbTrou = {this.handleChangeNbTrou}
-                            handleSelectNombre = {this.handleSelectNombre}
-                            valueSelectTp = {this.state.valueSelectTp}
-                            afficherNbTp = {this.state.afficherNbTp}
-                            changePage= {this.changePage}
-                            advanced = {this.state.advanced}
-                            loading = {this.state.loading}
-                            user = {this.state.user}
-                            selectList = {this.selectList}
-                            setListWithToken={this.setListWithToken}
-                            listSelected = {this.state.listSelected}
-                            allList = {this.allList}
-                            shuffleQuestion={this.shuffleQuestion}
-                            link = {link}
-                            resetTp = {this.resetTp}
-                          />
+                          classes = {classes}
+                          handleInputChange = {this.handleInputChange}
+                          handleClick = {this.handleClick}
+                          handleSelect = {this.handleSelect}
+                          handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                          handleSelectionTpClose = {this.handleSelectionTpClose}
+                          handleQuestion = {this.handleQuestion}
+                          handleDrawerToggle = {this.handleDrawerToggle}
+                          handleReponse = {this.handleReponse}
+                          handleCheck = {this.handleCheck}
+                          selectAll = {this.selectAll}
+                          selectAllChbx = {this.state.selectAllChbx}
+                          selectionPage = {this.state.selectionPage}
+                          aleatoire = {this.state.aleatoire}
+                          limite = {this.state.limite}
+                          tpLength = {this.state.tp.length}
+                          colonne = {this.state.colonne}
+                          mobileOpen = {this.state.mobileOpen}
+                          tp = {this.state.tp}
+                          tpRandom={this.state.tpRandom}
+                          tpExclu = {this.state.tpExclu}
+                          aleatoireQuestion={this.state.aleatoireQuestion}
+                          nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
+                          handleClickQuestionnaire={this.handleClickQuestionnaire}
+                          nbTrou = {this.state.nbTrou}
+                          handleChangeNbTrou = {this.handleChangeNbTrou}
+                          handleSelectNombre = {this.handleSelectNombre}
+                          valueSelectTp = {this.state.valueSelectTp}
+                          afficherNbTp = {this.state.afficherNbTp}
+                          changePage= {this.changePage}
+                          advanced = {this.state.advanced}
+                          loading = {this.state.loading}
+                          user = {this.state.user}
+                          selectList = {this.selectList}
+                          setListWithToken={this.setListWithToken}
+                          listSelected = {this.state.listSelected}
+                          allList = {this.allList}
+                          shuffleQuestion={this.shuffleQuestion}
+                          link = {link}
+                          resetTp = {this.resetTp}
+                          resetQuestion = {this.resetQuestion}
+                        />
                         )
                     }/>
                 </Switch>
                 <Snackbar
                   anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'left'
                   }}
                   open={this.state.openSnackbar}
                   autoHideDuration={6000}
                   onClose={() => this.setState({openSnackbar: false})}
                   ContentProps={{
-                    'aria-describedby': 'Liste appliquée',
+                    'aria-describedby': 'Liste appliquée'
                   }}
                   message={<span id='listSnack'>{this.state.msgSnackbar} </span>}
                   action={[
@@ -741,7 +776,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                       onClick={() => this.setState({openSnackbar: false})}
                     >
                       <CloseIcon />
-                    </IconButton>,
+                    </IconButton>
                   ]}
                 />
               </div>

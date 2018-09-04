@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import {createMuiTheme } from '@material-ui/core/styles'
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 export default createMuiTheme({
   palette: {
     type: 'dark',

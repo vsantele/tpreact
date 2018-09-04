@@ -1,6 +1,7 @@
 ﻿URGENT:
 
 HAUT:
+    - Précharger loadable
     - Modifier comptage correction si test OK
         - Récupérer info si test, (peut-être bouger fct correction dans Home pour récup state type) OK
 MOYEN:

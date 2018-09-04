@@ -7,7 +7,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
 var firestore = firebase.firestore()
-firebase.firestore().settings({timestampsInSnapshots: true})
+firestore.settings({timestampsInSnapshots: true})
 var auth = firebase.auth()
 auth.useDeviceLanguage()
 var provider = new firebase.auth.GoogleAuthProvider()

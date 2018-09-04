@@ -12,9 +12,6 @@ import Checkbox from '@material-ui/core/Checkbox'
 import {Link} from 'react-router-dom'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Typography from '@material-ui/core/Typography'
-import cerveauCordeSaute from '../Images/cerveauCordeSaute.png'
-import cerveauCourse from '../Images/cerveauCourse.png'
-import cerveauAbdo from '../Images/cerveauAbdo.png'
 /* eslint-enable */
 
 class Liste extends Component {

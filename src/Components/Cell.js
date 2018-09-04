@@ -8,12 +8,13 @@ export default class Cell extends Component {
   render () {
     function verification (e) {
       var reponse = e.target.value
-      var regex = /\s?(\()\s?/
-      var valueClean = reponse.split(regex)
+      var regex = /\s?(\(|-)\s?/
+      var valueClean = value.split(regex)
       var index = e.target.id
       var correct = reponse !== '' ? reponse === valueClean[0] : 'neutre'
       console.log('valueClean', valueClean[0])
       console.log('correct', correct)
+      console.log('reponse: ', reponse)
       handleReponse(correct, index, colonne.value)
     }
     const classes = this.props.classes
