@@ -29,7 +29,8 @@ export default withMobileDialog()(class Options extends Component {
     super()
     this.state = {
       openAlert: false,
-      loading: false
+      loading: false,
+      finish: false
     }
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -37,7 +38,7 @@ export default withMobileDialog()(class Options extends Component {
   }
 
   handleOpen () {
-    this.setState({openAlert: true})
+    this.setState({openAlert: true, finish: false})
   }
 
   handleClose () {
@@ -82,9 +83,8 @@ export default withMobileDialog()(class Options extends Component {
       }
       if (req.status === 200) {
         getTpSelect()
-        console.log(body)
-        const data = new File([body], 'Liste tp.xlsx', {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}) // eslint-disable-line
         download(body, 'ListTP.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        this.setState({loading: false, finish: true})
       }
     }
     req.timeout = () => {
@@ -182,11 +182,11 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item style={{display: type === 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>télécharger <Download/></Button>
+                <Button variant='outlined' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>télécharger <Download/></Button>
               </div>
             </Grid>
           </Grid>
-          <Alert open={this.state.openAlert} loading={this.state.loading} handleClose={this.handleClose} handleDownload={this.handleDownload} classes={classes} />
+          <Alert open={this.state.openAlert} loading={this.state.loading} finish={this.state.finish} handleClose={this.handleClose} handleDownload={this.handleDownload} classes={classes} />
         </div>
       )
     }
@@ -207,7 +207,7 @@ function Alert (props) {
       <DialogTitle id='alert-dialog-title'>Téléchargement</DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
-              Téléchargez votre liste de Tp!
+              Téléchargez votre liste de Temps primitifs!
         </DialogContentText>
         <div className={classes.gridRoot}>
           <Grid container spacing={8} >
@@ -229,6 +229,7 @@ function Alert (props) {
             <LinearProgress/>
           </React.Fragment>
         </Fade>
+        {props.finish && <Typography variant='body1'>Votre fichier est prêt!</Typography>}
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color='primary' autoFocus>
