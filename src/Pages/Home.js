@@ -165,7 +165,6 @@ export default class Home extends Component {
                 afficherNbTp={this.props.afficherNbTp}
                 classes={classes}
                 changePage={this.props.changePage}
-                handleAdvanced={this.handleAdvanced}
                 user={this.props.user}
                 tp={this.props.tp}
                 selectList={this.props.selectList}

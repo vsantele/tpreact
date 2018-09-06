@@ -8,6 +8,7 @@
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-polyfill": "^6.26.0",
+    "downloadjs": "^1.4.7",
     "firebase": "^5.3.1",
     "jquery": "^3.2.1",
     "loadable-components": "^2.2.2",
@@ -31,7 +32,7 @@
     "shuffle-array": "^1.0.1"
   },
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/5.*",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

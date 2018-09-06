@@ -15,16 +15,25 @@ import withMobileDialog from '@material-ui/core/withMobileDialog'
 import classNames from 'classnames'
 import Refresh from '@material-ui/icons/Refresh'
 import Shuffle from '@material-ui/icons/Shuffle'
+import Download from '@material-ui/icons/CloudDownload'
+import LinearProgress from "@material-ui/core/LinearProgress"
+import Fade from '@material-ui/core/Fade'
+import download from 'downloadjs'
+import Typography from '@material-ui/core/Typography';
 /* eslint-enable */
+
+const req = new XMLHttpRequest() // eslint-disable-line
 
 export default withMobileDialog()(class Options extends Component {
   constructor () {
     super()
     this.state = {
-      openAlert: false
+      openAlert: false,
+      loading: false
     }
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleDownload = this.handleDownload.bind(this)
   }
 
   handleOpen () {
@@ -32,7 +41,7 @@ export default withMobileDialog()(class Options extends Component {
   }
 
   handleClose () {
-    this.setState({openAlert: false})
+    this.setState({openAlert: false, loading: false})
   }
 
   showCorRep () {
@@ -49,6 +58,42 @@ export default withMobileDialog()(class Options extends Component {
     } else {
       return false
     }
+  }
+
+  handleDownload () {
+    const getTpSelect = () => {
+      const Tps = this.props.tp
+      const listIdTp = Tps.filter(tp => tp.afficher).map(tp => {
+        return tp.id
+      })
+      console.log(listIdTp)
+      return listIdTp
+    }
+    this.setState({loading: true})
+    let header = new Headers() // eslint-disable-line
+    header.append('Content-Type', 'application/json')
+    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/createSheet?list=[' + getTpSelect() + ']'
+    req.responseType = 'blob'
+    req.open('GET', url)
+    req.onload = () => {
+      const body = req.response
+      if (req.status === 500) {
+        console.error('Erreur serveur')
+      }
+      if (req.status === 200) {
+        getTpSelect()
+        console.log(body)
+        const data = new File([body], 'Liste tp.xlsx', {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}) // eslint-disable-line
+        download(body, 'ListTP.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      }
+    }
+    req.timeout = () => {
+      console.error('Timeout')
+    }
+    req.onerror = () => {
+      console.error('Error...')
+    }
+    req.send()
   }
 
   render () {
@@ -135,13 +180,13 @@ export default withMobileDialog()(class Options extends Component {
                 </FormControl>
               </div>
             </Grid>
-            {/* <Grid item style={{display: type === 'voir' ? 'none' : 'flex'}}>
+            <Grid item style={{display: type === 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>Plus</Button>
+                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>télécharger <Download/></Button>
               </div>
-            </Grid> */}
+            </Grid>
           </Grid>
-          <Alert open={this.state.openAlert} handleClose={this.handleClose} handleAdvanced={this.props.handleAdvanced} classes={classes} />
+          <Alert open={this.state.openAlert} loading={this.state.loading} handleClose={this.handleClose} handleDownload={this.handleDownload} classes={classes} />
         </div>
       )
     }
@@ -159,21 +204,31 @@ function Alert (props) {
       aria-describedby='alert-dialog-description'
       scroll='body'
     >
-      <DialogTitle id='alert-dialog-title'>{'Options Supplémentaire'}</DialogTitle>
+      <DialogTitle id='alert-dialog-title'>Téléchargement</DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
-              Ajout d'options supplémentaires
+              Téléchargez votre liste de Tp!
         </DialogContentText>
         <div className={classes.gridRoot}>
           <Grid container spacing={8} >
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleAdvanced}>Advanced</Button>
+                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleDownload}>Télécharger <Download/></Button>
               </div>
             </Grid>
-            <Grid item />
           </Grid>
         </div>
+        <Fade in={props.loading}
+          style={{
+            transitionDelay: props.loading ? '800ms' : '0ms'
+          }}
+          unmountOnExit
+        >
+          <React.Fragment>
+            <Typography variant='body 1'>Création du fichier en cours, veuillez patienter (cela peut prendre 30 sec)</Typography>
+            <LinearProgress/>
+          </React.Fragment>
+        </Fade>
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color='primary' autoFocus>
