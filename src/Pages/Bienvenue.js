@@ -83,7 +83,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
     }
   }
   componentWillMount() {
-    alert('Mise à jour de la Base de données en cours, service temporairement indisponible :D')
+    // alert('Mise à jour de la Base de données en cours. Des bugs peuvent appraître')
   }
 
   render () {
