@@ -1,6 +1,5 @@
 /*eslint-disable */
 import React, {Component} from 'react'
-// import { Link, Redirect } from 'react-router-dom'
 import Link from 'react-router-dom/Link'
 import Redirect from 'react-router-dom/Redirect'
 import Typography from '@material-ui/core/Typography'
@@ -19,9 +18,6 @@ import Dialog from '@material-ui/core/Dialog'
 import {db} from '../firebase/firebase'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import ButtonBase from '@material-ui/core/ButtonBase'
-// import cerveauVelo from '../Images/cerveauVelo.png'
-// import cerveauBoxe from '../Images/cerveauBoxe.png'
-// import VerIrrNdls from '../Images/Les verbes irréguliers Néerlandais.png'
 /*esling-enable*/
 
 export default withMobileDialog()(class Bienvenue extends Component {
@@ -85,6 +81,9 @@ export default withMobileDialog()(class Bienvenue extends Component {
     } else {
       this.setState({openListTp: true})
     }
+  }
+  componentWillMount() {
+    alert('Mise à jour de la Base de données en cours, service temporairement indisponible :D')
   }
 
   render () {
