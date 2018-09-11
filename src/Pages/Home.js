@@ -42,10 +42,11 @@ export default class Home extends Component {
     let reponseBon = 0
     let reponseTotal = 0
     let colonne = this.props.colonne
+    let nbCol = colonne.length
     let correct = (i) => colonne[i].value
     if (this.state.type === 'etude') {
       for (let i = 0; i < this.props.limite; i++) {
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < nbCol; j++) { // remplacer 4 par nbCol
           if (colonne[j].question) {
             if (tp[i]['correct'][correct(j)] === false) {
               reponseMauvais++
@@ -106,6 +107,7 @@ export default class Home extends Component {
         this.props.handleQuestion(col)
         break
       case 'test':
+        this.props.resetQuestion()
         this.props.shuffleQuestion(level)
         break
       default:
@@ -173,6 +175,7 @@ export default class Home extends Component {
                 type={this.state.type}
                 level={level}
                 bottom={false}
+                handleAffReponse = {this.handleAffReponse}
               />
             </Grid>
             {

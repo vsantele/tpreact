@@ -66,7 +66,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauCordeSaute.png)`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:eco/v1534806588/tp%20ndls/cerveauCordeSaute.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
@@ -96,7 +96,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauCourse.png)`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:eco/v1534806588/tp%20ndls/cerveauCourse.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
@@ -117,13 +117,14 @@ class Liste extends Component {
                     <ListItem
                       button
                       onClick={() => this.handleToggle(index)}
+                      key={'col' + index}
                     >
                       <Checkbox checked={this.state.etudeChecked.indexOf(index) !== -1} tabIndex={-1} disableRipple />
                       <ListItemText primary={col.label} />
                     </ListItem>
                   ))}
                 </List>
-                <Button variant='outlined' color='primary' component={Link} to={{pathname: '/Home', state: {type: 'etude', col: this.state.etudeChecked}}} disabled={this.state.etudeChecked.length === 0 || this.state.etudeChecked.length >= 4}>Valider</Button>
+                <Button variant='outlined' color='primary' component={Link} to={{pathname: '/Home', state: {type: 'etude', col: this.state.etudeChecked}}} disabled={this.state.etudeChecked.length === 0 || this.state.etudeChecked.length >= this.props.colonne.length}>Valider</Button>
               </Collapse>
             </Grid>
             <Grid item>
@@ -139,7 +140,7 @@ class Liste extends Component {
                   className={classes.imageSrc}
                   // src={cerveauCourse}
                   style={{
-                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauAbdo.png)`
+                    backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:eco/v1534806588/tp%20ndls/cerveauAbdo.png)`
                   }}
                 />
                 <span className={classes.imageButton}>
@@ -157,7 +158,7 @@ class Liste extends Component {
               <Collapse in={this.state.openTest}>
                 <List>
                   {[1, 2, 3].map(lvl => (
-                    <ListItem button component={Link} to={{pathname: '/Home', state: {type: 'test', level: lvl}}}>
+                    <ListItem key={'lvl' + lvl} button component={Link} to={{pathname: '/Home', state: {type: 'test', level: lvl}}}>
                       <ListItemText primary={`Niveau ${lvl}`} />
                     </ListItem>
                   ))}

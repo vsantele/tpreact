@@ -24,4 +24,4 @@ src/App.js.bak
 src/bakFonction.js
 .vscode/*
 backup/*
-firebaseFunctions/*
+firebase/*

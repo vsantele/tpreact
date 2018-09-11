@@ -64,7 +64,6 @@ class AddAlert extends Component {
       req.open('POST', url)
       // req.responseType = 'json'
       req.onload = () => {
-        console.log(req.response)
         const body = req.response
         if (req.status === 200) {
           console.log('réponse recue: %s', req.responseType)
@@ -87,7 +86,7 @@ class AddAlert extends Component {
               .collection('users').doc(this.props.user.uid).collection('lists')
               .doc()
             doc
-              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false})
+              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: this.props.lang})
               .then(() => {
                 msgSnackbar += ' et enregistré avec succès !'
               })

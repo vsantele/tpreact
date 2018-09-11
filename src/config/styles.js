@@ -52,7 +52,6 @@ export default theme => ({
   },
   appBar: {
     flexGrow: 1,
-    position: 'fixed',
     [theme.breakpoints.up('md')]: {
       width: `100%`
     }
@@ -97,9 +96,7 @@ export default theme => ({
     margin: 10
   },
   accountIcon: {
-    right: theme.spacing.unit * 2,
-    marginTop: '-0.5em',
-    position: 'fixed'
+    marginTop: '-0.5em'
   },
   margin: {
     margin: theme.spacing.unit * 2
@@ -212,6 +209,11 @@ export default theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    marginTop:'0.3em'
+    marginTop: '0.3em'
+  },
+  main: {
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column'
   }
 })

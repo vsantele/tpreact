@@ -1,0 +1,2255 @@
+[
+    {
+        "PP": "abode",
+        "id": 0,
+        "infFr": "demeurer",
+        "imp": "abode",
+        "infAn": "abide",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "arisen",
+        "id": 1,
+        "infFr": "s'élever survenir",
+        "imp": "arose",
+        "infAn": "arise",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "awoken",
+        "id": 2,
+        "infFr": "(se) réveiller",
+        "imp": "awoke",
+        "infAn": "awake",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "borne",
+        "id": 3,
+        "infFr": "supporter",
+        "imp": "bore",
+        "infAn": "bear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "beaten",
+        "id": 4,
+        "infFr": "battre",
+        "imp": "beat",
+        "infAn": "beat",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "become",
+        "id": 5,
+        "infFr": "devenir",
+        "imp": "became",
+        "infAn": "become",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "begun",
+        "id": 6,
+        "infFr": "commencer",
+        "imp": "began",
+        "infAn": "begin",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bent",
+        "id": 7,
+        "infFr": "(se) courber",
+        "imp": "bent",
+        "infAn": "bend",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bet",
+        "id": 8,
+        "infFr": "parier",
+        "imp": "bet",
+        "infAn": "bet",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bid",
+        "id": 9,
+        "infFr": "offrir (un prix)",
+        "imp": "bid",
+        "infAn": "bid",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bound",
+        "id": 10,
+        "infFr": "lier relier",
+        "imp": "bound",
+        "infAn": "bind",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bitten",
+        "id": 11,
+        "infFr": "mordre",
+        "imp": "bit",
+        "infAn": "bite",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bled",
+        "id": 12,
+        "infFr": "saigner",
+        "imp": "bled",
+        "infAn": "bleed",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "blown",
+        "id": 13,
+        "infFr": "souffler",
+        "imp": "blew",
+        "infAn": "blow",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "broken",
+        "id": 14,
+        "infFr": "casser",
+        "imp": "broke",
+        "infAn": "break",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bred",
+        "id": 15,
+        "infFr": "élever (du bétail)",
+        "imp": "bred",
+        "infAn": "breed",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "brought",
+        "id": 16,
+        "infFr": "apporter",
+        "imp": "brought",
+        "infAn": "bring",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "built",
+        "id": 17,
+        "infFr": "construire",
+        "imp": "built",
+        "infAn": "build",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "burnt",
+        "id": 18,
+        "infFr": "brûler",
+        "imp": "burnt",
+        "infAn": "burn",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "burst",
+        "id": 19,
+        "infFr": "éclater",
+        "imp": "burst",
+        "infAn": "burst",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "bought",
+        "id": 20,
+        "infFr": "acheter",
+        "imp": "bought",
+        "infAn": "buy",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "cast",
+        "id": 21,
+        "infFr": "jeter lancer",
+        "imp": "cast",
+        "infAn": "cast",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "caught",
+        "id": 22,
+        "infFr": "attraper",
+        "imp": "caught",
+        "infAn": "catch",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "chosen",
+        "id": 23,
+        "infFr": "choisir",
+        "imp": "chose",
+        "infAn": "choose",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "clung",
+        "id": 24,
+        "infFr": "s'accrocher",
+        "imp": "clung",
+        "infAn": "cling",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "come",
+        "id": 25,
+        "infFr": "venir",
+        "imp": "came",
+        "infAn": "come",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "cost",
+        "id": 26,
+        "infFr": "coûter",
+        "imp": "cost",
+        "infAn": "cost",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "crept",
+        "id": 27,
+        "infFr": "ramper",
+        "imp": "crept",
+        "infAn": "creep",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "cut",
+        "id": 28,
+        "infFr": "couper",
+        "imp": "cut",
+        "infAn": "cut",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "dealt",
+        "id": 29,
+        "infFr": "distribuer",
+        "imp": "dealt",
+        "infAn": "deal",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "dug",
+        "id": 30,
+        "infFr": "creuser",
+        "imp": "dug",
+        "infAn": "dig",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "done",
+        "id": 31,
+        "infFr": "faire",
+        "imp": "did",
+        "infAn": "do",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "drawn",
+        "id": 32,
+        "infFr": "dessiner",
+        "imp": "drew",
+        "infAn": "draw",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "dreamt",
+        "id": 33,
+        "infFr": "rêver",
+        "imp": "dreamt",
+        "infAn": "dream",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "drunk",
+        "id": 34,
+        "infFr": "boire",
+        "imp": "drank",
+        "infAn": "drink",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "driven",
+        "id": 35,
+        "infFr": "conduire",
+        "imp": "drove",
+        "infAn": "drive",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "dwelt",
+        "id": 36,
+        "infFr": "habiter",
+        "imp": "dwelt",
+        "infAn": "dwell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "eaten",
+        "id": 37,
+        "infFr": "manger",
+        "imp": "ate",
+        "infAn": "eat",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "fallen",
+        "id": 38,
+        "infFr": "tomber",
+        "imp": "fell",
+        "infAn": "fall",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "fed",
+        "id": 39,
+        "infFr": "nourrir",
+        "imp": "fed",
+        "infAn": "feed",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "felt",
+        "id": 40,
+        "infFr": "sentir éprouver",
+        "imp": "felt",
+        "infAn": "feel",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "fought",
+        "id": 41,
+        "infFr": "combattre",
+        "imp": "fought",
+        "infAn": "fight",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "found",
+        "id": 42,
+        "infFr": "trouver",
+        "imp": "found",
+        "infAn": "find",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "fled",
+        "id": 43,
+        "infFr": "s'enfuir",
+        "imp": "fled",
+        "infAn": "flee",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "flung",
+        "id": 44,
+        "infFr": "jeter violemment",
+        "imp": "flung",
+        "infAn": "fling",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "flown",
+        "id": 45,
+        "infFr": "voler",
+        "imp": "flew",
+        "infAn": "fly",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "forbidden",
+        "id": 46,
+        "infFr": "interdire",
+        "imp": "forbade",
+        "infAn": "forbid",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "forgotten",
+        "id": 47,
+        "infFr": "oublier",
+        "imp": "forgot",
+        "infAn": "forget",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "forgiven",
+        "id": 48,
+        "infFr": "pardonner",
+        "imp": "forgave",
+        "infAn": "forgive",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "frozen",
+        "id": 49,
+        "infFr": "geler",
+        "imp": "froze",
+        "infAn": "freeze",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "got",
+        "id": 50,
+        "infFr": "obtenir",
+        "imp": "got",
+        "infAn": "get",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "given",
+        "id": 51,
+        "infFr": "donner",
+        "imp": "gave",
+        "infAn": "give",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "gone",
+        "id": 52,
+        "infFr": "aller",
+        "imp": "went",
+        "infAn": "go",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "ground",
+        "id": 53,
+        "infFr": "moudre",
+        "imp": "ground",
+        "infAn": "grind",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "grown",
+        "id": 54,
+        "infFr": "grandir",
+        "imp": "grew",
+        "infAn": "grow",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "hung",
+        "id": 55,
+        "infFr": "pendre accrocher",
+        "imp": "hung",
+        "infAn": "hang",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "had",
+        "id": 56,
+        "infFr": "avoir",
+        "imp": "had",
+        "infAn": "have",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "heard",
+        "id": 57,
+        "infFr": "entendre",
+        "imp": "heard",
+        "infAn": "hear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "hidden",
+        "id": 58,
+        "infFr": "(se) cacher",
+        "imp": "hid",
+        "infAn": "hide",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "hit",
+        "id": 59,
+        "infFr": "frapper atteindre",
+        "imp": "hit",
+        "infAn": "hit",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "held",
+        "id": 60,
+        "infFr": "tenir",
+        "imp": "held",
+        "infAn": "hold",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "hurt",
+        "id": 61,
+        "infFr": "blesser",
+        "imp": "hurt",
+        "infAn": "hurt",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "kept",
+        "id": 62,
+        "infFr": "garder",
+        "imp": "kept",
+        "infAn": "keep",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "knelt",
+        "id": 63,
+        "infFr": "s'agenouiller",
+        "imp": "knelt",
+        "infAn": "kneel",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "known",
+        "id": 64,
+        "infFr": "savoir connaître",
+        "imp": "knew",
+        "infAn": "know",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "laid",
+        "id": 65,
+        "infFr": "poser à plat",
+        "imp": "laid",
+        "infAn": "lay",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "led",
+        "id": 66,
+        "infFr": "mener",
+        "imp": "led",
+        "infAn": "lead",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "leant",
+        "id": 67,
+        "infFr": "s'appuyer",
+        "imp": "leant",
+        "infAn": "lean",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "leapt",
+        "id": 68,
+        "infFr": "sauter",
+        "imp": "leapt",
+        "infAn": "leap",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "learnt",
+        "id": 69,
+        "infFr": "apprendre",
+        "imp": "learnt",
+        "infAn": "learn",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "left",
+        "id": 70,
+        "infFr": "laisser quitter",
+        "imp": "left",
+        "infAn": "leave",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "lent",
+        "id": 71,
+        "infFr": "prêter",
+        "imp": "lent",
+        "infAn": "lend",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "let",
+        "id": 72,
+        "infFr": "permettre     louer",
+        "imp": "let",
+        "infAn": "let",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "lain",
+        "id": 73,
+        "infFr": "être    étendu",
+        "imp": "lay",
+        "infAn": "lie",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "lit",
+        "id": 74,
+        "infFr": "allumer",
+        "imp": "lit",
+        "infAn": "light",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "lost",
+        "id": 75,
+        "infFr": "perdre",
+        "imp": "lost",
+        "infAn": "lose",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "made",
+        "id": 76,
+        "infFr": "faire     fabriquer",
+        "imp": "made",
+        "infAn": "make",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "meant",
+        "id": 77,
+        "infFr": "signifier",
+        "imp": "meant",
+        "infAn": "mean",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "met",
+        "id": 78,
+        "infFr": "(se) rencontrer",
+        "imp": "met",
+        "infAn": "meet",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "mown",
+        "id": 79,
+        "infFr": "tondre",
+        "imp": "mowed",
+        "infAn": "mow",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "overcome",
+        "id": 80,
+        "infFr": "surmonter  vaincre",
+        "imp": "overcame",
+        "infAn": "overcome",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "paid",
+        "id": 81,
+        "infFr": "payer",
+        "imp": "paid",
+        "infAn": "pay",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "put",
+        "id": 82,
+        "infFr": "mettre",
+        "imp": "put",
+        "infAn": "put",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "quit",
+        "id": 83,
+        "infFr": "cesser    (de)",
+        "imp": "quit",
+        "infAn": "quit",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "read",
+        "id": 84,
+        "infFr": "lire",
+        "imp": "read",
+        "infAn": "read",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "rid",
+        "id": 85,
+        "infFr": "débarrasser",
+        "imp": "rid",
+        "infAn": "rid",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "ridden",
+        "id": 86,
+        "infFr": "chevaucher",
+        "imp": "rode",
+        "infAn": "ride",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "rung",
+        "id": 87,
+        "infFr": "sonner",
+        "imp": "rang",
+        "infAn": "ring",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "risen",
+        "id": 88,
+        "infFr": "s'élever     se lever",
+        "imp": "rose",
+        "infAn": "rise",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "run",
+        "id": 89,
+        "infFr": "courir",
+        "imp": "ran",
+        "infAn": "run",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sawn",
+        "id": 90,
+        "infFr": "scier",
+        "imp": "sawed",
+        "infAn": "saw",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "said",
+        "id": 91,
+        "infFr": "dire",
+        "imp": "said",
+        "infAn": "say",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "seen",
+        "id": 92,
+        "infFr": "voir",
+        "imp": "saw",
+        "infAn": "see",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sought",
+        "id": 93,
+        "infFr": "chercher",
+        "imp": "sought",
+        "infAn": "seek",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sold",
+        "id": 94,
+        "infFr": "vendre",
+        "imp": "sold",
+        "infAn": "sell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sent",
+        "id": 95,
+        "infFr": "envoyer",
+        "imp": "sent",
+        "infAn": "send",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "set",
+        "id": 96,
+        "infFr": "fixer",
+        "imp": "set",
+        "infAn": "set",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sewn",
+        "id": 97,
+        "infFr": "coudre",
+        "imp": "sewed",
+        "infAn": "sew",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shaken",
+        "id": 98,
+        "infFr": "secouer",
+        "imp": "shook",
+        "infAn": "shake",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shorn",
+        "id": 99,
+        "infFr": "tondre    (des moutons)",
+        "imp": "sheared",
+        "infAn": "shear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shed",
+        "id": 100,
+        "infFr": "verser    (des larmes)",
+        "imp": "shed",
+        "infAn": "shed",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shone",
+        "id": 101,
+        "infFr": "briller",
+        "imp": "shone",
+        "infAn": "shine",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shod",
+        "id": 102,
+        "infFr": "ferrer     chausser",
+        "imp": "shod",
+        "infAn": "shoe",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shot",
+        "id": 103,
+        "infFr": "tirer",
+        "imp": "shot",
+        "infAn": "shoot",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shown",
+        "id": 104,
+        "infFr": "montrer",
+        "imp": "showed",
+        "infAn": "show",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shrunk",
+        "id": 105,
+        "infFr": "rétrécir",
+        "imp": "shrank",
+        "infAn": "shrink",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "shut",
+        "id": 106,
+        "infFr": "fermer",
+        "imp": "shut",
+        "infAn": "shut",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sung",
+        "id": 107,
+        "infFr": "chanter",
+        "imp": "sang",
+        "infAn": "sing",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sunk",
+        "id": 108,
+        "infFr": "couler",
+        "imp": "sank",
+        "infAn": "sink",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sat",
+        "id": 109,
+        "infFr": "être assis",
+        "imp": "sat",
+        "infAn": "sit",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "slept",
+        "id": 110,
+        "infFr": "dormir",
+        "imp": "slept",
+        "infAn": "sleep",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "slid",
+        "id": 111,
+        "infFr": "glisser",
+        "imp": "slid",
+        "infAn": "slide",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "slung",
+        "id": 112,
+        "infFr": "lancer    (avec force)",
+        "imp": "slung",
+        "infAn": "sling",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "slunk",
+        "id": 113,
+        "infFr": "aller    furtivement",
+        "imp": "slunk",
+        "infAn": "slink",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "slit",
+        "id": 114,
+        "infFr": "fendre inciser",
+        "imp": "slit",
+        "infAn": "slit",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "smelt",
+        "id": 115,
+        "infFr": "sentir    (odorat)",
+        "imp": "smelt",
+        "infAn": "smell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sown",
+        "id": 116,
+        "infFr": "semer",
+        "imp": "sowed",
+        "infAn": "sow",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spoken",
+        "id": 117,
+        "infFr": "parler",
+        "imp": "spoke",
+        "infAn": "speak",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sped",
+        "id": 118,
+        "infFr": "aller    à toute vitesse",
+        "imp": "sped",
+        "infAn": "speed",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spelt",
+        "id": 119,
+        "infFr": "épeler",
+        "imp": "spelt",
+        "infAn": "spell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spent",
+        "id": 120,
+        "infFr": "dépenser",
+        "imp": "spent",
+        "infAn": "spend",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spilt",
+        "id": 121,
+        "infFr": "renverser    (un liquide)",
+        "imp": "spilt",
+        "infAn": "spill",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spat",
+        "id": 122,
+        "infFr": "cracher",
+        "imp": "spat",
+        "infAn": "spit",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "split",
+        "id": 123,
+        "infFr": "fendre",
+        "imp": "split",
+        "infAn": "split",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spoilt",
+        "id": 124,
+        "infFr": "gâcher     gâter",
+        "imp": "spoilt",
+        "infAn": "spoil",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "spread",
+        "id": 125,
+        "infFr": "répandre",
+        "imp": "spread",
+        "infAn": "spread",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sprung",
+        "id": 126,
+        "infFr": "jaillir     bondir",
+        "imp": "sprang",
+        "infAn": "spring",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stood",
+        "id": 127,
+        "infFr": "être    debout",
+        "imp": "stood",
+        "infAn": "stand",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stolen",
+        "id": 128,
+        "infFr": "voler     dérober",
+        "imp": "stole",
+        "infAn": "steal",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stuck",
+        "id": 129,
+        "infFr": "coller",
+        "imp": "stuck",
+        "infAn": "stick",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stung",
+        "id": 130,
+        "infFr": "piquer",
+        "imp": "stung",
+        "infAn": "sting",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stunk",
+        "id": 131,
+        "infFr": "puer",
+        "imp": "stank",
+        "infAn": "stink",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "stridden",
+        "id": 132,
+        "infFr": "marcher    à grands pas",
+        "imp": "strode",
+        "infAn": "stride",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "struck",
+        "id": 133,
+        "infFr": "frapper",
+        "imp": "struck",
+        "infAn": "strike",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "strung",
+        "id": 134,
+        "infFr": "enfiler     tendre (une corde)",
+        "imp": "strung",
+        "infAn": "string",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "striven",
+        "id": 135,
+        "infFr": "s'efforcer",
+        "imp": "strove",
+        "infAn": "strive",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "sworn",
+        "id": 136,
+        "infFr": "jurer",
+        "imp": "swore",
+        "infAn": "swear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "swept",
+        "id": 137,
+        "infFr": "balayer",
+        "imp": "swept",
+        "infAn": "sweep",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "swollen",
+        "id": 138,
+        "infFr": "enfler",
+        "imp": "swelled",
+        "infAn": "swell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "swum",
+        "id": 139,
+        "infFr": "nager",
+        "imp": "swam",
+        "infAn": "swim",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "swung",
+        "id": 140,
+        "infFr": "se    balancer",
+        "imp": "swung",
+        "infAn": "swing",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "taken",
+        "id": 141,
+        "infFr": "prendre",
+        "imp": "took",
+        "infAn": "take",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "taught",
+        "id": 142,
+        "infFr": "enseigner",
+        "imp": "taught",
+        "infAn": "teach",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "torn",
+        "id": 143,
+        "infFr": "déchirer",
+        "imp": "tore",
+        "infAn": "tear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "told",
+        "id": 144,
+        "infFr": "dire     raconter",
+        "imp": "told",
+        "infAn": "tell",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "thought",
+        "id": 145,
+        "infFr": "penser",
+        "imp": "thought",
+        "infAn": "think",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "thrown",
+        "id": 146,
+        "infFr": "jeter",
+        "imp": "threw",
+        "infAn": "throw",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "thrust",
+        "id": 147,
+        "infFr": "enfoncer",
+        "imp": "thrust",
+        "infAn": "thrust",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "trodden",
+        "id": 148,
+        "infFr": "fouler    aux pieds",
+        "imp": "trod",
+        "infAn": "tread",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "undergone",
+        "id": 149,
+        "infFr": "subir",
+        "imp": "underwent",
+        "infAn": "undergo",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "understood",
+        "id": 150,
+        "infFr": "comprendre",
+        "imp": "understood",
+        "infAn": "understand",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "upset",
+        "id": 151,
+        "infFr": "bouleverser",
+        "imp": "upset",
+        "infAn": "upset",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "woken",
+        "id": 152,
+        "infFr": "(se)    réveiller",
+        "imp": "woke",
+        "infAn": "wake",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "worn",
+        "id": 153,
+        "infFr": "porter    (des vêtements)",
+        "imp": "wore",
+        "infAn": "wear",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "woven",
+        "id": 154,
+        "infFr": "tisser",
+        "imp": "wove",
+        "infAn": "weave",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "wept",
+        "id": 155,
+        "infFr": "pleurer",
+        "imp": "wept",
+        "infAn": "weep",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "won",
+        "id": 156,
+        "infFr": "gagner",
+        "imp": "won",
+        "infAn": "win",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "wound",
+        "id": 157,
+        "infFr": "enrouler",
+        "imp": "wound",
+        "infAn": "wind",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "withdrawn",
+        "id": 158,
+        "infFr": "(se) retirer",
+        "imp": "withdrew",
+        "infAn": "withdraw",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "wrung",
+        "id": 159,
+        "infFr": "tordre",
+        "imp": "wrung",
+        "infAn": "wring",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    },
+    {
+        "PP": "written",
+        "id": 160,
+        "infFr": "écrire",
+        "imp": "wrote",
+        "infAn": "write",
+        "afficher": true,
+        "correct": {
+            "infFr": "neutre",
+            "imp": "neutre",
+            "PP": "neutre",
+            "infAn": "neutre"
+        }
+    }
+]

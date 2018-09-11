@@ -61,7 +61,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
       .collection('lists')
       .get()
       .then(collection => {
-        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private} })
+        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private, lang: doc.data().lang} })
         this.setState({listName: listName, loadingGetList: false})
       })
       .catch((error) => {
@@ -82,6 +82,18 @@ export default withMobileDialog()(class Bienvenue extends Component {
       this.setState({openListTp: true})
     }
   }
+  whichLang () {
+    switch (this.props.lang) {
+      case 'neerlandais':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/q_auto:eco/v1534806587/tp%20ndls/tpNeerlandais.png'
+      case 'anglais':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/q_auto:eco/v1534806587/tp%20ndls/tpAnglais.png'
+      case 'allemand':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/q_auto:eco/v1534806587/tp%20ndls/tpAllemand.png'
+      default:
+        return 'https://res.cloudinary.com/wolfvic/image/upload/q_auto:eco/v1534806587/tp%20ndls/tpNeerlandais.png'
+    }
+  }
   componentWillMount() {
     // alert('Mise à jour de la Base de données en cours. Des bugs peuvent appraître')
   }
@@ -94,7 +106,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
         <div className={classes.content}>
         <Grid container spacing={40} direction='column' justify='center' alignItems='center'>
             <Grid item>
-              <img src='https://res.cloudinary.com/wolfvic/image/upload/q_auto:best/v1534806587/tp%20ndls/Les_verbes_irr%C3%A9guliers_N%C3%A9erlandais.png' />
+              <img src={this.whichLang()} />
             </Grid>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Grid item container spacing={40} direction="row" justify="center" alignItems="baseline" >
@@ -110,7 +122,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                     className={classes.imageSrc}
                     // src={cerveauCourse}
                     style={{
-                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauVelo.png)`
+                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:eco/v1534806588/tp%20ndls/cerveauVelo.png)`
                     }}
                   />
                   <span className={classes.imageButton}>
@@ -150,7 +162,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                     className={classes.imageSrc}
                     // src={cerveauCourse}
                     style={{
-                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:best/v1534806588/tp%20ndls/cerveauBoxe.png)`
+                      backgroundImage: `url(https://res.cloudinary.com/wolfvic/image/upload/f_auto,q_auto:eco/v1534806588/tp%20ndls/cerveauBoxe.png)`
                     }}
                   />
                   
@@ -185,8 +197,8 @@ export default withMobileDialog()(class Bienvenue extends Component {
                 </Collapse>
               </Grid>
             </Grid>
-            <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes}/>
-            <List open={this.state.openListTp} loading={this.state.loadingGetList} listName={this.state.listName} classes = {classes} selectList={this.redirectList} user={this.props.user} fullScreen={this.props.fullScreen} getList={this.getList} closeListAlert={this.closeListAlert}/>
+            <AddAlert lang = {this.props.lang} open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes}/>
+            <List lang={this.props.lang} open={this.state.openListTp} loading={this.state.loadingGetList} listName={this.state.listName} classes = {classes} selectList={this.redirectList} user={this.props.user} fullScreen={this.props.fullScreen} getList={this.getList} closeListAlert={this.closeListAlert}/>
           </div>
           </Grid>
         </div>
@@ -201,7 +213,7 @@ function List (props) {
       <Dialog open={props.open} fullScreen={props.fullScreen} onClose={props.closeListAlert} onBackdropClick={props.closeListAlert} scroll='body' maxWidth='md' >
         <DialogTitle>Listes de temps primitifs enregistrées</DialogTitle>
         <DialogContent>
-          <ShowListTp loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user} />
+          <ShowListTp lang={props.lang} loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user} />
         </DialogContent>
         <DialogActions>
         <Button onClick={props.closeListAlert} color='primary' autoFocus>

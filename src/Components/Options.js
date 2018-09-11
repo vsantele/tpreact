@@ -67,7 +67,6 @@ export default withMobileDialog()(class Options extends Component {
       const listIdTp = Tps.filter(tp => tp.afficher).map(tp => {
         return tp.id
       })
-      console.log(listIdTp)
       return listIdTp
     }
     this.setState({loading: true})

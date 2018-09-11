@@ -22,6 +22,7 @@ export default class Selection extends Component {
                 selectionPage={this.props.selectionPage}
                 tp={this.props.tp}
                 user={this.props.user}
+                lang={this.props.lang}
                 setListWithToken={this.props.setListWithToken}
               />
             </Grid>

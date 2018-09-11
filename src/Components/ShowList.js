@@ -43,7 +43,7 @@ class ShowList extends Component {
             ? <Progress />
             : <Grid container spacing={16} style={{margin: '0.5em'}}>
               {this.props.listName.length !== 0
-                ? (this.props.listName.map(list => (
+                ? (this.props.listName.filter(list => list.lang === this.props.lang).map(list => (
                   <Grid item key={list.id}>
                     <Paper>
                       <Button color='secondary' className={this.props.classes.button} onClick={() => this.props.selectList(list.tps)}>

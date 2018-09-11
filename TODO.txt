@@ -8,12 +8,16 @@ MOYEN:
     - Switch "Tout les TP" (ajout bouton intermediate)
     - Améliorer Route = https://codepen.io/pshrmn/pen/YZXZqM
     https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
-    - AddList: Verifier si il y a un nom
-    - Terminer params dans url
+    - AddList: Verifier si il y a un nom OK
+    - Terminer params dans url (NON)
+    - Préparer modification liste + langue
+        - Modifier nombre 134 (remplacer par tp.length) et 4 (remplacer par colonne.length)
+        - Modificiation firestore: tp/{langue}/{col: {infoCol}, tps: {listTp}}
+        - Vérifier intégration colonne en plus
+
 BAS:
     - Opti code
     - Bug correction faux, pas compter | comptage correct bon ok
-    - ajout stat
     - Alert correction: Modifier => utiliser snackbar material-ui OK
     - Ameliorer correction => regex pour, par ex, voler
         - + add verse = verse.replace(" ", "");
@@ -22,3 +26,4 @@ BAS:
 FAIBLE:
     - Suppression lignes inutiles
     - AfficherReponse = AffReponse
+    - ajout stat

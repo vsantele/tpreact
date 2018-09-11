@@ -43,23 +43,23 @@ export default class Rendu extends Component {
                         <Grid container>
                           <Grid item >
                             <div className={classes.gridHeader}>
-                              <Typography variant='title'> {col.label}  </Typography>
+                              <Typography variant='title' color={col.question ? 'secondary' : 'default'}> {col.label}  </Typography>
                             </div>
                           </Grid>
-                          <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
+                          {/* <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
                             <div className={classes.gridHeader}>
                               {
                                 aleatoireQuestion
                                   ? null
                                   : (
                                     <FormControl>
-                                      {/* <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel> */}
+                                      { <InputLabel htmlFor={'col' + nb} shrink>Question</InputLabel> }
                                       <Switch inputProps={{ id: 'col' + index }} checked={col.question} classes={{checked: classes.checked, bar: classes.bar}} />
                                     </FormControl>
                                   )
                               }
                             </div>
-                          </Grid>
+                          </Grid> */}
                         </Grid>
                       </div>
                     </TableCell>

@@ -116,7 +116,7 @@ export default withMobileDialog()(class Options extends Component {
           .collection('lists')
           .doc()
         doc
-          .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps(), token: this.state.token, timestamp: this.state.timestamp})
+          .set({name: this.state.name, id: doc.id, private: this.state.private, tps: getTps(), token: this.state.token, timestamp: this.state.timestamp, lang: this.props.lang})
           .then(this.setState({saveAlert: false, name: '', openSnackbar: true, msgSnackbar: 'Liste enregistrée avec succès', errorNom: false}))
           .catch(error => {
             this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
@@ -133,7 +133,7 @@ export default withMobileDialog()(class Options extends Component {
       .collection('lists')
       .get()
       .then(collection => {
-        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private} })
+        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private, lang: doc.data().lang} })
         this.setState({listName: listName, loadingGetList: false})
       })
       .catch((error) => {
@@ -185,7 +185,6 @@ export default withMobileDialog()(class Options extends Component {
       req.open('POST', url)
       // req.responseType = 'json'
       req.onload = () => {
-        console.log(req.response)
         const body = req.response
         if (req.status === 200) {
           console.log('réponse recue: %s', req.responseType)
@@ -209,7 +208,7 @@ export default withMobileDialog()(class Options extends Component {
               .collection('users').doc(this.props.user.uid).collection('lists')
               .doc()
             doc
-              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false})
+              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: this.props.lang})
               .then(() => {
                 msgSnackbar += ' et enregistré avec succès !'
                 this.getList()
@@ -246,7 +245,7 @@ export default withMobileDialog()(class Options extends Component {
       <div className={classes.gridRoot} style={{marginBottom: '1em'}}>
         <Grid container spacing={24}>
           <Grid item className={classes.grid}>
-            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider!</Button></Link>
+            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider</Button></Link>
           </Grid>
           <Grid item className={classes.grid}>
             <Button variant='raised' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>

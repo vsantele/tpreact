@@ -27,6 +27,8 @@ import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
 import Selection from './Pages/Selection'
 import Liste from './Pages/Liste'
+import Footer from './Components/Footer'
+import About from './Pages/About'
 /*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
@@ -102,6 +104,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.state = {
       loading: true, // chargment en cours
       tp: [], // liste des tps dans l'ordre
+      tpMax: -1,
+      lang: 'neerlandais',
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
       colonne: [
@@ -113,7 +117,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
-      anchorEl: null,
       selectionPage: false,
       selectAllChbx: true,
       mobileOpen: false,
@@ -147,8 +150,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.handleSelectNombre = this.handleSelectNombre.bind(this)
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
-    this.handleMenu = this.handleMenu.bind(this)
-    this.handleClose = this.handleClose.bind(this)
     this.changePage = this.changePage.bind(this)
     this.selectList = this.selectList.bind(this)
     this.connexion = this.connexion.bind(this)
@@ -158,6 +159,8 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.allList = this.allList.bind(this)
     this.resetTp = this.resetTp.bind(this)
     this.resetQuestion = this.resetQuestion.bind(this)
+    this.selectLang = this.selectLang.bind(this)
+    this.loadTp = this.loadTp.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -167,21 +170,26 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     })
   }
   shuffleQuestion (nbTrou) {
+    const tpMax = this.state.tpMax
+    const nbCol = this.state.colonne.length
+    const list = []
     function shuffleRow () {
+      for (let i = 0; i < nbCol; i++) {
+        list.push(i)
+      }
       var trouRow = []
-      var list = [0, 1, 2, 3]
-      for (var i = 0; i < 4; i++) {
-        var tire = Math.floor((Math.random() * (4 - i)))
+      for (var i = 0; i < nbTrou; i++) {
+        var tire = Math.floor((Math.random() * (nbCol - i)))
         trouRow[i] = list.splice(tire, 1)[0]
       }
-      for (var j = nbTrou; j < 4; j++) {
+      for (var j = nbTrou; j < nbCol; j++) {
         trouRow[j] = -1
       }
       return trouRow
     }
     function shuffle () {
       let nbAleaQuest = []
-      for (var i = 0; i < 134; i++) {
+      for (var i = 0; i < tpMax; i++) {
         var trouRow = shuffleRow()
         nbAleaQuest[i] = trouRow
       }
@@ -199,6 +207,9 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     /* valeur de l'input: si c'est une checkbox, retourne valeur de checked sinon si c'est un nombre, retorune la valeur passé dans la fonction setLimite,
      sinon retourne valeur */
     const value = target.id === 'aleatoire' ? !this.state.aleatoire : target.type === 'number' ? parseInt(target.value, 10) : target.value
+    if (target.id === 'aleatoire') {
+      this.shuffleTp()
+    }
     // nom de l'input
     const name = target.name
     // setState du nom de la target avec la valeur
@@ -239,7 +250,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     let afficherNbTp
     let valueSelectTp
     if (value === 'tout') {
-      limite = 134
+      limite = this.state.tpMax
       valueSelectTp = 'tout'
       afficherNbTp = false
     } else if (value === 'libre') {
@@ -258,6 +269,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
   handleClick (e) {
     // si on clic sur random, ça random
+    this.shuffleQuestion(this.state.nbTrou)
     this.shuffleTp()
   }
   handleQuestion (col) {
@@ -349,7 +361,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     for (let i in tp) {
       tp[i].afficher = true
     }
-    this.setState({tp: tp, selectAllChbx: true, limite: 134, afficherNbTp: false, valueSelectTp: 'tout'})
+    this.setState({tp: tp, selectAllChbx: true, limite: this.state.tpMax, afficherNbTp: false, valueSelectTp: 'tout'})
   }
 
   handleSelectionTpOpen () {
@@ -382,7 +394,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         afficherNbTp = false
         break
       case this.state.tp.length:
-        limite = 134
+        limite = this.state.tpMax
         valueSelectTp = 'tout'
         afficherNbTp = false
         break
@@ -407,12 +419,6 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   handleChangeNbTrou (e) {
     var value = e.target.value
     this.setState({ nbTrou: value }, () => this.shuffleQuestion(value))
-  }
-  handleMenu (event) {
-    this.setState({ anchorEl: event.currentTarget })
-  }
-  handleClose () {
-    this.setState({ anchorEl: null })
   }
   login () {
     this.setState({signIn: true})
@@ -440,6 +446,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
 
   selectTp (list) {
     let tp = this.state.tp
+    console.log('lang:', list.lang)
     for (let i in tp) {
       if (list.indexOf(Number(i)) === -1) {
         tp[i].afficher = false
@@ -468,7 +475,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         afficherNbTp = false
         break
       case tp.length:
-        limite = 134
+        limite = this.state.tpMax
         valueSelectTp = 'tout'
         afficherNbTp = false
         break
@@ -487,10 +494,10 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
       .collection('lists')
       .get()
       .then(collection => {
-        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps} })
-        return listName.filter(list => list.id === id)[0].tps
+        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, lang: doc.data().lang} })
+        return {list: listName.filter(list => list.id === id)[0].tps, lang: listName.lang}
       })
-      .then((list) => this.selectTp(list))
+      .then((list) => this.selectTp(list.list, list.lang))
       .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
       .catch((error) => {
         this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
@@ -504,12 +511,11 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   resetTp () {
     let tp = this.state.tp
     let colonne = this.state.colonne
-    tp.map(tp => {
-      for (let i = 0; i < 4; i++) {
-        let nomCol = colonne[i].value
+    tp.forEach(tp => {
+      colonne.map(col => {
+        let nomCol = col.value
         tp['correct'][nomCol] = 'neutre'
-      }
-      return true
+      })
     })
     this.setState({tp: tp})
     this.shuffleTp()
@@ -572,6 +578,27 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     this.setState({colonne: col})
   }
 
+  selectLang (lang) {
+    this.loadTp(lang)
+    this.setState({lang: lang})
+  }
+
+  loadTp (lang) {
+    // IMPORT TP FROM FIRESTORE
+    db
+      .collection('tp').doc(lang)
+      .get()
+      .then(tps => {
+        this.setState({tp: tps.data().tp, colonne: tps.data().headers, tpMax: tps.data().length})
+      })
+      .then(() => {
+        this.shuffleTp(this.state.tp)
+        this.shuffleQuestion()
+      })
+      .then(() => this.setState({loading: false}))
+      .catch(err => { if (err) console.log(err); else return '' })
+  }
+
   connexion () {
     auth.signInWithPopup(provider).then(result => {
       const user = result.user
@@ -598,22 +625,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
   }
 
   componentWillMount () {
-    // IMPORT TP FROM FIRESTORE
-    db
-      .collection('tp').doc('neerlandais')
-      .get()
-      .then(tps => {
-        // this.shuffleTp(tps.data().neerlandais)
-        this.setState({tp: tps.data().neerlandais})
-      })
-      .then(() => {
-        this.shuffleTp(this.state.tp)
-      })
-      .then(() => this.setState({loading: false}))
-    this.shuffleQuestion()
-    this.setState({
-      page: window.location.pathname
-    })
+    this.loadTp('neerlandais')
   }
   componentDidMount () {
     auth.onAuthStateChanged((user) => {
@@ -663,12 +675,12 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
         <div>
           <CssBaseline />
           <MuiThemeProvider theme={theme}>
-            <div>
+            <div className={classes.main}>
               <Helmet
-                title="Tp Néerlandais"
+                title={'Tp ' + this.state.lang}
                 meta={[
-                  { name: 'description', content: 'Verbes irréguliers néerlandais' },
-                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier' }
+                  { name: 'description', content: 'Verbes irréguliers' + this.state.lang },
+                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier, anglais, allemand' }
                 ]}
               />
               <ButtonAppBar
@@ -676,18 +688,17 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                 user = {this.state.user}
                 login = {this.login}
                 logout = {this.logout}
-                anchorEl = {this.state.anchorEl}
-                handleMenu = {this.handleMenu}
-                handleClose = {this.handleClose}
                 page = {this.state.page}
+                lang = {this.state.lang}
+                selectLang={this.selectLang}
               />
-              <div>
+              <div className = {classes.flex}>
                 <Switch>
                   <Redirect exact from='/' to='/Bienvenue' />
                   { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
                   <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
                   <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
-                  <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
+                  <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
                   <Route extact path='/Selection' render = {
                     () => <Selection
                       classes = {classes}
@@ -702,11 +713,13 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                       colonne = {this.state.colonne}
                       loading={this.state.loading}
                       handleCheck = {this.handleCheck}
+                      lang = {this.state.lang}
                     />}
                   />
                   <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
+                  <Route exact path='/About' render={() => <About classes ={classes}/>}/>
                   <Route
-                    path='/Home' // path='/:type/:token
+                    path='/Home'
                     render={
                       (link) =>
                         (<Home
@@ -780,6 +793,7 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
                   ]}
                 />
               </div>
+              <Footer />
             </div>
           </MuiThemeProvider>
         </div>

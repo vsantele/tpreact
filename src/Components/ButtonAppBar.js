@@ -22,21 +22,55 @@ import Button from '@material-ui/core/Button'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
 // eslint-disable-next-line
 //import Auth from './Auth'
 
 export default class ButtonAppBar extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      anchorEl: null,
+      menuUser: false,
+      menuLang: false
+    }
+    this.handleMenu = this.handleMenu.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.selectLang = this.selectLang.bind(this)
+  }
+
+  handleMenu (event, menu) {
+    this.setState({ anchorEl: event.currentTarget, [menu]: true })
+  }
+  handleClose (menu) {
+    this.setState({ anchorEl: null, [menu]: false })
+  }
+  selectLang (lang) {
+    this.props.selectLang(lang)
+    this.handleClose('menuLang')
+  }
+  whichLang () {
+    switch (this.props.lang) {
+      case 'neerlandais':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg'
+      case 'anglais':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_United_Kingdom.svg'
+      case 'allemand':
+        return 'https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_Germany.svg'
+      default:
+        return 'https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg'
+    }
+  }
   render () {
     const { classes } = this.props
-    const open = Boolean(this.props.anchorEl)
     const _this = this
     function logout () {
       _this.props.logout()
-      _this.props.handleClose()
+      _this.props.handleClose('menuUser')
     }
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
+        <AppBar className={classes.appBar} position='fixed'>
           <Toolbar>
             <Link
               to='/Bienvenue'
@@ -56,6 +90,23 @@ export default class ButtonAppBar extends Component {
                 </Typography>
               </Hidden>
             </Link>
+            <div style={{flexGrow: 1}} />
+            <div>
+              <IconButton style={{marginRight: '0.2em'}} onClick={(e) => this.handleMenu(e, 'menuLang')} >
+                <img style={{height: '0.7em'}} src={this.whichLang()} />
+              </IconButton>
+              <Menu
+                id='selectLang'
+                anchorEl={this.state.anchorEl}
+                open={this.state.menuLang}
+                onClose={() => this.handleClose('menuLang')}
+              >
+                <MenuItem onClick={() => this.selectLang('neerlandais')}><img alt='néerlandais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg' /></MenuItem>
+                <MenuItem disabled onClick={() => this.selectLang('anglais')}><img alt='anglais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_United_Kingdom.svg' /></MenuItem>
+                <MenuItem disabled onClick={() => this.selectLang('allemand')}><img alt='allemand' style={{height: '1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_Germany.svg' /></MenuItem>
+              </Menu>
+            </div>
+
             <div className={classes.accountIcon}>
               { this.props.user
                 ? (
@@ -63,7 +114,7 @@ export default class ButtonAppBar extends Component {
                     <IconButton
                       aria-owns={this.props.open ? 'menu-appbar' : null}
                       aria-haspopup='true'
-                      onClick={this.props.handleMenu}
+                      onClick={(e) => this.handleMenu(e, 'menuUser')}
                       color='inherit'
                     >
                       {
@@ -73,29 +124,21 @@ export default class ButtonAppBar extends Component {
                     </IconButton>
                     <Menu
                       id='menu-appbar'
-                      anchorEl={this.props.anchorEl}
-                      anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right'
-                      }}
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right'
-                      }}
-                      open={open}
-                      onClose={this.props.handleClose}
+                      anchorEl={this.state.anchorEl}
+                      open={this.state.menuUser}
+                      onClose={() => this.handleClose('menuUser')}
                     >
-                      <MenuItem onClick={this.props.handleClose}><Link to='/Profile'>Profile</Link></MenuItem>
+                      {/* <MenuItem onClick={this.handleClose}><Link to='/Profile'>Profile</Link></MenuItem> */}
                       {
                         this.props.user
                           ? <MenuItem onClick={logout}>Déconnexion</MenuItem>
-                          : <MenuItem onClick={this.props.handleClose}><Link to='/Auth'>Connexion</Link></MenuItem>
+                          : <MenuItem onClick={() => this.handleClose('menuUser')}><Link to='/Auth'>Connexion</Link></MenuItem>
                       }
                     </Menu>
                   </div>
 
                 )
-                : <Link to='/Auth'><Button className={classes.button} variant='raised' color='secondary' onClick={this.props.handleClose}>Connexion</Button></Link>
+                : <Link to='/Auth'><Button className={classes.button} variant='raised' color='secondary' onClick={() => this.handleClose('menuUser')}>Connexion</Button></Link>
               }
             </div>
 
