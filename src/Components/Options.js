@@ -19,7 +19,8 @@ import Download from '@material-ui/icons/CloudDownload'
 import LinearProgress from "@material-ui/core/LinearProgress"
 import Fade from '@material-ui/core/Fade'
 import download from 'downloadjs'
-import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography'
+import ArrowBack from '@material-ui/icons/ArrowBack'
 /* eslint-enable */
 
 const req = new XMLHttpRequest() // eslint-disable-line
@@ -124,6 +125,11 @@ export default withMobileDialog()(class Options extends Component {
       return (
         <div className={classes.gridRoot}>
           <Grid container spacing={8} justify='space-between'>
+            <Grid item>
+              <div className={classes.grid}>
+                <Button color='secondary' className={classes.button} onClick={this.props.history.goBack}><ArrowBack/>Go back</Button>
+              </div>
+            </Grid>
             <Grid item >
               <div className={classes.grid}>
                 {/* <FormControl className={classes.formControl}>

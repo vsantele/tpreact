@@ -12,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 import Helmet from 'react-helmet'
 // import Drawer from '@material-ui/core/Drawer'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { auth, provider, db } from './firebase/firebase.js'
 import ButtonAppBar from './Components/ButtonAppBar'
@@ -98,7 +98,7 @@ const ErrorComponent = ({error}) => {
 //   ErrorComponent: ErrorComponent
 // })
 
-export default withStyles(styles, { withTheme: true })(class App extends Component {
+class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -671,133 +671,134 @@ export default withStyles(styles, { withTheme: true })(class App extends Compone
     }
     ReactGA.pageview(window.location.pathname + window.location.search)
     return (
-      <BrowserRouter>
-        <div>
-          <CssBaseline />
-          <MuiThemeProvider theme={theme}>
-            <div className={classes.main}>
-              <Helmet
-                title={'Tp ' + this.state.lang}
-                meta={[
-                  { name: 'description', content: 'Verbes irréguliers' + this.state.lang },
-                  { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier, anglais, allemand' }
+      <div>
+        <CssBaseline />
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.main}>
+            <Helmet
+              title={'Tp ' + this.state.lang}
+              meta={[
+                { name: 'description', content: 'Verbes irréguliers' + this.state.lang },
+                { name: 'keywords', content: 'tp, temps primitifs, neelandais, grammaire, conjugaison, verbes irréguliers, verbe irégulier, anglais, allemand' }
+              ]}
+            />
+            <ButtonAppBar
+              classes = {classes}
+              user = {this.state.user}
+              login = {this.login}
+              logout = {this.logout}
+              page = {this.state.page}
+              lang = {this.state.lang}
+              selectLang={this.selectLang}
+            />
+            <div className = {classes.flex}>
+              <Switch>
+                <Redirect exact from='/' to='/Bienvenue' />
+                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
+                <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
+                <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
+                <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
+                <Route extact path='/Selection' render = {
+                  () => <Selection
+                    classes = {classes}
+                    handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                    handleSelectionTpClose = {this.handleSelectionTpClose}
+                    selectAll = {this.selectAll}
+                    selectAllChbx = {this.state.selectAllChbx}
+                    selectionPage = {this.state.selectionPage}
+                    tp = {this.state.tp}
+                    user = {this.state.user}
+                    setListWithToken={this.setListWithToken}
+                    colonne = {this.state.colonne}
+                    loading={this.state.loading}
+                    handleCheck = {this.handleCheck}
+                    lang = {this.state.lang}
+                  />}
+                />
+                <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
+                <Route exact path='/About' render={() => <About classes ={classes}/>}/>
+                <Route
+                  path='/Home'
+                  render={
+                    (link) =>
+                      (<Home
+                        classes = {classes}
+                        handleInputChange = {this.handleInputChange}
+                        handleClick = {this.handleClick}
+                        handleSelect = {this.handleSelect}
+                        handleSelectionTpOpen = {this.handleSelectionTpOpen}
+                        handleSelectionTpClose = {this.handleSelectionTpClose}
+                        handleQuestion = {this.handleQuestion}
+                        handleDrawerToggle = {this.handleDrawerToggle}
+                        handleReponse = {this.handleReponse}
+                        handleCheck = {this.handleCheck}
+                        selectAll = {this.selectAll}
+                        selectAllChbx = {this.state.selectAllChbx}
+                        selectionPage = {this.state.selectionPage}
+                        aleatoire = {this.state.aleatoire}
+                        limite = {this.state.limite}
+                        tpLength = {this.state.tp.length}
+                        colonne = {this.state.colonne}
+                        mobileOpen = {this.state.mobileOpen}
+                        tp = {this.state.tp}
+                        tpRandom={this.state.tpRandom}
+                        tpExclu = {this.state.tpExclu}
+                        aleatoireQuestion={this.state.aleatoireQuestion}
+                        nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
+                        handleClickQuestionnaire={this.handleClickQuestionnaire}
+                        nbTrou = {this.state.nbTrou}
+                        handleChangeNbTrou = {this.handleChangeNbTrou}
+                        handleSelectNombre = {this.handleSelectNombre}
+                        valueSelectTp = {this.state.valueSelectTp}
+                        afficherNbTp = {this.state.afficherNbTp}
+                        changePage= {this.changePage}
+                        advanced = {this.state.advanced}
+                        loading = {this.state.loading}
+                        user = {this.state.user}
+                        selectList = {this.selectList}
+                        setListWithToken={this.setListWithToken}
+                        listSelected = {this.state.listSelected}
+                        allList = {this.allList}
+                        shuffleQuestion={this.shuffleQuestion}
+                        link = {link}
+                        resetTp = {this.resetTp}
+                        resetQuestion = {this.resetQuestion}
+                        history = {this.props.history}
+                      />
+                      )
+                  }/>
+              </Switch>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left'
+                }}
+                open={this.state.openSnackbar}
+                autoHideDuration={6000}
+                onClose={() => this.setState({openSnackbar: false})}
+                ContentProps={{
+                  'aria-describedby': 'Liste appliquée'
+                }}
+                message={<span id='listSnack'>{this.state.msgSnackbar} </span>}
+                action={[
+                  <IconButton
+                    key="close"
+                    aria-label="Close"
+                    color="inherit"
+                    className={classes.close}
+                    onClick={() => this.setState({openSnackbar: false})}
+                  >
+                    <CloseIcon />
+                  </IconButton>
                 ]}
               />
-              <ButtonAppBar
-                classes = {classes}
-                user = {this.state.user}
-                login = {this.login}
-                logout = {this.logout}
-                page = {this.state.page}
-                lang = {this.state.lang}
-                selectLang={this.selectLang}
-              />
-              <div className = {classes.flex}>
-                <Switch>
-                  <Redirect exact from='/' to='/Bienvenue' />
-                  { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
-                  <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
-                  <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
-                  <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
-                  <Route extact path='/Selection' render = {
-                    () => <Selection
-                      classes = {classes}
-                      handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                      handleSelectionTpClose = {this.handleSelectionTpClose}
-                      selectAll = {this.selectAll}
-                      selectAllChbx = {this.state.selectAllChbx}
-                      selectionPage = {this.state.selectionPage}
-                      tp = {this.state.tp}
-                      user = {this.state.user}
-                      setListWithToken={this.setListWithToken}
-                      colonne = {this.state.colonne}
-                      loading={this.state.loading}
-                      handleCheck = {this.handleCheck}
-                      lang = {this.state.lang}
-                    />}
-                  />
-                  <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
-                  <Route exact path='/About' render={() => <About classes ={classes}/>}/>
-                  <Route
-                    path='/Home'
-                    render={
-                      (link) =>
-                        (<Home
-                          classes = {classes}
-                          handleInputChange = {this.handleInputChange}
-                          handleClick = {this.handleClick}
-                          handleSelect = {this.handleSelect}
-                          handleSelectionTpOpen = {this.handleSelectionTpOpen}
-                          handleSelectionTpClose = {this.handleSelectionTpClose}
-                          handleQuestion = {this.handleQuestion}
-                          handleDrawerToggle = {this.handleDrawerToggle}
-                          handleReponse = {this.handleReponse}
-                          handleCheck = {this.handleCheck}
-                          selectAll = {this.selectAll}
-                          selectAllChbx = {this.state.selectAllChbx}
-                          selectionPage = {this.state.selectionPage}
-                          aleatoire = {this.state.aleatoire}
-                          limite = {this.state.limite}
-                          tpLength = {this.state.tp.length}
-                          colonne = {this.state.colonne}
-                          mobileOpen = {this.state.mobileOpen}
-                          tp = {this.state.tp}
-                          tpRandom={this.state.tpRandom}
-                          tpExclu = {this.state.tpExclu}
-                          aleatoireQuestion={this.state.aleatoireQuestion}
-                          nbAleatoireQuestion = {this.state.nbAleatoireQuestion}
-                          handleClickQuestionnaire={this.handleClickQuestionnaire}
-                          nbTrou = {this.state.nbTrou}
-                          handleChangeNbTrou = {this.handleChangeNbTrou}
-                          handleSelectNombre = {this.handleSelectNombre}
-                          valueSelectTp = {this.state.valueSelectTp}
-                          afficherNbTp = {this.state.afficherNbTp}
-                          changePage= {this.changePage}
-                          advanced = {this.state.advanced}
-                          loading = {this.state.loading}
-                          user = {this.state.user}
-                          selectList = {this.selectList}
-                          setListWithToken={this.setListWithToken}
-                          listSelected = {this.state.listSelected}
-                          allList = {this.allList}
-                          shuffleQuestion={this.shuffleQuestion}
-                          link = {link}
-                          resetTp = {this.resetTp}
-                          resetQuestion = {this.resetQuestion}
-                        />
-                        )
-                    }/>
-                </Switch>
-                <Snackbar
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left'
-                  }}
-                  open={this.state.openSnackbar}
-                  autoHideDuration={6000}
-                  onClose={() => this.setState({openSnackbar: false})}
-                  ContentProps={{
-                    'aria-describedby': 'Liste appliquée'
-                  }}
-                  message={<span id='listSnack'>{this.state.msgSnackbar} </span>}
-                  action={[
-                    <IconButton
-                      key="close"
-                      aria-label="Close"
-                      color="inherit"
-                      className={classes.close}
-                      onClick={() => this.setState({openSnackbar: false})}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  ]}
-                />
-              </div>
-              <Footer />
             </div>
-          </MuiThemeProvider>
-        </div>
-      </BrowserRouter>
+            <Footer />
+          </div>
+        </MuiThemeProvider>
+      </div>
     )
   }
-})
+}
+
+export default withStyles(styles, { withTheme: true })(withRouter(App))

@@ -176,6 +176,7 @@ export default class Home extends Component {
                 level={level}
                 bottom={false}
                 handleAffReponse = {this.handleAffReponse}
+                history = {this.props.history}
               />
             </Grid>
             {
