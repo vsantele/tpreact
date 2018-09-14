@@ -150,7 +150,7 @@ export default withMobileDialog()(class Options extends Component {
                   <InputLabel htmlFor='selectNombre' shrink>Nombre</InputLabel>
                   <Select
                     native
-                    onChange={this.props.handleSelectNombre}
+                    onChange={() => this.props.handleSelectNombre}
                     inputProps={{ id: 'selectNombre' }} value={this.props.valueSelectTp}
                     style={{width: 75}}
                   >

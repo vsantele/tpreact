@@ -96,7 +96,7 @@ export default class Home extends Component {
   componentWillMount () {
     // const paramsType = this.props.link.match.params.type
     // const paramsToken = this.props.link.match.params.token
-    let type = (this.props.link.location.state !== undefined) ? this.props.link.location.state.type : 'etude'
+    let type = (this.props.link.location.state !== undefined) ? this.props.link.location.state.type : 'voir'
     let level = (this.props.link.location.state !== undefined) ? this.props.link.location.state.level : 1
     let col = (this.props.link.location.state !== undefined) ? this.props.link.location.state.col : [0]
     switch (type) {
@@ -104,6 +104,7 @@ export default class Home extends Component {
         this.props.resetQuestion()
         break
       case 'etude':
+        // this.props.resetQuestion()
         this.props.handleQuestion(col)
         break
       case 'test':
@@ -177,6 +178,7 @@ export default class Home extends Component {
                 bottom={false}
                 handleAffReponse = {this.handleAffReponse}
                 history = {this.props.history}
+                handleRandom = {this.props.handleRandom}
               />
             </Grid>
             {

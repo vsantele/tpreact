@@ -14,6 +14,8 @@ MOYEN:
         - Modifier nombre 134 (remplacer par tp.length) et 4 (remplacer par colonne.length)
         - Modificiation firestore: tp/{langue}/{col: {infoCol}, tps: {listTp}}
         - Vérifier intégration colonne en plus
+    - Enregistrer préférence langue + ajout alert cookie + modifier à propos + politique confidentialité
+    - Si ajout list Tp avc token de langue différente, demander confirmation.
 
 BAS:
     - Opti code

@@ -104,7 +104,7 @@ class App extends Component {
     this.state = {
       loading: true, // chargment en cours
       tp: [], // liste des tps dans l'ordre
-      tpMax: -1,
+      tpLength: -1,
       lang: 'neerlandais',
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
@@ -130,7 +130,8 @@ class App extends Component {
       mobile: false,
       msgSnackbar: 'Erreur texte Snackbar...',
       valueSelectTp: 20,
-      listSelected: false
+      listSelected: false,
+      nbAleatoireQuestion: []
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -171,7 +172,7 @@ class App extends Component {
     })
   }
   shuffleQuestion (nbTrou) {
-    const tpMax = this.state.tpMax
+    const tpLength = this.state.tpLength
     const nbCol = this.state.colonne.length
     const list = []
     function shuffleRow () {
@@ -190,7 +191,7 @@ class App extends Component {
     }
     function shuffle () {
       let nbAleaQuest = []
-      for (var i = 0; i < tpMax; i++) {
+      for (var i = 0; i < tpLength; i++) {
         var trouRow = shuffleRow()
         nbAleaQuest[i] = trouRow
       }
@@ -255,7 +256,7 @@ class App extends Component {
     let afficherNbTp
     let valueSelectTp
     if (value === 'tout') {
-      limite = this.state.tpMax
+      limite = this.state.tp.length
       valueSelectTp = 'tout'
       afficherNbTp = false
     } else if (value === 'libre') {
@@ -366,7 +367,7 @@ class App extends Component {
     for (let i in tp) {
       tp[i].afficher = true
     }
-    this.setState({tp: tp, selectAllChbx: true, limite: this.state.tpMax, afficherNbTp: false, valueSelectTp: 'tout'})
+    this.setState({tp: tp, selectAllChbx: true, afficherNbTp: false, valueSelectTp: 'tout'})
   }
 
   handleSelectionTpOpen () {
@@ -399,7 +400,7 @@ class App extends Component {
         afficherNbTp = false
         break
       case this.state.tp.length:
-        limite = this.state.tpMax
+        limite = this.state.tp.length
         valueSelectTp = 'tout'
         afficherNbTp = false
         break
@@ -480,7 +481,7 @@ class App extends Component {
         afficherNbTp = false
         break
       case tp.length:
-        limite = this.state.tpMax
+        limite = this.state.tp.length
         valueSelectTp = 'tout'
         afficherNbTp = false
         break
@@ -594,10 +595,11 @@ class App extends Component {
       .collection('tp').doc(lang)
       .get()
       .then(tps => {
-        this.setState({tp: tps.data().tp, colonne: tps.data().headers, tpMax: tps.data().length})
+        this.setState({tp: tps.data().tp, colonne: tps.data().headers, tpLength: tps.data().tp.length})
       })
       .then(() => {
         this.shuffleTp(this.state.tp)
+        this.shuffleQuestion(1)
       })
       .then(() => this.setState({loading: false}))
       .catch(err => { if (err) console.log(err); else return '' })
