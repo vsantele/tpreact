@@ -161,6 +161,7 @@ class App extends Component {
     this.resetQuestion = this.resetQuestion.bind(this)
     this.selectLang = this.selectLang.bind(this)
     this.loadTp = this.loadTp.bind(this)
+    this.handleRandom = this.handleRandom.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -216,6 +217,10 @@ class App extends Component {
     this.setState({
       [name]: value
     })
+  }
+  handleRandom () {
+    this.shuffleTp()
+    this.setState({aleatoire: !this.state.aleatoire})
   }
   // effectue une action quand on change de colonne dans les Select
   handleSelect (e) {
@@ -593,7 +598,6 @@ class App extends Component {
       })
       .then(() => {
         this.shuffleTp(this.state.tp)
-        this.shuffleQuestion()
       })
       .then(() => this.setState({loading: false}))
       .catch(err => { if (err) console.log(err); else return '' })
@@ -764,6 +768,7 @@ class App extends Component {
                         resetTp = {this.resetTp}
                         resetQuestion = {this.resetQuestion}
                         history = {this.props.history}
+                        handleRandom = {this.handleRandom}
                       />
                       )
                   }/>
