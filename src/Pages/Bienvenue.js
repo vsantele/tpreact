@@ -76,8 +76,12 @@ export default withMobileDialog()(class Bienvenue extends Component {
 
   clickMesList () {
     if (this.props.user !== null) {
-      this.getList()  
-      this.setState({openListTp: true, loadingGetList: true})
+      this.getList()
+      if (this.state.listName) {
+        this.setState({openListTp: true})
+      } else {
+        this.setState({openListTp: true, loadingGetList: true})
+      }
     } else {
       this.setState({openListTp: true})
     }

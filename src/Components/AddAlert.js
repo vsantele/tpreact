@@ -76,26 +76,25 @@ class AddAlert extends Component {
           }
           let result = JSON.parse(body)
           let list = {
-            name: result.name,
+            lang: result.lang,
             tps: result.tps
           }
-          this.props.setListWithToken(result.tps)
           msgSnackbar = 'Liste importée avec succès'
           if (save) {
             const doc = db
-              .collection('users').doc(this.props.user.uid).collection('lists')
-              .doc()
+            .collection('users').doc(this.props.user.uid).collection('lists')
+            .doc()
             doc
-              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: this.props.lang})
-              .then(() => {
-                msgSnackbar += ' et enregistré avec succès !'
-              })
-              .catch(e => {
-                console.error('Erreur save: ', e)
-                throw new Error('Erreur save, ' + e)
-              })
+            .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: list.lang})
+            .then(() => {
+              msgSnackbar += ' et enregistré avec succès !'
+            })
+            .catch(e => {
+              console.error('Erreur save: ', e)
+              throw new Error('Erreur save, ' + e)
+            })
           }
-          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true, errorNameAdd: false, errorTokenAdd: false})
+          this.props.setListWithToken(result).then(() => this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true, errorNameAdd: false, errorTokenAdd: false}))
           this.props.closeAddAlert()
           return list
         } catch (e) {

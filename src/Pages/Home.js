@@ -176,6 +176,7 @@ export default class Home extends Component {
                 type={this.state.type}
                 level={level}
                 bottom={false}
+                lang={this.props.lang}
                 handleAffReponse = {this.handleAffReponse}
                 history = {this.props.history}
                 handleRandom = {this.props.handleRandom}

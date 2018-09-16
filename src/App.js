@@ -156,7 +156,7 @@ class App extends Component {
     this.connexion = this.connexion.bind(this)
     this.setListWithToken = this.setListWithToken.bind(this)
     this.selectTp = this.selectTp.bind(this)
-    this.addList = this.addList.bind(this)
+    // this.addList = this.addList.bind(this)
     this.allList = this.allList.bind(this)
     this.resetTp = this.resetTp.bind(this)
     this.resetQuestion = this.resetQuestion.bind(this)
@@ -452,7 +452,6 @@ class App extends Component {
 
   selectTp (list) {
     let tp = this.state.tp
-    console.log('lang:', list.lang)
     for (let i in tp) {
       if (list.indexOf(Number(i)) === -1) {
         tp[i].afficher = false
@@ -491,6 +490,7 @@ class App extends Component {
         afficherNbTp = true
     }
     this.setState({ tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
+    return true
   }
 
   selectList (id) {
@@ -511,7 +511,16 @@ class App extends Component {
   }
 
   setListWithToken (result) {
-    this.selectTp(result)
+    const lang = result.lang
+    if (lang === this.state.lang) {
+      return this.selectTp(result.tps).then(() => true)
+    } else {
+      return this.loadTp(lang).then(() => {
+        this.selectTp(result.tps)
+        this.setState({lang: lang})
+        return true
+      })
+    }
   }
 
   resetTp () {
@@ -527,7 +536,7 @@ class App extends Component {
     this.shuffleTp()
   }
 
-  addList (token) {
+  /* addList (token) {
     let msgSnackbar = ''
     // eslint-disable-next-line
     let header = new Headers()
@@ -573,7 +582,7 @@ class App extends Component {
       }
       req.send()
     }
-  }
+  } */
 
   resetQuestion () {
     let col = this.state.colonne
@@ -591,7 +600,7 @@ class App extends Component {
 
   loadTp (lang) {
     // IMPORT TP FROM FIRESTORE
-    db
+    return db
       .collection('tp').doc(lang)
       .get()
       .then(tps => {
@@ -601,30 +610,67 @@ class App extends Component {
         this.shuffleTp(this.state.tp)
         this.shuffleQuestion(1)
       })
-      .then(() => this.setState({loading: false}))
-      .catch(err => { if (err) console.log(err); else return '' })
+      .then(() => {
+        this.setState({loading: false})
+        return true
+      })
+      .catch(err => {
+        if (err) {
+          console.log(err)
+          return false
+        } else return true
+      })
   }
 
   connexion () {
     auth.signInWithPopup(provider).then(result => {
-      const user = result.user
-      db
-        .collection('users')
-        .doc(user.uid)
-        .set({
-          id: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-          email: user.email,
-          locale: result.additionalUserInfo.profile.locale,
-          provider: result.additionalUserInfo.providerId
+      const userAuth = result.user
+      const userRef = db.collection('users').doc(userAuth.uid)
+      db.runTransaction((transaction) => {
+        return transaction.get(userRef).then(user => {
+          if (!user.exists) {
+            console.log(user)
+            transaction.set(userRef, {
+              id: userAuth.uid,
+              displayName: userAuth.displayName,
+              photoURL: userAuth.photoURL,
+              email: userAuth.email,
+              locale: result.additionalUserInfo.profile.locale,
+              provider: result.additionalUserInfo.providerId,
+              downloadLimit: 5
+            })
+            return 'set'
+          } else {
+            transaction.update(userRef, {
+              id: userAuth.uid,
+              displayName: userAuth.displayName,
+              photoURL: userAuth.photoURL,
+              email: userAuth.email,
+              locale: result.additionalUserInfo.profile.locale,
+              provider: result.additionalUserInfo.providerId
+            })
+            return 'update'
+          }
         })
-        .then(function () {
-          console.log('Document successfully written!')
-        })
-        .catch(function (error) {
-          console.error('Error writing document: ', error)
-        })
+      }).then((info) => console.log('Information ' + info))
+        .catch(err => console.error(err))
+      // db
+      //   .collection('users')
+      //   .doc(user.uid)
+      //   .set({
+      //     id: user.uid,
+      //     displayName: user.displayName,
+      //     photoURL: user.photoURL,
+      //     email: user.email,
+      //     locale: result.additionalUserInfo.profile.locale,
+      //     provider: result.additionalUserInfo.providerId
+      //   })
+      //   .then(function () {
+      //     console.log('Document successfully written!')
+      //   })
+      //   .catch(function (error) {
+      //     console.error('Error writing document: ', error)
+      //   })
     }).catch(error => {
       console.error('Error authentification: ', error)
     })
@@ -700,7 +746,6 @@ class App extends Component {
             <div className = {classes.flex}>
               <Switch>
                 <Redirect exact from='/' to='/Bienvenue' />
-                { /* <Route exact path='/Questionnaire' component = {Questionnaire} /> */ }
                 <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
                 <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
                 <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
@@ -771,6 +816,7 @@ class App extends Component {
                         resetQuestion = {this.resetQuestion}
                         history = {this.props.history}
                         handleRandom = {this.handleRandom}
+                        lang={this.state.lang}
                       />
                       )
                   }/>

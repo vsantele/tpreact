@@ -37,6 +37,7 @@ export default class ButtonAppBar extends Component {
     this.handleMenu = this.handleMenu.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.selectLang = this.selectLang.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   handleMenu (event, menu) {
@@ -61,13 +62,25 @@ export default class ButtonAppBar extends Component {
         return 'https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg'
     }
   }
+
+  logout () {
+    this.props.logout()
+    this.handleClose('menuUser')
+  }
+
   render () {
     const { classes } = this.props
-    const _this = this
-    function logout () {
-      _this.props.logout()
-      _this.props.handleClose('menuUser')
+    const lang = () => {
+      switch (this.props.lang) {
+        case 'neerlandais':
+          return 'Néerlandais'
+        case 'anglais':
+          return 'Anglais'
+        case 'allemand':
+          return 'Allemand'
+      }
     }
+
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar} position='fixed'>
@@ -81,12 +94,12 @@ export default class ButtonAppBar extends Component {
             >
               <Hidden xsDown>
                 <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
-                  Les verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néerlandais</span>
+                  Les verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>{lang()}</span>
                 </Typography>
               </Hidden>
               <Hidden smUp>
                 <Typography variant='title' color='inherit' className={classes.flex} style={{fontFamily: 'Bahnschrift, Roboto'}}>
-                  Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Néerlandais</span>
+                  Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>{lang()}</span>
                 </Typography>
               </Hidden>
             </Link>
@@ -102,7 +115,7 @@ export default class ButtonAppBar extends Component {
                 onClose={() => this.handleClose('menuLang')}
               >
                 <MenuItem onClick={() => this.selectLang('neerlandais')}><img alt='néerlandais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg' /></MenuItem>
-                <MenuItem disabled onClick={() => this.selectLang('anglais')}><img alt='anglais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_United_Kingdom.svg' /></MenuItem>
+                <MenuItem onClick={() => this.selectLang('anglais')}><img alt='anglais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_United_Kingdom.svg' /></MenuItem>
                 <MenuItem disabled onClick={() => this.selectLang('allemand')}><img alt='allemand' style={{height: '1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_Germany.svg' /></MenuItem>
               </Menu>
             </div>
@@ -129,11 +142,7 @@ export default class ButtonAppBar extends Component {
                       onClose={() => this.handleClose('menuUser')}
                     >
                       {/* <MenuItem onClick={this.handleClose}><Link to='/Profile'>Profile</Link></MenuItem> */}
-                      {
-                        this.props.user
-                          ? <MenuItem onClick={logout}>Déconnexion</MenuItem>
-                          : <MenuItem onClick={() => this.handleClose('menuUser')}><Link to='/Auth'>Connexion</Link></MenuItem>
-                      }
+                      <MenuItem onClick={() => this.logout()}>Déconnexion</MenuItem>
                     </Menu>
                   </div>
 
