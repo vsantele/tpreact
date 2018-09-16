@@ -63,37 +63,85 @@ export default withMobileDialog()(class Options extends Component {
   }
 
   handleDownload () {
-    const getTpSelect = () => {
-      const Tps = this.props.tp
-      const listIdTp = Tps.filter(tp => tp.afficher).map(tp => {
-        return tp.id
-      })
-      return listIdTp
-    }
-    this.setState({loading: true})
-    let header = new Headers() // eslint-disable-line
-    header.append('Content-Type', 'application/json')
-    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/createSheet?list=[' + getTpSelect() + ']'
-    req.responseType = 'blob'
-    req.open('GET', url)
-    req.onload = () => {
-      const body = req.response
-      if (req.status === 500) {
-        console.error('Erreur serveur')
+    if (this.props.user) {
+      const getTpSelect = () => {
+        const Tps = this.props.tp
+        const listIdTp = Tps.filter(tp => tp.afficher).map(tp => {
+          return tp.id
+        })
+        return listIdTp
       }
-      if (req.status === 200) {
-        getTpSelect()
-        download(body, 'ListTP.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        this.setState({loading: false, finish: true})
+      const postInfo = async (data) => {
+        try {
+          let res = await fetch('https://europe-west1-tpneerandais.cloudfunctions.net/createSheet', { // eslint-disable-line
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'list=' + data.list + '&lang=' + data.lang + '&user=' + data.uid,
+            // accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            mode: 'cors'
+            // responseType: 'blob',
+            // body: JSON.stringify(data)
+          })
+          if (res.ok) {
+            await res.blob().then(file => download(file, 'ListTP.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'))
+            return Promise.resolve()
+          } else {
+            throw Promise.reject(new Error(res.body))
+          }
+        } catch (e) {
+          console.error('erreur request: ', e)
+        }
       }
+      this.setState({loading: true})
+      postInfo({list: getTpSelect(), lang: this.props.lang, uid: this.props.user.uid}).then(() => this.setState({loading: false})).catch((e) => console.log('erreur dl: ', e))
+      // let header = new Headers() // eslint-disable-line
+      // header.append('Content-Type', 'application/json')
+      // const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/createSheet?list=[' + getTpSelect() + ']&lang=' + this.props.lang
+      // req.responseType = 'blob'
+      // const userRef = db.collection('users').doc(this.props.user.uid)
+      // req.open('GET', url)
+      // req.onload = () => {
+      //   const body = req.response
+      //   if (req.status === 500) {
+      //     console.error('Erreur serveur')
+      //   }
+      //   if (req.status === 200) {
+      //     download(body, 'ListTP.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      //     // let newDlLimit = dlLimit - 1
+      //     // console.log(newDlLimit)
+      //     // transaction.update(userRef, {downloadLimit: newDlLimit})
+      //     return Promise.resolve()
+      //   }
+      // }
+      // req.timeout = () => {
+      //   console.error('Timeout')
+      // }
+      // req.onerror = () => {
+      //   console.error('Error...')
+      // }
+      // req.send()
+
+      // db.runTransaction(transaction => {
+      //   return transaction.get(userRef).then(user => {
+      //     let dlLimit = user.data().downloadLimit
+      //     if (dlLimit > 0) {
+      //       console.log('Download autorisé')
+      //     } else {
+      //       return Promise.reject(new Error('Download interdit...'))
+      //     }
+      //   })
+      // }).then(() => {
+      //   console.log('Download Complete')
+      //   this.setState({loading: false, finish: true})
+      // }).catch((err) => {
+      //   if (err) console.log('Erreur...', err)
+      //   this.setState({loading: false})
+      // })
+    } else {
+      console.log('Vous devez être connecter...')
     }
-    req.timeout = () => {
-      console.error('Timeout')
-    }
-    req.onerror = () => {
-      console.error('Error...')
-    }
-    req.send()
   }
 
   render () {
@@ -141,7 +189,7 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!this.props.aleatoire} >Recharger  <Refresh /> </Button>
+                <Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!(this.props.aleatoire || (this.props.type === 'test'))}>Recharger  <Refresh /> </Button>
               </div>
             </Grid>
             <Grid item style={{display: this.props.listSelected ? 'flex' : 'flex'}} >
@@ -150,7 +198,7 @@ export default withMobileDialog()(class Options extends Component {
                   <InputLabel htmlFor='selectNombre' shrink>Nombre</InputLabel>
                   <Select
                     native
-                    onChange={() => this.props.handleSelectNombre}
+                    onChange={this.props.handleSelectNombre}
                     inputProps={{ id: 'selectNombre' }} value={this.props.valueSelectTp}
                     style={{width: 75}}
                   >
@@ -187,7 +235,7 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item style={{display: type === 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
-                <Button variant='outlined' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen}>télécharger <Download/></Button>
+                <Button variant='outlined' color='secondary' className={classes.button} id='advanced' onClick={this.handleOpen} disabled={!this.props.user}>télécharger <Download/></Button>
               </div>
             </Grid>
           </Grid>
@@ -230,7 +278,7 @@ function Alert (props) {
           unmountOnExit
         >
           <React.Fragment>
-            <Typography variant='body 1'>Création du fichier en cours, veuillez patienter (cela peut prendre 30 sec)</Typography>
+            <Typography variant='body1'>Création du fichier en cours, veuillez patienter (cela peut prendre 30 sec)</Typography>
             <LinearProgress/>
           </React.Fragment>
         </Fade>
