@@ -46,7 +46,7 @@ function Connexion (props) {
     <div>
       <Paper style={{margin: '1em'}}>
         <Button variant='flat' onClick={props.connexion}>
-          <img alt='logo Google' style={{height: '18px', width: '18px', marginRight: '0.5em'}} src='https://firebasestorage.googleapis.com/v0/b/tpneerandais.appspot.com/o/pictures%2Fgoogle.svg?alt=media&token=4545610a-4edd-46f0-bd18-e2522f488902' />
+          <img alt='G' style={{height: '18px', width: '18px', marginRight: '0.5em'}} src='https://firebasestorage.googleapis.com/v0/b/tpneerandais.appspot.com/o/pictures%2Fgoogle.svg?alt=media&token=4545610a-4edd-46f0-bd18-e2522f488902' />
           Se connecter avec Google
         </Button>
       </Paper>

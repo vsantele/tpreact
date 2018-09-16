@@ -208,10 +208,7 @@ class App extends Component {
     const target = e.target
     /* valeur de l'input: si c'est une checkbox, retourne valeur de checked sinon si c'est un nombre, retorune la valeur passé dans la fonction setLimite,
      sinon retourne valeur */
-    const value = target.id === 'aleatoire' ? !this.state.aleatoire : target.type === 'number' ? parseInt(target.value, 10) : target.value
-    if (target.id === 'aleatoire') {
-      this.shuffleTp()
-    }
+    const value = parseInt(target.value, 10)
     // nom de l'input
     const name = target.name
     // setState du nom de la target avec la valeur
