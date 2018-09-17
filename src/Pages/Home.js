@@ -115,7 +115,7 @@ export default class Home extends Component {
         return null
     }
     this.props.resetTp()
-    this.setState({type: type})
+    this.setState({type: type, affRep: false})
     // if (paramsType === 'All') {
     //   this.props.allList()
     //   this.setState({isPageExist: true})

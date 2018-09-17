@@ -23,7 +23,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 /* eslint-enable */
 
-const req = new XMLHttpRequest() // eslint-disable-line
+// const req = new XMLHttpRequest() // eslint-disable-line
 
 export default withMobileDialog()(class Options extends Component {
   constructor () {
@@ -239,7 +239,7 @@ export default withMobileDialog()(class Options extends Component {
               </div>
             </Grid>
           </Grid>
-          <Alert open={this.state.openAlert} loading={this.state.loading} finish={this.state.finish} handleClose={this.handleClose} handleDownload={this.handleDownload} classes={classes} />
+          <Alert open={this.state.openAlert} user={this.props.user} loading={this.state.loading} finish={this.state.finish} handleClose={this.handleClose} handleDownload={this.handleDownload} classes={classes} />
         </div>
       )
     }
@@ -266,7 +266,12 @@ function Alert (props) {
           <Grid container spacing={8} >
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='advanced' onClick={props.handleDownload}>Télécharger <Download/></Button>
+                <Button variant='raised' color='secondary' id='advanced' onClick={props.handleDownload} disabled={!(props.user && props.user.dlLimit >= 0)}>Télécharger <Download/></Button>
+              </div>
+            </Grid>
+            <Grid item>
+              <div className={classes.grid}>
+                <Typography variant='body1'>{props.user ? 'Il vous reste ' + props.user.dlLimit + ' téléchargement(s)' : 'Vous n\'êtes pas connecter'}</Typography>
               </div>
             </Grid>
           </Grid>

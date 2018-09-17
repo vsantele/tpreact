@@ -41,15 +41,23 @@ class AddAlert extends Component {
     this.setState({[name]: value})
   }
 
-  addList () {
+  async addList () {
     this.setState({loading: true})
+    const saveList = (list) => {
+      const doc = db
+            .collection('users').doc(this.props.user.uid).collection('lists')
+            .doc()
+            return doc
+            .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: list.lang})
+    }
     const token = this.state.tokenAdd
     const save = this.state.toSave
     let msgSnackbar = ''
     // eslint-disable-next-line
     let header = new Headers()
-    header.append('Content-Type', 'application/json')
-    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/addListWithCode?token=' + token
+    header.append('Content-Type', 'application/x-www-form-urlencoded')
+    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/addListWithCode'
+    let body = 'token=' + token
     if (token.length !== 5) {
       console.error('Erreur, taille token incorrect')
       msgSnackbar = 'Erreur, taille token incorrect'
@@ -59,8 +67,39 @@ class AddAlert extends Component {
       msgSnackbar = 'Erreur, Nom de la liste vide'
       this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loading: false, errorNameAdd: true})
     } else {
+      try {
+        let list
+        const res = await fetch (url, {
+          method: 'post',
+          headers: header,
+          body: body,
+          mode: 'cors'
+        })
+        if (res.ok) {
+          const result = await res.json()
+          list = {
+            lang: result.lang,
+            tps: result.tps
+          }
+          msgSnackbar = 'Liste importée avec succès'
+          if (save) {
+            await saveList(list)
+            msgSnackbar += ' et sauvegardé avec succès!'
+          }
+        } else {
+          let error = await res.text()
+          throw new Error('serveur: '+ error)
+        }
+        this.props.setListWithToken(list).then(() => this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loading: false, redirect: true, errorNameAdd: false, errorTokenAdd: false}))
+        this.props.closeAddAlert()
+      } catch (e) {
+        console.error('Erreur', e)
+        msgSnackbar = String(e)
+        this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: true, loading: false, redirect: false, errorNameAdd: false, errorTokenAdd: false})
+      }
+
       // eslint-disable-next-line
-      const req = new XMLHttpRequest()
+      /* const req = new XMLHttpRequest()
       req.open('POST', url)
       // req.responseType = 'json'
       req.onload = () => {
@@ -72,7 +111,7 @@ class AddAlert extends Component {
         }
         try {
           if (req.status === 500) {
-            throw new Error('Erreur serveur, ' + body)
+            throw new Error('Erreur serveur %d (%s)', res.status, res.statusText)
           }
           let result = JSON.parse(body)
           let list = {
@@ -104,7 +143,7 @@ class AddAlert extends Component {
           return e
         }
       }
-      req.send()
+      req.send() */
     }
   }
 

@@ -13,8 +13,6 @@
     "jquery": "^3.2.1",
     "loadable-components": "^2.2.2",
     "minified": "^1.0.1",
-    "preact": "^8.2.7",
-    "preact-compat": "^3.18.0",
     "raf": "^3.4.0",
     "react": "^16.0.0",
     "react-app-rewired": "^1.5.2",

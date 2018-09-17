@@ -22,7 +22,6 @@ import Button from '@material-ui/core/Button'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 // eslint-disable-next-line
 import { Link } from 'react-router-dom'
-import Grid from '@material-ui/core/Grid'
 // eslint-disable-next-line
 //import Auth from './Auth'
 

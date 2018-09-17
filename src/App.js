@@ -32,40 +32,40 @@ import About from './Pages/About'
 /*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
-const Loading = () => {
-  console.log('loading')
-  return (
-    <div style={{
-      backgroundColor: theme.palette.background.default,
-      width: `100%`,
-      padding: theme.spacing.unit * 3,
-      height: 'calc(100% - 56px)',
-      marginTop: 56,
-      [theme.breakpoints.up('sm')]: {
-        height: 'calc(100% - 64px)',
-        marginTop: 64
-      }
-    }}>CHARGEMENT.....</div>
-  )
-}
+// const Loading = () => {
+//   console.log('loading')
+//   return (
+//     <div style={{
+//       backgroundColor: theme.palette.background.default,
+//       width: `100%`,
+//       padding: theme.spacing.unit * 3,
+//       height: 'calc(100% - 56px)',
+//       marginTop: 56,
+//       [theme.breakpoints.up('sm')]: {
+//         height: 'calc(100% - 64px)',
+//         marginTop: 64
+//       }
+//     }}>CHARGEMENT.....</div>
+//   )
+// }
 
-const ErrorComponent = ({error}) => {
-  return (
-    <div style={{
-      backgroundColor: theme.palette.background.default,
-      width: `100%`,
-      padding: theme.spacing.unit * 3,
-      height: 'calc(100% - 56px)',
-      marginTop: 56,
-      [theme.breakpoints.up('sm')]: {
-        height: 'calc(100% - 64px)',
-        marginTop: 64
-      }
-    }}>
-    Oups! {error.message} 💥
-    </div>
-  )
-}
+// const ErrorComponent = ({error}) => {
+//   return (
+//     <div style={{
+//       backgroundColor: theme.palette.background.default,
+//       width: `100%`,
+//       padding: theme.spacing.unit * 3,
+//       height: 'calc(100% - 56px)',
+//       marginTop: 56,
+//       [theme.breakpoints.up('sm')]: {
+//         height: 'calc(100% - 64px)',
+//         marginTop: 64
+//       }
+//     }}>
+//     Oups! {error.message} 💥
+//     </div>
+//   )
+// }
 
 // eslint-disable-next-line
 // const Mobile = loadable( () => import('./Pages/Mobile.js'), {
@@ -487,7 +487,7 @@ class App extends Component {
         afficherNbTp = true
     }
     this.setState({ tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
-    return true
+    return Promise.resolve()
   }
 
   selectList (id) {
@@ -510,12 +510,11 @@ class App extends Component {
   setListWithToken (result) {
     const lang = result.lang
     if (lang === this.state.lang) {
-      return this.selectTp(result.tps).then(() => true)
+      return this.selectTp(result.tps)
     } else {
       return this.loadTp(lang).then(() => {
-        this.selectTp(result.tps)
         this.setState({lang: lang})
-        return true
+        return this.selectTp(result.tps)
       })
     }
   }
@@ -634,7 +633,7 @@ class App extends Component {
               email: userAuth.email,
               locale: result.additionalUserInfo.profile.locale,
               provider: result.additionalUserInfo.providerId,
-              downloadLimit: 5
+              dlLimit: 10
             })
             return 'set'
           } else {
@@ -651,23 +650,6 @@ class App extends Component {
         })
       }).then((info) => console.log('Information ' + info))
         .catch(err => console.error(err))
-      // db
-      //   .collection('users')
-      //   .doc(user.uid)
-      //   .set({
-      //     id: user.uid,
-      //     displayName: user.displayName,
-      //     photoURL: user.photoURL,
-      //     email: user.email,
-      //     locale: result.additionalUserInfo.profile.locale,
-      //     provider: result.additionalUserInfo.providerId
-      //   })
-      //   .then(function () {
-      //     console.log('Document successfully written!')
-      //   })
-      //   .catch(function (error) {
-      //     console.error('Error writing document: ', error)
-      //   })
     }).catch(error => {
       console.error('Error authentification: ', error)
     })
@@ -677,28 +659,23 @@ class App extends Component {
     this.loadTp('neerlandais')
   }
   componentDidMount () {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       if (user) {
-        this.setState({user: user})
+        const userInfo = await db.collection('users').doc(user.uid).get().then(data => {
+          const {id, displayName, photoURL, email, locale, dlLimit} = data.data()
+          const user = {
+            uid: id,
+            displayName,
+            photoURL,
+            email,
+            locale,
+            dlLimit
+          }
+          return user
+        })
+        this.setState({user: userInfo})
       }
     })
-    // function $_GET(param) {
-    //   var vars = {}
-    //   //eslint-disable-next-line
-    //   window.location.href.replace( location.hash, '' ).replace( 
-    //     /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-    //     function( m, key, value ) { // callback
-    //       vars[key] = value !== undefined ? value : ''
-    //     }
-    //   )
-    //   if ( param ) {
-    //     return vars[param] ? vars[param] : null
-    //   }
-    //   return vars
-    // }
-    // const token = decodeURI($_GET("token"))
-    // console.log(token)
-    // if (token) this.addList(token)
   }
 
   componentWillUnmount () {
@@ -706,13 +683,6 @@ class App extends Component {
   }
   render () {
     const { classes } = this.props
-    /* matomo.on('error', function (err) {
-      console.log('error tracking request: ', err)
-    }) */
-    /* matomo.track({
-      url: 'https://flamboyant-chandrasekhar-71d621.netlify.com/',
-      action_name: 'Main Page'
-    }) */
     if (process.env.NODE_ENV === 'test') {
       ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
     } else {
