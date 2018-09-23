@@ -163,6 +163,7 @@ class App extends Component {
     this.selectLang = this.selectLang.bind(this)
     this.loadTp = this.loadTp.bind(this)
     this.handleRandom = this.handleRandom.bind(this)
+    this.resetLimite = this.resetLimite.bind(this)
   }
   // mélange des tps pour l'aléatoire
   shuffleTp () {
@@ -174,15 +175,16 @@ class App extends Component {
   shuffleQuestion (nbTrou) {
     const tpLength = this.state.tpLength
     const nbCol = this.state.colonne.length
-    const list = []
+    let list = []
+    for (let i = 0; i < nbCol; i++) {
+      list.push(i)
+    }
     function shuffleRow () {
-      for (let i = 0; i < nbCol; i++) {
-        list.push(i)
-      }
       var trouRow = []
+      let listC = Array.from(list)
       for (var i = 0; i < nbTrou; i++) {
-        var tire = Math.floor((Math.random() * (nbCol - i)))
-        trouRow[i] = list.splice(tire, 1)[0]
+        var tire = Math.floor((Math.random() * listC.length))
+        trouRow[i] = listC.splice(tire, 1)[0]
       }
       for (var j = nbTrou; j < nbCol; j++) {
         trouRow[j] = -1
@@ -364,7 +366,7 @@ class App extends Component {
     for (let i in tp) {
       tp[i].afficher = true
     }
-    this.setState({tp: tp, selectAllChbx: true, afficherNbTp: false, valueSelectTp: 'tout'})
+    this.setState({tp: tp, selectAllChbx: true, afficherNbTp: false})
   }
 
   handleSelectionTpOpen () {
@@ -588,6 +590,9 @@ class App extends Component {
     })
     this.setState({colonne: col})
   }
+  resetLimite () {
+    this.setState({limite: 20, valueSelectTp: 20})
+  }
 
   selectLang (lang) {
     this.loadTp(lang)
@@ -715,7 +720,7 @@ class App extends Component {
                 <Redirect exact from='/' to='/Bienvenue' />
                 <Route exact path='/Auth' render= {() => <Auth classes = {classes} user = {this.state.user} connexion={this.connexion} /> } />
                 <Route exact path='/Profile' render = {() => (<Profile classes = {classes} user = {this.state.user}/>)} />
-                <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
+                <Route exact path='/Bienvenue' render = {() => <Bienvenue classes = {classes} resetLimite = {this.resetLimite} lang = {this.state.lang} user = {this.state.user} setListWithToken={this.setListWithToken} selectTp={this.selectTp}/>} />
                 <Route extact path='/Selection' render = {
                   () => <Selection
                     classes = {classes}

@@ -98,8 +98,8 @@ export default withMobileDialog()(class Bienvenue extends Component {
         return 'https://res.cloudinary.com/wolfvic/image/upload/q_auto:eco/v1534806587/tp%20ndls/tpNeerlandais.png'
     }
   }
-  componentWillMount() {
-    // alert('Mise à jour de la Base de données en cours. Des bugs peuvent appraître')
+  componentDidMount() {
+    this.props.resetLimite()
   }
 
   render () {

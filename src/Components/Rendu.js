@@ -83,7 +83,7 @@ export default class Rendu extends Component {
                             tpAfficher={tpAfficher}
                             handleCheck={handleCheck}
                             aleatoireQuestion={aleatoireQuestion}
-                            nbAleatoireQuestion={nbAleatoireQuestion}
+                            nbAleatoireQuestion={nbAleatoireQuestion[index]}
                             classes={classes}
                             affCor={affCor}
                             affRep={affRep}
