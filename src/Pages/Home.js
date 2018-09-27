@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import CheckCircleIcon from '@material-ui/icons/Mood' // from '@material-ui/icons/CheckCircle'
 import ErrorIcon from '@material-ui/icons/MoodBad' // from '@material-ui/icons/Error'
-import WarningIcon from '@material-ui/icons/SentimentNeutral' // from '@material-ui/icons/Warning'
+import WarningIcon from '@material-ui/icons/SentimentSatisfied' // from '@material-ui/icons/Warning'
 /* eslint-enable */
 export default class Home extends Component {
   constructor (props) {
@@ -87,15 +87,13 @@ export default class Home extends Component {
   }
 
   handleAffReponse () {
-    var value = !this.state.affCor
+    var value = !this.state.affRep
     this.setState({
       affRep: value
     })
   }
 
   componentWillMount () {
-    // const paramsType = this.props.link.match.params.type
-    // const paramsToken = this.props.link.match.params.token
     let type = (this.props.link.location.state !== undefined) ? this.props.link.location.state.type : 'voir'
     let level = (this.props.link.location.state !== undefined) ? this.props.link.location.state.level : 1
     let col = (this.props.link.location.state !== undefined) ? this.props.link.location.state.col : [0]
@@ -116,21 +114,6 @@ export default class Home extends Component {
     }
     this.props.resetTp()
     this.setState({type: type, affRep: false})
-    // if (paramsType === 'All') {
-    //   this.props.allList()
-    //   this.setState({isPageExist: true})
-    // } else if (paramsType === 'Liste') {
-    //   if (paramsToken.length === 5) {
-    //     console.log('OK')
-    //     this.setState({isPageExist: true})
-    //   } else {
-    //     this.setState({isPageExist: false})
-    //     console.error('Cette page n\'existe pas')
-    //   }
-    // } else {
-    //   this.setState({isPageExist: false})
-    //   console.error('cette page n\'existe pas')
-    // }
   }
 
   render () {
