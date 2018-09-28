@@ -1,4 +1,4 @@
-﻿/*eslint-disable */
+/*eslint-disable */
 import React, {Component} from 'react'
 import 'raf/polyfill'
 // import Tp from './tp.json'
@@ -208,6 +208,7 @@ class App extends Component {
   handleInputChange (e) {
     // target de l'input
     const target = e.target
+    console.log(target)
     /* valeur de l'input: si c'est une checkbox, retourne valeur de checked sinon si c'est un nombre, retorune la valeur passé dans la fonction setLimite,
      sinon retourne valeur */
     const value = parseInt(target.value, 10)
@@ -217,6 +218,7 @@ class App extends Component {
     this.setState({
       [name]: value
     })
+  }
   }
   handleRandom () {
     this.shuffleTp()
@@ -255,7 +257,7 @@ class App extends Component {
     let afficherNbTp
     let valueSelectTp
     if (value === 'tout') {
-      limite = this.state.tp.length
+      limite = this.state.nbTpSelected || this.state.tp.length
       valueSelectTp = 'tout'
       afficherNbTp = false
     } else if (value === 'libre') {
@@ -378,11 +380,15 @@ class App extends Component {
     this.state.tp.forEach((tp) => {
       nbTpSelected += tp.afficher ? 1 : 0
     })
-
     let valueSelectTp
     let limite
     let afficherNbTp
     switch (nbTpSelected) {
+      case 10:
+        limite = 10
+        valueSelectTp = 10
+        afficherNbTp = false
+        break
       case 20:
         limite = 20
         valueSelectTp = 20
@@ -408,8 +414,7 @@ class App extends Component {
         valueSelectTp = 'libre'
         afficherNbTp = true
     }
-    this.setState({ selectionPage: false, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp })
-    this.shuffleTp()
+    this.setState({ selectionPage: false, limite, valueSelectTp, afficherNbTp, nbTpSelected }, () => this.shuffleTp())
   };
   handleDrawerToggle () {
     this.setState({ mobileOpen: !this.state.mobileOpen })
@@ -463,6 +468,11 @@ class App extends Component {
     let limite
     let afficherNbTp
     switch (list.length) {
+      case 10:
+        limite = 10
+        valueSelectTp = 10
+        afficherNbTp = false
+        break
       case 20:
         limite = 20
         valueSelectTp = 20
@@ -488,7 +498,7 @@ class App extends Component {
         valueSelectTp = 'libre'
         afficherNbTp = true
     }
-    this.setState({ tp: tp, selectAllChbx: selectAllChbx, limite: limite, valueSelectTp: valueSelectTp, afficherNbTp: afficherNbTp, listSelected: true })
+    this.setState({ tp, selectAllChbx, limite, valueSelectTp, afficherNbTp, listSelected: true, idList: id, nbTpSelected: list.length })
     return Promise.resolve()
   }
 
@@ -502,7 +512,7 @@ class App extends Component {
         const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, lang: doc.data().lang} })
         return {list: listName.filter(list => list.id === id)[0].tps, lang: listName.lang}
       })
-      .then((list) => this.selectTp(list.list, list.lang))
+      .then((list) => this.selectTp(list.list))
       .then(this.setState({msgSnackbar: 'Liste appliquée avec succès!', openSnackbar: true}))
       .catch((error) => {
         this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error} `})
@@ -789,6 +799,7 @@ class App extends Component {
                         history = {this.props.history}
                         handleRandom = {this.handleRandom}
                         lang={this.state.lang}
+                        nbTpSelected = {this.state.nbTpSelected}
                       />
                       )
                   }/>

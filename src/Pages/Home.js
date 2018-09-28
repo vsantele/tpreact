@@ -163,6 +163,7 @@ export default class Home extends Component {
                 handleAffReponse = {this.handleAffReponse}
                 history = {this.props.history}
                 handleRandom = {this.props.handleRandom}
+                nbTpSelected = {this.props.nbTpSelected}
               />
             </Grid>
             {

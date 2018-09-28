@@ -152,6 +152,7 @@ export default withMobileDialog()(class Options extends Component {
       [classes.buttonSuccess]: this.props.aleatoire,
       [classes.button]: true
     })
+    const nbTpSelected = this.props.nbTpSelected
     if (this.props.bottom) {
       return (
         <div className={classes.gridRoot}>
@@ -202,10 +203,10 @@ export default withMobileDialog()(class Options extends Component {
                     inputProps={{ id: 'selectNombre' }} value={this.props.valueSelectTp}
                     style={{width: 75}}
                   >
-                    <option key={'nb10'} value={10}>{10}</option>
-                    <option key={'nb20'} value={20}>{20}</option>
-                    <option key={'nb40'} value={40}>{40}</option>
-                    <option key={'n60'} value={60}>{60}</option>
+                    <option key={'nb10'} disabled= {this.props.nbTpSelected < 10} value={10}>{10}</option>
+                    <option key={'nb20'} disabled= {this.props.nbTpSelected < 20} value={20}>{20}</option>
+                    <option key={'nb40'} disabled= {this.props.nbTpSelected < 40} value={40}>{40}</option>
+                    <option key={'n60'} disabled= {this.props.nbTpSelected < 60} value={60}>{60}</option>
                     <option key={'nbTout'} value={'tout'}>{'Tout'}</option>
                     <option key={'nbAutre'} value={'libre'}>{'Libre'}</option>
                   </Select>
@@ -216,8 +217,10 @@ export default withMobileDialog()(class Options extends Component {
               <div className={classes.grid}>
                 <FormControl className={classes.formControl}>
                   <TextField
-                    error={this.props.limite < 0}
+                    error={this.props.limite < 0 || this.props.limite > this.props.nbTpSelected}
                     id='limite'
+                    max = {nbTpSelected}
+                    min = {1}
                     label='limite'
                     name='limite'
                     value={this.props.limite}
@@ -225,7 +228,10 @@ export default withMobileDialog()(class Options extends Component {
                     type='number'
                     className={classes.textField}
                     InputLabelProps={{
-                      shrink: true
+                      shrink: true,
+                      max: nbTpSelected,
+                      min: 1,
+                      type: 'number'
                     }}
                     margin='dense'
                     disabled={!this.props.afficherNbTp}
