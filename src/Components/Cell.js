@@ -9,10 +9,22 @@ export default class Cell extends Component {
   render () {
     function verification (e) {
       var reponse = e.target.value.toLowerCase()
-      var regex = /\s?(\(|-)\s?/
-      var valueClean = value.split(regex)
+      var rgxOr = /\s?\|\s?/
+      let repOr = value.split(rgxOr)
+      let verbes = []
+      repOr.forEach(elmt => {
+        let isWithSe = elmt.startsWith('[se]')
+        const parenthese = elmt.search(/\s?(\((.*?)\))\s?/)
+        let verbeSeul = parenthese !== -1 ? elmt.slice(0, parenthese) : elmt
+        if (isWithSe) {
+          verbes.push('se ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else {
+          verbes.push(verbeSeul)
+        }
+      })
       var index = e.target.id
-      var correct = reponse !== '' ? reponse === valueClean[0] : 'neutre'
+      var correct = reponse === '' ? 'neutre' : verbes.indexOf(reponse) !== -1
       handleReponse(correct, index, colonne.value)
     }
     const classes = this.props.classes
