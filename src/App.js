@@ -214,6 +214,8 @@ class App extends Component {
     const value = parseInt(target.value, 10)
     // nom de l'input
     const name = target.name
+    const value = parseInt(target.value, 10)
+    if (value <= (this.state.nbTpSelected || this.state.tp.length) && value > 0) {
     // setState du nom de la target avec la valeur
     this.setState({
       [name]: value
