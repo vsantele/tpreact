@@ -131,7 +131,8 @@ class App extends Component {
       msgSnackbar: 'Erreur texte Snackbar...',
       valueSelectTp: 20,
       listSelected: false,
-      nbAleatoireQuestion: []
+      nbAleatoireQuestion: [],
+      idList: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
@@ -156,7 +157,6 @@ class App extends Component {
     this.connexion = this.connexion.bind(this)
     this.setListWithToken = this.setListWithToken.bind(this)
     this.selectTp = this.selectTp.bind(this)
-    // this.addList = this.addList.bind(this)
     this.allList = this.allList.bind(this)
     this.resetTp = this.resetTp.bind(this)
     this.resetQuestion = this.resetQuestion.bind(this)
@@ -211,7 +211,6 @@ class App extends Component {
     console.log(target)
     /* valeur de l'input: si c'est une checkbox, retourne valeur de checked sinon si c'est un nombre, retorune la valeur passé dans la fonction setLimite,
      sinon retourne valeur */
-    const value = parseInt(target.value, 10)
     // nom de l'input
     const name = target.name
     const value = parseInt(target.value, 10)
@@ -456,7 +455,7 @@ class App extends Component {
     this.setState({uiConfig: uiConfig})
   }
 
-  selectTp (list) {
+  selectTp (list, id) {
     let tp = this.state.tp
     for (let i in tp) {
       if (list.indexOf(Number(i)) === -1) {
@@ -748,6 +747,7 @@ class App extends Component {
                     loading={this.state.loading}
                     handleCheck = {this.handleCheck}
                     lang = {this.state.lang}
+                    listId={this.state.listId}
                   />}
                 />
                 <Route exact path='/Liste' render = {(link) => <Liste classes= {classes} user = {this.state.user} colonne={this.state.colonne} allList = {this.allList} link = {link}/>}/>
