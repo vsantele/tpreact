@@ -23,12 +23,13 @@ import theme from './config/theme'
 import options from './config/options'
 // import isMobile from './scripts/isMobile'
 import Bienvenue from './Pages/Bienvenue'
-import loadable from 'loadable-components'
+//import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
 import Selection from './Pages/Selection'
 import Liste from './Pages/Liste'
 import Footer from './Components/Footer'
 import About from './Pages/About'
+import Loadable from 'react-loadable'
 /*eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
@@ -105,15 +106,20 @@ class App extends Component {
       loading: true, // chargment en cours
       tp: [], // liste des tps dans l'ordre
       tpLength: -1,
-      lang: 'neerlandais',
+      // lang: 'neerlandais',
+      lang: 'vocAnglais',
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
+      // colonne: [
+      //   {value: 'infNl', label: 'Infinitif néerlandais', question: false, afficher: true},
+      //   {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
+      //   {value: 'PP', label: 'Participe passé', question: false, afficher: true},
+      //   {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
+      // ], // ordre des colonnes
       colonne: [
-        {value: 'infNl', label: 'Infinitif néerlandais', question: false, afficher: true},
-        {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
-        {value: 'PP', label: 'Participe passé', question: false, afficher: true},
-        {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
-      ], // ordre des colonnes
+        {value: 'an', label: 'Anglais', question: false, afficher: true},
+        {value: 'fr', label: 'Français', question: false, afficher: true}
+      ],
       aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},

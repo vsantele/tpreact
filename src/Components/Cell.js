@@ -1,10 +1,8 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
 import TableCell from '@material-ui/core/TableCell'
-// eslint-disable-next-line
 import TextField from '@material-ui/core/TextField'
-
+/* eslint-enable */
 export default class Cell extends Component {
   render () {
     function verification (e) {
@@ -14,10 +12,46 @@ export default class Cell extends Component {
       let verbes = []
       repOr.forEach(elmt => {
         let isWithSe = elmt.startsWith('[se]')
+        let isWithLe = elmt.startsWith('[le]')
+        let isWithL = elmt.startsWith('[l\']')
+        let isWithLa = elmt.startsWith('[la]')
+        let isWithUn = elmt.startsWith('[un]')
+        let isWithDes = elmt.startsWith('[des]')
+        let isWithA = elmt.startsWith('[a]')
+        let isWithAn = elmt.startsWith('[an]')
+        let isWithTo = elmt.startsWith('[to]')
+        let isWithThe = elmt.startsWith('[the]')
         const parenthese = elmt.search(/\s?(\((.*?)\))\s?/)
         let verbeSeul = parenthese !== -1 ? elmt.slice(0, parenthese) : elmt
         if (isWithSe) {
           verbes.push('se ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithLe) {
+          verbes.push('le ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithL) {
+          verbes.push('l\'' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithLa) {
+          verbes.push('la ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithUn) {
+          verbes.push('un ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithDes) {
+          verbes.push('des ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithA) {
+          verbes.push('a ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithAn) {
+          verbes.push('an ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithTo) {
+          verbes.push('to ' + verbeSeul.slice(5))
+          verbes.push(verbeSeul.slice(5))
+        } else if (isWithThe) {
+          verbes.push('the ' + verbeSeul.slice(5))
           verbes.push(verbeSeul.slice(5))
         } else {
           verbes.push(verbeSeul)
