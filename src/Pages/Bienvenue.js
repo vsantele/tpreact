@@ -104,13 +104,19 @@ export default withMobileDialog()(class Bienvenue extends Component {
 
   render () {
     const classes = this.props.classes
-    if (this.state.redirectListe) return <Redirect to={{pathname:'/Liste', state:{}}} />
+    if (this.state.redirectListe) {
+      if (this.state.mode === 'select') {
+        return <Redirect to={{pathname: '/Liste', state:{}}} />
+      } else {
+        return <Redirect to={{pathname: '/Selection', state:{modify: true}}} />
+      }
+    }
     return (
       <div className={classes.affFrame}>
         <div className={classes.content}>
         <Grid container spacing={40} direction='column' justify='center' alignItems='center'>
             <Grid item>
-              <img src={this.whichLang()} />
+              {this.props.lang != 'vocAnglais' ? <img src={this.whichLang()} />  : <Typography variant='h2'>Vocabulaire Anglais</Typography>}
             </Grid>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Grid item container spacing={40} direction="row" justify="center" alignItems="baseline" >
