@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import Grid from '@material-ui/core/Grid'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import Alert from 'react-s-alert'
 import Options from '../Components/Options'
 import Tableau from '../Components/Tableau'
 import theme from '../config/theme'
@@ -32,7 +31,7 @@ export default class Home extends Component {
 
   handleAdvanced () {
     var oldAvanced = this.state.advanced
-    this.setState({advanced: !oldAvanced})
+    this.setState({ advanced: !oldAvanced })
   }
 
   handleClick () {
@@ -78,7 +77,7 @@ export default class Home extends Component {
     }
     var ratio = reponseBon / reponseTotal
     var type = ratio >= 0.75 ? 'success' : ratio >= 0.5 ? 'warning' : 'error'
-    var correction = {erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio, type: type}
+    var correction = { erreur: reponseMauvais, vide: reponseVide, correct: reponseBon, total: reponseTotal, ratio: ratio, type: type }
     this.setState({
       correction: correction,
       affCorSnack: true,
@@ -113,7 +112,7 @@ export default class Home extends Component {
         return null
     }
     this.props.resetTp()
-    this.setState({type: type, affRep: false})
+    this.setState({ type: type, affRep: false })
   }
 
   render () {
@@ -195,7 +194,7 @@ export default class Home extends Component {
                   />
                 </Grid>
 
-                : <div style={{width: `100%`}}><LinearProgress color='primary' variant='query' /></div>
+                : <div style={{ width: `100%` }}><LinearProgress color='primary' variant='query' /></div>
             }
             <Grid item >
               <Options bottom type={type} handleAffReponse={this.handleAffReponse} handleClick={this.handleClick} colonne={this.props.colonne} classes={classes} />
@@ -210,24 +209,24 @@ export default class Home extends Component {
           }}
           open={this.state.affCorSnack}
           autoHideDuration={6000}
-          onClose={() => this.setState({affCorSnack: false})}
+          onClose={() => this.setState({ affCorSnack: false })}
         >
           <SnackbarContent
             className={this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? classes.error : classes.warning : classes.success}
             message={
               <div id='reponse'>
-                {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{marginRight: theme.spacing.unit}} /> : <WarningIcon style={{marginRight: theme.spacing.unit}} /> : <CheckCircleIcon style={{marginRight: theme.spacing.unit}} />}
+                {this.state.correction.ratio <= 0.75 ? this.state.correction.ratio <= 0.5 ? <ErrorIcon style={{ marginRight: theme.spacing.unit }} /> : <WarningIcon style={{ marginRight: theme.spacing.unit }} /> : <CheckCircleIcon style={{ marginRight: theme.spacing.unit }} />}
                         Vous avez eu {(this.state.correction.ratio * 100).toFixed(2) } / 100
               </div>
             }
-            onClose={() => this.setState({affCorSnack: false})}
+            onClose={() => this.setState({ affCorSnack: false })}
             action={[
               <IconButton
                 key='close'
                 aria-label='Close'
                 color='inherit'
-                style={{marginRight: theme.spacing.unit}}
-                onClick={() => this.setState({affCorSnack: false})}
+                style={{ marginRight: theme.spacing.unit }}
+                onClick={() => this.setState({ affCorSnack: false })}
               >
                 <CloseIcon />
               </IconButton>

@@ -54,13 +54,13 @@ class Liste extends Component {
         <div className={classes.content}>
           <Grid container spacing={40} direction='row' justify='center' alignItems='baseline' >
             <Grid item>
-              {/* <Button variant='raised' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'voir'}}}>Voir</Button> */}
+              {/* <Button variant='contained' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'voir'}}}>Voir</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}
                 focusVisibleClassName={classes.focusVisible}
-                style={{width: '250px', 'height': '250px'}}
-                component={Link} to={{pathname: '/Home', state: {type: 'voir'}}}
+                style={{ width: '250px', 'height': '250px' }}
+                component={Link} to={{ pathname: '/Home', state: { type: 'voir' } }}
               >
                 <span
                   className={classes.imageSrc}
@@ -83,13 +83,13 @@ class Liste extends Component {
               </ButtonBase>
             </Grid>
             <Grid item>
-              {/* <Button variant='raised' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}>Etudier</Button> */}
+              {/* <Button variant='contained' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}>Etudier</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}
                 focusVisibleClassName={classes.focusVisible}
-                style={{width: '250px', 'height': '250px'}}
-                onClick={() => this.setState({openEtude: !this.state.openEtude})}
+                style={{ width: '250px', 'height': '250px' }}
+                onClick={() => this.setState({ openEtude: !this.state.openEtude })}
                 // component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}
               >
                 <span
@@ -124,17 +124,17 @@ class Liste extends Component {
                     </ListItem>
                   ))}
                 </List>
-                <Button variant='outlined' color='primary' component={Link} to={{pathname: '/Home', state: {type: 'etude', col: this.state.etudeChecked}}} disabled={this.state.etudeChecked.length === 0 || this.state.etudeChecked.length >= this.props.colonne.length}>Valider</Button>
+                <Button variant='outlined' color='primary' component={Link} to={{ pathname: '/Home', state: { type: 'etude', col: this.state.etudeChecked } }} disabled={this.state.etudeChecked.length === 0 || this.state.etudeChecked.length >= this.props.colonne.length}>Valider</Button>
               </Collapse>
             </Grid>
             <Grid item>
-              {/* <Button variant='raised' color='secondary' onClick={() => { this.setState({openTest: !this.state.openTest}) }}>Test</Button> */}
+              {/* <Button variant='contained' color='secondary' onClick={() => { this.setState({openTest: !this.state.openTest}) }}>Test</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}
                 focusVisibleClassName={classes.focusVisible}
-                style={{width: '250px', 'height': '250px'}}
-                onClick={() => { this.setState({openTest: !this.state.openTest}) }}
+                style={{ width: '250px', 'height': '250px' }}
+                onClick={() => { this.setState({ openTest: !this.state.openTest }) }}
               >
                 <span
                   className={classes.imageSrc}
@@ -158,7 +158,7 @@ class Liste extends Component {
               <Collapse in={this.state.openTest}>
                 <List>
                   {[1, 2, 3].map(lvl => (
-                    <ListItem key={'lvl' + lvl} button component={Link} to={{pathname: '/Home', state: {type: 'test', level: lvl}}}>
+                    <ListItem key={'lvl' + lvl} button component={Link} to={{ pathname: '/Home', state: { type: 'test', level: lvl } }}>
                       <ListItemText primary={`Niveau ${lvl}`} />
                     </ListItem>
                   ))}

@@ -1,4 +1,4 @@
-/*eslint-disable */
+﻿/*eslint-disable */
 import React, {Component} from 'react'
 import 'raf/polyfill'
 // import Tp from './tp.json'
@@ -23,80 +23,38 @@ import theme from './config/theme'
 import options from './config/options'
 // import isMobile from './scripts/isMobile'
 import Bienvenue from './Pages/Bienvenue'
-import loadable from 'loadable-components'
+//import loadable from 'loadable-components'
 import Profile from './Pages/Profile'
 import Selection from './Pages/Selection'
 import Liste from './Pages/Liste'
 import Footer from './Components/Footer'
 import About from './Pages/About'
+import Loadable from 'react-loadable'
 /*eslint-enable */
-// var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
-// const Loading = () => {
-//   console.log('loading')
-//   return (
-//     <div style={{
-//       backgroundColor: theme.palette.background.default,
-//       width: `100%`,
-//       padding: theme.spacing.unit * 3,
-//       height: 'calc(100% - 56px)',
-//       marginTop: 56,
-//       [theme.breakpoints.up('sm')]: {
-//         height: 'calc(100% - 64px)',
-//         marginTop: 64
-//       }
-//     }}>CHARGEMENT.....</div>
-//   )
+// const Selection = Loadable({
+//   // eslint-disable-next-line
+//   loader: () => import('./Pages/Selection'), 
+//   loading: LoadingComponent,
+//   delay: 0.3,
+//   timeout: 10000
+// })
+
+// function LoadingComponent(props) {
+//   if (props.error) {
+//     // When the loader has errored
+//     return <div>Error!💥 <button onClick={ props.retry }>Retry</button></div>;
+//   } else if (props.timedOut) {
+//     // When the loader has taken longer than the timeout
+//     return <div>Taking a long time... <button onClick={ props.retry }>Retry</button></div>;
+//   } else if (props.pastDelay) {
+//     // When the loader has taken longer than the delay
+//     return <div>Loading...</div>;
+//   } else {
+//     // When the loader has just started
+//     return null;
+//   }
 // }
-
-// const ErrorComponent = ({error}) => {
-//   return (
-//     <div style={{
-//       backgroundColor: theme.palette.background.default,
-//       width: `100%`,
-//       padding: theme.spacing.unit * 3,
-//       height: 'calc(100% - 56px)',
-//       marginTop: 56,
-//       [theme.breakpoints.up('sm')]: {
-//         height: 'calc(100% - 64px)',
-//         marginTop: 64
-//       }
-//     }}>
-//     Oups! {error.message} 💥
-//     </div>
-//   )
-// }
-
-// eslint-disable-next-line
-// const Mobile = loadable( () => import('./Pages/Mobile.js'), {
-//   LoadingComponent: Loading,
-//   ErrorComponent: ErrorComponent
-// })
-// eslint-disable-next-line
-// const Home = loadable( () => import('./Pages/Home'), { // eslint-disable-next-line
-//   LoadingComponent: Loading,
-//   ErrorComponent: ErrorComponent
-// })
-
-// const Selection = loadable( () => import('./Pages/Selection'), {
-//     LoadingComponent: Loading,
-//     ErrorComponent: ErrorComponent
-// })
-
-// const Auth = loadable( () => import('./Components/Auth'), {
-//   LoadingComponent: Loading,
-//   ErrorComponent: ErrorComponent
-// }) 
-
-// const Liste = loadable(() => import('./Pages/Liste'),{
-//   LoadingComponent: Loading,
-//   ErrorComponent: ErrorComponent
-// })
-
-// const Profile = loadable(() => import('./Pages/Profile'),{
-//   LoadingComponent: Loading,
-//   ErrorComponent: ErrorComponent
-// })
 
 class App extends Component {
   constructor (props) {
@@ -105,15 +63,20 @@ class App extends Component {
       loading: true, // chargment en cours
       tp: [], // liste des tps dans l'ordre
       tpLength: -1,
-      lang: 'neerlandais',
+      // lang: 'neerlandais',
+      lang: 'vocAnglais',
       // tpExclu: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133], // tps à exclure de l'affichage en se basant sur la value infNL (TODO: Ajout index maybe)
       tpExclu: [],
+      // colonne: [
+      //   {value: 'infNl', label: 'Infinitif néerlandais', question: false, afficher: true},
+      //   {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
+      //   {value: 'PP', label: 'Participe passé', question: false, afficher: true},
+      //   {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
+      // ], // ordre des colonnes
       colonne: [
-        {value: 'infNl', label: 'Infinitif néerlandais', question: false, afficher: true},
-        {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
-        {value: 'PP', label: 'Participe passé', question: false, afficher: true},
-        {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
-      ], // ordre des colonnes
+        {value: 'an', label: 'Anglais', question: false, afficher: true},
+        {value: 'fr', label: 'Français', question: false, afficher: true}
+      ],
       aleatoire: false, // ordre aleatoire ou non
       limite: 20, // limite d'affichage des tps
       correction: {erreur: 0, vide: 0, correct: 0, total: 0},
@@ -215,11 +178,11 @@ class App extends Component {
     const name = target.name
     const value = parseInt(target.value, 10)
     if (value <= (this.state.nbTpSelected || this.state.tp.length) && value > 0) {
-    // setState du nom de la target avec la valeur
-    this.setState({
-      [name]: value
-    })
-  }
+      // setState du nom de la target avec la valeur
+      this.setState({
+        [name]: value
+      })
+    }
   }
   handleRandom () {
     this.shuffleTp()
@@ -520,15 +483,14 @@ class App extends Component {
       })
   }
 
-  setListWithToken (result) {
+  async setListWithToken (result) {
     const lang = result.lang
     if (lang === this.state.lang) {
       return this.selectTp(result.tps)
     } else {
-      return this.loadTp(lang).then(() => {
-        this.setState({lang: lang})
-        return this.selectTp(result.tps)
-      })
+      await this.loadTp(lang)
+      this.setState({ lang: lang })
+      return this.selectTp(result.tps)
     }
   }
 
@@ -605,65 +567,60 @@ class App extends Component {
     this.setState({limite: 20, valueSelectTp: 20})
   }
 
+  // TODO : AJOUT VOC
   selectLang (lang) {
     this.loadTp(lang)
     this.setState({lang: lang})
   }
-
-  loadTp (lang) {
+  // TODO AJOUT VOC
+  async loadTp (lang) {
     // IMPORT TP FROM FIRESTORE
-    return db
-      .collection('tp').doc(lang)
-      .get()
-      .then(tps => {
-        this.setState({tp: tps.data().tp, colonne: tps.data().headers, tpLength: tps.data().tp.length})
-      })
-      .then(() => {
-        this.shuffleTp(this.state.tp)
-        this.shuffleQuestion(1)
-      })
-      .then(() => {
-        this.setState({loading: false})
-        return true
-      })
-      .catch(err => {
-        if (err) {
-          console.log(err)
-          return false
-        } else return true
-      })
+    try {
+      const tps = await db
+        .collection('tp').doc(lang)
+        .get()
+      this.setState({ tp: tps.data().tp, colonne: tps.data().headers, tpLength: tps.data().tp.length })
+      this.shuffleTp(this.state.tp)
+      this.shuffleQuestion(1)
+      this.setState({ loading: false })
+      return true
+    } catch (err) {
+      if (err) {
+        console.log(err)
+        return false
+      } else { return true }
+    }
   }
 
   connexion () {
     auth.signInWithPopup(provider).then(result => {
       const userAuth = result.user
       const userRef = db.collection('users').doc(userAuth.uid)
-      db.runTransaction((transaction) => {
-        return transaction.get(userRef).then(user => {
-          if (!user.exists) {
-            console.log(user)
-            transaction.set(userRef, {
-              id: userAuth.uid,
-              displayName: userAuth.displayName,
-              photoURL: userAuth.photoURL,
-              email: userAuth.email,
-              locale: result.additionalUserInfo.profile.locale,
-              provider: result.additionalUserInfo.providerId,
-              dlLimit: 10
-            })
-            return 'set'
-          } else {
-            transaction.update(userRef, {
-              id: userAuth.uid,
-              displayName: userAuth.displayName,
-              photoURL: userAuth.photoURL,
-              email: userAuth.email,
-              locale: result.additionalUserInfo.profile.locale,
-              provider: result.additionalUserInfo.providerId
-            })
-            return 'update'
-          }
-        })
+      db.runTransaction(async (transaction) => {
+        const user = await transaction.get(userRef)
+        if (!user.exists) {
+          console.log(user)
+          transaction.set(userRef, {
+            id: userAuth.uid,
+            displayName: userAuth.displayName,
+            photoURL: userAuth.photoURL,
+            email: userAuth.email,
+            locale: result.additionalUserInfo.profile.locale,
+            provider: result.additionalUserInfo.providerId,
+            dlLimit: 10
+          })
+          return 'set'
+        } else {
+          transaction.update(userRef, {
+            id: userAuth.uid,
+            displayName: userAuth.displayName,
+            photoURL: userAuth.photoURL,
+            email: userAuth.email,
+            locale: result.additionalUserInfo.profile.locale,
+            provider: result.additionalUserInfo.providerId
+          })
+          return 'update'
+        }
       }).then((info) => console.log('Information ' + info))
         .catch(err => console.error(err))
     }).catch(error => {
@@ -672,21 +629,40 @@ class App extends Component {
   }
 
   componentWillMount () {
-    this.loadTp('neerlandais')
+    this.loadTp('vocAnglais')
   }
   componentDidMount () {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userInfo = await db.collection('users').doc(user.uid).get().then(data => {
           const {id, displayName, photoURL, email, locale, dlLimit} = data.data()
-          const user = {
-            uid: id,
-            displayName,
-            photoURL,
-            email,
-            locale,
-            dlLimit
-          }
+          const user = {}
+          Object.defineProperties(user, {
+            uid: {
+              value: id,
+              writable: false
+            },
+            displayName: {
+              value: displayName,
+              writable: false
+            },
+            photoURL: {
+              value: photoURL,
+              writable: false
+            },
+            email: {
+              value: email,
+              writable: false
+            },
+            locale: {
+              value: locale,
+              writable: false
+            },
+            dlLimit: {
+              value: dlLimit,
+              writable: false
+            }
+          })
           return user
         })
         this.setState({user: userInfo})
@@ -831,6 +807,7 @@ class App extends Component {
                 ]}
               />
             </div>
+            {(() => <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>test</span>)()}
             <Footer />
           </div>
         </MuiThemeProvider>

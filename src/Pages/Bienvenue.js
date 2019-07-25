@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import Link from 'react-router-dom/Link'
 import Redirect from 'react-router-dom/Redirect'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Collapse from '@material-ui/core/Collapse'
 import MenuList from '@material-ui/core/MenuList'
@@ -28,7 +27,8 @@ export default withMobileDialog()(class Bienvenue extends Component {
       addAlert: false,
       loadingGetList: false,
       openListTp: false,
-      redirectListe: false
+      redirectListe: false,
+      mode: 'select'
     }
     this.showList = this.showList.bind(this)
     this.showCreate =this.showCreate.bind(this)
@@ -36,7 +36,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
     this.closeListAlert= this.closeListAlert.bind(this)
     this.getList = this.getList.bind(this)
     this.redirectList = this.redirectList.bind(this)
-    this.clickMesList = this.clickMesList.bind(this)
+    this.openList = this.openList.bind(this)
   }
 
   showList () {
@@ -55,7 +55,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
   }
 
   getList () {
-    db
+    return db
       .collection('users')
       .doc(this.props.user.uid)
       .collection('lists')
@@ -69,23 +69,25 @@ export default withMobileDialog()(class Bienvenue extends Component {
       })
   }
 
-  redirectList (tps) {
-    this.props.selectTp(tps)
+  redirectList (tps, id) {
+    this.props.selectTp(tps, id)
     this.setState({redirectListe: true})
   }
 
-  clickMesList () {
-    if (this.props.user !== null) {
-      this.getList()
-      if (this.state.listName) {
-        this.setState({openListTp: true})
+  openList (state) {
+      if (this.props.user !== null) {
+        this.getList().catch(e => e? console.error('Erreur getList: ', e) : null)
+        if (this.state.listName) {
+          this.setState({openListTp: true, mode: state})
+        } else {
+          this.setState({openListTp: true, loadingGetList: true, mode: state})
+        }
       } else {
-        this.setState({openListTp: true, loadingGetList: true})
+        this.setState({openListTp: true})
       }
-    } else {
-      this.setState({openListTp: true})
     }
-  }
+
+
   whichLang () {
     switch (this.props.lang) {
       case 'neerlandais':
@@ -104,7 +106,13 @@ export default withMobileDialog()(class Bienvenue extends Component {
 
   render () {
     const classes = this.props.classes
-    if (this.state.redirectListe) return <Redirect to={{pathname:'/Liste', state:{}}} />
+    if (this.state.redirectListe) {
+      if (this.state.mode === 'select') {
+        return <Redirect to={{pathname: '/Liste', state:{}}} />
+      } else {
+        return <Redirect to={{pathname: '/Selection', state:{modify: true}}} />
+      }
+    }
     return (
       <div className={classes.affFrame}>
         <div className={classes.content}>
@@ -148,7 +156,7 @@ export default withMobileDialog()(class Bienvenue extends Component {
                         Liste complète
                       </MenuItem>
                     </Link>
-                    <MenuItem onClick={this.clickMesList}>
+                    <MenuItem onClick={() => this.openList('select')}>
                       Mes listes
                     </MenuItem>
                   </MenuList>
@@ -189,11 +197,9 @@ export default withMobileDialog()(class Bienvenue extends Component {
                         Créer une nouvelle liste
                       </MenuItem>
                     </Link>
-                    <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='blank' style={{textDecorationLine: 'none'}}>
-                      <MenuItem>
-                        Modifier une liste (soon)
-                      </MenuItem>
-                    </a>
+                    <MenuItem onClick={() => this.openList('modify')}>
+                      Modifier une liste (soon)
+                    </MenuItem>
                     <MenuItem onClick={() => this.setState({addAlert: true})}>
                       Ajouter une liste
                     </MenuItem>
@@ -217,7 +223,7 @@ function List (props) {
       <Dialog open={props.open} fullScreen={props.fullScreen} onClose={props.closeListAlert} onBackdropClick={props.closeListAlert} scroll='body' maxWidth='md' >
         <DialogTitle>Listes de temps primitifs enregistrées</DialogTitle>
         <DialogContent>
-          <ShowListTp lang={props.lang} loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user} />
+          <ShowListTp lang={props.lang} loading={props.loading} getList={props.getList} listName={props.listName} classes={props.classes} selectList={props.selectList} user = {props.user}/>
         </DialogContent>
         <DialogActions>
         <Button onClick={props.closeListAlert} color='primary' autoFocus>

@@ -16,6 +16,7 @@ export default createMuiTheme({
     }
   },
   typography: {
+    useNextVariants: true,
     fontSize: 16,
     button: {
       fontFamily: 'Bahnschrift, "Roboto", "Helvetica", "Arial", sans-serif'

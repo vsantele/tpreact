@@ -88,8 +88,8 @@ function NoConnected (props) {
   const classes = props.classes
   return (
     <div className={classes.margin}>
-      <Typography variant='headline'>Vous n'êtes pas encore connecter...</Typography>
-      <Link to='Auth'><Button variant='raised' color='secondary' className={classes.button}>Connection</Button></Link>
+      <Typography variant='h4'>Vous n'êtes pas encore connecter...</Typography>
+      <Link to='Auth'><Button variant='contained' color='secondary' className={classes.button}>Connection</Button></Link>
     </div>
   )
 }
@@ -100,9 +100,9 @@ function Connected (props) {
   const classes = props.classes
   return (
     <div className={classes.margin}>
-      <Typography variant='headline'>Profile de {user.displayName}</Typography>
+      <Typography variant='h4'>Profile de {user.displayName}</Typography>
       <div>
-        <Typography variant='title'>Infos:</Typography>
+        <Typography variant='h6'>Infos:</Typography>
         <div>
           <Typography variant='body2'>Nom: {user.displayName} </Typography>
           <div><Typography variant='body2'>Avatar: <span style={{display: 'inline'}}> <Avatar className={classes.avatar} alt={user.displayName || user.email} src={user.photoURL} /></span></Typography></div>

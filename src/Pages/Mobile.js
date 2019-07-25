@@ -362,7 +362,7 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                 onClose={this.handleModalClose}
               >
                 <div className={classes.paperModal}>
-                  <Typography variant='title' id='modal-title'>
+                  <Typography variant='h6' id='modal-h6'>
                     Options
                   </Typography>
                   <Divider />
@@ -379,7 +379,7 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                         </Grid>
                         <Grid item>
                           <div className={classes.grid}>
-                            <Button variant='raised' color='secondary' className={classes.button} onClick={this.handleClick} id='shuffle' disabled={!this.state.aleatoire} > Recharger </Button>
+                            <Button variant='contained' color='secondary' className={classes.button} onClick={this.handleClick} id='shuffle' disabled={!this.state.aleatoire} > Recharger </Button>
                           </div>
                         </Grid>
                         <Grid item>
@@ -460,7 +460,7 @@ const Card = function (props) {
                 handleReponse={props.handleReponse}
                 classes={props.classes}
                 reponse={props.reponse}
-                typo='display1'
+                typo='h4'
               />
             </div>
             <Divider className={classes.divider} />
@@ -476,7 +476,7 @@ const Card = function (props) {
                     handleReponse={props.handleReponse}
                     classes={props.classes}
                     reponse={props.reponse}
-                    typo='display1'
+                    typo='h4'
                   />
                 </Grid>
                 <Grid item>
@@ -489,7 +489,7 @@ const Card = function (props) {
                     handleReponse={props.handleReponse}
                     classes={props.classes}
                     reponse={props.reponse}
-                    typo='display1'
+                    typo='h4'
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -502,7 +502,7 @@ const Card = function (props) {
                     handleReponse={props.handleReponse}
                     classes={props.classes}
                     reponse={props.reponse}
-                    typo='display1'
+                    typo='h4'
                   />
                 </Grid>
               </Grid>

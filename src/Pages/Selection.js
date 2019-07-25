@@ -7,6 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 /* eslint-enable */
 export default class Selection extends Component {
   render () {
+    const modify = false // this.props.link.location.state.modify === undefined ? false : this.props.link.location.state.modify
     const classes = this.props.classes
     return (
       <div className={classes.appFrame}>
@@ -24,6 +25,8 @@ export default class Selection extends Component {
                 user={this.props.user}
                 lang={this.props.lang}
                 setListWithToken={this.props.setListWithToken}
+                modify = {modify}
+                listId={this.props.listId}
               />
             </Grid>
             {

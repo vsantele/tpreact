@@ -3,30 +3,30 @@
   "version": "1.7.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.1.1",
+    "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
     "autosuggest-highlight": "^3.1.1",
-    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-polyfill": "^6.26.0",
     "downloadjs": "^1.4.7",
-    "firebase": "^5.3.1",
-    "loadable-components": "^2.2.2",
+    "firebase": "^5.5.8",
+    "loadable-components": "^2.2.3",
     "minified": "^1.0.1",
-    "raf": "^3.4.0",
+    "raf": "^3.4.1",
     "react": "^16.5.2",
     "react-app-rewired": "^1.5.2",
     "react-autosuggest": "^9.3.2",
     "react-cookie": "^3.0.4",
     "react-dom": "^16.5.2",
-    "react-ga": "^2.4.1",
+    "react-ga": "^2.5.3",
     "react-helmet": "^5.2.0",
-    "react-loadable": "^5.3.1",
-    "react-materialize": "^1.0.16",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-s-alert": "^1.4.0",
-    "react-scripts": "1.0.14",
-    "react-select": "^1.1.0",
+    "react-lifecycle-visualizer": "^2.1.1",
+    "react-loadable": "^5.5.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-select": "^2.1.1",
+    "react-snapshot": "^1.3.0",
     "shuffle-array": "^1.0.1"
   },
   "scripts": {
@@ -37,22 +37,34 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@material-ui/docs": "^1.0.0-alpha.5",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.69.0",
-    "jest": "^23.5.0",
-    "jshint": "^2.9.5",
+    "@material-ui/docs": "^3.0.0-alpha.7",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "react-snap": "^1.11.4",
-    "source-map-explorer": "^1.5.0"
+    "source-map-explorer": "^1.6.0",
+    "why-did-you-update": "^1.0.6"
   },
   "standard": {
     "ignore": [
       "App.test.js",
       "registerServiceWorker.js"
     ]
+  },
+  "reactSnapshot": {
+    "include": [
+      "/Bienvenue",
+      "/Home",
+      "/Selection",
+      "/Liste",
+      "/About"
+    ],
+    "exclude": [
+      "/Auth",
+      "/Profile"
+    ],
+    "snapshotDelay": 500
   }
 }

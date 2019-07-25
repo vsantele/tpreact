@@ -14,16 +14,12 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import withMobileDialog from '@material-ui/core/withMobileDialog'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import {db} from '../firebase/firebase'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
 import Snackbar from '@material-ui/core/Snackbar'
 import CloseIcon from '@material-ui/icons/Close'
 import SaveIcon from '@material-ui/icons/Save'
-import Progress from '@material-ui/core/LinearProgress'
 import classNames from 'classnames'
 import AddAlert from '../Components/AddAlert'
 /* eslint-enable */
@@ -53,11 +49,10 @@ export default withMobileDialog()(class Options extends Component {
     this.privateSwitch = this.privateSwitch.bind(this)
     this.handleSave = this.handleSave.bind(this)
     this.openList = this.openList.bind(this)
-    this.deleteList = this.deleteList.bind(this)
-    this.addList = this.addList.bind(this)
     this.setToken = this.setToken.bind(this)
     this.closeAddAlert = this.closeAddAlert.bind(this)
     this.tokenSwitch = this.tokenSwitch.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   openSaveAlert () {
@@ -90,7 +85,6 @@ export default withMobileDialog()(class Options extends Component {
     for (let i = 0; i < nbcar; i++) {
       Chaine = Chaine + ListeCar[Math.floor(Math.random() * ListeCar.length)]
     }
-    console.log(Chaine)
     this.setState({token: Chaine})
   }
 
@@ -140,6 +134,34 @@ export default withMobileDialog()(class Options extends Component {
         console.error('erreur getList', error)
       })
   }
+
+  updateList (name, isPrivate) {
+    if (this.props.user !== null) {
+      const tps = this.props.tp
+      let listTps = []
+      const listRef = db.collection('users').doc(this.props.user.uid).collection('lists').doc(this.props.listId)
+      tps.forEach(tp => {
+        if (tp.afficher) {
+          listTps.push(tp.id)
+        }
+      })
+      db.runTransaction(transaction => {
+        return transaction.get(listRef).then(list => {
+          if (!list.exists) {
+            console.error('La liste n\'existe pas! ')
+          }
+          transaction.update(listRef, {
+            name: name,
+            private: isPrivate,
+            tps: tps
+          })
+        })
+      }).then(() => this.setState({isRedirect: true})).catch(e => e ? console.error('Erreur Update: ', e) : null)
+    } else {
+      console.error('Vous devez être connecter')
+    }
+  }
+
   openList () {
     if (this.props.user) {
       if (!this.state.openList) {
@@ -148,86 +170,6 @@ export default withMobileDialog()(class Options extends Component {
       } else {
         this.setState({openList: false, loadingGetList: false})
       }
-    }
-  }
-
-  deleteList (id) {
-    db
-      .collection('users')
-      .doc(this.props.user.uid)
-      .collection('lists')
-      .doc(id)
-      .delete()
-      .then(this.setState({openSnackbar: true, msgSnackbar: 'Liste supprimé avec succès'}))
-      .catch(error => {
-        console.error('erreur suppression liste: ', error)
-        this.setState({openSnackbar: true, msgSnackbar: `Erreur: ${error}`})
-      })
-      .then(this.getList())
-  }
-
-  addList () {
-    this.setState({loadingAdd: true})
-    const token = this.state.tokenAdd
-    const save = this.state.toSave
-    let msgSnackbar = ''
-    // eslint-disable-next-line
-    let header = new Headers()
-    header.append('Content-Type', 'application/json')
-    const url = 'https://europe-west1-tpneerandais.cloudfunctions.net/addListWithCode?token=' + token
-    if (token.length !== 5) {
-      console.error('Erreur, taille token incorrect')
-      msgSnackbar = 'Erreur, taille token incorrect'
-      this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loadingAdd: false})
-    } else {
-      // eslint-disable-next-line
-      const req = new XMLHttpRequest()
-      req.open('POST', url)
-      // req.responseType = 'json'
-      req.onload = () => {
-        const body = req.response
-        if (req.status === 200) {
-          console.log('réponse recue: %s', req.responseType)
-        } else {
-          console.log('Status de la réponse %d (%s)', req.status, req.statusText)
-        }
-        try {
-          if (req.status === 500) {
-            throw new Error('Erreur serveur, ' + body)
-          }
-          let result = JSON.parse(body)
-          let list = {
-            name: result.name,
-            tps: result.tps
-          }
-          console.log(result)
-          this.props.setListWithToken(result.tps)
-          msgSnackbar = 'List importé avec succès'
-          if (save) {
-            const doc = db
-              .collection('users').doc(this.props.user.uid).collection('lists')
-              .doc()
-            doc
-              .set({id: doc.id, name: this.state.nameAdd, tps: list.tps, token: token, private: false, lang: this.props.lang})
-              .then(() => {
-                msgSnackbar += ' et enregistré avec succès !'
-                this.getList()
-              })
-              .catch(e => {
-                console.error('Erreur save: ', e)
-                throw new Error('Erreur save, ' + e)
-              })
-          }
-          this.setState({nameAdd: '', tokenAdd: '', msgSnackbar: msgSnackbar, openSnackbar: true, toSave: false, addAlert: false, loadingAdd: false})
-          return list
-        } catch (e) {
-          msgSnackbar = e.message
-          console.error('Erreur request: ', e.message)
-          this.setState({msgSnackbar: msgSnackbar, openSnackbar: true, addAlert: true, loadingAdd: false})
-          return e
-        }
-      }
-      req.send()
     }
   }
 
@@ -243,16 +185,17 @@ export default withMobileDialog()(class Options extends Component {
     const classes = this.props.classes
     return (
       <div className={classes.gridRoot} style={{marginBottom: '1em'}}>
+        {this.state.isRedirect ? <Redirect to='/Bienvenue' /> : null}
         <Grid container spacing={24}>
           <Grid item className={classes.grid}>
-            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider</Button></Link>
+            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='contained' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider</Button></Link>
           </Grid>
           <Grid item className={classes.grid}>
-            <Button variant='raised' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
+            <Button variant='contained' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
             <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
           </Grid>
         </Grid>
-        <SaveAlert name={this.state.name} errorNom={this.state.errorNom} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} />
+        <SaveAlert name={this.state.name} errorNom={this.state.errorNom} isPrivate={this.state.private} token={this.state.token} open={this.state.saveAlert} handleSave={this.handleSave} handleChange={this.handleChange} closeSaveAlert={this.closeSaveAlert} fullscreen={this.props.fullScreen} private={this.state.private} privateSwitch={this.privateSwitch} classes={classes} modify={this.props.modify} update = {this.updateList} />
         <AddAlert open={this.state.addAlert} setListWithToken={this.props.setListWithToken} handleChange={this.handleChange} addList={this.addList} tokenSwitch={this.tokenSwitch} user={this.props.user} closeAddAlert={this.closeAddAlert} classes={classes} />
         <Snackbar
           anchorOrigin={{
@@ -286,6 +229,7 @@ export default withMobileDialog()(class Options extends Component {
 // eslint-disable-next-line
 function SaveAlert (props) {
   const classes = props.classes
+  const save = props.modify ? props.update(props.nameAdd, props.isPrivate) : props.handleSave
   return (
     <Dialog
       fullScreen={props.fullscreen}
@@ -329,7 +273,7 @@ function SaveAlert (props) {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button color='secondary' className={classes.button} id='advanced' onClick={props.handleSave}><SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} /> Sauvegarder </Button>
+        <Button color='secondary' className={classes.button} id='advanced' onClick={() => save}><SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} /> Sauvegarder </Button>
         <Button onClick={props.closeSaveAlert} color='primary' autoFocus>
           Fermer
         </Button>

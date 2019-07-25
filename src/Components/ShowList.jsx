@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Component } from 'react'
 import Progress from '@material-ui/core/LinearProgress'
 import Grid from '@material-ui/core/Grid'
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Snackbar from '@material-ui/core/Snackbar'
 import {db} from '../firebase/firebase'
-
+/*eslint-enable */
 class ShowList extends Component {
   constructor (props) {
     super(props)
@@ -46,7 +47,7 @@ class ShowList extends Component {
                 ? (this.props.listName.filter(list => list.lang === this.props.lang).map(list => (
                   <Grid item key={list.id}>
                     <Paper>
-                      <Button color='secondary' className={this.props.classes.button} onClick={() => this.props.selectList(list.tps)}>
+                      <Button color='secondary' className={this.props.classes.button} onClick={() => this.props.selectList(list.tps, list.id)}>
                         {list.name}
                       </Button>
                       <IconButton onClick={() => this.deleteList(list.id)}>

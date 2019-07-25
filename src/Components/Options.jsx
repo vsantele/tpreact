@@ -159,12 +159,12 @@ export default withMobileDialog()(class Options extends Component {
           <Grid container spacing={8} justify='flex-end'>
             <Grid item style={{display: type !== 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='correction' onClick={this.props.handleClick} disabled={!this.showCorRep()}>Correction</Button>
+                <Button variant='contained' color='secondary' className={classes.button} id='correction' onClick={this.props.handleClick} disabled={!this.showCorRep()}>Correction</Button>
               </div>
             </Grid>
             <Grid item style={{display: type !== 'voir' ? 'flex' : 'none'}}>
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} id='reponse' onClick={this.props.handleAffReponse} disabled={!this.showCorRep()}>Réponse</Button>
+                <Button variant='contained' color='secondary' className={classes.button} id='reponse' onClick={this.props.handleAffReponse} disabled={!this.showCorRep()}>Réponse</Button>
               </div>
             </Grid>
           </Grid>
@@ -190,7 +190,7 @@ export default withMobileDialog()(class Options extends Component {
             </Grid>
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!(this.props.aleatoire || (this.props.type === 'test'))}>Recharger  <Refresh /> </Button>
+                <Button variant='contained' color='secondary' className={classes.button} onClick={this.props.handleClick} id='shuffle' disabled={!(this.props.aleatoire || (this.props.type === 'test'))}>Recharger  <Refresh /> </Button>
               </div>
             </Grid>
             <Grid item style={{display: this.props.listSelected ? 'flex' : 'flex'}} >
@@ -272,7 +272,7 @@ function Alert (props) {
           <Grid container spacing={8} >
             <Grid item >
               <div className={classes.grid}>
-                <Button variant='raised' color='secondary' id='advanced' onClick={props.handleDownload} disabled={!(props.user && props.user.dlLimit >= 0)}>Télécharger <Download/></Button>
+                <Button variant='contained' color='secondary' id='advanced' onClick={props.handleDownload} disabled={!(props.user && props.user.dlLimit >= 0)}>Télécharger <Download/></Button>
               </div>
             </Grid>
             <Grid item>

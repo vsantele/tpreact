@@ -1,19 +1,13 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
-import { auth, provider } from '../firebase/firebase.js'
-// eslint-disable-next-line
 import Typography from '@material-ui/core/Typography'
-// eslint-disable-next-line
 import Paper from '@material-ui/core/Paper'
-// eslint-disable-next-line
 import Button from '@material-ui/core/Button'
-// eslint-disable-next-line
 import { Redirect } from 'react-router-dom'
-
+/*eslint-enable */
 /* <div className={classes.margin}>
-      <Typography variant="title">Vous êtes déjà connecter</Typography>
-      <Link to='Profile'><Button variant='raised' color='secondary' >Vers profile</Button></Link>
+      <Typography variant="h6">Vous êtes déjà connecter</Typography>
+      <Link to='Profile'><Button variant='contained' color='secondary' >Vers profile</Button></Link>
     </div> */
 export default class Auth extends Component {
   render () {
@@ -27,7 +21,7 @@ export default class Auth extends Component {
                 this.props.user !== null
                   ? <Redirect to='/Bienvenue' />
                   : <div className={classes.margin}>
-                    <Typography variant='title'>Connexion:</Typography>
+                    <Typography variant='h6'>Connexion:</Typography>
                     <Connexion connexion={this.props.connexion} />
                     <Typography variant='caption'>Bientôt disponible: Facebook et email ;D</Typography>
                   </div>

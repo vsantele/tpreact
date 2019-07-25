@@ -6,9 +6,9 @@ import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import Switch from '@material-ui/core/Switch'
+// import FormControl from '@material-ui/core/FormControl'
+// import InputLabel from '@material-ui/core/InputLabel'
+// import Switch from '@material-ui/core/Switch'
 import TableBody from '@material-ui/core/TableBody'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -43,7 +43,7 @@ export default class Rendu extends Component {
                         <Grid container>
                           <Grid item >
                             <div className={classes.gridHeader}>
-                              <Typography variant='title' color={col.question ? 'secondary' : 'default'}> {col.label}  </Typography>
+                              <Typography variant='h6' color={col.question ? 'secondary' : 'default'}> {col.label}  </Typography>
                             </div>
                           </Grid>
                           {/* <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>

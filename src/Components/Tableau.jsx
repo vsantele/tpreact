@@ -1,13 +1,10 @@
-// eslint-disable-next-line
+/*eslint-disable */
 import React, {Component} from 'react'
-// eslint-disable-next-line
 import Rendu from './Rendu'
-// eslint-disable-next-line
 // import RenduAdvanced from './RenduAdvanced'
-// eslint-disable-next-line
 // import SelectionTp from './SelectionTp'
 import loadable from 'loadable-components'
-
+/*eslint-enable */
 const RenduAdvanced = loadable( () => import('./RenduAdvanced'))
 
 export default class Tableau extends Component {

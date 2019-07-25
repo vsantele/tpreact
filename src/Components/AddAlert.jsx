@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Component } from 'react'
 import { db } from '../firebase/firebase'
 import Grid from '@material-ui/core/Grid'
@@ -19,6 +20,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import {Redirect} from 'react-router-dom'
+/*eslint-enable */
 
 class AddAlert extends Component {
   constructor (props) {
