@@ -112,7 +112,7 @@ class App extends Component {
       tpExclu: [],
       colonne: [
         {value: 'infAn', label: 'Infinitif anglais', question: false, afficher: true},
-        {value: 'OVT', label: 'Imparfait', question: false, afficher: true},
+        {value: 'imp', label: 'Imparfait', question: false, afficher: true},
         {value: 'PP', label: 'Participe passé', question: false, afficher: true},
         {value: 'infFr', label: 'Infinitif français', question: false, afficher: true}
       ], // ordre des colonnes
@@ -222,10 +222,10 @@ class App extends Component {
     const value = parseInt(target.value, 10)
     if (value <= (this.state.nbTpSelected || this.state.tp.length) && value > 0) {
     // setState du nom de la target avec la valeur
-    this.setState({
-      [name]: value
-    })
-  }
+      this.setState({
+        [name]: value
+      })
+    }
   }
   handleRandom () {
     this.shuffleTp()
