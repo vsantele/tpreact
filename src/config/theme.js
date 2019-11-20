@@ -19,7 +19,8 @@ export default createMuiTheme({
     fontSize: 16,
     button: {
       fontFamily: 'Bahnschrift, "Roboto", "Helvetica", "Arial", sans-serif'
-    }
+    },
+    useNextVariants: true
   },
   shape: {
     borderRadius: 4

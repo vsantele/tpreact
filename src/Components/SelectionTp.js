@@ -52,10 +52,10 @@ export default class SelectionTp extends Component {
                         classes={{checked: classes.checked}}
                       />
                     </TableCell>
-                    <TableCell key={'0C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infNl}</span> </TableCell>
-                    <TableCell key={'1C' + tp.id}><span style={{fontSize: '18px'}}>{tp.OVT}</span> </TableCell>
-                    <TableCell key={'2C' + tp.id}><span style={{fontSize: '18px'}}>{tp.PP}</span> </TableCell>
-                    <TableCell key={'3C' + tp.id}><span style={{fontSize: '18px'}}>{tp.infFr}</span> </TableCell>
+                    <TableCell key={'0C' + tp.id}><span style={{fontSize: '18px'}}>{tp[colonne[0].value]}</span> </TableCell>
+                    <TableCell key={'1C' + tp.id}><span style={{fontSize: '18px'}}>{tp[colonne[1].value]}</span> </TableCell>
+                    <TableCell key={'2C' + tp.id}><span style={{fontSize: '18px'}}>{tp[colonne[2].value]}</span> </TableCell>
+                    <TableCell key={'3C' + tp.id}><span style={{fontSize: '18px'}}>{tp[colonne[3].value]}</span> </TableCell>
                   </TableRow>)
               })
             }

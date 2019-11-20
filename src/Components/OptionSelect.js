@@ -245,10 +245,10 @@ export default withMobileDialog()(class Options extends Component {
       <div className={classes.gridRoot} style={{marginBottom: '1em'}}>
         <Grid container spacing={24}>
           <Grid item className={classes.grid}>
-            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='raised' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider</Button></Link>
+            <Link to={{pathname: '/Liste', state: {all: false}}}><Button variant='contained' color='secondary' className={classes.button} onClick={this.props.handleSelectionTpClose} id='selectionTpClose'> Valider</Button></Link>
           </Grid>
           <Grid item className={classes.grid}>
-            <Button variant='raised' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
+            <Button variant='contained' color='secondary' className={classes.button} onClick={this.openSaveAlert} id='saveList' disabled={!this.props.user}>Sauvegarder Liste</Button>
             <Typography variant='caption' style={{display: !this.props.user ? 'flex' : 'none'}}>Connection requise </Typography>
           </Grid>
         </Grid>

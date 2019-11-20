@@ -64,8 +64,8 @@ export default class ButtonAppBar extends Component {
           return <span>Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Anglais</span></span>
         case 'allemand':
           return <span>Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Allemand</span></span>
-        case 'vocAnglais':
-          return <span>Vocabulaire <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Anglais</span></span>
+        // case 'vocAnglais':
+        //   return <span>Vocabulaire <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Anglais</span></span>
         default:
           return <span>NO <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>LANG</span></span>
       }
@@ -99,7 +99,7 @@ export default class ButtonAppBar extends Component {
               >
                 <MenuItem onClick={() => this.selectLang('neerlandais')}><img alt='néerlandais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_Netherlands.svg' /></MenuItem>
                 <MenuItem onClick={() => this.selectLang('anglais')}><img alt='anglais' style={{height: '1.1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_the_United_Kingdom.svg' /></MenuItem>
-                <MenuItem onClick={() => this.selectLang('vocAnglais')}><span>Voc Anglais</span></MenuItem>
+                {/* <MenuItem onClick={() => this.selectLang('vocAnglais')}><span>Voc Anglais</span></MenuItem> */}
                 <MenuItem disabled onClick={() => this.selectLang('allemand')}><img alt='allemand' style={{height: '1em'}} src='https://res.cloudinary.com/wolfvic/image/upload/c_scale,f_auto,fl_png8,h_120,q_auto:eco,w_200/v1536609563/flag/Flag_of_Germany.svg' /></MenuItem>
               </Menu>
             </div>

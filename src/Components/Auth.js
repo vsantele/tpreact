@@ -13,7 +13,7 @@ import { Redirect } from 'react-router-dom'
 
 /* <div className={classes.margin}>
       <Typography variant="title">Vous êtes déjà connecter</Typography>
-      <Link to='Profile'><Button variant='raised' color='secondary' >Vers profile</Button></Link>
+      <Link to='Profile'><Button variant='contained' color='secondary' >Vers profile</Button></Link>
     </div> */
 export default class Auth extends Component {
   render () {

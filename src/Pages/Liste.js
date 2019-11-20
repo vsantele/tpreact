@@ -54,7 +54,7 @@ class Liste extends Component {
         <div className={classes.content}>
           <Grid container spacing={40} direction='row' justify='center' alignItems='baseline' >
             <Grid item>
-              {/* <Button variant='raised' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'voir'}}}>Voir</Button> */}
+              {/* <Button variant='contained' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'voir'}}}>Voir</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}
@@ -83,7 +83,7 @@ class Liste extends Component {
               </ButtonBase>
             </Grid>
             <Grid item>
-              {/* <Button variant='raised' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}>Etudier</Button> */}
+              {/* <Button variant='contained' color='secondary' component={Link} to={{pathname: '/Home', state: {type: 'etude'}}}>Etudier</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}
@@ -128,7 +128,7 @@ class Liste extends Component {
               </Collapse>
             </Grid>
             <Grid item>
-              {/* <Button variant='raised' color='secondary' onClick={() => { this.setState({openTest: !this.state.openTest}) }}>Test</Button> */}
+              {/* <Button variant='contained' color='secondary' onClick={() => { this.setState({openTest: !this.state.openTest}) }}>Test</Button> */}
               <ButtonBase
                 focusRipple
                 className={classes.image}

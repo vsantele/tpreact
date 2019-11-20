@@ -379,7 +379,7 @@ export default withStyles(styles, { withTheme: true })(class Mobile extends Comp
                         </Grid>
                         <Grid item>
                           <div className={classes.grid}>
-                            <Button variant='raised' color='secondary' className={classes.button} onClick={this.handleClick} id='shuffle' disabled={!this.state.aleatoire} > Recharger </Button>
+                            <Button variant='contained' color='secondary' className={classes.button} onClick={this.handleClick} id='shuffle' disabled={!this.state.aleatoire} > Recharger </Button>
                           </div>
                         </Grid>
                         <Grid item>

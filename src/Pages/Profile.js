@@ -89,7 +89,7 @@ function NoConnected (props) {
   return (
     <div className={classes.margin}>
       <Typography variant='headline'>Vous n'êtes pas encore connecter...</Typography>
-      <Link to='Auth'><Button variant='raised' color='secondary' className={classes.button}>Connection</Button></Link>
+      <Link to='Auth'><Button variant='contained' color='secondary' className={classes.button}>Connection</Button></Link>
     </div>
   )
 }
