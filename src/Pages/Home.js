@@ -60,20 +60,21 @@ export default class Home extends Component {
         }
       }
     } else if (this.state.type === 'test') {
-      for (let i = 0; i < this.props.limite; i++) {
-        this.props.nbAleatoireQuestion[i].forEach((numCol) => {
-          if (numCol !== -1) {
-            // console.log('numCol', correct(numCol))
-            if (tp[i]['correct'][correct(numCol)] === false) {
-              reponseMauvais++
-            } else if (tp[i]['correct'][correct(numCol)] === 'neutre') {
-              reponseVide++
-            } else if (tp[i]['correct'][correct(numCol)] === true) {
-              reponseBon++
-            }
-            reponseTotal++
+      const statReponse = (i) => (numCol) => {
+        if (numCol !== -1) {
+          // console.log('numCol', correct(numCol))
+          if (tp[i]['correct'][correct(numCol)] === false) {
+            reponseMauvais++
+          } else if (tp[i]['correct'][correct(numCol)] === 'neutre') {
+            reponseVide++
+          } else if (tp[i]['correct'][correct(numCol)] === true) {
+            reponseBon++
           }
-        })
+          reponseTotal++
+        }
+      }
+      for (let i = 0; i < this.props.limite; i++) {
+        this.props.nbAleatoireQuestion[i].forEach(statReponse(i))
       }
     }
     var ratio = reponseBon / reponseTotal

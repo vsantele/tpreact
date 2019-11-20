@@ -66,6 +66,8 @@ export default class ButtonAppBar extends Component {
           return <span>Verbes irréguliers <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Allemand</span></span>
         case 'vocAnglais':
           return <span>Vocabulaire <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>Anglais</span></span>
+        default:
+          return <span>NO <span style={{fontFamily: 'Mathilde, Roboto', fontSize: '1.7em'}}>LANG</span></span>
       }
     }
 
@@ -87,7 +89,7 @@ export default class ButtonAppBar extends Component {
             <div style={{flexGrow: 1}} />
             <div>
               <IconButton style={{marginRight: '0.2em'}} onClick={(e) => this.handleMenu(e, 'menuLang')} >
-                <img style={{height: '0.7em'}} src={this.whichLang()} />
+                <img style={{height: '0.7em'}} src={this.whichLang()} alt="drapeau" />
               </IconButton>
               <Menu
                 id='selectLang'
