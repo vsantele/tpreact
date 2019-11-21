@@ -22,7 +22,6 @@ export default class Row extends Component {
               value={listValue}
               colonne={colonne[nb]}
               nbColonne={nb}
-              question={this.props.question}
               handleReponse={this.props.handleReponse}
               aleatoireQuestion={this.props.aleatoireQuestion}
               nbAleatoireQuestion={this.props.nbAleatoireQuestion}
