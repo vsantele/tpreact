@@ -27,7 +27,7 @@ export default class Auth extends Component {
                 this.props.user !== null
                   ? <Redirect to='/Bienvenue' />
                   : <div className={classes.margin}>
-                    <Typography variant='title'>Connexion:</Typography>
+                    <Typography variant='h6'>Connexion:</Typography>
                     <Connexion connexion={this.props.connexion} />
                     <Typography variant='caption'>Bientôt disponible: Facebook et email ;D</Typography>
                   </div>
