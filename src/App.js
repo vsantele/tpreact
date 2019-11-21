@@ -697,6 +697,11 @@ class App extends Component {
         this.setState({user: userInfo})
       }
     })
+    if (process.env.NODE_ENV === 'test') {
+      ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
+    } else {
+      ReactGA.initialize(process.env.REACT_APP_GA)
+    }
   }
 
   componentWillUnmount () {
@@ -704,11 +709,6 @@ class App extends Component {
   }
   render () {
     const { classes } = this.props
-    if (process.env.NODE_ENV === 'test') {
-      ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
-    } else {
-      ReactGA.initialize(process.env.REACT_APP_GA)
-    }
     ReactGA.pageview(window.location.pathname + window.location.search)
     return (
       <div>
