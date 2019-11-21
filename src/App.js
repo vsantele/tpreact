@@ -526,15 +526,14 @@ class App extends Component {
       })
   }
 
-  setListWithToken (result) {
+  async setListWithToken (result) {
     const lang = result.lang
     if (lang === this.state.lang) {
       return this.selectTp(result.tps)
     } else {
-      return this.loadTp(lang).then(() => {
-        this.setState({lang: lang})
-        return this.selectTp(result.tps)
-      })
+      await this.loadTp(lang)
+      this.setState({ lang: lang })
+      return this.selectTp(result.tps)
     }
   }
 
