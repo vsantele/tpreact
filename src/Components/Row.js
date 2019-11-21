@@ -19,6 +19,7 @@ export default class Row extends Component {
               key={'cell' + colonne[nb].value + nb}
               nb={nb}
               index={index}
+              id={listValue.id}
               value={listValue}
               colonne={colonne[nb]}
               nbColonne={nb}

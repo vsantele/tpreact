@@ -43,7 +43,7 @@ export default class Rendu extends Component {
                         <Grid container>
                           <Grid item >
                             <div className={classes.gridHeader}>
-                              <Typography variant='title' color={col.question ? 'secondary' : 'default'}> {col.label}  </Typography>
+                              <Typography variant='h6' color={col.question ? 'secondary' : 'default'}> {col.label}  </Typography>
                             </div>
                           </Grid>
                           {/* <Grid item style={{display: (type === 'voir' || type === 'test') ? 'none' : 'flex'}}>
@@ -69,33 +69,31 @@ export default class Rendu extends Component {
             </TableHead>
             <TableBody>
               {
-                tp !== undefined
-                  ? tp.filter(tpAfficher => tpAfficher.afficher)
-                    .map(function (listValue, index) {
-                      if (index < limite) {
-                        return (
-                          <Row key={'row' + index}
-                            index={index}
-                            listValue={listValue}
-                            colonne={colonne}
-                            handleReponse={handleReponse}
-                            selectionPage={selectionPage}
-                            tpAfficher={tpAfficher}
-                            handleCheck={handleCheck}
-                            aleatoireQuestion={aleatoireQuestion}
-                            nbAleatoireQuestion={nbAleatoireQuestion[index]}
-                            classes={classes}
-                            affCor={affCor}
-                            affRep={affRep}
-                            type={type}
-                            level={type}
-                          />
-                        )
-                      } else {
-                        return null
-                      }
-                    })
-                  : null
+                tp !== undefined && tp.filter(tpAfficher => tpAfficher.afficher)
+                  .map(function (listValue, index) {
+                    if (index < limite) {
+                      return (
+                        <Row key={'row' + index}
+                          index={index}
+                          listValue={listValue}
+                          colonne={colonne}
+                          handleReponse={handleReponse}
+                          selectionPage={selectionPage}
+                          tpAfficher={tpAfficher}
+                          handleCheck={handleCheck}
+                          aleatoireQuestion={aleatoireQuestion}
+                          nbAleatoireQuestion={nbAleatoireQuestion[index]}
+                          classes={classes}
+                          affCor={affCor}
+                          affRep={affRep}
+                          type={type}
+                          level={type}
+                        />
+                      )
+                    } else {
+                      return null
+                    }
+                  })
               }
             </TableBody>
           </Table>
