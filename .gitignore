@@ -24,4 +24,6 @@ src/App.js.bak
 src/bakFonction.js
 .vscode/*
 backup/*
-firebase/*
+firebase/tpneerandais-firebase-adminsdk-5n1j8-d0eb297df6.json
+**/node_modules
+**/lib
