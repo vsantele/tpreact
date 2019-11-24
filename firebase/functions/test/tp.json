@@ -1,0 +1,1878 @@
+[
+	{
+		"infNl": "bakken",
+		"OVT": "bakte",
+		"PP": "gebakken",
+		"infFr": "cuire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 0
+	},
+	{
+		"infNl": "bedriegen",
+		"OVT": "bedroog",
+		"PP": "bedrogen",
+		"infFr": "tromper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 1
+	},
+	{
+		"infNl": "beginnen",
+		"OVT": "begon",
+		"PP": "begonnen",
+		"infFr": "commencer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 2
+	},
+	{
+		"infNl": "besluiten",
+		"OVT": "besloot",
+		"PP": "besloten",
+		"infFr": "décider",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 3
+	},
+	{
+		"infNl": "bevelen",
+		"OVT": "beval",
+		"PP": "bevolen",
+		"infFr": "ordonner",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 4
+	},
+	{
+		"infNl": "bezoeken",
+		"OVT": "bezocht",
+		"PP": "bezocht",
+		"infFr": "visiter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 5
+	},
+	{
+		"infNl": "bidden",
+		"OVT": "bad",
+		"PP": "gebeden",
+		"infFr": "prier",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 6
+	},
+	{
+		"infNl": "bieden",
+		"OVT": "bood",
+		"PP": "geboden",
+		"infFr": "offrir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 7
+	},
+	{
+		"infNl": "bijten",
+		"OVT": "beet",
+		"PP": "gebeten",
+		"infFr": "mordre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 8
+	},
+	{
+		"infNl": "binden",
+		"OVT": "bond",
+		"PP": "gebonden",
+		"infFr": "lier",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 9
+	},
+	{
+		"infNl": "blazen",
+		"OVT": "blies",
+		"PP": "geblazen",
+		"infFr": "souffler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 10
+	},
+	{
+		"infNl": "blijken",
+		"OVT": "bleek",
+		"PP": "gebleken",
+		"infFr": "apparaître",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 11
+	},
+	{
+		"infNl": "blijven",
+		"OVT": "bleef",
+		"PP": "gebleven",
+		"infFr": "rester",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 12
+	},
+	{
+		"infNl": "blinken",
+		"OVT": "blonk",
+		"PP": "geblonken",
+		"infFr": "briller",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 13
+	},
+	{
+		"infNl": "braden",
+		"OVT": "braadde",
+		"PP": "gebraden",
+		"infFr": "rôtir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 14
+	},
+	{
+		"infNl": "breken",
+		"OVT": "brak",
+		"PP": "gebroken",
+		"infFr": "casser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 15
+	},
+	{
+		"infNl": "brengen",
+		"OVT": "bracht",
+		"PP": "gebracht",
+		"infFr": "apporter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 16
+	},
+	{
+		"infNl": "denken",
+		"OVT": "dacht",
+		"PP": "gedacht",
+		"infFr": "penser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 17
+	},
+	{
+		"infNl": "doen",
+		"OVT": "deed",
+		"PP": "gedaan",
+		"infFr": "faire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 18
+	},
+	{
+		"infNl": "dragen",
+		"OVT": "droeg",
+		"PP": "gedragen",
+		"infFr": "porter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 19
+	},
+	{
+		"infNl": "dringen",
+		"OVT": "drong",
+		"PP": "gedrongen",
+		"infFr": "presser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 20
+	},
+	{
+		"infNl": "drinken",
+		"OVT": "dronk",
+		"PP": "gedronken",
+		"infFr": "boire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 21
+	},
+	{
+		"infNl": "duiken",
+		"OVT": "dook",
+		"PP": "gedoken",
+		"infFr": "plonger",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 22
+	},
+	{
+		"infNl": "dwingen",
+		"OVT": "dwong",
+		"PP": "gedwongen",
+		"infFr": "forcer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 23
+	},
+	{
+		"infNl": "eten",
+		"OVT": "at",
+		"PP": "gegeten",
+		"infFr": "manger",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 24
+	},
+	{
+		"infNl": "fluiten",
+		"OVT": "floot",
+		"PP": "gefloten",
+		"infFr": "siffler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 25
+	},
+	{
+		"infNl": "gaan",
+		"OVT": "ging",
+		"PP": "gegaan",
+		"infFr": "aller",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 26
+	},
+	{
+		"infNl": "gelden",
+		"OVT": "gold",
+		"PP": "gegolden",
+		"infFr": "valoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 27
+	},
+	{
+		"infNl": "genezen",
+		"OVT": "genas",
+		"PP": "genezen",
+		"infFr": "guérir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 28
+	},
+	{
+		"infNl": "genieten",
+		"OVT": "genoot",
+		"PP": "genoten",
+		"infFr": "profiter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 29
+	},
+	{
+		"infNl": "geven",
+		"OVT": "gaf",
+		"PP": "gegeven",
+		"infFr": "donner",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 30
+	},
+	{
+		"infNl": "glijden",
+		"OVT": "gleed",
+		"PP": "gegleden",
+		"infFr": "glisser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 31
+	},
+	{
+		"infNl": "hangen",
+		"OVT": "hing",
+		"PP": "gehangen",
+		"infFr": "pendre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 32
+	},
+	{
+		"infNl": "hebben",
+		"OVT": "had",
+		"PP": "gehad",
+		"infFr": "avoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 33
+	},
+	{
+		"infNl": "helpen",
+		"OVT": "hielp",
+		"PP": "geholpen",
+		"infFr": "aider",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 34
+	},
+	{
+		"infNl": "heten",
+		"OVT": "heette",
+		"PP": "geheten",
+		"infFr": "s\"appeler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 35
+	},
+	{
+		"infNl": "houden",
+		"OVT": "hield",
+		"PP": "gehouden",
+		"infFr": "tenir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 36
+	},
+	{
+		"infNl": "jagen",
+		"OVT": "joeg",
+		"PP": "gejaagd",
+		"infFr": "chasser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 37
+	},
+	{
+		"infNl": "kiezen",
+		"OVT": "koos",
+		"PP": "gekozen",
+		"infFr": "choisir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 38
+	},
+	{
+		"infNl": "kijken",
+		"OVT": "keek",
+		"PP": "gekeken",
+		"infFr": "regarder",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 39
+	},
+	{
+		"infNl": "klimmen",
+		"OVT": "klom",
+		"PP": "geklommen",
+		"infFr": "grimper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 40
+	},
+	{
+		"infNl": "klinken",
+		"OVT": "klonk",
+		"PP": "geklonken",
+		"infFr": "résonner",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 41
+	},
+	{
+		"infNl": "komen",
+		"OVT": "kwam",
+		"PP": "gekomen",
+		"infFr": "venir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 42
+	},
+	{
+		"infNl": "kopen",
+		"OVT": "kocht",
+		"PP": "gekocht",
+		"infFr": "acheter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 43
+	},
+	{
+		"infNl": "krijgen",
+		"OVT": "kreeg",
+		"PP": "gekregen",
+		"infFr": "recevoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 44
+	},
+	{
+		"infNl": "kruipen",
+		"OVT": "kroop",
+		"PP": "gekropen",
+		"infFr": "ramper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 45
+	},
+	{
+		"infNl": "kunnen",
+		"OVT": "kon",
+		"PP": "gekund",
+		"infFr": "pouvoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 46
+	},
+	{
+		"infNl": "lachen",
+		"OVT": "lachte",
+		"PP": "gelachen",
+		"infFr": "rire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 47
+	},
+	{
+		"infNl": "laden",
+		"OVT": "laadde",
+		"PP": "geladen",
+		"infFr": "charger",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 48
+	},
+	{
+		"infNl": "laten",
+		"OVT": "liet",
+		"PP": "gelaten",
+		"infFr": "laisser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 49
+	},
+	{
+		"infNl": "lezen",
+		"OVT": "las",
+		"PP": "gelezen",
+		"infFr": "lire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 50
+	},
+	{
+		"infNl": "liegen",
+		"OVT": "loog",
+		"PP": "gelogen",
+		"infFr": "mentir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 51
+	},
+	{
+		"infNl": "liggen",
+		"OVT": "lag",
+		"PP": "gelegen",
+		"infFr": "être couché",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 52
+	},
+	{
+		"infNl": "lijden",
+		"OVT": "leed",
+		"PP": "geleden",
+		"infFr": "souffrir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 53
+	},
+	{
+		"infNl": "lijken",
+		"OVT": "leek",
+		"PP": "geleken",
+		"infFr": "paraître",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 54
+	},
+	{
+		"infNl": "lopen",
+		"OVT": "liep",
+		"PP": "gelopen",
+		"infFr": "marcher",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 55
+	},
+	{
+		"infNl": "melken",
+		"OVT": "molk",
+		"PP": "gemolken",
+		"infFr": "traire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 56
+	},
+	{
+		"infNl": "meten",
+		"OVT": "mat",
+		"PP": "gemeten",
+		"infFr": "mesurer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 57
+	},
+	{
+		"infNl": "mijden",
+		"OVT": "meed",
+		"PP": "gemeden",
+		"infFr": "éviter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 58
+	},
+	{
+		"infNl": "moeten",
+		"OVT": "moest",
+		"PP": "gemoeten",
+		"infFr": "devoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 59
+	},
+	{
+		"infNl": "mogen",
+		"OVT": "mocht",
+		"PP": "gemoogd",
+		"infFr": "pouvoir (permission)",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 60
+	},
+	{
+		"infNl": "nemen",
+		"OVT": "nam",
+		"PP": "genomen",
+		"infFr": "prendre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 61
+	},
+	{
+		"infNl": "ontmoeten",
+		"OVT": "ontmoette",
+		"PP": "ontmoet",
+		"infFr": "rencontrer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 62
+	},
+	{
+		"infNl": "prijzen",
+		"OVT": "prees",
+		"PP": "geprezen",
+		"infFr": "louer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 63
+	},
+	{
+		"infNl": "raden",
+		"OVT": "raadde",
+		"PP": "geraden",
+		"infFr": "deviner",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 64
+	},
+	{
+		"infNl": "rijden",
+		"OVT": "reed",
+		"PP": "gereden",
+		"infFr": "rouler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 65
+	},
+	{
+		"infNl": "rijzen",
+		"OVT": "rees",
+		"PP": "gerezen",
+		"infFr": "s\"élever",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 66
+	},
+	{
+		"infNl": "roepen",
+		"OVT": "riep",
+		"PP": "geroepen",
+		"infFr": "appeler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 67
+	},
+	{
+		"infNl": "ruiken",
+		"OVT": "rook",
+		"PP": "geroken",
+		"infFr": "sentir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 68
+	},
+	{
+		"infNl": "scheiden",
+		"OVT": "scheidde",
+		"PP": "gescheiden",
+		"infFr": "séparer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 69
+	},
+	{
+		"infNl": "schenken",
+		"OVT": "schonk",
+		"PP": "geschonken",
+		"infFr": "offrir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 70
+	},
+	{
+		"infNl": "scheppen",
+		"OVT": "schiep",
+		"PP": "geschapen",
+		"infFr": "créer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 71
+	},
+	{
+		"infNl": "scheren",
+		"OVT": "schoor",
+		"PP": "geschoren",
+		"infFr": "raser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 72
+	},
+	{
+		"infNl": "schieten",
+		"OVT": "schoot",
+		"PP": "geschoten",
+		"infFr": "tirer (arme)",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 73
+	},
+	{
+		"infNl": "schijnen",
+		"OVT": "scheen",
+		"PP": "geschenen",
+		"infFr": "sembler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 74
+	},
+	{
+		"infNl": "schrijven",
+		"OVT": "schreef",
+		"PP": "geschreven",
+		"infFr": "écrire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 75
+	},
+	{
+		"infNl": "schrikken",
+		"OVT": "schrok",
+		"PP": "geschrokken",
+		"infFr": "prendre peur",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 76
+	},
+	{
+		"infNl": "slaan",
+		"OVT": "sloeg",
+		"PP": "geslagen",
+		"infFr": "frapper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 77
+	},
+	{
+		"infNl": "slapen",
+		"OVT": "sliep(en)",
+		"PP": "geslapen",
+		"infFr": "dormir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 78
+	},
+	{
+		"infNl": "sluiten",
+		"OVT": "sloot",
+		"PP": "gesloten",
+		"infFr": "fermer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 79
+	},
+	{
+		"infNl": "smelten",
+		"OVT": "smolt",
+		"PP": "gesmolten",
+		"infFr": "fondre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 80
+	},
+	{
+		"infNl": "snijden",
+		"OVT": "sneed",
+		"PP": "gesneden",
+		"infFr": "couper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 81
+	},
+	{
+		"infNl": "spannen",
+		"OVT": "spande",
+		"PP": "gespannen",
+		"infFr": "tendre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 82
+	},
+	{
+		"infNl": "spijten",
+		"OVT": "speet",
+		"PP": "gespeten",
+		"infFr": "causer du regret",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 83
+	},
+	{
+		"infNl": "spreken",
+		"OVT": "sprak",
+		"PP": "gesproken",
+		"infFr": "parler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 84
+	},
+	{
+		"infNl": "springen",
+		"OVT": "sprong",
+		"PP": "gesprongen",
+		"infFr": "sauter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 85
+	},
+	{
+		"infNl": "staan",
+		"OVT": "stond",
+		"PP": "gestaan",
+		"infFr": "être debout",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 86
+	},
+	{
+		"infNl": "stelen",
+		"OVT": "stal",
+		"PP": "gestolen",
+		"infFr": "voler (=dérober)",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 87
+	},
+	{
+		"infNl": "sterven",
+		"OVT": "stierf",
+		"PP": "gestorven",
+		"infFr": "mourir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 88
+	},
+	{
+		"infNl": "stijgen",
+		"OVT": "steeg",
+		"PP": "gestegen",
+		"infFr": "augmenter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 89
+	},
+	{
+		"infNl": "stinken",
+		"OVT": "stonk",
+		"PP": "gestonken",
+		"infFr": "puer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 90
+	},
+	{
+		"infNl": "strijden",
+		"OVT": "streed",
+		"PP": "gestreden",
+		"infFr": "combattre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 91
+	},
+	{
+		"infNl": "strijken",
+		"OVT": "streek",
+		"PP": "gestreken",
+		"infFr": "repasser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 92
+	},
+	{
+		"infNl": "treffen",
+		"OVT": "trof",
+		"PP": "getroffen",
+		"infFr": "toucher",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 93
+	},
+	{
+		"infNl": "trekken",
+		"OVT": "trok",
+		"PP": "getrokken",
+		"infFr": "tirer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 94
+	},
+	{
+		"infNl": "vallen",
+		"OVT": "viel",
+		"PP": "gevallen",
+		"infFr": "tomber",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 95
+	},
+	{
+		"infNl": "vangen",
+		"OVT": "ving",
+		"PP": "gevangen",
+		"infFr": "attraper",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 96
+	},
+	{
+		"infNl": "varen",
+		"OVT": "voer",
+		"PP": "gevaren",
+		"infFr": "naviguer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 97
+	},
+	{
+		"infNl": "vechten",
+		"OVT": "vocht",
+		"PP": "gevochten",
+		"infFr": "se battre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 98
+	},
+	{
+		"infNl": "verbieden",
+		"OVT": "verbood",
+		"PP": "verboden",
+		"infFr": "interdire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 99
+	},
+	{
+		"infNl": "verdrieten",
+		"OVT": "verdroot",
+		"PP": "verdroten",
+		"infFr": "attrister",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 100
+	},
+	{
+		"infNl": "verdwijnen",
+		"OVT": "verdween",
+		"PP": "verdwenen",
+		"infFr": "disparaître",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 101
+	},
+	{
+		"infNl": "vergelijken",
+		"OVT": "vergeleek",
+		"PP": "vergeleken",
+		"infFr": "comparer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 102
+	},
+	{
+		"infNl": "vergeten",
+		"OVT": "vergat",
+		"PP": "vergeten",
+		"infFr": "oublier",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 103
+	},
+	{
+		"infNl": "verkopen",
+		"OVT": "verkocht",
+		"PP": "verkocht",
+		"infFr": "vendre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 104
+	},
+	{
+		"infNl": "verlaten",
+		"OVT": "verliet",
+		"PP": "verlaten",
+		"infFr": "quitter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 105
+	},
+	{
+		"infNl": "verliezen",
+		"OVT": "verloor",
+		"PP": "verloren",
+		"infFr": "perdre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 106
+	},
+	{
+		"infNl": "verstaan",
+		"OVT": "verstond",
+		"PP": "verstaan",
+		"infFr": "comprendre",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 107
+	},
+	{
+		"infNl": "vertrekken",
+		"OVT": "vertrok",
+		"PP": "vertrokken",
+		"infFr": "partir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 108
+	},
+	{
+		"infNl": "verzinnen",
+		"OVT": "verzon",
+		"PP": "verzonnen",
+		"infFr": "imaginer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 109
+	},
+	{
+		"infNl": "verzwinden",
+		"OVT": "verzwond",
+		"PP": "verzwonden",
+		"infFr": "disparaître",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 110
+	},
+	{
+		"infNl": "vinden",
+		"OVT": "vond",
+		"PP": "gevonden",
+		"infFr": "trouver",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 111
+	},
+	{
+		"infNl": "vlechten",
+		"OVT": "vlocht",
+		"PP": "gevlochten",
+		"infFr": "tresser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 112
+	},
+	{
+		"infNl": "vliegen",
+		"OVT": "vloog",
+		"PP": "gevlogen",
+		"infFr": "voler (dans l\"air)",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 113
+	},
+	{
+		"infNl": "vragen",
+		"OVT": "vroeg",
+		"PP": "gevraagd",
+		"infFr": "demander",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 114
+	},
+	{
+		"infNl": "vriezen",
+		"OVT": "vroor",
+		"PP": "gevroren",
+		"infFr": "geler",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 115
+	},
+	{
+		"infNl": "wassen",
+		"OVT": "waste",
+		"PP": "gewassen",
+		"infFr": "laver",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 116
+	},
+	{
+		"infNl": "wegen",
+		"OVT": "woog",
+		"PP": "gewogen",
+		"infFr": "peser",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 117
+	},
+	{
+		"infNl": "werpen",
+		"OVT": "wierp",
+		"PP": "geworpen",
+		"infFr": "jeter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 118
+	},
+	{
+		"infNl": "weten",
+		"OVT": "wist",
+		"PP": "geweten",
+		"infFr": "savoir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 119
+	},
+	{
+		"infNl": "wijzen",
+		"OVT": "wees",
+		"PP": "gewezen",
+		"infFr": "montrer du doigt",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 120
+	},
+	{
+		"infNl": "willen",
+		"OVT": "wilde",
+		"PP": "gewild",
+		"infFr": "vouloir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 121
+	},
+	{
+		"infNl": "winnen",
+		"OVT": "won",
+		"PP": "gewonnen",
+		"infFr": "gagner",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 122
+	},
+	{
+		"infNl": "worden",
+		"OVT": "werd",
+		"PP": "geworden",
+		"infFr": "devenir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 123
+	},
+	{
+		"infNl": "zeggen",
+		"OVT": "zei - zeiden",
+		"PP": "gezegd",
+		"infFr": "dire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 124
+	},
+	{
+		"infNl": "zenden",
+		"OVT": "zond",
+		"PP": "gezonden",
+		"infFr": "envoyer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 125
+	},
+	{
+		"infNl": "zien",
+		"OVT": "zag",
+		"PP": "gezien",
+		"infFr": "voir",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 126
+	},
+	{
+		"infNl": "zijn",
+		"OVT": "was",
+		"PP": "geweest",
+		"infFr": "être",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 127
+	},
+	{
+		"infNl": "zingen",
+		"OVT": "zong",
+		"PP": "gezongen",
+		"infFr": "chanter",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 128
+	},
+	{
+		"infNl": "zitten",
+		"OVT": "zat",
+		"PP": "gezeten",
+		"infFr": "être assis",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 129
+	},
+	{
+		"infNl": "zoeken",
+		"OVT": "zocht",
+		"PP": "gezocht",
+		"infFr": "chercher",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 130
+	},
+	{
+		"infNl": "zwemmen",
+		"OVT": "zwom",
+		"PP": "gezwommen",
+		"infFr": "nager",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 131
+	},
+	{
+		"infNl": "zweren",
+		"OVT": "zwoer",
+		"PP": "gezworen",
+		"infFr": "jurer",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 132
+	},
+	{
+		"infNl": "zwijgen",
+		"OVT": "zweeg",
+		"PP": "gezwegen",
+		"infFr": "se taire",
+		"afficher": true,
+		"correct": {
+			"infNl": "neutre",
+			"OVT": "neutre",
+			"PP": "neutre",
+			"infFr": "neutre"
+		},
+		"id": 133
+	}
+]
