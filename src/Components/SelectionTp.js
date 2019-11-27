@@ -41,7 +41,7 @@ export default class SelectionTp extends Component {
             {
               tp.map((tp, index) => {
                 return (
-                  <TableRow hover role="checkbox" aria-checked={tp.afficher} selected={tp.afficher} onClick={event => handleCheck(index)} key={'rowSeTp' + tp.id}>
+                  <TableRow hover role="checkbox" aria-checked={tp.afficher} selected={tp.afficher} onClick={event => handleCheck(tp.id)} key={'rowSeTp' + tp.id}>
                     <TableCell scope='row'><span style={{fontSize: '18px'}}> {index + 1 }</span></TableCell>
                     <TableCell key={'chbk' + tp.id}>
                       <Checkbox
