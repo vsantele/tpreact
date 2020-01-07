@@ -37,6 +37,7 @@ export default class Home extends Component {
 
   handleClick () {
     let tp = this.props.aleatoire ? this.props.tpRandom : this.props.tp
+    tp = tp.filter(el => el.afficher)
     let reponseMauvais = 0
     let reponseVide = 0
     let reponseBon = 0
