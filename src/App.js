@@ -322,7 +322,8 @@ class App extends Component {
       previousState = this.state.tp
       tpList = 'tp'
     }
-    previousState[index]['correct'][category] = correct
+    let arrIndex = previousState.findIndex((ele) => ele.id === parseInt(index, 10))
+    previousState[arrIndex]['correct'][category] = correct
     this.setState({
       [tpList]: previousState
     })

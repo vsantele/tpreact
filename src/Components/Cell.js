@@ -59,7 +59,7 @@ export default class Cell extends Component {
       })
       var id = e.target.id
       var correct = reponse === '' ? 'neutre' : verbes.indexOf(reponse) !== -1
-      // console.log('index :', id)
+      // console.log('index :', id, correct, colonne.value, reponse)
       handleReponse(correct, id, colonne.value)
     }
     const classes = this.props.classes
@@ -71,7 +71,7 @@ export default class Cell extends Component {
     if (this.props.type === 'test') {
       if (this.props.nbAleatoireQuestion.indexOf(this.props.nb) !== -1) {
         return (
-          <TableCell key={colonne.value + id} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
+          <TableCell key={colonne.value + id} className={this.props.affCor ? correct === 'neutre' ? '' : correct ? classes.success : classes.danger : '' } style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
         )
       } else {
         return (
