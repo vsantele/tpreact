@@ -47,7 +47,7 @@ export default class Selection extends Component {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField id="searchTp" label="Rechercher" onChange={e => this.handleSearch(e)} variant="filled" fullWidth autoComplete={false}/>
+              <TextField id="searchTp" label="Rechercher" onChange={e => this.handleSearch(e)} variant="filled" fullWidth autoComplete="false"/>
             </Grid>
             {
               !this.props.loading
