@@ -30,7 +30,7 @@ import Liste from './Pages/Liste'
 import Footer from './Components/Footer'
 import About from './Pages/About'
 import Loadable from 'react-loadable'
-/*eslint-enable */
+/* eslint-enable */
 // var matomo = new MatomoTracker(2, 'http://wolfvic.toile-libre.org/admin/analytics/piwik.php')
 
 // const Loading = () => {
@@ -87,7 +87,7 @@ import Loadable from 'react-loadable'
 // const Auth = loadable( () => import('./Components/Auth'), {
 //   LoadingComponent: Loading,
 //   ErrorComponent: ErrorComponent
-// }) 
+// })
 
 // const Liste = loadable(() => import('./Pages/Liste'),{
 //   LoadingComponent: Loading,
@@ -287,7 +287,7 @@ class App extends Component {
     this.shuffleTp()
   }
   handleQuestion (col) {
-    // // OLD function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité 
+    // // OLD function qui sert à attribuer une nouvelle valeur à une colonne en gardant les autres pour la visibilité
     // function setValue (colonne, value, previousColonne) {
     //   previousColonne[colonne].question = value
     //   return previousColonne
@@ -515,7 +515,7 @@ class App extends Component {
       .doc(this.state.user.uid)
       .collection('lists')
       .get()
-      .then(collection => {
+      .then(async collection => {
         const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, lang: doc.data().lang} })
         return {list: listName.filter(list => list.id === id)[0].tps, lang: listName.lang}
       })
@@ -678,11 +678,9 @@ class App extends Component {
 
   componentWillMount () {
     this.loadTp('anglais')
-  }
-  componentDidMount () {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const userInfo = await db.collection('users').doc(user.uid).get().then(data => {
+        await db.collection('users').doc(user.uid).get().then(data => {
           const {id, displayName, photoURL, email, locale, dlLimit} = data.data()
           const user = {
             uid: id,
@@ -692,11 +690,12 @@ class App extends Component {
             locale,
             dlLimit
           }
-          return user
+          this.setState({user: user})
         })
-        this.setState({user: userInfo})
       }
     })
+  }
+  componentDidMount () {
     if (process.env.NODE_ENV === 'test') {
       ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
     } else {
@@ -845,3 +844,4 @@ class App extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(withRouter(App))
+// export default withStyles(styles, { withTheme: true })(App)

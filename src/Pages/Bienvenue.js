@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import Link from 'react-router-dom/Link'
 import Redirect from 'react-router-dom/Redirect'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
+// import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Collapse from '@material-ui/core/Collapse'
 import MenuList from '@material-ui/core/MenuList'
@@ -28,7 +28,8 @@ export default withMobileDialog()(class Bienvenue extends Component {
       addAlert: false,
       loadingGetList: false,
       openListTp: false,
-      redirectListe: false
+      redirectListe: false,
+      listName: undefined
     }
     this.showList = this.showList.bind(this)
     this.showCreate =this.showCreate.bind(this)
@@ -61,7 +62,8 @@ export default withMobileDialog()(class Bienvenue extends Component {
       .collection('lists')
       .get()
       .then(collection => {
-        const listName = collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private, lang: doc.data().lang} })
+        return collection.docs.map(doc => { return {name: doc.data().name, id: doc.data().id, tps: doc.data().tps, token: doc.data().token, private: doc.data().private, lang: doc.data().lang} })
+      }).then(listName => {
         this.setState({listName: listName, loadingGetList: false})
       })
       .catch((error) => {

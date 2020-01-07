@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import Progress from '@material-ui/core/LinearProgress'
 import Grid from '@material-ui/core/Grid'
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Snackbar from '@material-ui/core/Snackbar'
 import {db} from '../firebase/firebase'
-
+/* eslint-enable */
 class ShowList extends Component {
   constructor (props) {
     super(props)
@@ -36,12 +37,13 @@ class ShowList extends Component {
   }
 
   render () {
+    // console.log(this.props.user)
     return (
       <div >
         {
           this.props.loading
             ? <Progress />
-            : <Grid container spacing={16} style={{margin: '0.5em'}}>
+            : this.props.listName && <Grid container spacing={16} style={{margin: '0.5em'}}>
               {this.props.listName.length !== 0
                 ? (this.props.listName.filter(list => list.lang === this.props.lang).map(list => (
                   <Grid item key={list.id}>

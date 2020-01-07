@@ -71,21 +71,21 @@ export default class Cell extends Component {
     if (this.props.type === 'test') {
       if (this.props.nbAleatoireQuestion.indexOf(this.props.nb) !== -1) {
         return (
-          <TableCell key={id + colonne.value} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
+          <TableCell key={colonne.value + id} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
         )
       } else {
         return (
-          <TableCell key={id + colonne.value} style={{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
+          <TableCell key={colonne.value + id} style={{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
         )
       }
     } else {
       if (colonne.question === true) {
         return (
-          <TableCell key={id + colonne.value} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
+          <TableCell key={colonne.value + id} className={this.props.affCor ? correct === true ? classes.success : correct === false ? classes.danger : '' : ''} style={{'display': colonne.afficher ? 'table-cell' : 'none'}}> <TextField id={String(id)} label='Réponse' tag='question' InputProps={{classes: {input: classes.textInput}}} type='text' onBlur={(e) => verification(e)} /> <span style={{display: (this.props.affRep && correct !== true) ? 'flex' : 'none', fontSize: '16px'}}>{value}</span></TableCell>
         )
       } else {
         return (
-          <TableCell key={id + colonne.value} style={{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
+          <TableCell key={colonne.value + id} style={{'display': colonne.afficher ? 'table-cell' : 'none', fontSize: '16px'}}> {value} </TableCell>
         )
       }
     }

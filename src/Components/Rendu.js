@@ -73,7 +73,7 @@ export default class Rendu extends Component {
                   .map(function (listValue, index) {
                     if (index < limite) {
                       return (
-                        <Row key={'row' + index}
+                        <Row key={'row' + listValue.id}
                           index={index}
                           listValue={listValue}
                           colonne={colonne}

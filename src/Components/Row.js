@@ -16,7 +16,7 @@ export default class Row extends Component {
         {
           nombre.map((nb) =>
             <Cell
-              key={'cell' + colonne[nb].value + nb}
+              key={'cell' + colonne[nb].value + listValue.id}
               nb={nb}
               index={index}
               id={listValue.id}
