@@ -678,6 +678,11 @@ class App extends Component {
   }
 
   componentWillMount () {
+    if (process.env.NODE_ENV === 'test') {
+      ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
+    } else {
+      ReactGA.initialize(process.env.REACT_APP_GA)
+    }
     this.loadTp('anglais')
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -696,12 +701,8 @@ class App extends Component {
       }
     })
   }
+
   componentDidMount () {
-    if (process.env.NODE_ENV === 'test') {
-      ReactGA.initialize(process.env.REACT_APP_GA, { testMode: true })
-    } else {
-      ReactGA.initialize(process.env.REACT_APP_GA)
-    }
   }
 
   componentWillUnmount () {
