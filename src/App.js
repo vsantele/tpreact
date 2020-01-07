@@ -703,6 +703,7 @@ class App extends Component {
   }
 
   componentDidMount () {
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentWillUnmount () {
@@ -710,7 +711,6 @@ class App extends Component {
   }
   render () {
     const { classes } = this.props
-    ReactGA.pageview(window.location.pathname + window.location.search)
     return (
       <div>
         <CssBaseline />
