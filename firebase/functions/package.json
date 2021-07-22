@@ -20,7 +20,7 @@
     "firebase-functions": "^2.0.5",
     "fs": "^0.0.1-security",
     "ts-md5": "^1.2.4",
-    "xlsx": "^0.13.5"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "tslint": "~5.8.0",
